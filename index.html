@@ -12,27 +12,40 @@
 
 <style>
 :root{
-  /* Paleta institucional VanguardIA preto profundo + azul VanguardIA + off-whites editoriais */
-  --vg-blue: #1F3CFF;
-  --vg-blue-deep: #1429D6;
-  --vg-blue-soft: #4A63FF;
+  /* ============== MARCA VANGUARDIA ==============
+     Cores oficiais derivadas dos ativos da marca:
+     azul VanguardIA, preto, branco, cinza institucional. */
+  --brand-blue:   #1F3CFF;   /* Azul VanguardIA, primário */
+  --brand-black:  #050608;   /* Preto da marca, fundo institucional */
+  --brand-white:  #FFFFFF;   /* Branco puro, contra-luz */
+  --brand-paper:  #F4F1EA;   /* Off-white editorial, fundo claro institucional */
+  --brand-gray:   #9A9DA6;   /* Cinza institucional dos logos em escala de cinza */
+
+  /* Variações operacionais do azul */
+  --vg-blue:      var(--brand-blue);
+  --vg-blue-deep: #1429D6;          /* hover sobre fundo claro */
+  --vg-blue-soft: #4A63FF;          /* acentos sobre fundo escuro */
   --vg-blue-glow: rgba(31, 60, 255, 0.18);
 
-  --bg-void: #050608;
+  /* Tons de fundo escuro, escalonados a partir do preto da marca */
+  --bg-void: var(--brand-black);
   --bg-deep: #0A0C12;
   --bg-elev: #11141C;
   --bg-soft: #1A1E29;
 
-  --bg-paper: #F4F1EA;
+  /* Tons de fundo claro */
+  --bg-paper: var(--brand-paper);
   --bg-paper-deep: #E8E2D5;
 
-  --ink-100: #FFFFFF;
+  /* Tinta sobre fundo escuro */
+  --ink-100: var(--brand-white);
   --ink-90:  #F2F3F5;
   --ink-70:  #C8CBD3;
   --ink-50:  #8B8F9B;
   --ink-30:  #54586A;
   --ink-15:  #2A2D38;
 
+  /* Tinta sobre fundo claro */
   --paper-ink: #0E1018;
   --paper-ink-soft: #3A3F4D;
 
@@ -859,6 +872,231 @@ section.compact{ padding: clamp(60px, 8vh, 100px) 0; }
   .icia-products{ grid-template-columns: 1fr; }
   .icia-product{ padding: 32px 24px; }
   .icia-product h4{ font-size: 26px; }
+}
+
+/* ICIA: 3 níveis (Start / Core / OS) */
+.icia-tiers{
+  margin-top: 100px;
+  padding-top: 80px;
+  border-top: 1px solid rgba(0,0,0,0.1);
+}
+.icia-tiers-header{
+  text-align: center;
+  max-width: 760px;
+  margin: 0 auto 60px;
+}
+.icia-tiers-header .eyebrow{ justify-content: center; margin-bottom: 16px; }
+.icia-tiers-header h3{
+  font-size: clamp(32px, 4.2vw, 56px);
+  font-weight: 300;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  margin-bottom: 20px;
+}
+.icia-tiers-header h3 em{
+  font-style: italic;
+  color: var(--vg-blue-deep);
+}
+.icia-tiers-header p{
+  font-family: var(--serif);
+  font-size: 19px;
+  line-height: 1.55;
+  font-weight: 300;
+  color: var(--paper-ink-soft);
+}
+.icia-tiers-grid{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+.icia-tier{
+  padding: 40px 32px 32px;
+  background: rgba(255,255,255,0.55);
+  border: 1px solid rgba(0,0,0,0.08);
+  border-radius: var(--radius-lg);
+  transition: all 0.4s var(--ease-out);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.icia-tier::before{
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 3px;
+  background: var(--vg-blue);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.6s var(--ease-out);
+}
+.icia-tier:hover{
+  background: rgba(255,255,255,0.92);
+  border-color: var(--vg-blue);
+  transform: translateY(-4px);
+  box-shadow: 0 30px 60px -20px rgba(31,60,255,0.15);
+}
+.icia-tier:hover::before{ transform: scaleX(1); }
+.icia-tier .tier-num{
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--vg-blue-deep);
+  display: block;
+  margin-bottom: 16px;
+}
+.icia-tier h4{
+  font-size: 36px;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  font-family: var(--serif);
+  color: var(--paper-ink);
+  margin-bottom: 16px;
+}
+.icia-tier h4 em{ font-style: italic; color: var(--vg-blue-deep); }
+.icia-tier .tier-lead{
+  font-family: var(--serif);
+  font-size: 17px;
+  font-style: italic;
+  font-weight: 400;
+  color: var(--vg-blue-deep);
+  line-height: 1.4;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(0,0,0,0.08);
+}
+.icia-tier > p{
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--paper-ink-soft);
+  margin-bottom: 24px;
+  flex: 1;
+}
+.icia-tier .tier-mark{
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--paper-ink-soft);
+  padding-top: 18px;
+  border-top: 1px solid rgba(0,0,0,0.06);
+  display: block;
+}
+.icia-tier-featured{
+  background: var(--paper-ink);
+  border-color: var(--paper-ink);
+}
+.icia-tier-featured::before{ transform: scaleX(1); }
+.icia-tier-featured h4{ color: var(--ink-100); }
+.icia-tier-featured h4 em{ color: var(--vg-blue-soft); }
+.icia-tier-featured .tier-num{ color: var(--vg-blue-soft); }
+.icia-tier-featured .tier-lead{
+  color: var(--vg-blue-soft);
+  border-bottom-color: rgba(255,255,255,0.1);
+}
+.icia-tier-featured > p{ color: var(--ink-70); }
+.icia-tier-featured .tier-mark{
+  color: var(--ink-70);
+  border-top-color: rgba(255,255,255,0.08);
+}
+.icia-tier-featured:hover{
+  background: var(--paper-ink);
+  border-color: var(--vg-blue);
+  box-shadow: 0 30px 60px -20px rgba(31,60,255,0.4);
+}
+
+/* ICIA: Acessórios */
+.icia-acessorios{
+  margin-top: 100px;
+}
+.icia-acessorios-header{
+  text-align: center;
+  max-width: 760px;
+  margin: 0 auto 60px;
+}
+.icia-acessorios-header .eyebrow{ justify-content: center; margin-bottom: 16px; }
+.icia-acessorios-header h3{
+  font-size: clamp(32px, 4.2vw, 56px);
+  font-weight: 300;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  margin-bottom: 20px;
+}
+.icia-acessorios-header h3 em{
+  font-style: italic;
+  color: var(--vg-blue-deep);
+}
+.icia-acessorios-header p{
+  font-family: var(--serif);
+  font-size: 19px;
+  line-height: 1.55;
+  font-weight: 300;
+  color: var(--paper-ink-soft);
+}
+.icia-acessorios-grid{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+.icia-acessorio{
+  padding: 36px 32px;
+  background: rgba(255,255,255,0.55);
+  border: 1px solid rgba(0,0,0,0.08);
+  border-radius: var(--radius-lg);
+  transition: all 0.4s var(--ease-out);
+  position: relative;
+  overflow: hidden;
+}
+.icia-acessorio::before{
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 0;
+  height: 3px;
+  background: var(--vg-blue);
+  transition: width 0.6s var(--ease-out);
+}
+.icia-acessorio:hover{
+  background: rgba(255,255,255,0.92);
+  border-color: var(--vg-blue);
+  transform: translateY(-4px);
+  box-shadow: 0 30px 60px -20px rgba(31,60,255,0.15);
+}
+.icia-acessorio:hover::before{ width: 100%; }
+.icia-acessorio .ptag{
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--vg-blue-deep);
+  display: block;
+  margin-bottom: 16px;
+}
+.icia-acessorio h4{
+  font-size: 28px;
+  font-weight: 400;
+  letter-spacing: -0.015em;
+  font-family: var(--serif);
+  color: var(--paper-ink);
+  margin-bottom: 14px;
+}
+.icia-acessorio h4 em{ font-style: italic; color: var(--vg-blue-deep); }
+.icia-acessorio p{
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--paper-ink-soft);
+}
+
+@media (max-width: 1100px){
+  .icia-tiers-grid, .icia-acessorios-grid{ grid-template-columns: 1fr; gap: 16px; }
+}
+@media (max-width: 880px){
+  .icia-tier{ padding: 32px 24px; }
+  .icia-tier h4{ font-size: 30px; }
+  .icia-acessorio{ padding: 28px 22px; }
+  .icia-acessorio h4{ font-size: 24px; }
 }
 
 /* ICIA: Equação destaque */
@@ -2494,33 +2732,66 @@ section.compact{ padding: clamp(60px, 8vh, 100px) 0; }
       </div>
     </div>
 
-    <div class="icia-products reveal-stagger">
-      <article class="icia-product">
-        <span class="ptag">Produto · Arquitetura</span>
-        <h4>ICIA <em>Arquitetura</em></h4>
-        <p>O programa estruturante. Reorganiza a empresa em até quatro áreas críticas com método aplicado e governança real de Inteligência Aplicada.</p>
-        <ul>
-          <li>DEEP, Diagnóstico de Eficiência Estruturada de Processos</li>
-          <li>Instalação da cultura de IA aplicada</li>
-          <li>Modernização de Políticas, Processos e POPs</li>
-          <li>Automações customizadas e camada de dados</li>
-          <li>CNH Corporativo, certificação interna de IA</li>
-          <li>Governança e ritos recorrentes</li>
-        </ul>
-      </article>
+    <div class="icia-tiers">
+      <div class="icia-tiers-header reveal">
+        <span class="eyebrow">Programa em três níveis</span>
+        <h3>Três <em>profundidades</em> de implementação. Uma escada natural.</h3>
+        <p>O ICIA opera em três níveis de maturidade. Cada empresa entra pelo nível certo para o seu momento e evolui no próprio ritmo. Não é um pacote que se compra. É uma arquitetura que se constrói.</p>
+      </div>
 
-      <article class="icia-product">
-        <span class="ptag">Produto · Outsourcing</span>
-        <h4>ICIA <em>Outsourcing</em></h4>
-        <p>Squad permanente de IA, automação e dados alocada à empresa do cliente, com backlog contínuo, ritos próprios e suporte técnico.</p>
-        <ul>
-          <li>Squad permanente alocada</li>
-          <li>Backlog técnico contínuo</li>
-          <li>Treinamento recorrente do time interno</li>
-          <li>Governança e suporte técnico</li>
-          <li>Continuidade após a fase de Arquitetura</li>
-        </ul>
-      </article>
+      <div class="icia-tiers-grid reveal-stagger">
+        <article class="icia-tier">
+          <span class="tier-num">Nível 01</span>
+          <h4>ICIA <em>Start</em></h4>
+          <p class="tier-lead">A entrada estratégica.</p>
+          <p>Para empresas decididas a dar o primeiro passo com segurança. Habilita áreas críticas, instala a primeira camada de cultura de IA e prova resultado em ciclo curto.</p>
+          <span class="tier-mark">Para quem quer começar com método.</span>
+        </article>
+
+        <article class="icia-tier">
+          <span class="tier-num">Nível 02</span>
+          <h4>ICIA <em>Core</em></h4>
+          <p class="tier-lead">A transformação multissetorial.</p>
+          <p>Para empresas que decidiram expandir a inteligência aplicada por toda a operação. Outras áreas pedem para entrar, a transformação ganha tração e ritmo institucional.</p>
+          <span class="tier-mark">Para quem está pronto para escalar.</span>
+        </article>
+
+        <article class="icia-tier icia-tier-featured">
+          <span class="tier-num">Nível 03</span>
+          <h4>ICIA <em>OS</em></h4>
+          <p class="tier-lead">O sistema operacional completo.</p>
+          <p>Para empresas que escolheram liderar seu setor com IA. Implementam o sistema entre sistemas, com agentes autônomos, soberania total dos dados e advisory estratégico contínuo.</p>
+          <span class="tier-mark">Para quem quer deixar legado.</span>
+        </article>
+      </div>
+    </div>
+
+    <div class="icia-acessorios">
+      <div class="icia-acessorios-header reveal">
+        <span class="eyebrow">Acessórios do ecossistema</span>
+        <h3>Os <em>multiplicadores</em> de valor.</h3>
+        <p>Soluções que se combinam com qualquer um dos níveis para resolver dores que o mercado tradicional cobra caro e entrega de forma ultrapassada. Cada acessório foi desenhado para ser melhor, mais rápido e mais inteligente do que o padrão da indústria.</p>
+      </div>
+
+      <div class="icia-acessorios-grid reveal-stagger">
+        <article class="icia-acessorio">
+          <span class="ptag">Acessório · Processos</span>
+          <h4>ICIA <em>Process</em></h4>
+          <p>Diagnóstico e modernização em escala dos POPs e fluxos da empresa, com inteligência aplicada dentro do próprio processo de modernização. O dobro do resultado, na metade do tempo.</p>
+        </article>
+
+        <article class="icia-acessorio">
+          <span class="ptag">Acessório · Time</span>
+          <h4>ICIA <em>Outsourcing</em></h4>
+          <p>Profissional VanguardIA in loco, portador do método ICIA completo. Não é técnico de TI. É embaixador do movimento dentro da operação do cliente, conectado a todo o ecossistema.</p>
+        </article>
+
+        <article class="icia-acessorio">
+          <span class="ptag">Acessório · Dados</span>
+          <h4>ICIA <em>Data Lake</em></h4>
+          <p>Arquitetura inteligente de dados, não produto engessado. Lago de dados desenhado com intencionalidade, velocidade absurda e governança real do DNA corporativo.</p>
+        </article>
+      </div>
     </div>
   </div>
 </section>
@@ -2550,7 +2821,7 @@ section.compact{ padding: clamp(60px, 8vh, 100px) 0; }
     </div>
 
     <div class="doit-grid reveal-stagger">
-      <article class="doit-card">
+      <article class="doit-card" id="ai-night">
         <div class="ico">
           <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <circle cx="12" cy="12" r="9"/>
@@ -2561,7 +2832,7 @@ section.compact{ padding: clamp(60px, 8vh, 100px) 0; }
         <h4>AI <em>Night</em></h4>
         <p>Encontro com tema rotativo por vertical. O endereço onde quem vive Inteligência Aplicada encontra quem quer começar a viver. Sem palestra motivacional, com aplicação real.</p>
       </article>
-      <article class="doit-card">
+      <article class="doit-card" id="ai-on-hands">
         <div class="ico">
           <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <rect x="3" y="3" width="18" height="18" rx="2"/>
@@ -2572,7 +2843,7 @@ section.compact{ padding: clamp(60px, 8vh, 100px) 0; }
         <h4>AI <em>On Hands</em></h4>
         <p>Workshop prático. O participante sai com um agente, um fluxo ou um GPT customizado funcionando dentro do próprio negócio. Sem teoria, sem abstração.</p>
       </article>
-      <article class="doit-card doit-card-featured">
+      <article class="doit-card doit-card-featured" id="conselho-icia">
         <div class="ico">
           <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path d="M12 2L2 7l10 5 10-5-10-5z"/>
@@ -2627,7 +2898,6 @@ section.compact{ padding: clamp(60px, 8vh, 100px) 0; }
           <div class="parceria-placeholder">Logo<strong>ACP</strong></div>
         </div>
         <div class="parceria-meta">
-          <span class="parceria-tag tag-membro">Membro</span>
           <h4>ACP</h4>
           <p>Associação Comercial do Pará</p>
         </div>
@@ -2638,7 +2908,6 @@ section.compact{ padding: clamp(60px, 8vh, 100px) 0; }
           <div class="parceria-placeholder">Logo<strong>CONJOVE</strong></div>
         </div>
         <div class="parceria-meta">
-          <span class="parceria-tag tag-membro">Membro</span>
           <h4>Conjove</h4>
           <p>Conselho de Jovens Empresários</p>
         </div>
@@ -2649,7 +2918,6 @@ section.compact{ padding: clamp(60px, 8vh, 100px) 0; }
           <div class="parceria-placeholder">Logo<strong>SEBRAE</strong></div>
         </div>
         <div class="parceria-meta">
-          <span class="parceria-tag tag-parceria">Parceria</span>
           <h4>SEBRAE</h4>
           <p>Serviço Brasileiro de Apoio às Micro e Pequenas Empresas</p>
         </div>
@@ -2660,7 +2928,6 @@ section.compact{ padding: clamp(60px, 8vh, 100px) 0; }
           <div class="parceria-placeholder">Logo<strong>SINDARPA</strong></div>
         </div>
         <div class="parceria-meta">
-          <span class="parceria-tag tag-parceria">Parceria</span>
           <h4>SINDARPA</h4>
           <p>Sindicato das Indústrias da Pesca e Empresas Armadoras</p>
         </div>
@@ -2671,7 +2938,6 @@ section.compact{ padding: clamp(60px, 8vh, 100px) 0; }
           <div class="parceria-placeholder">Logo<strong>OAB</strong></div>
         </div>
         <div class="parceria-meta">
-          <span class="parceria-tag tag-parceria">Parceria</span>
           <h4>OAB</h4>
           <p>Ordem dos Advogados do Brasil</p>
         </div>
@@ -3019,7 +3285,7 @@ section.compact{ padding: clamp(60px, 8vh, 100px) 0; }
     <div class="footer-grid">
       <div class="footer-brand">
         <img src="assets/logo-horizontal.png" alt="VanguardIA">
-        <p>A arquitetura aplicada da Nova Era. Da Amazônia para o Brasil. Operamos ICIA.OS, ICIA e o ecossistema Do It Hub.</p>
+        <p>A arquitetura aplicada da Nova Era. Da Amazônia para o Brasil.</p>
       </div>
       <div class="footer-col">
         <h5>Sistema</h5>
@@ -3033,9 +3299,9 @@ section.compact{ padding: clamp(60px, 8vh, 100px) 0; }
       <div class="footer-col">
         <h5>Movimento</h5>
         <ul>
-          <li><a href="#">AI Night</a></li>
-          <li><a href="#">AI On Hands</a></li>
-          <li><a href="#">Conselho ICIA</a></li>
+          <li><a href="#ai-night">AI Night</a></li>
+          <li><a href="#ai-on-hands">AI On Hands</a></li>
+          <li><a href="#conselho-icia">Conselho ICIA</a></li>
           <li><a href="#depoimentos">Depoimentos</a></li>
           <li><a href="#parcerias">Parcerias</a></li>
         </ul>
