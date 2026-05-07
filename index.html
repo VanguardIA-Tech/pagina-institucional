@@ -3510,8 +3510,8 @@ section.compact{ padding: clamp(60px, 8vh, 100px) 0; }
       node.classList.add('cst-node');
       g.appendChild(node);
 
-      // Linha sutil do centro até alguns nós (não todos, para não poluir)
-      if (ringIdx <= 1 && i % 2 === 0){
+      // Linha do centro até todos os nós
+      {
         const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
         line.setAttribute('x1', cx);
         line.setAttribute('y1', cy);
