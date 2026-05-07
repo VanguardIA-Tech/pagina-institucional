@@ -2397,10 +2397,98 @@ section.compact{ padding: clamp(60px, 8vh, 100px) 0; }
 ::-moz-selection{ background: var(--vg-blue); color: white; }
 
 /* scrollbar */
-::-webkit-scrollbar{ width: 10px; }
-::-webkit-scrollbar-track{ background: var(--bg-void); }
-::-webkit-scrollbar-thumb{ background: var(--ink-15); border-radius: 5px; }
-::-webkit-scrollbar-thumb:hover{ background: var(--vg-blue-deep); }
+/* ========== HAMBURGER NAV MOBILE ========== */
+.nav-burger{
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  color: var(--ink-100);
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+}
+.nav-burger span{
+  display: block;
+  width: 22px;
+  height: 1.5px;
+  background: currentColor;
+  transition: transform 0.3s var(--ease-out), opacity 0.3s;
+}
+.nav-burger.open span:nth-child(1){ transform: translateY(6.5px) rotate(45deg); }
+.nav-burger.open span:nth-child(2){ opacity: 0; }
+.nav-burger.open span:nth-child(3){ transform: translateY(-6.5px) rotate(-45deg); }
+
+/* ========== MOBILE GLOBAL ========== */
+@media (max-width: 880px){
+  /* Container mais estreito */
+  .container, .container-tight{ padding-inline: 18px; }
+
+  /* Seções mais compactas */
+  section{ padding: clamp(40px, 7vh, 72px) 0; }
+  section.compact{ padding: clamp(28px, 5vh, 48px) 0; }
+
+  /* Nav mobile */
+  .nav{ padding: 14px 18px; }
+  .nav-burger{ display: flex; }
+  .nav-cta{ display: none; }
+  .nav-links{
+    display: flex !important;
+    position: fixed;
+    top: 61px;
+    left: 0; right: 0;
+    background: rgba(5,6,8,0.97);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    flex-direction: column;
+    align-items: stretch;
+    padding: 8px 0 24px;
+    transform: translateY(-110%);
+    transition: transform 0.35s var(--ease-out);
+    border-bottom: 1px solid var(--accent-line);
+    z-index: 98;
+  }
+  .nav-links.open{ transform: translateY(0); }
+  .nav-links a{
+    padding: 14px 24px;
+    font-size: 13px;
+    border-bottom: 1px solid var(--accent-line);
+    text-align: left;
+  }
+  .nav-links a:last-child{ border-bottom: none; }
+  .nav-links-cta-mobile{
+    margin: 16px 24px 0;
+    display: block;
+    text-align: center;
+    padding: 14px;
+    background: var(--brand-blue);
+    color: #fff;
+    border-radius: var(--radius-sm);
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+  }
+
+  /* Hero mobile */
+  .hero{ padding-top: 80px; }
+  .hero-tagline{ font-size: 15px; max-width: 100%; }
+  .hero-foot{ margin-top: 40px; gap: 28px; }
+  .hero-scroll{
+    align-self: flex-end;
+    margin-left: auto;
+  }
+
+  /* Constelação */
+  .constelacao-canvas{ max-height: 75vw; }
+  .constelacao-list{ margin-top: 40px; }
+
+  /* Depoimentos galeria */
+  .dep-gallery{ grid-auto-rows: 120px; }
+}
+
 </style>
 </head>
 <body>
@@ -2410,7 +2498,7 @@ section.compact{ padding: clamp(60px, 8vh, 100px) 0; }
   <a href="#top" class="nav-brand">
     <img src="https://directus.vanguardiagrupo.com.br/assets/c6d153f9-dafb-4792-96c4-0dc5a7b3f69e" class="nav-logo" alt="VanguardIA">
   </a>
-  <div class="nav-links">
+  <div class="nav-links" id="nav-links">
     <a href="#origem">Origem</a>
     <a href="#tese">O Começo</a>
     <a href="#vos">ICIA.OS</a>
@@ -2418,7 +2506,11 @@ section.compact{ padding: clamp(60px, 8vh, 100px) 0; }
     <a href="#doit">Do It Hub</a>
     <a href="#clientes">Clientes</a>
     <a href="#depoimentos">Depoimentos</a>
+    <a href="https://formbioj.vanguardiagrupo.com.br/?utm_source=home&utm_medium=bio_home&utm_content=link_in_bio&fbclid=PAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQMMjU2MjgxMDQwNTU4AAGnLVC0WIY5wR03GGrm3wmk7aJJ15JyYVNI9NBXWEB1yr2GBIaPoBivarV04o0_aem_VekgoPfNaLqnnZ-VFUcw2g" target="_blank" rel="noopener" class="nav-links-cta-mobile">Fale Conosco</a>
   </div>
+  <button class="nav-burger" id="nav-burger" aria-label="Menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
   <a href="https://formbioj.vanguardiagrupo.com.br/?utm_source=home&utm_medium=bio_home&utm_content=link_in_bio&fbclid=PAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQMMjU2MjgxMDQwNTU4AAGnLVC0WIY5wR03GGrm3wmk7aJJ15JyYVNI9NBXWEB1yr2GBIaPoBivarV04o0_aem_VekgoPfNaLqnnZ-VFUcw2g" target="_blank" rel="noopener" class="nav-cta">Fale Conosco</a>
 </nav>
 
@@ -3578,6 +3670,29 @@ section.compact{ padding: clamp(60px, 8vh, 100px) 0; }
       ticking = true;
     }
   }, { passive: true });
+})();
+
+// Hamburger menu mobile
+(function(){
+  const burger  = document.getElementById('nav-burger');
+  const links   = document.getElementById('nav-links');
+  if (!burger || !links) return;
+
+  function closeMenu(){
+    burger.classList.remove('open');
+    links.classList.remove('open');
+    burger.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+  }
+
+  burger.addEventListener('click', () => {
+    const isOpen = links.classList.toggle('open');
+    burger.classList.toggle('open', isOpen);
+    burger.setAttribute('aria-expanded', isOpen);
+    document.body.style.overflow = isOpen ? 'hidden' : '';
+  });
+
+  links.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
 })();
 </script>
 
