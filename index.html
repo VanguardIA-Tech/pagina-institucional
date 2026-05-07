@@ -3430,12 +3430,12 @@ section.compact{ padding: clamp(60px, 8vh, 100px) 0; }
     chip.dataset.idx = idx;
   });
 
-  // Distribuição dos 50 nós em 4 anéis (10 + 13 + 14 + 13 = 50)
+  // Distribuição dinâmica dos nós por anel, baseada no total de chips
+  const total = chips.length;
   const rings = [
-    { count: 10, radius: 200, baseSize: 8, speed: 70  },
-    { count: 13, radius: 290, baseSize: 6, speed: 100 },
-    { count: 14, radius: 370, baseSize: 5, speed: 130 },
-    { count: 13, radius: 440, baseSize: 4, speed: 170 }
+    { count: Math.round(total * 0.27), radius: 190, baseSize: 9, speed: 70  },
+    { count: Math.round(total * 0.41), radius: 290, baseSize: 7, speed: 100 },
+    { count: total - Math.round(total * 0.27) - Math.round(total * 0.41), radius: 370, baseSize: 5, speed: 130 }
   ];
 
   let nodeIdx = 0;
@@ -3456,7 +3456,7 @@ section.compact{ padding: clamp(60px, 8vh, 100px) 0; }
     g.appendChild(animate);
 
     for (let i = 0; i < ring.count; i++){
-      if (nodeIdx >= palette.length) break;
+      if (nodeIdx >= chips.length) break;
 
       const color = palette[nodeIdx];
       const angle = (i / ring.count) * Math.PI * 2 + (ringIdx * 0.25);
