@@ -24,7 +24,7 @@
   /* Variações operacionais do azul */
   --vg-blue:      var(--brand-blue);
   --vg-blue-deep: #1535C0;          /* hover sobre fundo claro */
-  --vg-blue-soft: #5468EE;          /* acentos sobre fundo escuro */
+  --vg-blue-soft: #4F7AFF;          /* acentos sobre fundo escuro, azul puro sem cast violeta */
   --vg-blue-glow: rgba(32, 70, 234, 0.18);
 
   /* Tons de fundo escuro, escalonados a partir do preto da marca */
@@ -2623,7 +2623,7 @@ section.compact{ padding: clamp(60px, 8vh, 100px) 0; }
             <!-- Three primary pillar nodes -->
             <g>
               <circle cx="250" cy="100" r="14" fill="#2046EA" opacity="0.95"/>
-              <circle cx="250" cy="100" r="14" fill="none" stroke="#5468EE" stroke-width="1">
+              <circle cx="250" cy="100" r="14" fill="none" stroke="#4F7AFF" stroke-width="1">
                 <animate attributeName="r" values="14;26;14" dur="3.2s" repeatCount="indefinite"/>
                 <animate attributeName="opacity" values="0.7;0;0.7" dur="3.2s" repeatCount="indefinite"/>
               </circle>
@@ -2631,7 +2631,7 @@ section.compact{ padding: clamp(60px, 8vh, 100px) 0; }
             </g>
             <g>
               <circle cx="120" cy="330" r="14" fill="#2046EA" opacity="0.95"/>
-              <circle cx="120" cy="330" r="14" fill="none" stroke="#5468EE" stroke-width="1">
+              <circle cx="120" cy="330" r="14" fill="none" stroke="#4F7AFF" stroke-width="1">
                 <animate attributeName="r" values="14;26;14" dur="3.5s" repeatCount="indefinite" begin="0.6s"/>
                 <animate attributeName="opacity" values="0.7;0;0.7" dur="3.5s" repeatCount="indefinite" begin="0.6s"/>
               </circle>
@@ -2639,7 +2639,7 @@ section.compact{ padding: clamp(60px, 8vh, 100px) 0; }
             </g>
             <g>
               <circle cx="380" cy="330" r="14" fill="#2046EA" opacity="0.95"/>
-              <circle cx="380" cy="330" r="14" fill="none" stroke="#5468EE" stroke-width="1">
+              <circle cx="380" cy="330" r="14" fill="none" stroke="#4F7AFF" stroke-width="1">
                 <animate attributeName="r" values="14;26;14" dur="3.8s" repeatCount="indefinite" begin="1.2s"/>
                 <animate attributeName="opacity" values="0.7;0;0.7" dur="3.8s" repeatCount="indefinite" begin="1.2s"/>
               </circle>
@@ -2654,9 +2654,9 @@ section.compact{ padding: clamp(60px, 8vh, 100px) 0; }
             <!-- Outer satellite orbit -->
             <g>
               <animateTransform attributeName="transform" type="rotate" from="0 250 250" to="360 250 250" dur="80s" repeatCount="indefinite"/>
-              <circle cx="362" cy="138" r="3" fill="#5468EE" opacity="0.5"/>
+              <circle cx="362" cy="138" r="3" fill="#4F7AFF" opacity="0.5"/>
               <circle cx="138" cy="362" r="4" fill="#2046EA" opacity="0.6"/>
-              <circle cx="362" cy="362" r="3" fill="#5468EE" opacity="0.4"/>
+              <circle cx="362" cy="362" r="3" fill="#4F7AFF" opacity="0.4"/>
               <circle cx="138" cy="138" r="3" fill="#2046EA" opacity="0.5"/>
             </g>
           </svg>
@@ -2987,11 +2987,11 @@ section.compact{ padding: clamp(60px, 8vh, 100px) 0; }
 
         <!-- Center node -->
         <circle cx="500" cy="500" r="40" fill="#2046EA"/>
-        <circle cx="500" cy="500" r="40" fill="none" stroke="#5468EE" stroke-width="1.5">
+        <circle cx="500" cy="500" r="40" fill="none" stroke="#4F7AFF" stroke-width="1.5">
           <animate attributeName="r" values="40;65;40" dur="3.5s" repeatCount="indefinite"/>
           <animate attributeName="opacity" values="0.8;0;0.8" dur="3.5s" repeatCount="indefinite"/>
         </circle>
-        <circle cx="500" cy="500" r="40" fill="none" stroke="#5468EE" stroke-width="1">
+        <circle cx="500" cy="500" r="40" fill="none" stroke="#4F7AFF" stroke-width="1">
           <animate attributeName="r" values="40;90;40" dur="5s" repeatCount="indefinite"/>
           <animate attributeName="opacity" values="0.5;0;0.5" dur="5s" repeatCount="indefinite"/>
         </circle>
@@ -3382,8 +3382,8 @@ section.compact{ padding: clamp(60px, 8vh, 100px) 0; }
 
   // Paleta de 50 cores distintas e harmônicas. Cada cliente tem a sua cor.
   // A mesma cor aparece no chip da lista e no nó da constelação.
-  // Paleta sem lilás/roxo/violeta. Mantém variedade com azuis, verdes,
-  // vermelhos, laranjas, amarelos, rosas, ciano e neutros.
+  // Paleta sem roxo/lilás/violeta/rosa. Apenas azuis, verdes,
+  // vermelhos, laranjas, amarelos, ciano, neutros e dourados.
   const palette = [
     '#2046EA', // 01 azul VanguardIA
     '#E63946', // 02 vermelho
@@ -3393,7 +3393,7 @@ section.compact{ padding: clamp(60px, 8vh, 100px) 0; }
     '#F8FAFC', // 06 branco
     '#84CC16', // 07 verde limão
     '#16A34A', // 08 verde bandeira
-    '#FBB6CE', // 09 rosa claro
+    '#B8D4FF', // 09 azul muito claro
     '#7DD3FC', // 10 azul bebê
     '#F97316', // 11 laranja
     '#14B8A6', // 12 turquesa
@@ -3401,7 +3401,7 @@ section.compact{ padding: clamp(60px, 8vh, 100px) 0; }
     '#EF4444', // 14 vermelho coral
     '#0F766E', // 15 verde teal escuro
     '#22D3EE', // 16 ciano
-    '#EC4899', // 17 rosa pink
+    '#0284C7', // 17 azul oceano
     '#10B981', // 18 esmeralda
     '#F59E0B', // 19 âmbar
     '#3B82F6', // 20 azul royal
@@ -3412,26 +3412,26 @@ section.compact{ padding: clamp(60px, 8vh, 100px) 0; }
     '#FB923C', // 25 laranja claro
     '#075985', // 26 azul navy
     '#34D399', // 27 verde menta
-    '#F472B6', // 28 rosa vivo
+    '#06B6D4', // 28 ciano vivo
     '#FACC15', // 29 ouro
     '#60A5FA', // 30 azul céu
     '#0891B2', // 31 ciano profundo
     '#4ADE80', // 32 verde primavera
     '#FBBF24', // 33 dourado
-    '#FCA5A5', // 34 rosa salmão
+    '#FCD34D', // 34 amarelo trigo
     '#5EEAD4', // 35 verde água
     '#94A3B8', // 36 cinza azulado
     '#FED7AA', // 37 pêssego
     '#86EFAC', // 38 verde claro
     '#93C5FD', // 39 azul claro
-    '#FBCFE8', // 40 rosa bebê
+    '#BFDBFE', // 40 azul gelo claro
     '#FDBA74', // 41 melão
-    '#67E8F9', // 42 azul gelo
+    '#67E8F9', // 42 azul piscina
     '#BEF264', // 43 verde lima
-    '#FDA4AF', // 44 rosa coral
+    '#B45309', // 44 caramelo
     '#FDE047', // 45 amarelo neon
-    '#A5F3FC', // 46 azul piscina
-    '#FECACA', // 47 rosa terra
+    '#A5F3FC', // 46 azul piscina claro
+    '#E2E8F0', // 47 cinza muito claro
     '#CBD5E1', // 48 cinza claro
     '#BBF7D0', // 49 verde sage
     '#FFEDD5'  // 50 creme
