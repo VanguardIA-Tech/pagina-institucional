@@ -165,14 +165,15 @@ section.compact{ padding: clamp(60px, 8vh, 100px) 0; }
   text-decoration: none;
   color: var(--ink-100);
 }
-.nav-logo{
-  height: 32px;
+.nav-logo-svg{
+  height: 34px;
   width: auto;
   display: block;
-  transition: filter 0.3s var(--ease-out);
+  color: var(--brand-white);
+  transition: color 0.3s var(--ease-out);
 }
-.nav.over-paper .nav-logo{
-  filter: none;
+.nav.over-paper .nav-logo-svg{
+  color: var(--brand-blue);
 }
 
 .nav-links{
@@ -2399,7 +2400,16 @@ section.compact{ padding: clamp(60px, 8vh, 100px) 0; }
 <!-- ============== NAV ============== -->
 <nav class="nav" id="nav">
   <a href="#top" class="nav-brand">
-    <img src="assets/logo-horizontal.png" alt="VanguardIA" class="nav-logo">
+    <svg class="nav-logo-svg" viewBox="0 0 360 55" xmlns="http://www.w3.org/2000/svg" aria-label="VanguardIA" role="img">
+      <!-- ala esquerda -->
+      <polygon points="2,22 31,17 48,52" fill="currentColor"/>
+      <!-- ala direita -->
+      <polygon points="69,17 98,22 52,52" fill="currentColor"/>
+      <!-- coroa central -->
+      <polygon points="50,1 67,18 61,45 50,54 39,45 33,18" fill="currentColor"/>
+      <!-- wordmark -->
+      <text x="113" y="40" font-family="'Red Hat Display',sans-serif" font-weight="700" font-size="28" fill="currentColor" letter-spacing="2.5">VANGUARDIA</text>
+    </svg>
   </a>
   <div class="nav-links">
     <a href="#origem">Origem</a>
@@ -3285,7 +3295,12 @@ section.compact{ padding: clamp(60px, 8vh, 100px) 0; }
   <div class="container">
     <div class="footer-grid">
       <div class="footer-brand">
-        <img src="assets/logo-horizontal.png" alt="VanguardIA">
+        <svg style="height:28px;width:auto;display:block;color:var(--brand-white)" viewBox="0 0 360 55" xmlns="http://www.w3.org/2000/svg" aria-label="VanguardIA" role="img">
+          <polygon points="2,22 31,17 48,52" fill="currentColor"/>
+          <polygon points="69,17 98,22 52,52" fill="currentColor"/>
+          <polygon points="50,1 67,18 61,45 50,54 39,45 33,18" fill="currentColor"/>
+          <text x="113" y="40" font-family="'Red Hat Display',sans-serif" font-weight="700" font-size="28" fill="currentColor" letter-spacing="2.5">VANGUARDIA</text>
+        </svg>
         <p>A arquitetura aplicada da Nova Era. Da Amazônia para o Brasil.</p>
       </div>
       <div class="footer-col">
