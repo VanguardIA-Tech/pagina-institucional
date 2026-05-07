@@ -2400,15 +2400,20 @@ section.compact{ padding: clamp(60px, 8vh, 100px) 0; }
 <!-- ============== NAV ============== -->
 <nav class="nav" id="nav">
   <a href="#top" class="nav-brand">
-    <svg class="nav-logo-svg" viewBox="0 0 360 55" xmlns="http://www.w3.org/2000/svg" aria-label="VanguardIA" role="img">
-      <!-- ala esquerda -->
-      <polygon points="2,22 31,17 48,52" fill="currentColor"/>
-      <!-- ala direita -->
-      <polygon points="69,17 98,22 52,52" fill="currentColor"/>
-      <!-- coroa central -->
-      <polygon points="50,1 67,18 61,45 50,54 39,45 33,18" fill="currentColor"/>
+    <!--
+      Marca VanguardIA: ala-esq (paralelogramo) + coroa arqueada + ala-dir (paralelogramo)
+      Separador horizontal + V inferior
+      Todos os elementos usam currentColor para adaptação claro/escuro via CSS
+    -->
+    <svg class="nav-logo-svg" viewBox="0 0 420 50" xmlns="http://www.w3.org/2000/svg" aria-label="VanguardIA" role="img">
+      <!-- ala esquerda (paralelogramo) -->
+      <polygon points="2,31 40,26 50,48 18,48" fill="currentColor"/>
+      <!-- ala direita (paralelogramo) -->
+      <polygon points="60,26 98,31 82,48 50,48" fill="currentColor"/>
+      <!-- coroa central (topo arqueado com bezier) -->
+      <path d="M38,18 Q50,1 62,18 L59,40 L50,48 L41,40 Z" fill="currentColor"/>
       <!-- wordmark -->
-      <text x="113" y="40" font-family="'Red Hat Display',sans-serif" font-weight="700" font-size="28" fill="currentColor" letter-spacing="2.5">VANGUARDIA</text>
+      <text x="112" y="37" font-family="'Red Hat Display',sans-serif" font-weight="700" font-size="29" fill="currentColor" letter-spacing="1.5">VANGUARDIA</text>
     </svg>
   </a>
   <div class="nav-links">
@@ -3295,11 +3300,11 @@ section.compact{ padding: clamp(60px, 8vh, 100px) 0; }
   <div class="container">
     <div class="footer-grid">
       <div class="footer-brand">
-        <svg style="height:28px;width:auto;display:block;color:var(--brand-white)" viewBox="0 0 360 55" xmlns="http://www.w3.org/2000/svg" aria-label="VanguardIA" role="img">
-          <polygon points="2,22 31,17 48,52" fill="currentColor"/>
-          <polygon points="69,17 98,22 52,52" fill="currentColor"/>
-          <polygon points="50,1 67,18 61,45 50,54 39,45 33,18" fill="currentColor"/>
-          <text x="113" y="40" font-family="'Red Hat Display',sans-serif" font-weight="700" font-size="28" fill="currentColor" letter-spacing="2.5">VANGUARDIA</text>
+        <svg style="height:32px;width:auto;display:block;color:var(--brand-white)" viewBox="0 0 420 50" xmlns="http://www.w3.org/2000/svg" aria-label="VanguardIA" role="img">
+          <polygon points="2,31 40,26 50,48 18,48" fill="currentColor"/>
+          <polygon points="60,26 98,31 82,48 50,48" fill="currentColor"/>
+          <path d="M38,18 Q50,1 62,18 L59,40 L50,48 L41,40 Z" fill="currentColor"/>
+          <text x="112" y="37" font-family="'Red Hat Display',sans-serif" font-weight="700" font-size="29" fill="currentColor" letter-spacing="1.5">VANGUARDIA</text>
         </svg>
         <p>A arquitetura aplicada da Nova Era. Da Amazônia para o Brasil.</p>
       </div>
