@@ -1817,6 +1817,21 @@ section.compact{ padding: clamp(60px, 8vh, 100px) 0; }
   background: white;
   box-shadow: 0 0 8px white;
 }
+.chip-logo{
+  height: 18px;
+  width: auto;
+  max-width: 64px;
+  object-fit: contain;
+  display: inline-block;
+  vertical-align: middle;
+  filter: brightness(0) invert(1);
+  opacity: 0.85;
+  flex-shrink: 0;
+}
+.client-chip-colored:hover .chip-logo{
+  filter: brightness(0) invert(1);
+  opacity: 1;
+}
 
 /* Para cores muito claras (branco, creme), garante contraste mínimo */
 @supports (color: color-mix(in srgb, white 50%, black)){
@@ -2546,12 +2561,12 @@ section.compact{ padding: clamp(60px, 8vh, 100px) 0; }
     <a href="#doit">Do It Hub</a>
     <a href="#clientes">Clientes</a>
     <a href="#depoimentos">Depoimentos</a>
-    <a href="https://formbioj.vanguardiagrupo.com.br/?utm_source=home&utm_medium=bio_home&utm_content=link_in_bio&fbclid=PAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQMMjU2MjgxMDQwNTU4AAGnLVC0WIY5wR03GGrm3wmk7aJJ15JyYVNI9NBXWEB1yr2GBIaPoBivarV04o0_aem_VekgoPfNaLqnnZ-VFUcw2g" target="_blank" rel="noopener" class="nav-links-cta-mobile">Fale Conosco</a>
+    <a href="https://formbioj.vanguardiagrupo.com.br/?utm_source=home&utm_medium=bio_home&utm_content=link_in_bio&fbclid=PAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQMMjU2MjgxMDQwNTU4AAGnLVC0WIY5wR03GGrm3wmk7aJJ15JyYVNI9NBXWEB1yr2GBIaPoBivarV04o0_aem_VekgoPfNaLqnnZ-VFUcw2g" target="_blank" rel="noopener" class="nav-links-cta-mobile">Fale com a VanguardIA</a>
   </div>
   <button class="nav-burger" id="nav-burger" aria-label="Menu" aria-expanded="false">
     <span></span><span></span><span></span>
   </button>
-  <a href="https://formbioj.vanguardiagrupo.com.br/?utm_source=home&utm_medium=bio_home&utm_content=link_in_bio&fbclid=PAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQMMjU2MjgxMDQwNTU4AAGnLVC0WIY5wR03GGrm3wmk7aJJ15JyYVNI9NBXWEB1yr2GBIaPoBivarV04o0_aem_VekgoPfNaLqnnZ-VFUcw2g" target="_blank" rel="noopener" class="nav-cta">Fale Conosco</a>
+  <a href="https://formbioj.vanguardiagrupo.com.br/?utm_source=home&utm_medium=bio_home&utm_content=link_in_bio&fbclid=PAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQMMjU2MjgxMDQwNTU4AAGnLVC0WIY5wR03GGrm3wmk7aJJ15JyYVNI9NBXWEB1yr2GBIaPoBivarV04o0_aem_VekgoPfNaLqnnZ-VFUcw2g" target="_blank" rel="noopener" class="nav-cta">Fale com a VanguardIA</a>
 </nav>
 
 <!-- ============== HERO ============== -->
@@ -3148,25 +3163,25 @@ section.compact{ padding: clamp(60px, 8vh, 100px) 0; }
     <div class="constelacao-list reveal">
       <p class="constelacao-list-label">Clientes</p>
       <div class="constelacao-clients">
-        <span class="client-chip">PARAFERRO</span>
+        <span class="client-chip"><img src="https://directus.vanguardiagrupo.com.br/assets/8cfd3629-a6f2-4386-a3ec-79fe98b638aa" alt="Paraferro" class="chip-logo">PARAFERRO</span>
         <span class="client-chip">GRUPO MEGA</span>
-        <span class="client-chip">ALVES MARTINS ADVOCACIA</span>
-        <span class="client-chip">SILVEIRA ATHIAS ADVOGADOS</span>
-        <span class="client-chip">CF DISTRIBUIDORA</span>
-        <span class="client-chip">FACILITA SERVIÇOS</span>
-        <span class="client-chip">FIBRA</span>
-        <span class="client-chip">GRUPO LOTUS</span>
-        <span class="client-chip">IT PROTECT BRASIL</span>
-        <span class="client-chip">REDE+ SAÚDE</span>
-        <span class="client-chip">MAVE</span>
-        <span class="client-chip">MED NUTRI</span>
-        <span class="client-chip">MONTALVÃO NEVES ADVOGADOS</span>
-        <span class="client-chip">NATIVA UNIFORMES</span>
-        <span class="client-chip">NEVONI</span>
-        <span class="client-chip">PRIME EQUIPAMENTS</span>
-        <span class="client-chip">SILNAVE NAVEGAÇÃO</span>
-        <span class="client-chip">SUPERMERCADO ECONÔMICO</span>
-        <span class="client-chip">TOCA HUB</span>
+        <span class="client-chip"><img src="https://directus.vanguardiagrupo.com.br/assets/2bc3e6f4-e1d7-4d64-b1a0-ff7c9682318b" alt="Alves Martins" class="chip-logo">ALVES MARTINS ADVOCACIA</span>
+        <span class="client-chip"><img src="https://directus.vanguardiagrupo.com.br/assets/96a23939-eb14-4db5-951b-8b2fdc9702b5" alt="Silveira Athias" class="chip-logo">SILVEIRA ATHIAS ADVOGADOS</span>
+        <span class="client-chip"><img src="https://directus.vanguardiagrupo.com.br/assets/a7d51ff5-3903-4803-9faf-4baa62ff4eaa" alt="CF Distribuidora" class="chip-logo">CF DISTRIBUIDORA</span>
+        <span class="client-chip"><img src="https://directus.vanguardiagrupo.com.br/assets/a7d51ff5-3903-4803-9faf-4baa62ff4eaa" alt="Facilita" class="chip-logo">FACILITA SERVIÇOS</span>
+        <span class="client-chip"><img src="https://directus.vanguardiagrupo.com.br/assets/a0d87797-8fe2-47f5-90fd-3020786b787b" alt="Fibra" class="chip-logo">FIBRA</span>
+        <span class="client-chip"><img src="https://directus.vanguardiagrupo.com.br/assets/ccf8d463-9e17-4907-a690-98bf54f4a064" alt="Grupo Lotus" class="chip-logo">GRUPO LOTUS</span>
+        <span class="client-chip"><img src="https://directus.vanguardiagrupo.com.br/assets/63a88ed4-4a0e-4603-8537-bd99d7d8fa72" alt="IT Protect Brasil" class="chip-logo">IT PROTECT BRASIL</span>
+        <span class="client-chip"><img src="https://directus.vanguardiagrupo.com.br/assets/6b5f9231-2c2b-4920-a1a2-c1c317d80dec" alt="Rede+ Saúde" class="chip-logo">REDE+ SAÚDE</span>
+        <span class="client-chip"><img src="https://directus.vanguardiagrupo.com.br/assets/ef0ce5ca-9423-4737-97bb-974e8b43cb85" alt="Mave" class="chip-logo">MAVE</span>
+        <span class="client-chip"><img src="https://directus.vanguardiagrupo.com.br/assets/50864b2d-2abd-4492-80da-2ac46b068578" alt="Med Nutri" class="chip-logo">MED NUTRI</span>
+        <span class="client-chip"><img src="https://directus.vanguardiagrupo.com.br/assets/b5eee5a6-be99-477f-8a86-09c23fc51752" alt="Montalvão Neves" class="chip-logo">MONTALVÃO NEVES ADVOGADOS</span>
+        <span class="client-chip"><img src="https://directus.vanguardiagrupo.com.br/assets/b4978f5d-384b-41df-8bd7-be767a16ae27" alt="Nativa Uniformes" class="chip-logo">NATIVA UNIFORMES</span>
+        <span class="client-chip"><img src="https://directus.vanguardiagrupo.com.br/assets/894b5324-2c03-4806-9451-9f6b4c09544b" alt="Nevoni" class="chip-logo">NEVONI</span>
+        <span class="client-chip"><img src="https://directus.vanguardiagrupo.com.br/assets/c9247f28-55f3-4307-a903-8a5e53bbd5d6" alt="Prime Equipaments" class="chip-logo">PRIME EQUIPAMENTS</span>
+        <span class="client-chip"><img src="https://directus.vanguardiagrupo.com.br/assets/55409635-d229-4dcf-9db8-f9c835659b20" alt="Silnave" class="chip-logo">SILNAVE NAVEGAÇÃO</span>
+        <span class="client-chip"><img src="https://directus.vanguardiagrupo.com.br/assets/77cf27e9-5871-4d92-b32f-104b142f4c0c" alt="Supermercado Econômico" class="chip-logo">SUPERMERCADO ECONÔMICO</span>
+        <span class="client-chip"><img src="https://directus.vanguardiagrupo.com.br/assets/b0fd9ed2-4d3f-4512-8194-9f86f91546a0" alt="Toca Hub" class="chip-logo">TOCA HUB</span>
         <span class="client-chip">SANDRINHA DELUXE</span>
         <span class="client-chip">OYAMOTA</span>
         <span class="client-chip">CABOTIA HEALTH FOOD</span>
@@ -3306,7 +3321,7 @@ section.compact{ padding: clamp(60px, 8vh, 100px) 0; }
       <div class="cta-right reveal">
         <p>Esta página não pede que você compre nada. Pede algo mais difícil que você se reconheça em alguma parte do que leu. Se isso aconteceu, vale uma conversa. Sem proposta, sem pitch. Apenas duas empresas se entendendo.</p>
         <div class="cta-buttons">
-          <a href="https://formbioj.vanguardiagrupo.com.br/?utm_source=home&utm_medium=bio_home&utm_content=link_in_bio&fbclid=PAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQMMjU2MjgxMDQwNTU4AAGnLVC0WIY5wR03GGrm3wmk7aJJ15JyYVNI9NBXWEB1yr2GBIaPoBivarV04o0_aem_VekgoPfNaLqnnZ-VFUcw2g" target="_blank" rel="noopener" class="btn btn-primary">Fale Conosco →</a>
+          <a href="https://formbioj.vanguardiagrupo.com.br/?utm_source=home&utm_medium=bio_home&utm_content=link_in_bio&fbclid=PAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQMMjU2MjgxMDQwNTU4AAGnLVC0WIY5wR03GGrm3wmk7aJJ15JyYVNI9NBXWEB1yr2GBIaPoBivarV04o0_aem_VekgoPfNaLqnnZ-VFUcw2g" target="_blank" rel="noopener" class="btn btn-primary">Fale com a VanguardIA →</a>
           <a href="#top" class="btn btn-ghost">Ler de novo</a>
         </div>
       </div>
@@ -3344,7 +3359,7 @@ section.compact{ padding: clamp(60px, 8vh, 100px) 0; }
       <div class="footer-col">
         <h5>Contato</h5>
         <ul>
-          <li><a href="https://formbioj.vanguardiagrupo.com.br/?utm_source=home&utm_medium=bio_home&utm_content=link_in_bio&fbclid=PAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQMMjU2MjgxMDQwNTU4AAGnLVC0WIY5wR03GGrm3wmk7aJJ15JyYVNI9NBXWEB1yr2GBIaPoBivarV04o0_aem_VekgoPfNaLqnnZ-VFUcw2g" target="_blank" rel="noopener">Fale Conosco</a></li>
+          <li><a href="https://formbioj.vanguardiagrupo.com.br/?utm_source=home&utm_medium=bio_home&utm_content=link_in_bio&fbclid=PAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQMMjU2MjgxMDQwNTU4AAGnLVC0WIY5wR03GGrm3wmk7aJJ15JyYVNI9NBXWEB1yr2GBIaPoBivarV04o0_aem_VekgoPfNaLqnnZ-VFUcw2g" target="_blank" rel="noopener">Fale com a VanguardIA</a></li>
           <li><a href="https://share.google/PnydkKl8FugSdUjLa" target="_blank" rel="noopener">Tv. Avertano Rocha, 192</a></li>
           <li><span class="footer-meta">Belém · Pará</span></li>
           <li><span class="footer-meta">Sede no Do It Hub</span></li>
