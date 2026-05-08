@@ -2161,6 +2161,9 @@ section.compact{ padding: clamp(60px, 8vh, 100px) 0; }
   .dep-images-grid{ grid-template-columns: 1fr; }
   .dep-videos-grid{ grid-template-columns: 1fr; }
   .dep-video-feature{ grid-column: span 1; }
+  .dep-video-feature .dep-video-slot{ min-height: 240px; }
+  .dep-video-slot{ min-height: 220px; overflow: visible; }
+  .dep-video-slot video{ height: auto; min-height: unset; object-fit: unset; }
   .dep-gallery{ grid-template-columns: repeat(2, 1fr); }
   .dep-gallery-lg{ grid-column: span 2; }
   .dep-gallery-md{ grid-column: span 2; }
@@ -2357,8 +2360,15 @@ section.compact{ padding: clamp(60px, 8vh, 100px) 0; }
   .footer-brand{ grid-column: span 2; }
 }
 @media (max-width: 480px){
-  .footer-grid{ grid-template-columns: 1fr; }
-  .footer-brand{ grid-column: span 1; }
+  .footer{ padding: 56px 0 32px; }
+  .footer-grid{ grid-template-columns: 1fr 1fr; gap: 36px 24px; }
+  .footer-brand{ grid-column: span 2; text-align: center; }
+  .footer-brand img{ margin: 0 auto 20px; }
+  .footer-brand p{ margin: 0 auto; }
+  .footer-col{ text-align: left; }
+  .footer-col:last-child{ grid-column: span 2; }
+  .footer-social{ justify-content: flex-start; }
+  .footer-bar{ flex-direction: column; align-items: center; text-align: center; gap: 10px; }
 }
 
 /* Social buttons */
@@ -3176,7 +3186,7 @@ section.compact{ padding: clamp(60px, 8vh, 100px) 0; }
       <div class="dep-videos-grid">
         <article class="dep-video-card dep-video-feature">
           <div class="dep-video-slot">
-            <video controls preload="metadata" playsinline>
+            <video controls preload="metadata" playsinline webkit-playsinline>
               <source src="https://directus.vanguardiagrupo.com.br/assets/956a3f4f-e0a4-4754-8f53-96c8a6661586" type="video/mp4">
             </video>
           </div>
@@ -3187,7 +3197,7 @@ section.compact{ padding: clamp(60px, 8vh, 100px) 0; }
         </article>
         <article class="dep-video-card">
           <div class="dep-video-slot">
-            <video controls preload="metadata" playsinline>
+            <video controls preload="metadata" playsinline webkit-playsinline>
               <source src="https://directus.vanguardiagrupo.com.br/assets/4ae86073-ed34-4e0b-a693-bfe6c84d1536" type="video/mp4">
             </video>
           </div>
@@ -3198,7 +3208,7 @@ section.compact{ padding: clamp(60px, 8vh, 100px) 0; }
         </article>
         <article class="dep-video-card">
           <div class="dep-video-slot">
-            <video controls preload="metadata" playsinline>
+            <video controls preload="metadata" playsinline webkit-playsinline>
               <source src="https://directus.vanguardiagrupo.com.br/assets/302aee6a-2138-4373-a46f-7977e468ab15" type="video/mp4">
             </video>
           </div>
@@ -3209,7 +3219,7 @@ section.compact{ padding: clamp(60px, 8vh, 100px) 0; }
         </article>
         <article class="dep-video-card">
           <div class="dep-video-slot">
-            <video controls preload="metadata" playsinline>
+            <video controls preload="metadata" playsinline webkit-playsinline>
               <source src="https://directus.vanguardiagrupo.com.br/assets/4c0217f7-dd9b-4462-a362-1f5dfb161ccf" type="video/mp4">
             </video>
           </div>
