@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>VanguardIA A clareza não é o oposto da complexidade.</title>
-<meta name="description" content="Grupo VanguardIA. A arquitetura aplicada da Nova Era. ICIA, ICIA.OS e o ecossistema Do It Hub. Da Amazônia para o Brasil.">
+<meta name="description" content="Grupo VanguardIA. A arquitetura aplicada da Nova Era. ICIA, ICIA.OS e o ecossistema Do It Hub. Da Amazônia para o Mundo.">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1767,19 +1767,22 @@ section.compact{ padding: clamp(60px, 8vh, 100px) 0; }
 }
 .client-chip{
   font-family: var(--mono);
-  font-size: 11px;
+  font-size: 10px;
   letter-spacing: 0.06em;
   color: var(--ink-50);
-  padding: 10px 12px;
+  padding: 16px 12px 12px;
   border: 1px solid var(--accent-line);
   border-radius: 12px;
   background: var(--bg-elev);
   transition: all 0.3s var(--ease-out);
   cursor: default;
   display: flex;
+  flex-direction: column;
   align-items: center;
+  justify-content: center;
   gap: 10px;
-  min-height: 68px;
+  min-height: 90px;
+  text-align: center;
 }
 .client-chip:hover{
   color: var(--ink-100);
@@ -1794,42 +1797,32 @@ section.compact{ padding: clamp(60px, 8vh, 100px) 0; }
   border: 1px solid color-mix(in srgb, var(--chip-color) 35%, transparent);
   background: color-mix(in srgb, var(--chip-color) 10%, var(--bg-elev));
   display: flex;
+  flex-direction: column;
   align-items: center;
+  justify-content: center;
   gap: 10px;
   text-transform: uppercase;
   font-weight: 500;
   cursor: pointer;
-  padding: 10px 12px;
+  padding: 16px 12px 12px;
   border-radius: 12px;
-  min-height: 68px;
-}
-.client-chip-colored::before{
-  content: "";
-  width: 8px;
-  height: 8px;
-  background: var(--chip-color);
-  border-radius: 50%;
-  box-shadow: 0 0 8px var(--chip-color);
-  flex-shrink: 0;
+  min-height: 90px;
+  text-align: center;
 }
 .client-chip-colored:hover{
   color: white;
   background: var(--chip-color);
   border-color: var(--chip-color);
-  transform: translateY(-1px);
-  box-shadow: 0 8px 20px -8px var(--chip-color);
-}
-.client-chip-colored:hover::before{
-  background: white;
-  box-shadow: 0 0 8px white;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px -8px var(--chip-color);
 }
 .chip-logo{
-  height: 44px;
+  height: 40px;
   width: auto;
-  max-width: 130px;
+  max-width: 120px;
   object-fit: contain;
   display: block;
-  background: rgba(255,255,255,0.96);
+  background: rgba(255,255,255,0.97);
   border-radius: 6px;
   padding: 6px 10px;
   flex-shrink: 0;
@@ -2381,8 +2374,8 @@ section.compact{ padding: clamp(60px, 8vh, 100px) 0; }
 }
 @media (max-width: 480px){
   .constelacao-clients{ grid-template-columns: repeat(2, 1fr); gap: 8px; }
-  .client-chip{ font-size: 10px; padding: 8px 10px; min-height: 60px; gap: 8px; }
-  .chip-logo{ height: 36px; max-width: 100px; padding: 4px 8px; }
+  .client-chip{ font-size: 9px; padding: 12px 8px 10px; min-height: 80px; gap: 8px; }
+  .chip-logo{ height: 32px; max-width: 90px; padding: 4px 8px; }
   .footer{ padding: 56px 0 32px; }
   .footer-grid{ grid-template-columns: 1fr 1fr; gap: 36px 24px; }
   .footer-brand{ grid-column: span 2; text-align: center; }
@@ -2591,7 +2584,7 @@ section.compact{ padding: clamp(60px, 8vh, 100px) 0; }
       </div>
       <div class="hero-meta-right">
         Da Amazônia<br>
-        Para o Brasil
+        Para o Mundo
       </div>
     </div>
 
@@ -3344,7 +3337,7 @@ section.compact{ padding: clamp(60px, 8vh, 100px) 0; }
     <div class="footer-grid">
       <div class="footer-brand">
         <img src="https://directus.vanguardiagrupo.com.br/assets/c6d153f9-dafb-4792-96c4-0dc5a7b3f69e" class="footer-logo" alt="VanguardIA">
-        <p>A arquitetura aplicada da Nova Era. Da Amazônia para o Brasil.</p>
+        <p>A arquitetura aplicada da Nova Era. Da Amazônia para o Mundo.</p>
       </div>
       <div class="footer-col">
         <h5>Sistema</h5>
