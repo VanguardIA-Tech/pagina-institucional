@@ -2513,7 +2513,15 @@ section.compact{ padding: clamp(60px, 8vh, 100px) 0; }
   }
 
   /* Constelação */
-  .constelacao-canvas{ max-height: 95vw; max-width: 95vw; }
+  .constelacao-canvas{
+    width: 100vw;
+    max-width: 100vw;
+    max-height: 100vw;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+  }
+  .constelacao-canvas svg text[font-size="14"]{ font-size: 22px; }
+  .constelacao-canvas svg text[font-size="7"]{ font-size: 11px; }
   .constelacao-list{ margin-top: 40px; }
 
   /* Depoimentos galeria */
