@@ -634,17 +634,31 @@ section { padding: 100px 0; }
   color: rgba(255,255,255,0.75);
 }
 
-.tese-banner {
-  background: var(--teal);
-  color: #05201a;
+.tese-banner-wrap {
+  background: #0E5C44;
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  padding: 36px 24px;
+  margin-top: 24px;
+  margin-bottom: 64px;
   text-align: center;
-  padding: 20px 32px;
-  border-radius: var(--radius);
+}
+
+.tese-banner {
+  color: #fff;
   font-family: 'Manrope', sans-serif;
   font-weight: 800;
-  font-size: clamp(16px, 2vw, 22px);
-  letter-spacing: -0.01em;
-  margin-bottom: 48px;
+  font-size: clamp(22px, 3vw, 36px);
+  letter-spacing: -0.015em;
+  line-height: 1.25;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.tese-banner em {
+  color: #2EE6A6;
+  font-style: normal;
 }
 
 .pillars-row {
@@ -868,65 +882,92 @@ section { padding: 100px 0; }
 .impl-tiers {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
+  gap: 24px;
+  align-items: end;
 }
 
 .impl-tier {
   background: var(--bg-card);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius);
-  padding: 32px;
+  padding: 36px 32px 32px;
   position: relative;
+  display: flex;
+  flex-direction: column;
 }
 
+.impl-tier-1 { margin-top: 100px; }
+.impl-tier-2 { margin-top: 50px; }
+.impl-tier-3 { margin-top: 0; }
+
 .impl-tier-num {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 11px;
-  letter-spacing: 0.12em;
-  color: var(--text-muted);
-  margin-bottom: 16px;
+  font-family: 'Manrope', sans-serif;
+  font-weight: 900;
+  font-size: 52px;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  margin-bottom: 20px;
 }
+
+.impl-tier-1 .impl-tier-num { color: var(--blue); }
+.impl-tier-2 .impl-tier-num { color: var(--teal); }
+.impl-tier-3 .impl-tier-num { color: var(--gold); }
 
 .impl-tier-name {
   font-family: 'Manrope', sans-serif;
   font-weight: 900;
-  font-size: 24px;
+  font-size: 22px;
   letter-spacing: -0.01em;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
+  color: #fff;
 }
 
 .impl-tier-sub {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
   font-size: 15px;
   color: var(--text-muted);
-  margin-bottom: 24px;
+  margin-bottom: 22px;
 }
 
 .impl-badge {
+  position: absolute;
+  top: -14px;
   display: inline-flex;
   align-items: center;
   gap: 6px;
   font-family: 'JetBrains Mono', monospace;
   font-size: 10px;
   font-weight: 500;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  padding: 5px 12px;
+  padding: 6px 14px;
   border-radius: 100px;
-  margin-bottom: 24px;
 }
 
-.impl-badge-teal   { background: rgba(0,200,150,0.12); color: var(--teal); border: 1px solid rgba(0,200,150,0.25); }
-.impl-badge-orange { background: rgba(255,90,31,0.12); color: var(--orange); border: 1px solid rgba(255,90,31,0.25); }
+.impl-badge-teal {
+  background: var(--teal);
+  color: #052218;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.impl-badge-amber {
+  background: var(--amber);
+  color: #1a1300;
+  right: 20px;
+}
 
 .impl-list {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 12px;
+  margin-bottom: 28px;
 }
 
 .impl-list li {
   font-size: 14px;
-  color: rgba(255,255,255,0.65);
+  color: rgba(255,255,255,0.7);
   display: flex;
   align-items: flex-start;
   gap: 10px;
@@ -934,20 +975,46 @@ section { padding: 100px 0; }
 }
 
 .impl-list li::before {
-  content: '';
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
+  content: '▸';
   flex-shrink: 0;
-  margin-top: 6px;
+  font-size: 11px;
+  margin-top: 2px;
 }
 
-.impl-tier-1 .impl-list li::before { background: rgba(255,255,255,0.25); }
-.impl-tier-2 .impl-list li::before { background: var(--teal); }
-.impl-tier-3 .impl-list li::before { background: var(--orange); }
+.impl-tier-1 .impl-list li::before { color: var(--blue); }
+.impl-tier-2 .impl-list li::before { color: var(--teal); }
+.impl-tier-3 .impl-list li::before { color: var(--orange); }
 
-.impl-tier-2 { border-top: 3px solid var(--teal); }
-.impl-tier-3 { border-top: 3px solid var(--orange); }
+.impl-ideal {
+  margin-top: auto;
+  padding-top: 22px;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.impl-ideal-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  color: var(--text-subtle);
+  margin-bottom: 10px;
+  text-transform: uppercase;
+}
+
+.impl-ideal-text {
+  font-size: 13px;
+  color: rgba(255,255,255,0.7);
+  line-height: 1.5;
+}
+
+.impl-footer-line {
+  margin-top: 48px;
+  text-align: center;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  color: var(--text-subtle);
+  text-transform: uppercase;
+}
 
 /* ============================================================
    04 · ACESSORIOS (paper)
@@ -1835,7 +1902,9 @@ section { padding: 100px 0; }
   .arq-quote-divider { display: none; }
 
   /* Implementacao */
-  .impl-tiers { grid-template-columns: 1fr; }
+  .impl-tiers { grid-template-columns: 1fr; align-items: stretch; }
+  .impl-tier-1, .impl-tier-2, .impl-tier-3 { margin-top: 0; }
+  .impl-badge-amber { right: 16px; }
 
   /* Acessorios */
   .aces-grid { grid-template-columns: 1fr; }
@@ -2033,7 +2102,9 @@ section { padding: 100px 0; }
       </div>
     </div>
 
-    <div class="tese-banner reveal">O problema não foi a ferramenta. Foi a ordem.</div>
+    <div class="tese-banner-wrap reveal">
+      <div class="tese-banner">O problema não foi a <em>ferramenta</em>. Foi a <em>ordem</em>.</div>
+    </div>
 
     <div class="pillars-row reveal-stagger">
       <div class="pillar-item">
@@ -2142,47 +2213,66 @@ section { padding: 100px 0; }
         <div class="impl-tier-name">ICIA START</div>
         <div class="impl-tier-sub">A entrada estratégica.</div>
         <ul class="impl-list">
-          <li>Diagnóstico inicial de maturidade</li>
-          <li>CNH da IA para lideranças</li>
-          <li>Mapeamento de processos críticos</li>
-          <li>Plano de evolução personalizado</li>
+          <li>CNH da IA para áreas críticas</li>
+          <li>Diagnóstico DEEP inicial</li>
+          <li>1-2 agentes piloto em produção</li>
+          <li>Linguagem comum instalada</li>
+          <li>Ciclo: 6 meses</li>
         </ul>
+        <div class="impl-ideal">
+          <div class="impl-ideal-label">Ideal para</div>
+          <div class="impl-ideal-text">Primeira experiência estruturada com IA aplicada no corporativo.</div>
+        </div>
       </div>
 
       <div class="impl-tier impl-tier-2">
+        <div class="impl-badge impl-badge-teal">
+          <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M5 1L6.2 3.8H9.5L6.9 5.6L7.9 8.5L5 6.8L2.1 8.5L3.1 5.6L0.5 3.8H3.8L5 1Z" fill="#052218"/></svg>
+          RECOMENDADO
+        </div>
         <div class="impl-tier-num">02</div>
         <div class="impl-tier-name">ICIA CORE</div>
         <div class="impl-tier-sub">A transformação multissetorial.</div>
-        <div class="impl-badge impl-badge-teal">
-          <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M5 1L6.2 3.8H9.5L6.9 5.6L7.9 8.5L5 6.8L2.1 8.5L3.1 5.6L0.5 3.8H3.8L5 1Z" fill="#00C896"/></svg>
-          RECOMENDADO
-        </div>
         <ul class="impl-list">
           <li>CNH da IA em múltiplas áreas</li>
           <li>DEEP + PEI completos</li>
-          <li>Documentação viva de processos</li>
-          <li>Governança e políticas de IA</li>
-          <li>Primeiros agentes em produção</li>
+          <li>Múltiplos agentes em produção</li>
+          <li>Data Lake operacional</li>
+          <li>Governança IA instalada</li>
+          <li>Dashboards conversacionais</li>
+          <li>Ciclo: 12 meses</li>
         </ul>
+        <div class="impl-ideal">
+          <div class="impl-ideal-label">Ideal para</div>
+          <div class="impl-ideal-text">Empresas prontas para fazer da IA Aplicada um diferencial competitivo permanente.</div>
+        </div>
       </div>
 
       <div class="impl-tier impl-tier-3">
+        <div class="impl-badge impl-badge-amber">
+          <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M3 4V3a2 2 0 0 1 4 0v1h.5v4.5h-5V4H3zm1 0h2V3a1 1 0 0 0-2 0v1z" fill="#1a1300"/></svg>
+          PATENTEADO
+        </div>
         <div class="impl-tier-num">03</div>
         <div class="impl-tier-name">ICIA OS</div>
         <div class="impl-tier-sub">O sistema nervoso completo.</div>
-        <div class="impl-badge impl-badge-orange">
-          <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M5 1L6.5 3H9L7.5 5L8.5 7.5H6L5 9L4 7.5H1.5L2.5 5L1 3H3.5L5 1Z" fill="#FF5A1F"/></svg>
-          PATENTEADO
-        </div>
         <ul class="impl-list">
           <li>Sistema entre sistemas</li>
-          <li>Agentes orquestrados por área</li>
-          <li>Dados governados e auditáveis</li>
-          <li>Pessoas habilitadas continuamente</li>
-          <li>Relatório de maturidade 360</li>
+          <li>Agentes orquestrados</li>
+          <li>Dados governados</li>
+          <li>Pessoas habilitadas</li>
+          <li>ICIA 360 integrado</li>
+          <li>Camada permanente</li>
+          <li>Contrato perpétuo</li>
         </ul>
+        <div class="impl-ideal">
+          <div class="impl-ideal-label">Ideal para</div>
+          <div class="impl-ideal-text">Empresas que querem deixar legado operacional.</div>
+        </div>
       </div>
     </div>
+
+    <div class="impl-footer-line reveal">Tickets a partir de R$ 25k de setup + R$ 12,9k/mês &middot; Programas semestrais com renovação automática.</div>
   </div>
 </section>
 
