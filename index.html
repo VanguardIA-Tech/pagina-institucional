@@ -360,9 +360,9 @@ section { padding: 100px 0; }
   position: absolute;
   top: -200px;
   left: -200px;
-  width: 600px;
-  height: 600px;
-  background: radial-gradient(circle, rgba(32,70,234,0.12) 0%, transparent 70%);
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(32,70,234,0.05) 0%, transparent 70%);
   pointer-events: none;
 }
 
@@ -371,9 +371,9 @@ section { padding: 100px 0; }
   position: absolute;
   bottom: -100px;
   right: -100px;
-  width: 500px;
-  height: 500px;
-  background: radial-gradient(circle, rgba(255,90,31,0.07) 0%, transparent 70%);
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(255,90,31,0.03) 0%, transparent 70%);
   pointer-events: none;
 }
 
@@ -491,38 +491,69 @@ section { padding: 100px 0; }
 .hero-scroll-link:hover { color: var(--text-muted); }
 
 /* Ticker */
-.ticker-wrap {
-  border-top: 1px solid var(--border-subtle);
-  padding: 16px 0;
+.ticker-section {
+  background: var(--bg-paper);
+  padding: 28px 0;
+  position: relative;
   overflow: hidden;
-  background: rgba(0,0,0,0.2);
+  border-top: 1px solid rgba(0,0,0,0.06);
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+}
+
+.ticker-label {
+  position: absolute;
+  left: 24px;
+  top: 50%;
+  transform: translateY(-50%) rotate(-90deg);
+  transform-origin: left center;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: rgba(26,26,26,0.45);
+  white-space: nowrap;
+  z-index: 2;
+}
+
+.ticker-wrap {
+  overflow: hidden;
+  margin-left: 80px;
+  position: relative;
+  mask-image: linear-gradient(to right, transparent 0, #000 60px, #000 calc(100% - 60px), transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0, #000 60px, #000 calc(100% - 60px), transparent 100%);
 }
 
 .ticker-track {
   display: flex;
   width: max-content;
-  animation: ticker 28s linear infinite;
+  animation: ticker 50s linear infinite;
 }
 
 .ticker-item {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 11px;
-  font-weight: 500;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--text-subtle);
-  padding: 0 32px;
+  font-family: 'Manrope', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: rgba(26,26,26,0.85);
+  padding: 0 36px;
   white-space: nowrap;
 }
 
 .ticker-item .dot {
   color: var(--orange);
   margin: 0 8px;
+  font-weight: 400;
 }
 
 @keyframes ticker {
   0%   { transform: translateX(0); }
   100% { transform: translateX(-50%); }
+}
+
+@media (max-width: 600px){
+  .ticker-label { font-size: 9px; left: 16px; }
+  .ticker-wrap { margin-left: 50px; }
+  .ticker-item { font-size: 14px; padding: 0 24px; }
 }
 
 /* ============================================================
@@ -1341,7 +1372,7 @@ section { padding: 100px 0; }
 
 .dep-video-wrap {
   position: relative;
-  aspect-ratio: 16/9;
+  aspect-ratio: 4/5;
   background: #0a0f1c;
   cursor: pointer;
   overflow: hidden;
@@ -1350,7 +1381,8 @@ section { padding: 100px 0; }
 .dep-video-wrap video {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
+  background: #0a0f1c;
   pointer-events: none;
 }
 
@@ -1937,12 +1969,15 @@ section { padding: 100px 0; }
       </a>
     </div>
   </div>
+</section>
 
-  <!-- Ticker -->
+<!-- Ticker: Operam conosco -->
+<section class="ticker-section">
+  <div class="ticker-label">OPERAM &middot; CONOSCO</div>
   <div class="ticker-wrap">
     <div class="ticker-track">
-      <span class="ticker-item">CABOTIA <span class="dot">&middot;</span> HEALTH FOOD <span class="dot">&middot;</span> FRUTALÍ <span class="dot">&middot;</span> BBB <span class="dot">&middot;</span> PARAFERRO <span class="dot">&middot;</span> GRUPO MEGA <span class="dot">&middot;</span> GRUPO LOTUS <span class="dot">&middot;</span> CF DISTRIBUIDORA <span class="dot">&middot;</span> SILVEIRA ATHIAS <span class="dot">&middot;</span> ALVES MARTINS <span class="dot">&middot;</span> FIBRA <span class="dot">&middot;</span> MAVE <span class="dot">&middot;</span> IT PROTECT <span class="dot">&middot;</span> REDE+ SAUDE <span class="dot">&middot;</span> NEVONI <span class="dot">&middot;</span></span>
-      <span class="ticker-item">CABOTIA <span class="dot">&middot;</span> HEALTH FOOD <span class="dot">&middot;</span> FRUTALÍ <span class="dot">&middot;</span> BBB <span class="dot">&middot;</span> PARAFERRO <span class="dot">&middot;</span> GRUPO MEGA <span class="dot">&middot;</span> GRUPO LOTUS <span class="dot">&middot;</span> CF DISTRIBUIDORA <span class="dot">&middot;</span> SILVEIRA ATHIAS <span class="dot">&middot;</span> ALVES MARTINS <span class="dot">&middot;</span> FIBRA <span class="dot">&middot;</span> MAVE <span class="dot">&middot;</span> IT PROTECT <span class="dot">&middot;</span> REDE+ SAUDE <span class="dot">&middot;</span> NEVONI <span class="dot">&middot;</span></span>
+      <span class="ticker-item">CABOTIA <span class="dot">&middot;</span> HEALTH FOOD <span class="dot">&middot;</span> FRUTALÍ <span class="dot">&middot;</span> BBB <span class="dot">&middot;</span> PARAFERRO <span class="dot">&middot;</span> GRUPO MEGA <span class="dot">&middot;</span> GRUPO LOTUS <span class="dot">&middot;</span> CF DISTRIBUIDORA <span class="dot">&middot;</span> SILVEIRA ATHIAS <span class="dot">&middot;</span> ALVES MARTINS <span class="dot">&middot;</span> FIBRA <span class="dot">&middot;</span> MAVE <span class="dot">&middot;</span> IT PROTECT <span class="dot">&middot;</span> REDE+ SAÚDE <span class="dot">&middot;</span> NEVONI <span class="dot">&middot;</span> TOCA HUB <span class="dot">&middot;</span> SANDRINHA DELUXE <span class="dot">&middot;</span> OYAMOTA <span class="dot">&middot;</span> NATIVA UNIFORMES <span class="dot">&middot;</span> MED NUTRI <span class="dot">&middot;</span></span>
+      <span class="ticker-item" aria-hidden="true">CABOTIA <span class="dot">&middot;</span> HEALTH FOOD <span class="dot">&middot;</span> FRUTALÍ <span class="dot">&middot;</span> BBB <span class="dot">&middot;</span> PARAFERRO <span class="dot">&middot;</span> GRUPO MEGA <span class="dot">&middot;</span> GRUPO LOTUS <span class="dot">&middot;</span> CF DISTRIBUIDORA <span class="dot">&middot;</span> SILVEIRA ATHIAS <span class="dot">&middot;</span> ALVES MARTINS <span class="dot">&middot;</span> FIBRA <span class="dot">&middot;</span> MAVE <span class="dot">&middot;</span> IT PROTECT <span class="dot">&middot;</span> REDE+ SAÚDE <span class="dot">&middot;</span> NEVONI <span class="dot">&middot;</span> TOCA HUB <span class="dot">&middot;</span> SANDRINHA DELUXE <span class="dot">&middot;</span> OYAMOTA <span class="dot">&middot;</span> NATIVA UNIFORMES <span class="dot">&middot;</span> MED NUTRI <span class="dot">&middot;</span></span>
     </div>
   </div>
 </section>
