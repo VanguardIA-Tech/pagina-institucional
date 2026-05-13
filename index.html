@@ -1355,20 +1355,40 @@ section { padding: 100px 0; }
 .cliente-cell {
   border-right: 1px solid var(--border-subtle);
   border-bottom: 1px solid var(--border-subtle);
-  padding: 22px 16px;
+  padding: 20px 12px;
   font-family: 'Manrope', sans-serif;
   font-weight: 700;
-  font-size: 13px;
+  font-size: 11px;
   letter-spacing: 0.04em;
   color: rgba(255,255,255,0.75);
   transition: color 0.2s, background 0.2s;
   cursor: default;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  text-align: center;
+  min-height: 110px;
 }
 
 .cliente-cell:hover {
   color: #fff;
   background: rgba(255,255,255,0.03);
 }
+
+.cliente-cell img {
+  max-width: 100%;
+  max-height: 42px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+  opacity: 0.85;
+  transition: opacity 0.2s;
+}
+
+.cliente-cell:hover img { opacity: 1; }
 
 .clientes-footer {
   display: grid;
@@ -1683,19 +1703,38 @@ section { padding: 100px 0; }
 .parceria-cell {
   border-right: 1px solid var(--border-paper);
   border-bottom: 1px solid var(--border-paper);
-  padding: 22px 16px;
+  padding: 24px 16px;
   font-family: 'Manrope', sans-serif;
   font-weight: 700;
-  font-size: 13px;
+  font-size: 11px;
   letter-spacing: 0.04em;
   color: rgba(26,26,26,0.6);
   transition: color 0.2s, background 0.2s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  text-align: center;
+  min-height: 130px;
 }
 
 .parceria-cell:hover {
   color: var(--text-dark);
   background: rgba(26,26,26,0.03);
 }
+
+.parceria-cell img {
+  max-width: 100%;
+  max-height: 56px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  opacity: 0.85;
+  transition: opacity 0.2s;
+}
+
+.parceria-cell:hover img { opacity: 1; }
 
 /* ============================================================
    MANIFESTO
@@ -2504,36 +2543,33 @@ section { padding: 100px 0; }
     </div>
 
     <div class="clientes-grid reveal">
+      <div class="cliente-cell"><img src="https://directus.vanguardiagrupo.com.br/assets/8cfd3629-a6f2-4386-a3ec-79fe98b638aa" alt="Paraferro">PARAFERRO</div>
+      <div class="cliente-cell"><img src="https://directus.vanguardiagrupo.com.br/assets/2bc3e6f4-e1d7-4d64-b1a0-ff7c9682318b" alt="Alves Martins">ALVES MARTINS</div>
+      <div class="cliente-cell"><img src="https://directus.vanguardiagrupo.com.br/assets/7149bc3c-9705-4e8e-a75c-87bedd1f1fbf" alt="Silveira Athias">SILVEIRA ATHIAS</div>
+      <div class="cliente-cell"><img src="https://directus.vanguardiagrupo.com.br/assets/b5eee5a6-be99-477f-8a86-09c23fc51752" alt="Montalvão Neves">MONTALVÃO NEVES</div>
+      <div class="cliente-cell"><img src="https://directus.vanguardiagrupo.com.br/assets/a0d87797-8fe2-47f5-90fd-3020786b787b" alt="Fibra">FIBRA</div>
+      <div class="cliente-cell"><img src="https://directus.vanguardiagrupo.com.br/assets/ccf8d463-9e17-4907-a690-98bf54f4a064" alt="Grupo Lotus">GRUPO LOTUS</div>
+
+      <div class="cliente-cell"><img src="https://directus.vanguardiagrupo.com.br/assets/a7d51ff5-3903-4803-9faf-4baa62ff4eaa" alt="CF Distribuidora">CF DISTRIBUIDORA</div>
+      <div class="cliente-cell"><img src="https://directus.vanguardiagrupo.com.br/assets/78e80a1d-3ef4-4c39-8c3a-7d84317ccd31" alt="Facilita">FACILITA SERVIÇOS</div>
+      <div class="cliente-cell"><img src="https://directus.vanguardiagrupo.com.br/assets/77cf27e9-5871-4d92-b32f-104b142f4c0c" alt="Supermercado Econômico">SUPERMERCADO ECONÔMICO</div>
+      <div class="cliente-cell"><img src="https://directus.vanguardiagrupo.com.br/assets/50864b2d-2abd-4492-80da-2ac46b068578" alt="Med Nutri">MED NUTRI</div>
+      <div class="cliente-cell"><img src="https://directus.vanguardiagrupo.com.br/assets/6b5f9231-2c2b-4920-a1a2-c1c317d80dec" alt="Rede+ Saúde">REDE+ SAÚDE</div>
+      <div class="cliente-cell"><img src="https://directus.vanguardiagrupo.com.br/assets/b4978f5d-384b-41df-8bd7-be767a16ae27" alt="Nativa Uniformes">NATIVA UNIFORMES</div>
+
+      <div class="cliente-cell"><img src="https://directus.vanguardiagrupo.com.br/assets/55409635-d229-4dcf-9db8-f9c835659b20" alt="Silnave Navegação">SILNAVE</div>
+      <div class="cliente-cell"><img src="https://directus.vanguardiagrupo.com.br/assets/63a88ed4-4a0e-4603-8537-bd99d7d8fa72" alt="IT Protect Brasil">IT PROTECT</div>
+      <div class="cliente-cell"><img src="https://directus.vanguardiagrupo.com.br/assets/c9247f28-55f3-4307-a903-8a5e53bbd5d6" alt="Prime Equipaments">PRIME EQUIPAMENTS</div>
+      <div class="cliente-cell"><img src="https://directus.vanguardiagrupo.com.br/assets/ef0ce5ca-9423-4737-97bb-974e8b43cb85" alt="Mave">MAVE</div>
+      <div class="cliente-cell"><img src="https://directus.vanguardiagrupo.com.br/assets/894b5324-2c03-4806-9451-9f6b4c09544b" alt="Nevoni">NEVONI</div>
+      <div class="cliente-cell"><img src="https://directus.vanguardiagrupo.com.br/assets/b0fd9ed2-4d3f-4512-8194-9f86f91546a0" alt="Toca Hub">TOCA HUB</div>
+
       <div class="cliente-cell">BBB</div>
-      <div class="cliente-cell">PARAFERRO</div>
       <div class="cliente-cell">GRUPO MEGA</div>
-      <div class="cliente-cell">GRUPO LOTUS</div>
-      <div class="cliente-cell">CF DISTRIBUIDORA</div>
-      <div class="cliente-cell">MEDNUTRI</div>
-
-      <div class="cliente-cell">SILVEIRA ATHIAS</div>
-      <div class="cliente-cell">ALVES MARTINS</div>
-      <div class="cliente-cell">MONTALVÃO NEVES</div>
-      <div class="cliente-cell">NATIVA UNIFORMES</div>
-      <div class="cliente-cell">REDE+ SAÚDE</div>
-      <div class="cliente-cell">FACILITA SERVIÇOS</div>
-
-      <div class="cliente-cell">FIBRA</div>
-      <div class="cliente-cell">MAVE</div>
-      <div class="cliente-cell">IT PROTECT</div>
-      <div class="cliente-cell">SILNAVE</div>
-      <div class="cliente-cell">SUPERMERCADO ECONÔMICO</div>
-      <div class="cliente-cell">NEVONI</div>
-
-      <div class="cliente-cell">PRIME EQUIPAMENTS</div>
-      <div class="cliente-cell">TOCA HUB</div>
       <div class="cliente-cell">SANDRINHA DELUXE</div>
       <div class="cliente-cell">OYAMOTA</div>
-      <div class="cliente-cell">CABOTIA</div>
-      <div class="cliente-cell">HEALTH FOOD</div>
-
+      <div class="cliente-cell">CABOTIA HEALTH FOOD</div>
       <div class="cliente-cell">FRUTALÍ</div>
-      <div class="cliente-cell" style="grid-column: span 5; border-right: 1px solid var(--border-subtle);"></div>
     </div>
 
     <div class="clientes-footer reveal">
@@ -2710,11 +2746,11 @@ section { padding: 100px 0; }
     </div>
 
     <div class="parcerias-grid reveal">
-      <div class="parceria-cell">ACP</div>
-      <div class="parceria-cell">CONJOVE</div>
-      <div class="parceria-cell">SEBRAE</div>
-      <div class="parceria-cell">SINDARPA</div>
-      <div class="parceria-cell">OAB-PA</div>
+      <div class="parceria-cell"><img src="https://directus.vanguardiagrupo.com.br/assets/d2224087-a723-4f54-8d1c-9d13cd9171ae" alt="ACP">ACP</div>
+      <div class="parceria-cell"><img src="https://directus.vanguardiagrupo.com.br/assets/a247aebc-356b-4a20-be87-aeec9980280a" alt="Conjove">CONJOVE</div>
+      <div class="parceria-cell"><img src="https://directus.vanguardiagrupo.com.br/assets/64654a5c-3721-43e3-ad94-4d9136fbe9bf" alt="Sebrae">SEBRAE</div>
+      <div class="parceria-cell"><img src="https://directus.vanguardiagrupo.com.br/assets/5ffed61c-7ec9-48a3-b856-9008a37f4620" alt="Sindarpa">SINDARPA</div>
+      <div class="parceria-cell"><img src="https://directus.vanguardiagrupo.com.br/assets/14f1d3cb-0acf-4fb7-a447-77a7c048c4eb" alt="OAB-PA">OAB-PA</div>
       <div class="parceria-cell">SINDILOJAS-GO</div>
     </div>
   </div>
