@@ -13,7 +13,7 @@ const partners = [
 
 export default function Parcerias() {
   return (
-    <section id="parcerias" className="py-32 px-6 bg-vg-void">
+    <section id="parcerias" aria-label="Parcerias institucionais" className="py-20 md:py-32 px-6 bg-vg-void">
       <div className="max-w-6xl mx-auto">
         <motion.p
           initial={{ opacity: 0 }}
@@ -46,9 +46,11 @@ export default function Parcerias() {
               <div className="relative w-full h-16">
                 <Image
                   src={partner.logo}
-                  alt={partner.name}
+                  alt={`Logo ${partner.name}`}
                   fill
-                  className="object-contain opacity-70 hover:opacity-100 transition-opacity"
+                  loading="lazy"
+                  sizes="(max-width: 768px) 40vw, 20vw"
+                  className="object-contain client-logo-dark"
                 />
               </div>
               <span className="text-[10px] font-mono text-vg-text-dim tracking-[0.2em] uppercase">

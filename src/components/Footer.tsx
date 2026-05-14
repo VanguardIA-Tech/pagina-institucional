@@ -38,7 +38,7 @@ export default function Footer() {
               href="https://www.instagram.com/grupovanguard.ia/"
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-vg-blue-soft transition-colors block"
+              className="hover:text-vg-blue-soft transition-colors block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-vg-blue-soft/60 rounded"
             >
               Instagram
             </a>
@@ -46,7 +46,7 @@ export default function Footer() {
               href="https://www.linkedin.com/company/grupovanguardiabr/"
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-vg-blue-soft transition-colors block"
+              className="hover:text-vg-blue-soft transition-colors block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-vg-blue-soft/60 rounded"
             >
               LinkedIn
             </a>

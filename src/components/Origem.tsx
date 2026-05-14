@@ -52,7 +52,7 @@ const statItem = {
 
 export default function Origem() {
   return (
-    <section id="origem" className="py-32 px-6 bg-vg-void">
+    <section id="origem" className="py-20 md:py-32 px-6 bg-vg-void">
       <div className="max-w-4xl mx-auto">
         <motion.p
           initial={{ opacity: 0 }}

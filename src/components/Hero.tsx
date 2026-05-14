@@ -9,7 +9,7 @@ const HeroParticles = dynamic(() => import("@/components/HeroParticles"), {
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section id="hero" aria-label="Apresentação VanguardIA" className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Particle field — loaded only on client */}
       <HeroParticles />
 
@@ -68,7 +68,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 1.4 }}
-          className="flex items-center justify-center gap-16 text-center"
+          className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16 text-center"
         >
           {[
             { value: "+5.994", label: "Certificados CNH da IA" },
@@ -91,17 +91,17 @@ export default function Hero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 2 }}
-          className="mt-16 flex items-center justify-center gap-4"
+          className="mt-12 md:mt-16 flex flex-col sm:flex-row items-center justify-center gap-4"
         >
           <a
             href="#cta"
-            className="px-8 py-4 bg-vg-blue hover:bg-vg-blue-deep text-white font-medium rounded-full transition-all duration-300 hover:shadow-[0_0_30px_rgba(31,60,255,0.3)]"
+            className="px-8 py-4 bg-vg-blue hover:bg-vg-blue-deep text-white font-medium rounded-full transition-all duration-300 hover:shadow-[0_0_30px_rgba(31,60,255,0.3)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-vg-blue-soft/60 focus-visible:ring-offset-2 focus-visible:ring-offset-vg-void"
           >
             Empresas
           </a>
           <a
             href="#cta"
-            className="px-8 py-4 border border-white/10 hover:border-white/30 text-white font-medium rounded-full transition-all duration-300"
+            className="px-8 py-4 border border-white/10 hover:border-white/30 text-white font-medium rounded-full transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-vg-blue-soft/60 focus-visible:ring-offset-2 focus-visible:ring-offset-vg-void"
           >
             Setor Público
           </a>

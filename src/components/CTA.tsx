@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 export default function CTA() {
   return (
-    <section id="cta" className="py-32 px-6 bg-vg-void">
+    <section id="cta" aria-label="Falar com a VanguardIA" className="py-20 md:py-32 px-6 bg-vg-void">
       <div className="max-w-3xl mx-auto text-center">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
@@ -35,7 +35,7 @@ export default function CTA() {
           href="https://formbioj.vanguardiagrupo.com.br/?utm_source=home&utm_medium=bio_home&utm_content=link_in_bio"
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-block px-10 py-5 bg-vg-blue hover:bg-vg-blue-deep text-white font-medium rounded-full transition-all duration-300 hover:shadow-[0_0_40px_rgba(31,60,255,0.3)]"
+          className="inline-block px-10 py-5 bg-vg-blue hover:bg-vg-blue-deep text-white font-medium rounded-full transition-all duration-300 hover:shadow-[0_0_40px_rgba(31,60,255,0.3)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-vg-blue-soft/60 focus-visible:ring-offset-2 focus-visible:ring-offset-vg-void"
         >
           Falar com a VanguardIA
         </motion.a>

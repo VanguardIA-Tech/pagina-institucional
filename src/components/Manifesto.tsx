@@ -26,7 +26,7 @@ export default function Manifesto() {
   }, []);
 
   return (
-    <section className="py-40 px-6 bg-vg-deep relative overflow-hidden">
+    <section aria-label="Manifesto VanguardIA" className="py-24 md:py-40 px-6 bg-vg-deep relative overflow-hidden">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(31,60,255,0.06)_0%,transparent_60%)]" />
 
       {/* Ambient particles — pure CSS floating dots */}

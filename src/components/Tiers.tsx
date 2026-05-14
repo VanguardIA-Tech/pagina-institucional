@@ -71,7 +71,7 @@ const stairVariants = (index: number) => ({
 
 export default function Tiers() {
   return (
-    <section className="py-32 px-6 bg-vg-deep">
+    <section aria-label="Níveis de implementação ICIA" className="py-20 md:py-32 px-6 bg-vg-deep">
       <div className="max-w-6xl mx-auto">
         <motion.p
           initial={{ opacity: 0 }}

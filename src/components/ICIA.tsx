@@ -33,7 +33,7 @@ const layerReveal = {
 
 export default function ICIA() {
   return (
-    <section className="py-32 px-6 bg-vg-void">
+    <section id="icia" className="py-20 md:py-32 px-6 bg-vg-void">
       <div className="max-w-6xl mx-auto">
         <motion.p
           initial={{ opacity: 0 }}

@@ -25,7 +25,7 @@ const depoimentos = [
 
 export default function Depoimentos() {
   return (
-    <section id="depoimentos" className="py-32 px-6 bg-vg-deep">
+    <section id="depoimentos" aria-label="Depoimentos de clientes" className="py-20 md:py-32 px-6 bg-vg-deep">
       <div className="max-w-6xl mx-auto">
         <motion.p
           initial={{ opacity: 0 }}

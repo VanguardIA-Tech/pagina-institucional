@@ -3,20 +3,25 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import { useReducedMotion } from "@/hooks/useReducedMotion";
 
 export default function DoItHub() {
   const [scrollY, setScrollY] = useState(0);
+  const reducedMotion = useReducedMotion();
 
   useEffect(() => {
+    if (reducedMotion) return;
     const handleScroll = () => setScrollY(window.scrollY);
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [reducedMotion]);
 
-  const parallaxY = Math.max(-40, Math.min(40, scrollY * 0.05));
+  const parallaxY = reducedMotion
+    ? 0
+    : Math.max(-40, Math.min(40, scrollY * 0.05));
 
   return (
-    <section className="py-32 px-6 bg-vg-void">
+    <section aria-label="Do It Hub — espaço físico em Belém" className="py-20 md:py-32 px-6 bg-vg-void">
       <div className="max-w-6xl mx-auto">
         <motion.p
           initial={{ opacity: 0 }}
@@ -67,8 +72,10 @@ export default function DoItHub() {
           >
             <Image
               src="/logos/do-it.jpg"
-              alt="Do It Hub"
+              alt="Do It Hub — laboratório vivo de IA aplicada em Belém do Pará"
               fill
+              loading="lazy"
+              sizes="(max-width: 768px) 100vw, 50vw"
               className="object-cover opacity-60"
             />
           </motion.div>

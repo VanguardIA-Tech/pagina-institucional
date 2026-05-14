@@ -11,6 +11,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Float } from "@react-three/drei";
 import * as THREE from "three";
+import { useReducedMotion } from "@/hooks/useReducedMotion";
 
 type OrbState = "companion" | "listener" | "oracle";
 
@@ -183,6 +184,8 @@ export default function OrbVoiceAgent() {
     undefined
   );
   const [windowHeight, setWindowHeight] = useState(800);
+  const [isMobile, setIsMobile] = useState(false);
+  const reducedMotion = useReducedMotion();
 
   const pcRef = useRef<RTCPeerConnection | null>(null);
   const dcRef = useRef<RTCDataChannel | null>(null);
@@ -204,10 +207,13 @@ export default function OrbVoiceAgent() {
   }, [responseText]);
 
   useEffect(() => {
-    const updateHeight = () => setWindowHeight(window.innerHeight);
-    updateHeight();
-    window.addEventListener("resize", updateHeight);
-    return () => window.removeEventListener("resize", updateHeight);
+    const updateViewport = () => {
+      setWindowHeight(window.innerHeight);
+      setIsMobile(window.innerWidth < 768);
+    };
+    updateViewport();
+    window.addEventListener("resize", updateViewport);
+    return () => window.removeEventListener("resize", updateViewport);
   }, []);
 
   const cleanupAnalyser = useCallback(() => {
@@ -415,7 +421,19 @@ export default function OrbVoiceAgent() {
   }, [stopVoice]);
 
   const targetScale =
-    orbState === "oracle" ? 4 : orbState === "listener" ? 2 : 1;
+    orbState === "oracle"
+      ? isMobile
+        ? 3
+        : 4
+      : orbState === "listener"
+        ? isMobile
+          ? 1.6
+          : 2
+        : 1;
+
+  const orbTransition = reducedMotion
+    ? { duration: 0.01 }
+    : springConfig;
 
   const positionAnimate =
     orbState === "companion"
@@ -516,8 +534,8 @@ export default function OrbVoiceAgent() {
               : handleOracleAgain
         }
         animate={{ scale: targetScale, ...positionAnimate }}
-        transition={springConfig}
-        className="fixed w-20 h-20 z-50 rounded-full cursor-pointer group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-vg-blue-soft/60"
+        transition={orbTransition}
+        className="fixed w-16 h-16 md:w-20 md:h-20 z-50 rounded-full cursor-pointer group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-vg-blue-soft/60"
         aria-label={ariaLabel}
       >
         <div

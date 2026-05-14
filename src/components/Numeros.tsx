@@ -3,6 +3,7 @@
 import { motion, useInView } from "framer-motion";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
+import { useReducedMotion } from "@/hooks/useReducedMotion";
 
 const clients = [
   { name: "BBB", logo: "/logos/logo-BBB.jpg" },
@@ -50,6 +51,7 @@ const logoItem = {
 function CountUp({ target, duration = 2000 }: { target: string; duration?: number }) {
   const ref = useRef<HTMLSpanElement>(null);
   const inView = useInView(ref, { once: true });
+  const reducedMotion = useReducedMotion();
   const [count, setCount] = useState(0);
 
   const match = target.match(/[\d.,]+/);
@@ -64,6 +66,10 @@ function CountUp({ target, duration = 2000 }: { target: string; duration?: numbe
 
   useEffect(() => {
     if (!inView || numericPart === 0) return;
+    if (reducedMotion) {
+      setCount(numericPart);
+      return;
+    }
     let start = 0;
     const step = Math.max(1, Math.ceil(numericPart / (duration / 16)));
     const interval = setInterval(() => {
@@ -76,7 +82,7 @@ function CountUp({ target, duration = 2000 }: { target: string; duration?: numbe
       }
     }, 16);
     return () => clearInterval(interval);
-  }, [inView, numericPart, duration]);
+  }, [inView, numericPart, duration, reducedMotion]);
 
   const formatted = useLocale ? count.toLocaleString("pt-BR") : count.toString();
 
@@ -91,7 +97,7 @@ function CountUp({ target, duration = 2000 }: { target: string; duration?: numbe
 
 export default function Numeros() {
   return (
-    <section id="clientes" className="py-32 px-6 bg-vg-void">
+    <section id="clientes" aria-label="Números e clientes" className="py-20 md:py-32 px-6 bg-vg-void">
       <div className="max-w-6xl mx-auto text-center">
         <motion.p
           initial={{ opacity: 0 }}
@@ -135,9 +141,10 @@ export default function Numeros() {
             >
               <Image
                 src={client.logo}
-                alt={client.name}
+                alt={`Logo ${client.name}`}
                 width={140}
                 height={60}
+                loading="lazy"
                 className="max-h-9 w-auto object-contain transition-all duration-300 group-hover:scale-105"
                 style={{
                   filter: "brightness(0) invert(1) opacity(0.5)",
