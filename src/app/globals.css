@@ -1,17 +1,18 @@
 @import "tailwindcss";
 
 @theme inline {
-  /* VanguardIA Brand */
+  /* VanguardIA Brand — refined per DESIGN_PLAN */
+  --color-vg-void: #030408;
+  --color-vg-deep: #080B14;
+  --color-vg-elev: #0E1220;
+  --color-vg-paper: #F4F1EA;
+
   --color-vg-blue: #1F3CFF;
   --color-vg-blue-deep: #1429D6;
   --color-vg-blue-soft: #4A63FF;
-  --color-vg-blue-glow: rgba(31, 60, 255, 0.15);
+  --color-vg-blue-glow: rgba(31, 60, 255, 0.12);
+  --color-vg-amber: #F5A623;
 
-  /* Surfaces */
-  --color-vg-void: #050608;
-  --color-vg-deep: #0A0C12;
-  --color-vg-elev: #11141C;
-  --color-vg-paper: #F4F1EA;
   --color-vg-border: rgba(255, 255, 255, 0.06);
 
   /* Text */
@@ -25,7 +26,7 @@
   --font-mono: "Geist Mono", "JetBrains Mono", monospace;
 }
 
-/* Scrollbar hide for cleaner look */
+/* ─── Base ────────────────────────────────────────────────────────── */
 html {
   scrollbar-width: none;
 }
@@ -40,29 +41,86 @@ body {
   overflow-x: hidden;
 }
 
-/* Selection */
 ::selection {
   background: var(--color-vg-blue);
   color: white;
 }
 
-/* Animations */
+/* ─── Animations ──────────────────────────────────────────────────── */
 @keyframes pulse-glow {
-  0%, 100% { opacity: 0.6; }
-  50% { opacity: 1; }
+  0%,
+  100% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
 }
 
 @keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-10px); }
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
 }
 
 @keyframes reveal {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-/* Utility for the orb glow */
+@keyframes typewriter-cursor {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+@keyframes blur-in {
+  from {
+    filter: blur(12px);
+    opacity: 0;
+  }
+  to {
+    filter: blur(0);
+    opacity: 1;
+  }
+}
+
+/* ─── Utilities ───────────────────────────────────────────────────── */
 .animate-pulse-glow {
   animation: pulse-glow 2s ease-in-out infinite;
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-typewriter-cursor {
+  animation: typewriter-cursor 1s step-end infinite;
+}
+
+.animate-blur-in {
+  animation: blur-in 0.8s ease-out forwards;
+}
+
+/* Client logo dark-mode treatment */
+.client-logo-dark {
+  filter: brightness(0) invert(1) opacity(0.5);
+  transition: filter 0.3s ease, opacity 0.3s ease;
+}
+.client-logo-dark:hover {
+  filter: brightness(0) invert(1) opacity(1);
 }

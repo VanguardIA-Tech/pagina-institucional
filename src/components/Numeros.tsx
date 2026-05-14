@@ -35,9 +35,20 @@ const stats = [
   { value: "2020", label: "Desde a Amazônia" },
 ];
 
+const stagger = {
+  animate: {
+    transition: { staggerChildren: 0.05 },
+  },
+};
+
+const logoItem = {
+  initial: { opacity: 0, scale: 0.8 },
+  animate: { opacity: 1, scale: 1 },
+};
+
 export default function Numeros() {
   return (
-    <section className="py-32 px-6 bg-vg-void">
+    <section id="clientes" className="py-32 px-6 bg-vg-void">
       <div className="max-w-6xl mx-auto text-center">
         <motion.p
           initial={{ opacity: 0 }}
@@ -48,27 +59,53 @@ export default function Numeros() {
           Operam conosco
         </motion.p>
 
-        {/* Client logos grid */}
+        {/* Client logos grid — dark-mode treatment + staggered entry */}
         <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          className="grid grid-cols-3 md:grid-cols-5 lg:grid-cols-6 gap-6 mb-24"
+          variants={stagger}
+          initial="initial"
+          whileInView="animate"
+          viewport={{ once: true, margin: "-50px" }}
+          className="grid grid-cols-3 md:grid-cols-5 lg:grid-cols-6 gap-4 mb-24"
         >
           {clients.map((client) => (
-            <div
+            <motion.div
               key={client.name}
-              className="flex items-center justify-center p-4 bg-white/[0.02] rounded-xl border border-white/[0.04] hover:bg-white/[0.04] hover:border-white/[0.08] transition-all duration-300"
+              variants={logoItem}
+              className="flex items-center justify-center p-5 bg-white/[0.02] rounded-xl border border-white/[0.04] hover:bg-white/[0.05] hover:border-white/[0.1] transition-all duration-300 group"
+              style={{
+                boxShadow: "0 0 0px transparent",
+                transition:
+                  "box-shadow 0.3s ease, background 0.3s ease, border-color 0.3s ease",
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.boxShadow =
+                  "0 0 24px rgba(31,60,255,0.1)";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.boxShadow = "0 0 0px transparent";
+              }}
             >
               <Image
                 src={client.logo}
                 alt={client.name}
                 width={140}
                 height={60}
-                className="max-h-10 w-auto object-contain opacity-60 hover:opacity-100 transition-opacity duration-300"
+                className="max-h-9 w-auto object-contain transition-all duration-300 group-hover:scale-105"
+                style={{
+                  filter: "brightness(0) invert(1) opacity(0.5)",
+                  transition: "filter 0.3s ease, opacity 0.3s ease",
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.filter =
+                    "brightness(0) invert(1) opacity(1)";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.filter =
+                    "brightness(0) invert(1) opacity(0.5)";
+                }}
                 unoptimized
               />
-            </div>
+            </motion.div>
           ))}
         </motion.div>
 
