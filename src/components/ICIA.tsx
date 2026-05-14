@@ -23,6 +23,14 @@ const pillars = [
   },
 ];
 
+const layerReveal = {
+  initial: { clipPath: "inset(100% 0 0 0)" },
+  animate: {
+    clipPath: "inset(0% 0 0% 0)",
+    transition: { duration: 1.0, ease: [0.76, 0, 0.24, 1] as const },
+  },
+};
+
 export default function ICIA() {
   return (
     <section className="py-32 px-6 bg-vg-void">
@@ -37,9 +45,10 @@ export default function ICIA() {
         </motion.p>
 
         <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, scale: 0.95, filter: "blur(8px)" }}
+          whileInView={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
           viewport={{ once: true }}
+          transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
           className="font-serif text-4xl md:text-6xl leading-tight mb-6"
         >
           ICIA.
@@ -65,36 +74,45 @@ export default function ICIA() {
           {pillars.map((p, i) => (
             <motion.div
               key={p.title}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              variants={layerReveal}
+              initial="initial"
+              whileInView="animate"
               viewport={{ once: true }}
-              transition={{ delay: i * 0.15 }}
-              className="grid md:grid-cols-[200px_1fr_200px] gap-8 items-start border-t border-white/[0.04] pt-12"
+              transition={{ delay: i * 0.2 }}
+              className="border-t border-white/[0.04] pt-12"
             >
-              <div>
-                <p className="text-[10px] font-mono tracking-[0.2em] text-vg-text-dim uppercase mb-2">
-                  {p.layer}
-                </p>
-                <h3 className="text-2xl font-serif">{p.title}</h3>
-              </div>
-              <div>
-                <p className="text-[10px] font-mono tracking-[0.2em] text-vg-text-dim uppercase mb-3">
-                  Entregas
-                </p>
-                <ul className="space-y-1">
-                  {p.entregas.map((e) => (
-                    <li key={e} className="text-vg-text-muted">
-                      {e}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <div>
-                <p className="text-[10px] font-mono tracking-[0.2em] text-vg-text-dim uppercase mb-2">
-                  Prova
-                </p>
-                <p className="text-vg-blue-soft font-medium">{p.prova}</p>
-              </div>
+              <motion.div
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.5 + i * 0.2 }}
+                className="grid md:grid-cols-[200px_1fr_200px] gap-8 items-start"
+              >
+                <div>
+                  <p className="text-[10px] font-mono tracking-[0.2em] text-vg-text-dim uppercase mb-2">
+                    {p.layer}
+                  </p>
+                  <h3 className="text-2xl font-serif">{p.title}</h3>
+                </div>
+                <div>
+                  <p className="text-[10px] font-mono tracking-[0.2em] text-vg-text-dim uppercase mb-3">
+                    Entregas
+                  </p>
+                  <ul className="space-y-1">
+                    {p.entregas.map((e) => (
+                      <li key={e} className="text-vg-text-muted">
+                        {e}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <div>
+                  <p className="text-[10px] font-mono tracking-[0.2em] text-vg-text-dim uppercase mb-2">
+                    Prova
+                  </p>
+                  <p className="text-vg-blue-soft font-medium">{p.prova}</p>
+                </div>
+              </motion.div>
             </motion.div>
           ))}
         </div>

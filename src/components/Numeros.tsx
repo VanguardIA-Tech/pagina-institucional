@@ -1,7 +1,8 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import Image from "next/image";
+import { useEffect, useRef, useState } from "react";
 
 const clients = [
   { name: "BBB", logo: "/logos/logo-BBB.jpg" },
@@ -46,6 +47,48 @@ const logoItem = {
   animate: { opacity: 1, scale: 1 },
 };
 
+function CountUp({ target, duration = 2000 }: { target: string; duration?: number }) {
+  const ref = useRef<HTMLSpanElement>(null);
+  const inView = useInView(ref, { once: true });
+  const [count, setCount] = useState(0);
+
+  const match = target.match(/[\d.,]+/);
+  const numericStr = match?.[0] ?? "";
+  const numericPart = numericStr
+    ? parseInt(numericStr.replace(/[.,]/g, ""), 10)
+    : 0;
+  const matchIndex = match?.index ?? 0;
+  const prefix = target.slice(0, matchIndex);
+  const suffix = target.slice(matchIndex + numericStr.length);
+  const useLocale = numericStr.includes(".") || numericStr.includes(",");
+
+  useEffect(() => {
+    if (!inView || numericPart === 0) return;
+    let start = 0;
+    const step = Math.max(1, Math.ceil(numericPart / (duration / 16)));
+    const interval = setInterval(() => {
+      start += step;
+      if (start >= numericPart) {
+        setCount(numericPart);
+        clearInterval(interval);
+      } else {
+        setCount(start);
+      }
+    }, 16);
+    return () => clearInterval(interval);
+  }, [inView, numericPart, duration]);
+
+  const formatted = useLocale ? count.toLocaleString("pt-BR") : count.toString();
+
+  return (
+    <span ref={ref}>
+      {prefix}
+      {formatted}
+      {suffix}
+    </span>
+  );
+}
+
 export default function Numeros() {
   return (
     <section id="clientes" className="py-32 px-6 bg-vg-void">
@@ -59,7 +102,7 @@ export default function Numeros() {
           Operam conosco
         </motion.p>
 
-        {/* Client logos grid — dark-mode treatment + staggered entry */}
+        {/* Client logos grid — dark-mode treatment + staggered entry + breathing wave */}
         <motion.div
           variants={stagger}
           initial="initial"
@@ -67,15 +110,20 @@ export default function Numeros() {
           viewport={{ once: true, margin: "-50px" }}
           className="grid grid-cols-3 md:grid-cols-5 lg:grid-cols-6 gap-4 mb-24"
         >
-          {clients.map((client) => (
+          {clients.map((client, i) => (
             <motion.div
               key={client.name}
               variants={logoItem}
+              animate={{ x: [0, 4, 0, -4, 0] }}
+              transition={{
+                repeat: Infinity,
+                duration: 8,
+                ease: "easeInOut",
+                delay: i * 0.1,
+              }}
               className="flex items-center justify-center p-5 bg-white/[0.02] rounded-xl border border-white/[0.04] hover:bg-white/[0.05] hover:border-white/[0.1] transition-all duration-300 group"
               style={{
                 boxShadow: "0 0 0px transparent",
-                transition:
-                  "box-shadow 0.3s ease, background 0.3s ease, border-color 0.3s ease",
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.boxShadow =
@@ -109,7 +157,7 @@ export default function Numeros() {
           ))}
         </motion.div>
 
-        {/* Big numbers */}
+        {/* Big numbers — count up from 0 */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
           {stats.map((stat) => (
             <motion.div
@@ -119,7 +167,7 @@ export default function Numeros() {
               viewport={{ once: true }}
             >
               <div className="text-4xl md:text-5xl font-mono font-bold text-white mb-2">
-                {stat.value}
+                <CountUp target={stat.value} />
               </div>
               <div className="text-xs text-vg-text-muted tracking-wider uppercase">
                 {stat.label}

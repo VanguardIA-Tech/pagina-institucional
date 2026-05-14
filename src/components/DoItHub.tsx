@@ -2,8 +2,19 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
+import { useEffect, useState } from "react";
 
 export default function DoItHub() {
+  const [scrollY, setScrollY] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => setScrollY(window.scrollY);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const parallaxY = Math.max(-40, Math.min(40, scrollY * 0.05));
+
   return (
     <section className="py-32 px-6 bg-vg-void">
       <div className="max-w-6xl mx-auto">
@@ -17,7 +28,12 @@ export default function DoItHub() {
         </motion.p>
 
         <div className="grid md:grid-cols-2 gap-16 mb-20">
-          <div>
+          <motion.div
+            initial={{ clipPath: "inset(0 0 100% 0)" }}
+            whileInView={{ clipPath: "inset(0 0 0% 0)" }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, ease: [0.76, 0, 0.24, 1] }}
+          >
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -35,16 +51,18 @@ export default function DoItHub() {
               transition={{ delay: 0.2 }}
               className="text-lg text-vg-text-muted"
             >
-              Espaço físico em Belém do Pará onde a VanguardIA opera. 
-              Um laboratório vivo de IA aplicada que recebe empresários, 
-              times jurídicos e lideranças para workshops, imersões e 
+              Espaço físico em Belém do Pará onde a VanguardIA opera.
+              Um laboratório vivo de IA aplicada que recebe empresários,
+              times jurídicos e lideranças para workshops, imersões e
               conselhos estratégicos.
             </motion.p>
-          </div>
+          </motion.div>
           <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, scale: 1.05 }}
+            whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            style={{ transform: `translateY(${parallaxY}px)` }}
             className="relative aspect-[4/3] rounded-2xl overflow-hidden border border-white/[0.04] bg-vg-elev"
           >
             <Image

@@ -2,6 +2,40 @@
 
 import { motion } from "framer-motion";
 
+const cardContainer = {
+  initial: {},
+  animate: {
+    transition: { staggerChildren: 0.2, delayChildren: 0.3 },
+  },
+};
+
+const cardItem = {
+  initial: { opacity: 0, x: 80, filter: "blur(4px)" },
+  animate: {
+    opacity: 1,
+    x: 0,
+    filter: "blur(0px)",
+    transition: { duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94] as const },
+  },
+};
+
+const pillarContainer = {
+  initial: {},
+  animate: {
+    transition: { staggerChildren: 0.15, delayChildren: 0.2 },
+  },
+};
+
+const pillarItem = {
+  initial: { opacity: 0, y: 40, clipPath: "inset(0 0 100% 0)" },
+  animate: {
+    opacity: 1,
+    y: 0,
+    clipPath: "inset(0 0 0% 0)",
+    transition: { duration: 0.8, ease: [0.76, 0, 0.24, 1] as const },
+  },
+};
+
 export default function Tese() {
   return (
     <section className="py-32 px-6 bg-vg-deep">
@@ -37,8 +71,9 @@ export default function Tese() {
           </div>
 
           <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            variants={cardContainer}
+            initial="initial"
+            whileInView="animate"
             viewport={{ once: true }}
             className="space-y-8"
           >
@@ -56,12 +91,16 @@ export default function Tese() {
                 text: "Colocou ChatGPT na operação. Cada um virou um especialista em prompt no escuro. Sem padrão. Sem memória. Sem método.",
               },
             ].map((item) => (
-              <div key={item.film} className="flex gap-4">
+              <motion.div
+                key={item.film}
+                variants={cardItem}
+                className="flex gap-4"
+              >
                 <span className="text-xs font-mono text-vg-text-dim mt-1 shrink-0">
                   FILME {item.film}
                 </span>
                 <p className="text-vg-text-muted">{item.text}</p>
-              </div>
+              </motion.div>
             ))}
           </motion.div>
         </div>
@@ -75,7 +114,13 @@ export default function Tese() {
           O problema não foi a ferramenta. Foi a <span className="text-vg-blue-soft">ordem</span>.
         </motion.p>
 
-        <div className="grid grid-cols-3 gap-8">
+        <motion.div
+          variants={pillarContainer}
+          initial="initial"
+          whileInView="animate"
+          viewport={{ once: true }}
+          className="grid grid-cols-3 gap-8"
+        >
           {[
             { num: "01", title: "Pessoas", action: "Habilitar" },
             { num: "02", title: "Processos", action: "Diagnosticar" },
@@ -83,9 +128,7 @@ export default function Tese() {
           ].map((item) => (
             <motion.div
               key={item.num}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              variants={pillarItem}
               className="border border-white/[0.04] bg-vg-elev p-8 rounded-2xl text-center"
             >
               <div className="text-3xl font-mono font-bold text-vg-blue-soft mb-3">
@@ -95,7 +138,7 @@ export default function Tese() {
               <div className="text-sm text-vg-text-muted">{item.action}</div>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
 
         <motion.blockquote
           initial={{ opacity: 0 }}
