@@ -1,0 +1,68 @@
+@import "tailwindcss";
+
+@theme inline {
+  /* VanguardIA Brand */
+  --color-vg-blue: #1F3CFF;
+  --color-vg-blue-deep: #1429D6;
+  --color-vg-blue-soft: #4A63FF;
+  --color-vg-blue-glow: rgba(31, 60, 255, 0.15);
+
+  /* Surfaces */
+  --color-vg-void: #050608;
+  --color-vg-deep: #0A0C12;
+  --color-vg-elev: #11141C;
+  --color-vg-paper: #F4F1EA;
+  --color-vg-border: rgba(255, 255, 255, 0.06);
+
+  /* Text */
+  --color-vg-text: #E8E6E1;
+  --color-vg-text-muted: rgba(232, 230, 225, 0.55);
+  --color-vg-text-dim: rgba(232, 230, 225, 0.3);
+
+  /* Fonts */
+  --font-serif: "Fraunces", Georgia, serif;
+  --font-sans: "Geist", system-ui, sans-serif;
+  --font-mono: "Geist Mono", "JetBrains Mono", monospace;
+}
+
+/* Scrollbar hide for cleaner look */
+html {
+  scrollbar-width: none;
+}
+html::-webkit-scrollbar {
+  display: none;
+}
+
+body {
+  background: var(--color-vg-void);
+  color: var(--color-vg-text);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+}
+
+/* Selection */
+::selection {
+  background: var(--color-vg-blue);
+  color: white;
+}
+
+/* Animations */
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes reveal {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Utility for the orb glow */
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
