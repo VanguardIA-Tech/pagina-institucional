@@ -1,5 +1,6 @@
-import { motion } from 'framer-motion'
-import RevealSection, { revealItemVariants } from '../ui/RevealSection'
+import { useEffect, useRef, useState } from 'react'
+import { motion, useAnimationControls, useReducedMotion } from 'framer-motion'
+import RevealSection from '../ui/RevealSection'
 
 type Client = { name: string; slug: string }
 
@@ -28,7 +29,152 @@ const CLIENTS: Client[] = [
   { name: 'Unineuro', slug: 'unineuro' },
 ]
 
+const STAGGER_MS = 150
+const COLOR_HOLD_MS = 600
+const COLOR_TRANSITION_MS = 300
+const WAVE_PAUSE_MS = 1200
+
+const GRAY_STYLE = {
+  filter: 'grayscale(1) brightness(1.6) contrast(0.9)',
+  opacity: 0.55,
+}
+const COLOR_STYLE = {
+  filter: 'grayscale(0) brightness(1) contrast(1)',
+  opacity: 1,
+}
+
+function ClienteCellAnimated({
+  client,
+  index,
+  total,
+  paused,
+}: {
+  client: Client
+  index: number
+  total: number
+  paused: boolean
+}) {
+  const controls = useAnimationControls()
+  const pausedRef = useRef(paused)
+
+  useEffect(() => {
+    pausedRef.current = paused
+  }, [paused])
+
+  useEffect(() => {
+    let cancelled = false
+    const timers = new Set<ReturnType<typeof setTimeout>>()
+
+    const sleep = (ms: number) =>
+      new Promise<void>((resolve) => {
+        const id = setTimeout(() => {
+          timers.delete(id)
+          resolve()
+        }, ms)
+        timers.add(id)
+      })
+
+    const waitWhilePaused = async () => {
+      while (!cancelled && pausedRef.current) {
+        await sleep(120)
+      }
+    }
+
+    const cycleMs = total * STAGGER_MS + COLOR_HOLD_MS + WAVE_PAUSE_MS
+    const remainAfterFade = Math.max(
+      cycleMs - COLOR_HOLD_MS - COLOR_TRANSITION_MS * 2,
+      400,
+    )
+
+    const loop = async () => {
+      await sleep(index * STAGGER_MS)
+      while (!cancelled) {
+        await waitWhilePaused()
+        if (cancelled) return
+        await controls.start({
+          ...COLOR_STYLE,
+          transition: { duration: COLOR_TRANSITION_MS / 1000, ease: 'easeOut' },
+        })
+        if (cancelled) return
+        await sleep(COLOR_HOLD_MS)
+        if (cancelled) return
+        await waitWhilePaused()
+        if (cancelled) return
+        await controls.start({
+          ...GRAY_STYLE,
+          transition: { duration: COLOR_TRANSITION_MS / 1000, ease: 'easeIn' },
+        })
+        if (cancelled) return
+        await sleep(remainAfterFade)
+      }
+    }
+
+    loop()
+
+    return () => {
+      cancelled = true
+      controls.stop()
+      timers.forEach((id) => clearTimeout(id))
+      timers.clear()
+    }
+  }, [controls, index, total])
+
+  return (
+    <li
+      className="group relative bg-va-black aspect-[4/3] flex items-center justify-center p-5"
+      title={client.name}
+    >
+      <motion.img
+        src={`/logos/${client.slug}.png`}
+        alt={client.name}
+        loading="lazy"
+        width={160}
+        height={60}
+        className="max-h-12 sm:max-h-14 w-auto max-w-full object-contain"
+        initial={GRAY_STYLE}
+        animate={controls}
+      />
+      <span className="pointer-events-none absolute bottom-2 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity font-mono text-[10px] uppercase tracking-[0.15em] text-va-gray-500 whitespace-nowrap">
+        {client.name}
+      </span>
+    </li>
+  )
+}
+
+function ClienteCellStatic({ client }: { client: Client }) {
+  return (
+    <li
+      className="group relative bg-va-black hover:bg-white/[0.03] transition-colors aspect-[4/3] flex items-center justify-center p-5"
+      title={client.name}
+    >
+      <img
+        src={`/logos/${client.slug}.png`}
+        alt={client.name}
+        loading="lazy"
+        width={160}
+        height={60}
+        className="max-h-12 sm:max-h-14 w-auto max-w-full object-contain transition-all duration-300"
+        style={GRAY_STYLE}
+        onMouseEnter={(e) => {
+          e.currentTarget.style.filter = COLOR_STYLE.filter
+          e.currentTarget.style.opacity = String(COLOR_STYLE.opacity)
+        }}
+        onMouseLeave={(e) => {
+          e.currentTarget.style.filter = GRAY_STYLE.filter
+          e.currentTarget.style.opacity = String(GRAY_STYLE.opacity)
+        }}
+      />
+      <span className="pointer-events-none absolute bottom-2 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity font-mono text-[10px] uppercase tracking-[0.15em] text-va-gray-500 whitespace-nowrap">
+        {client.name}
+      </span>
+    </li>
+  )
+}
+
 export default function Clientes() {
+  const prefersReducedMotion = useReducedMotion()
+  const [hovered, setHovered] = useState(false)
+
   return (
     <section
       id="clientes"
@@ -70,50 +216,27 @@ export default function Clientes() {
           </h2>
         </RevealSection>
 
-        {/* Logo grid */}
-        <RevealSection
-          as="ul"
-          stagger
-          staggerAmount={0.04}
+        {/* Logo grid with wave animation */}
+        <ul
+          aria-label="Empresas que operam com a VanguardIA"
+          onMouseEnter={() => setHovered(true)}
+          onMouseLeave={() => setHovered(false)}
           className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-px bg-white/5 border border-white/5 rounded-2xl overflow-hidden"
         >
-          {CLIENTS.map((client) => (
-            <motion.li
-              key={client.slug}
-              variants={revealItemVariants}
-              className="group relative bg-va-black hover:bg-white/[0.03] transition-colors aspect-[4/3] flex items-center justify-center p-5"
-              title={client.name}
-            >
-              <img
-                src={`/logos/${client.slug}.png`}
-                alt={client.name}
-                loading="lazy"
-                width={160}
-                height={60}
-                className="max-h-12 sm:max-h-14 w-auto max-w-full object-contain transition-all duration-300"
-                style={{
-                  filter: 'grayscale(1) brightness(1.6) contrast(0.9)',
-                  opacity: 0.55,
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.filter =
-                    'grayscale(0) brightness(1) contrast(1)'
-                  e.currentTarget.style.opacity = '1'
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.filter =
-                    'grayscale(1) brightness(1.6) contrast(0.9)'
-                  e.currentTarget.style.opacity = '0.55'
-                }}
+          {CLIENTS.map((client, i) =>
+            prefersReducedMotion ? (
+              <ClienteCellStatic key={client.slug} client={client} />
+            ) : (
+              <ClienteCellAnimated
+                key={client.slug}
+                client={client}
+                index={i}
+                total={CLIENTS.length}
+                paused={hovered}
               />
-              <span
-                className="pointer-events-none absolute bottom-2 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity font-mono text-[10px] uppercase tracking-[0.15em] text-va-gray-500 whitespace-nowrap"
-              >
-                {client.name}
-              </span>
-            </motion.li>
-          ))}
-        </RevealSection>
+            ),
+          )}
+        </ul>
 
         {/* Microcopy footer */}
         <RevealSection

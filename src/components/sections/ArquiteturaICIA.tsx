@@ -21,8 +21,8 @@ const PILARES: Pilar[] = [
     title: 'A cultura precede a ferramenta.',
     description:
       'Antes da stack, formamos quem decide. CNH da IA, mentorias e governança humana — para que o time pare de pilotar no escuro.',
-    color: 'var(--color-va-green-vivid)',
-    colorSoft: 'rgba(0, 200, 150, 0.18)',
+    color: 'var(--color-va-blue-glow)',
+    colorSoft: 'rgba(74, 123, 255, 0.18)',
     icon: Users,
     entregas: [
       'CNH da IA Executiva (8h)',

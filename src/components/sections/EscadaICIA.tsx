@@ -66,9 +66,9 @@ const PLANOS: Plano[] = [
     ],
     ideal: 'Médias e grandes · cultura de dados em formação',
     cta: 'Quero o Core',
-    color: 'var(--color-va-green-vivid)',
-    colorSoft: 'rgba(0, 200, 150, 0.14)',
-    glow: '0 22px 70px -18px rgba(0, 200, 150, 0.6)',
+    color: 'var(--color-va-blue-glow)',
+    colorSoft: 'rgba(74, 123, 255, 0.14)',
+    glow: '0 22px 70px -18px rgba(74, 123, 255, 0.6)',
     featured: true,
   },
   {
@@ -128,7 +128,7 @@ export default function EscadaICIA() {
             style={{ fontSize: 'var(--text-display-l)' }}
           >
             Três níveis. Uma só{' '}
-            <span className="text-va-green-vivid">arquitetura</span>.
+            <span className="text-va-blue-glow">arquitetura</span>.
           </h2>
           <p
             className="mt-6 text-va-gray-200 leading-relaxed"

@@ -12,7 +12,7 @@ export default function COP30() {
       className="relative text-white py-24 lg:py-32 overflow-hidden"
       style={{
         background:
-          'linear-gradient(135deg, #00563F 0%, #00C896 55%, #FF6B1A 100%)',
+          'linear-gradient(135deg, #0B1A3E 0%, #2046EA 55%, #FF6B1A 100%)',
       }}
     >
       <div

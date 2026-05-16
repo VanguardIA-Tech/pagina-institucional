@@ -28,7 +28,7 @@ const PASSOS = [
     n: '02',
     title: 'Diagnosticar processos',
     body: 'Imersão presencial nos fluxos reais do ente público. Onde a IA gera valor mensurável e onde não cabe.',
-    color: 'var(--color-va-green-vivid)',
+    color: 'var(--color-va-blue-glow)',
   },
   {
     n: '03',
@@ -125,16 +125,16 @@ export default function TeseGov() {
           </div>
         </div>
 
-        {/* Green banner */}
+        {/* Blue anchor banner */}
         <RevealSection as="div" className="mb-16">
           <div
-            className="rounded-2xl px-8 py-10 lg:px-14 lg:py-14 border border-va-green-vivid/30"
+            className="rounded-2xl px-8 py-10 lg:px-14 lg:py-14 border border-va-blue-electric/30"
             style={{
               background:
-                'linear-gradient(135deg, var(--color-va-green-deep) 0%, rgba(0, 200, 150, 0.15) 100%)',
+                'linear-gradient(135deg, var(--color-va-blue-deep) 0%, rgba(32, 70, 234, 0.18) 100%)',
             }}
           >
-            <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-va-green-glow mb-4">
+            <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-va-blue-glow mb-4">
               O método VanguardIA
             </p>
             <p
@@ -143,7 +143,7 @@ export default function TeseGov() {
             >
               Capacidade vem primeiro.
               <br />
-              <span className="text-va-green-glow">Tecnologia vem depois.</span>
+              <span className="text-va-blue-glow">Tecnologia vem depois.</span>
             </p>
           </div>
         </RevealSection>

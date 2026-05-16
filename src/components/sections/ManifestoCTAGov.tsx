@@ -16,7 +16,7 @@ export default function ManifestoCTAGov() {
         className="absolute inset-0"
         style={{
           background:
-            'radial-gradient(ellipse at center, rgba(255,107,26,0.10) 0%, transparent 50%), radial-gradient(ellipse at bottom right, rgba(0,200,150,0.08) 0%, transparent 55%)',
+            'radial-gradient(ellipse at center, rgba(255,107,26,0.10) 0%, transparent 50%), radial-gradient(ellipse at bottom right, rgba(32,70,234,0.10) 0%, transparent 55%)',
         }}
       />
       <div

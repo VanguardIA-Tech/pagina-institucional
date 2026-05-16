@@ -149,7 +149,7 @@ export default function CNHdaIAServidores() {
                   }}
                   className="flex items-start gap-3 text-white/95 leading-snug"
                 >
-                  <span className="shrink-0 mt-0.5 inline-flex items-center justify-center w-5 h-5 rounded-full bg-va-green-vivid text-va-black">
+                  <span className="shrink-0 mt-0.5 inline-flex items-center justify-center w-5 h-5 rounded-full bg-va-blue-electric text-white">
                     <Check size={12} strokeWidth={3.5} />
                   </span>
                   <span className="text-sm">{b}</span>
@@ -227,7 +227,7 @@ export default function CNHdaIAServidores() {
             <ul className="mt-7 space-y-4">
               {FUNDAMENTOS.map((f) => (
                 <li key={f.label}>
-                  <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-va-green-vivid mb-1">
+                  <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-va-blue-glow mb-1">
                     {f.label}
                   </p>
                   <p className="text-sm text-va-gray-200 leading-relaxed">

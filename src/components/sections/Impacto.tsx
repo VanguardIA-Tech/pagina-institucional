@@ -17,7 +17,7 @@ import CountUp from '../ui/CountUp'
 
 const BLUE = 'var(--color-va-blue-electric)'
 const BLUE_GLOW = 'var(--color-va-blue-glow)'
-const GREEN = 'var(--color-va-green-vivid)'
+const BLUE_2 = 'var(--color-va-blue-electric)'
 const ORANGE = 'var(--color-va-orange-vivid)'
 const GOLD = 'var(--color-va-gold)'
 const GRID = 'rgba(255,255,255,0.06)'
@@ -177,7 +177,7 @@ export default function Impacto() {
             <div className="flex items-baseline justify-between gap-4 mb-1">
               <p
                 className="font-mono text-[11px] uppercase tracking-[0.18em]"
-                style={{ color: GREEN }}
+                style={{ color: BLUE_2 }}
               >
                 Receita anual perdida
               </p>
@@ -204,7 +204,7 @@ export default function Impacto() {
                     endAngle={-270}
                     stroke="none"
                   >
-                    <Cell fill={GREEN} />
+                    <Cell fill={BLUE_2} />
                     <Cell fill="rgba(255,255,255,0.08)" />
                   </Pie>
                 </PieChart>
@@ -212,7 +212,7 @@ export default function Impacto() {
               <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
                 <span
                   className="font-display font-extrabold tracking-[-0.03em]"
-                  style={{ fontSize: '52px', color: GREEN, lineHeight: 1 }}
+                  style={{ fontSize: '52px', color: BLUE_2, lineHeight: 1 }}
                 >
                   <CountUp to={12} suffix="%" />
                 </span>

@@ -16,14 +16,14 @@ const STATS = [
     value: 600,
     label: 'Projetos entregues em produção',
     prefix: '+',
-    accent: 'var(--color-va-green-vivid)',
+    accent: 'var(--color-va-blue-electric)',
   },
   {
     value: 1,
     label: 'Bilhão em ativos sob orquestração',
     prefix: 'R$ ',
     suffix: 'bi+',
-    accent: 'var(--color-va-orange-vivid)',
+    accent: 'var(--color-va-blue-glow)',
   },
 ]
 
@@ -31,7 +31,7 @@ const HEADLINE_PARTS: { text: string; color?: string }[] = [
   { text: 'A única arquitetura brasileira de ' },
   { text: 'Inteligência Aplicada', color: 'var(--color-va-orange-vivid)' },
   { text: ' que une método, certificação, processos e dados soberanos em ' },
-  { text: 'um único sistema', color: 'var(--color-va-green-vivid)' },
+  { text: 'um único sistema', color: 'var(--color-va-blue-glow)' },
   { text: '.' },
 ]
 

@@ -67,7 +67,7 @@ export default function HeroGov() {
         className="absolute inset-0 animate-hero-breathe"
         style={{
           background:
-            'radial-gradient(ellipse at top left, #FF6B1A 0%, #B84A00 30%, #00563F 70%, #0A0A0F 100%)',
+            'radial-gradient(ellipse at top left, #FF6B1A 0%, #B84A00 30%, #0B1A3E 70%, #0A0A0F 100%)',
         }}
       />
       <div

@@ -33,8 +33,8 @@ const PROGRAMAS: Programa[] = [
       'Formação por área e nível de atuação',
       'Manutenção contínua semestral',
     ],
-    color: 'var(--color-va-green-vivid)',
-    colorSoft: 'rgba(0, 200, 150, 0.10)',
+    color: 'var(--color-va-blue-glow)',
+    colorSoft: 'rgba(74, 123, 255, 0.10)',
     icon: GraduationCap,
   },
   {

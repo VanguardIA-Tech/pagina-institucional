@@ -40,8 +40,8 @@ const CARDS: Card[] = [
       'Sem dependência de fornecedor único',
       'Cancelamento simples a qualquer momento',
     ],
-    color: 'var(--color-va-green-vivid)',
-    colorSoft: 'rgba(0, 200, 150, 0.10)',
+    color: 'var(--color-va-blue-glow)',
+    colorSoft: 'rgba(74, 123, 255, 0.10)',
     icon: Shield,
   },
   {
@@ -175,13 +175,13 @@ export default function PorQueCNH() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.4 }}
           transition={{ duration: 0.6 }}
-          className="rounded-2xl px-8 py-10 lg:px-14 lg:py-14 border border-va-green-vivid/30"
+          className="rounded-2xl px-8 py-10 lg:px-14 lg:py-14 border border-va-blue-electric/30"
           style={{
             background:
-              'linear-gradient(135deg, var(--color-va-green-deep) 0%, rgba(0, 200, 150, 0.15) 100%)',
+              'linear-gradient(135deg, var(--color-va-blue-deep) 0%, rgba(32, 70, 234, 0.18) 100%)',
           }}
         >
-          <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-va-green-glow mb-4">
+          <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-va-blue-glow mb-4">
             O recado
           </p>
           <p
@@ -190,7 +190,7 @@ export default function PorQueCNH() {
           >
             Não capacitar servidores em IA é o risco.
             <br />
-            <span className="text-va-green-glow">
+            <span className="text-va-blue-glow">
               Capacitar com método é o caminho seguro.
             </span>
           </p>
