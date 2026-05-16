@@ -110,7 +110,7 @@ export default function Acessorios() {
                   ease: [0.16, 1, 0.3, 1] as const,
                 }}
                 whileHover={{ x: 4 }}
-                className="group relative bg-white/[0.03] backdrop-blur-sm border border-white/10 rounded-2xl px-7 py-8 lg:px-9 lg:py-10 overflow-hidden hover:border-white/25 transition-all"
+                className="group relative rounded-2xl px-7 py-8 lg:px-9 lg:py-10 overflow-hidden transition-all bg-va-cream border border-va-gray-200/80 hover:border-va-gray-300 shadow-[0_8px_30px_-8px_rgba(0,0,0,0.08)]"
               >
                 {/* Hover left border */}
                 <span
@@ -118,7 +118,7 @@ export default function Acessorios() {
                   className="absolute top-0 left-0 h-full w-[3px] scale-y-0 origin-top group-hover:scale-y-100 transition-transform duration-300"
                   style={{
                     background: a.color,
-                    boxShadow: `0 0 20px ${a.color}AA`,
+                    boxShadow: `0 0 20px ${a.color}99`,
                   }}
                 />
 
@@ -127,21 +127,21 @@ export default function Acessorios() {
                     <span
                       className="shrink-0 inline-flex items-center justify-center w-12 h-12 rounded-xl"
                       style={{
-                        background: `${a.color}1F`,
+                        background: `${a.color}18`,
                         color: a.color,
-                        boxShadow: `inset 0 0 0 1px ${a.color}55`,
+                        boxShadow: `inset 0 0 0 1px ${a.color}44`,
                       }}
                     >
                       <Icon size={22} strokeWidth={2.2} />
                     </span>
                     <div>
                       <h3
-                        className="font-display font-extrabold tracking-[-0.02em] text-white leading-tight"
+                        className="font-display font-extrabold tracking-[-0.02em] leading-tight text-va-black"
                         style={{ fontSize: 'clamp(22px, 2.4vw, 28px)' }}
                       >
                         {a.name}
                       </h3>
-                      <p className="mt-3 text-sm text-va-gray-200 leading-relaxed pr-2">
+                      <p className="mt-3 text-sm leading-relaxed pr-2 text-va-gray-700">
                         {a.description}
                       </p>
                       <ul className="mt-5 flex flex-wrap gap-2">
@@ -150,9 +150,9 @@ export default function Acessorios() {
                             key={b}
                             className="text-[11px] font-mono uppercase tracking-[0.1em] px-2.5 py-1 rounded-full"
                             style={{
-                              background: `${a.color}1F`,
+                              background: `${a.color}14`,
                               color: a.color,
-                              border: `1px solid ${a.color}33`,
+                              border: `1px solid ${a.color}55`,
                             }}
                           >
                             {b}
@@ -164,7 +164,7 @@ export default function Acessorios() {
 
                   <ArrowUpRight
                     size={18}
-                    className="shrink-0 mt-2 text-va-gray-500 group-hover:text-white transition-colors"
+                    className="shrink-0 mt-2 text-va-gray-400 group-hover:text-va-gray-800 transition-colors"
                   />
                 </div>
               </motion.article>

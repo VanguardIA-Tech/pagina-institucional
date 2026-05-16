@@ -1,6 +1,7 @@
-import { useEffect } from 'react'
+import { lazy, Suspense, useEffect } from 'react'
 import NavBar from '../components/sections/NavBar'
 import ScrollProgress from '../components/ui/ScrollProgress'
+import SideNav, { type SideNavSection } from '../components/ui/SideNav'
 import HeroGov from '../components/sections/HeroGov'
 import TeseGov from '../components/sections/TeseGov'
 import CNHdaIAServidores from '../components/sections/CNHdaIAServidores'
@@ -12,6 +13,21 @@ import COP30 from '../components/sections/COP30'
 import DepoimentosGov from '../components/sections/DepoimentosGov'
 import ManifestoCTAGov from '../components/sections/ManifestoCTAGov'
 import Footer from '../components/sections/Footer'
+
+const OrbVoiceAgent = lazy(() => import('../components/ui/OrbVoiceAgent'))
+
+const SECTIONS: SideNavSection[] = [
+  { id: 'hero-gov', label: 'Início' },
+  { id: 'tese-gov', label: 'Tese' },
+  { id: 'cnh-gov', label: 'CNH da IA' },
+  { id: 'programas-gov', label: 'Programas' },
+  { id: 'por-que-cnh', label: 'Por quê' },
+  { id: 'graficos-gov', label: 'Contexto' },
+  { id: 'conformidade', label: 'Conformidade' },
+  { id: 'cop30', label: 'COP30' },
+  { id: 'depoimentos-gov', label: 'Depoimentos' },
+  { id: 'manifesto-gov', label: 'Manifesto' },
+]
 
 const TITLE =
   'ICIA.GOV · Inteligência Aplicada para o Setor Público · Grupo VanguardIA'
@@ -108,6 +124,7 @@ export default function IciaGov() {
     <>
       <ScrollProgress />
       <NavBar />
+      <SideNav sections={SECTIONS} variant="gov" />
       <main id="main-content">
         <HeroGov />
         <TeseGov />
@@ -121,6 +138,9 @@ export default function IciaGov() {
         <ManifestoCTAGov />
       </main>
       <Footer />
+      <Suspense fallback={null}>
+        <OrbVoiceAgent />
+      </Suspense>
     </>
   )
 }

@@ -1,6 +1,11 @@
+import { lazy, Suspense } from 'react'
 import { motion, useReducedMotion } from 'framer-motion'
 import { ArrowRight, ChevronDown } from 'lucide-react'
 import CountUp from '../ui/CountUp'
+
+const HeroParticleBackground = lazy(
+  () => import('../ui/HeroParticleBackground'),
+)
 
 const CTA_PRIVATE =
   'https://wa.me/559132233355?text=Quero%20conhecer%20a%20ICIA%20para%20empresas'
@@ -56,6 +61,7 @@ export default function Hero() {
 
   return (
     <section
+      id="hero"
       aria-labelledby="hero-headline"
       className="relative overflow-hidden bg-va-black"
     >
@@ -74,6 +80,12 @@ export default function Hero() {
           backgroundSize: '32px 32px',
         }}
       />
+      {/* Particle constellation — code-split R3F layer */}
+      <div aria-hidden="true" className="absolute inset-0 pointer-events-none">
+        <Suspense fallback={null}>
+          <HeroParticleBackground />
+        </Suspense>
+      </div>
 
       <div className="relative max-w-7xl mx-auto px-5 sm:px-8 pt-32 lg:pt-40 pb-20 lg:pb-28 min-h-[100svh] flex flex-col justify-center">
         <motion.div

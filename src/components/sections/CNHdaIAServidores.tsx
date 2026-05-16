@@ -70,12 +70,12 @@ export default function CNHdaIAServidores() {
     >
       {/* Split 60/40 */}
       <div className="grid grid-cols-1 lg:grid-cols-5">
-        {/* LEFT — orange 60% */}
+        {/* LEFT — orange 60% (gov explosive variant) */}
         <div
           className="relative lg:col-span-3 px-6 sm:px-10 lg:px-16 py-20 lg:py-28 overflow-hidden"
           style={{
             background:
-              'linear-gradient(160deg, var(--color-va-orange-vivid) 0%, var(--color-va-orange-deep) 100%)',
+              'linear-gradient(160deg, #FF4500 0%, var(--color-va-orange-vivid) 50%, var(--color-va-orange-deep) 100%)',
           }}
         >
           <div
@@ -184,12 +184,20 @@ export default function CNHdaIAServidores() {
           >
             <div className="flex items-center gap-3 mb-6">
               <span
-                className="inline-flex items-center justify-center w-10 h-10 rounded-lg bg-va-orange-vivid/12 text-va-orange-vivid ring-1 ring-va-orange-vivid/30"
+                className="inline-flex items-center justify-center w-10 h-10 rounded-lg ring-1"
+                style={{
+                  background: 'rgba(255, 69, 0, 0.14)',
+                  color: '#FF4500',
+                  boxShadow: 'inset 0 0 0 1px rgba(255, 69, 0, 0.4)',
+                }}
                 aria-hidden="true"
               >
                 <Scale size={20} strokeWidth={2.2} />
               </span>
-              <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-va-orange-vivid">
+              <p
+                className="font-mono text-[11px] uppercase tracking-[0.18em] font-semibold"
+                style={{ color: '#FF4500' }}
+              >
                 Contratação por inexigibilidade
               </p>
             </div>
@@ -202,20 +210,24 @@ export default function CNHdaIAServidores() {
             </p>
 
             <div
-              className="mt-6 rounded-xl px-5 py-4 border border-va-orange-vivid/30"
+              className="mt-6 rounded-xl px-5 py-4 border"
               style={{
                 background:
-                  'linear-gradient(135deg, rgba(255,107,26,0.10) 0%, rgba(255,107,26,0.03) 100%)',
+                  'linear-gradient(135deg, rgba(255,69,0,0.14) 0%, rgba(255,107,26,0.04) 100%)',
+                borderColor: 'rgba(255, 69, 0, 0.4)',
               }}
             >
               <div className="flex items-center gap-2 mb-2">
                 <Zap
                   size={14}
-                  className="text-va-orange-vivid"
+                  style={{ color: '#FF4500' }}
                   strokeWidth={2.5}
                   aria-hidden="true"
                 />
-                <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-va-orange-vivid font-semibold">
+                <p
+                  className="font-mono text-[10px] uppercase tracking-[0.18em] font-semibold"
+                  style={{ color: '#FF4500' }}
+                >
                   Inexigibilidade de licitação
                 </p>
               </div>
@@ -227,7 +239,10 @@ export default function CNHdaIAServidores() {
             <ul className="mt-7 space-y-4">
               {FUNDAMENTOS.map((f) => (
                 <li key={f.label}>
-                  <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-va-blue-glow mb-1">
+                  <p
+                    className="font-mono text-[10px] uppercase tracking-[0.16em] mb-1"
+                    style={{ color: 'var(--color-va-orange-glow)' }}
+                  >
                     {f.label}
                   </p>
                   <p className="text-sm text-va-gray-200 leading-relaxed">
@@ -247,9 +262,15 @@ export default function CNHdaIAServidores() {
       </div>
 
       {/* 6 steps method */}
-      <div className="border-t border-white/10">
+      <div
+        className="border-t"
+        style={{ borderColor: 'rgba(255,107,26,0.22)' }}
+      >
         <div className="max-w-7xl mx-auto px-5 sm:px-8 py-16 lg:py-20">
-          <p className="font-mono text-xs uppercase tracking-[0.18em] text-va-gray-500 mb-8">
+          <p
+            className="font-mono text-xs uppercase tracking-[0.18em] mb-8"
+            style={{ color: 'var(--color-va-orange-glow)' }}
+          >
             O método em 6 passos
           </p>
 
@@ -265,21 +286,23 @@ export default function CNHdaIAServidores() {
                   delay: i * 0.08,
                   ease: [0.16, 1, 0.3, 1] as const,
                 }}
-                className="relative lg:px-4 py-4 lg:border-r border-white/10 last:border-r-0"
+                className="relative lg:px-4 py-4 lg:border-r last:border-r-0"
+                style={{ borderColor: 'rgba(255,107,26,0.18)' }}
               >
                 <div className="flex items-center gap-3 mb-3">
                   <span
                     className="font-mono text-xs font-medium px-2 py-0.5 rounded-full"
                     style={{
-                      color: 'var(--color-va-orange-vivid)',
-                      background: 'rgba(255,107,26,0.12)',
+                      color: '#FF4500',
+                      background: 'rgba(255,69,0,0.14)',
                     }}
                   >
                     {p.n}
                   </span>
                   <div
                     aria-hidden="true"
-                    className="h-px flex-1 bg-white/10"
+                    className="h-px flex-1"
+                    style={{ background: 'rgba(255,107,26,0.22)' }}
                   />
                 </div>
                 <h3 className="font-display font-bold text-white text-lg leading-tight">

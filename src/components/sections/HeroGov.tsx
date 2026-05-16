@@ -59,20 +59,30 @@ export default function HeroGov() {
 
   return (
     <section
+      id="hero-gov"
       aria-labelledby="hero-gov-headline"
       className="relative overflow-hidden bg-va-black"
     >
+      {/* Explosive gov gradient — high-saturation red-orange dominant */}
       <div
         aria-hidden="true"
         className="absolute inset-0 animate-hero-breathe"
         style={{
           background:
-            'radial-gradient(ellipse at top left, #FF6B1A 0%, #B84A00 30%, #0B1A3E 70%, #0A0A0F 100%)',
+            'radial-gradient(ellipse at 20% 25%, #FF4500 0%, #FF6B1A 25%, #B84A00 50%, #2D1050 80%, #0A0A0F 100%)',
         }}
       />
       <div
         aria-hidden="true"
-        className="absolute inset-0 opacity-[0.05]"
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background:
+            'radial-gradient(ellipse at 80% 70%, rgba(255,107,26,0.25) 0%, transparent 55%)',
+        }}
+      />
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 opacity-[0.06]"
         style={{
           backgroundImage:
             'radial-gradient(circle, var(--color-va-white) 1px, transparent 1px)',
@@ -88,9 +98,15 @@ export default function HeroGov() {
         >
           <motion.p
             variants={itemVariants}
-            className="font-mono text-[11px] sm:text-xs uppercase tracking-[0.18em] text-va-gray-200/90 mb-8"
+            className="font-mono text-[11px] sm:text-xs uppercase tracking-[0.18em] text-white/90 mb-8"
           >
-            <span className="inline-block w-2 h-2 bg-va-orange-vivid rounded-full mr-3 align-middle" />
+            <span
+              className="inline-block w-2 h-2 rounded-full mr-3 align-middle"
+              style={{
+                background: '#FF4500',
+                boxShadow: '0 0 12px rgba(255, 69, 0, 0.7)',
+              }}
+            />
             ICIA.GOV · Inteligência Aplicada para o Setor Público · Amazônia · Brasil
           </motion.p>
 

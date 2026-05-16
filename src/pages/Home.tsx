@@ -1,3 +1,4 @@
+import { lazy, Suspense } from 'react'
 import NavBar from '../components/sections/NavBar'
 import Hero from '../components/sections/Hero'
 import LogoBar from '../components/sections/LogoBar'
@@ -14,12 +15,30 @@ import Parcerias from '../components/sections/Parcerias'
 import ManifestoCTA from '../components/sections/ManifestoCTA'
 import Footer from '../components/sections/Footer'
 import ScrollProgress from '../components/ui/ScrollProgress'
+import SideNav, { type SideNavSection } from '../components/ui/SideNav'
+
+const OrbVoiceAgent = lazy(() => import('../components/ui/OrbVoiceAgent'))
+
+const SECTIONS: SideNavSection[] = [
+  { id: 'hero', label: 'Início' },
+  { id: 'tese', label: 'Tese' },
+  { id: 'arquitetura', label: 'Arquitetura' },
+  { id: 'escada', label: 'ICIA OS' },
+  { id: 'acessorios', label: 'Acessórios' },
+  { id: 'impacto', label: 'Impacto' },
+  { id: 'cnh', label: 'CNH da IA' },
+  { id: 'clientes', label: 'Clientes' },
+  { id: 'do-it-hub', label: 'Do It Hub' },
+  { id: 'parcerias', label: 'Parcerias' },
+  { id: 'manifesto', label: 'Manifesto' },
+]
 
 export default function Home() {
   return (
     <>
       <ScrollProgress />
       <NavBar />
+      <SideNav sections={SECTIONS} variant="home" />
       <main id="main-content">
         <Hero />
         <LogoBar />
@@ -36,6 +55,9 @@ export default function Home() {
         <ManifestoCTA />
       </main>
       <Footer />
+      <Suspense fallback={null}>
+        <OrbVoiceAgent />
+      </Suspense>
     </>
   )
 }
