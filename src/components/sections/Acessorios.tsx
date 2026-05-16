@@ -63,14 +63,14 @@ export default function Acessorios() {
     <section
       id="acessorios"
       aria-labelledby="acessorios-headline"
-      className="relative bg-va-black text-white py-24 lg:py-32 overflow-hidden"
+      className="relative bg-va-cream text-va-black py-24 lg:py-32 overflow-hidden"
     >
       <div
         aria-hidden="true"
         className="absolute inset-0 opacity-[0.04] pointer-events-none"
         style={{
           backgroundImage:
-            'radial-gradient(circle, var(--color-va-white) 1px, transparent 1px)',
+            'radial-gradient(circle, var(--color-va-gray-300) 1px, transparent 1px)',
           backgroundSize: '32px 32px',
         }}
       />
@@ -87,7 +87,7 @@ export default function Acessorios() {
             Módulos que se encaixam em qualquer degrau da escada.
           </h2>
           <p
-            className="mt-6 text-va-gray-200 leading-relaxed"
+            className="mt-6 text-va-gray-700 leading-relaxed"
             style={{ fontSize: 'var(--text-body-l)' }}
           >
             Plug-ins de método, dado e governança que aceleram o ICIA Start,
@@ -110,7 +110,7 @@ export default function Acessorios() {
                   ease: [0.16, 1, 0.3, 1] as const,
                 }}
                 whileHover={{ x: 4 }}
-                className="group relative rounded-2xl px-7 py-8 lg:px-9 lg:py-10 overflow-hidden transition-all bg-va-cream border border-va-gray-200/80 hover:border-va-gray-300 shadow-[0_8px_30px_-8px_rgba(0,0,0,0.08)]"
+                className="group relative rounded-2xl px-7 py-8 lg:px-9 lg:py-10 overflow-hidden transition-all bg-white border border-va-gray-200/80 hover:border-va-gray-300 shadow-[0_8px_30px_-8px_rgba(0,0,0,0.08)]"
               >
                 {/* Hover left border */}
                 <span
