@@ -49,7 +49,7 @@ const PROGRAMAS: Programa[] = [
       'Estimativa de ROI por trilha',
     ],
     color: 'var(--color-va-blue-electric)',
-    colorSoft: 'rgba(45, 91, 255, 0.10)',
+    colorSoft: 'rgba(32, 70, 234, 0.14)',
     icon: Search,
   },
   {

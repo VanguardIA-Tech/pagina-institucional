@@ -41,8 +41,8 @@ const PLANOS: Plano[] = [
     ideal: 'Mid-market · 1ª iniciativa estruturada',
     cta: 'Quero começar com Start',
     color: 'var(--color-va-blue-electric)',
-    colorSoft: 'rgba(45, 91, 255, 0.12)',
-    glow: '0 18px 60px -20px rgba(45, 91, 255, 0.55)',
+    colorSoft: 'rgba(32, 70, 234, 0.18)',
+    glow: '0 18px 60px -20px rgba(32, 70, 234, 0.55)',
   },
   {
     id: 'core',
@@ -94,8 +94,8 @@ const PLANOS: Plano[] = [
     ideal: 'Grandes · governos · operações críticas',
     cta: 'Avaliar ICIA OS',
     color: 'var(--color-va-gold)',
-    colorSoft: 'rgba(201, 166, 107, 0.16)',
-    glow: '0 26px 80px -18px rgba(201, 166, 107, 0.55)',
+    colorSoft: 'rgba(107, 63, 160, 0.22)',
+    glow: '0 26px 80px -18px rgba(107, 63, 160, 0.65)',
   },
 ]
 

@@ -148,7 +148,7 @@ export default function Impacto() {
                     unit="%"
                   />
                   <Tooltip
-                    cursor={{ fill: 'rgba(45,91,255,0.08)' }}
+                    cursor={{ fill: 'rgba(32,70,234,0.08)' }}
                     content={({ active, payload, label }) =>
                       active && payload?.length ? (
                         <TooltipBox
@@ -345,9 +345,9 @@ export default function Impacto() {
             </div>
             <div className="text-right -mr-2">
               <div
-                className="font-display font-extrabold tracking-[-0.05em] leading-none"
+                className="font-editorial italic font-bold tracking-[-0.03em] leading-[0.85]"
                 style={{
-                  fontSize: 'clamp(96px, 14vw, 180px)',
+                  fontSize: 'var(--text-display-xl)',
                   color: GOLD,
                 }}
               >

@@ -22,7 +22,7 @@ const PILARES: Pilar[] = [
     description:
       'Antes da stack, formamos quem decide. CNH da IA, mentorias e governança humana — para que o time pare de pilotar no escuro.',
     color: 'var(--color-va-green-vivid)',
-    colorSoft: 'rgba(0, 200, 150, 0.12)',
+    colorSoft: 'rgba(0, 200, 150, 0.18)',
     icon: Users,
     entregas: [
       'CNH da IA Executiva (8h)',
@@ -40,7 +40,7 @@ const PILARES: Pilar[] = [
     description:
       'Mapeamos cadeias críticas, encaixamos IA onde gera valor mensurável e blindamos contra alucinação, vazamento e descontrole de custo.',
     color: 'var(--color-va-blue-electric)',
-    colorSoft: 'rgba(45, 91, 255, 0.12)',
+    colorSoft: 'rgba(32, 70, 234, 0.18)',
     icon: Workflow,
     entregas: [
       'Mapa AS-IS / TO-BE assistido por IA',
@@ -58,7 +58,7 @@ const PILARES: Pilar[] = [
     description:
       'Orquestração multi-modelo, dados soberanos em residência brasileira, agentes específicos por trilha — não a moda da semana.',
     color: 'var(--color-va-orange-vivid)',
-    colorSoft: 'rgba(255, 107, 26, 0.12)',
+    colorSoft: 'rgba(255, 107, 26, 0.18)',
     icon: Cpu,
     entregas: [
       'ICIA OS — orquestrador multi-modelo',
@@ -78,16 +78,25 @@ export default function ArquiteturaICIA() {
     <section
       id="arquitetura"
       aria-labelledby="arquitetura-headline"
-      className="relative bg-va-cream text-va-black py-24 lg:py-32 overflow-hidden"
+      className="relative bg-va-black text-white py-24 lg:py-32 overflow-hidden"
     >
-      <div className="max-w-7xl mx-auto px-5 sm:px-8">
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 opacity-[0.045] pointer-events-none"
+        style={{
+          backgroundImage:
+            'radial-gradient(circle, var(--color-va-white) 1px, transparent 1px)',
+          backgroundSize: '32px 32px',
+        }}
+      />
+      <div className="relative max-w-7xl mx-auto px-5 sm:px-8">
         {/* Header */}
         <div className="mb-16 lg:mb-20 max-w-4xl">
           <motion.p
             initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.6 }}
-            className="font-mono text-xs uppercase tracking-[0.18em] text-va-gray-700 mb-4"
+            className="font-mono text-xs uppercase tracking-[0.18em] text-va-gray-500 mb-4"
           >
             02 · Arquitetura
           </motion.p>
@@ -111,7 +120,7 @@ export default function ArquiteturaICIA() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.4 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="mt-8 max-w-2xl text-va-gray-700 leading-relaxed"
+            className="mt-8 max-w-2xl text-va-gray-200 leading-relaxed"
             style={{ fontSize: 'var(--text-body-l)' }}
           >
             A Arquitetura ICIA é o esqueleto operacional do Grupo VanguardIA.
@@ -134,7 +143,7 @@ export default function ArquiteturaICIA() {
               y1="4"
               x2="1000"
               y2="4"
-              stroke="var(--color-va-gray-200)"
+              stroke="rgba(255,255,255,0.18)"
               strokeWidth="1.5"
               strokeDasharray="4 6"
               initial={{ pathLength: reduce ? 1 : 0 }}
@@ -158,25 +167,31 @@ export default function ArquiteturaICIA() {
                     delay: reduce ? 0 : i * 0.2,
                     ease: [0.16, 1, 0.3, 1] as const,
                   }}
-                  className="bg-white border border-va-gray-200 rounded-2xl flex flex-col overflow-hidden hover:shadow-2xl hover:-translate-y-1 transition-all duration-300"
-                  style={{ minHeight: 550 }}
+                  className="bg-white/[0.03] backdrop-blur-sm border border-white/10 rounded-2xl flex flex-col overflow-hidden hover:-translate-y-1 transition-all duration-300"
+                  style={{
+                    minHeight: 550,
+                    boxShadow: `0 0 0 1px ${p.color}22`,
+                  }}
                 >
                   {/* Top color banner */}
                   <div
                     className="h-2"
-                    style={{ background: p.color }}
+                    style={{
+                      background: p.color,
+                      boxShadow: `0 0 24px ${p.color}66`,
+                    }}
                     aria-hidden="true"
                   />
                   <div
-                    className="px-7 py-7 border-b border-va-gray-200/70"
+                    className="px-7 py-7 border-b border-white/10"
                     style={{ background: p.colorSoft }}
                   >
                     <div className="flex items-center gap-3 mb-4">
                       <span
-                        className="inline-flex items-center justify-center w-10 h-10 rounded-lg ring-1 bg-white"
+                        className="inline-flex items-center justify-center w-10 h-10 rounded-lg ring-1 bg-va-black/40"
                         style={{
                           color: p.color,
-                          boxShadow: `inset 0 0 0 1px ${p.color}33`,
+                          boxShadow: `inset 0 0 0 1px ${p.color}55`,
                         }}
                       >
                         <Icon size={20} strokeWidth={2.2} />
@@ -189,12 +204,12 @@ export default function ArquiteturaICIA() {
                       </p>
                     </div>
                     <h3
-                      className="font-display font-extrabold tracking-[-0.02em] leading-[1.05] text-va-black text-balance"
+                      className="font-display font-extrabold tracking-[-0.02em] leading-[1.05] text-white text-balance"
                       style={{ fontSize: 'clamp(22px, 2.5vw, 30px)' }}
                     >
                       {p.title}
                     </h3>
-                    <p className="mt-3 text-sm text-va-gray-700 leading-relaxed">
+                    <p className="mt-3 text-sm text-va-gray-200 leading-relaxed">
                       {p.description}
                     </p>
                   </div>
@@ -208,7 +223,7 @@ export default function ArquiteturaICIA() {
                       {p.entregas.map((e) => (
                         <li
                           key={e}
-                          className="flex items-start gap-3 text-sm text-va-gray-900"
+                          className="flex items-start gap-3 text-sm text-va-gray-200"
                         >
                           <span
                             className="shrink-0 mt-0.5 inline-flex items-center justify-center w-4 h-4 rounded-full"
@@ -224,7 +239,7 @@ export default function ArquiteturaICIA() {
 
                   {/* Proof footer */}
                   <div
-                    className="px-7 py-5 border-t border-va-gray-200/70 flex items-baseline gap-3"
+                    className="px-7 py-5 border-t border-white/10 flex items-baseline gap-3"
                     style={{ background: p.colorSoft }}
                   >
                     <span
@@ -236,7 +251,7 @@ export default function ArquiteturaICIA() {
                     >
                       {p.prova.stat}
                     </span>
-                    <span className="text-xs text-va-gray-700 leading-tight">
+                    <span className="text-xs text-va-gray-200 leading-tight">
                       {p.prova.caption}
                     </span>
                   </div>
@@ -252,7 +267,11 @@ export default function ArquiteturaICIA() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.5 }}
           transition={{ duration: 0.6 }}
-          className="mt-16 lg:mt-20 bg-va-black rounded-2xl px-8 py-10 lg:px-14 lg:py-14 text-center"
+          className="mt-16 lg:mt-20 rounded-2xl px-8 py-10 lg:px-14 lg:py-14 text-center border border-white/10"
+          style={{
+            background:
+              'linear-gradient(135deg, rgba(45,16,80,0.45) 0%, rgba(10,10,15,0.85) 100%)',
+          }}
         >
           <p
             className="font-editorial italic text-va-gold leading-[1.1] max-w-3xl mx-auto text-balance"

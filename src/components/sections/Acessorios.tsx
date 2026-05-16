@@ -63,11 +63,20 @@ export default function Acessorios() {
     <section
       id="acessorios"
       aria-labelledby="acessorios-headline"
-      className="bg-va-cream text-va-black py-24 lg:py-32"
+      className="relative bg-va-black text-white py-24 lg:py-32 overflow-hidden"
     >
-      <div className="max-w-7xl mx-auto px-5 sm:px-8">
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 opacity-[0.04] pointer-events-none"
+        style={{
+          backgroundImage:
+            'radial-gradient(circle, var(--color-va-white) 1px, transparent 1px)',
+          backgroundSize: '32px 32px',
+        }}
+      />
+      <div className="relative max-w-7xl mx-auto px-5 sm:px-8">
         <div className="mb-14 lg:mb-20 max-w-3xl">
-          <p className="font-mono text-xs uppercase tracking-[0.18em] text-va-gray-700 mb-4">
+          <p className="font-mono text-xs uppercase tracking-[0.18em] text-va-gray-500 mb-4">
             04 · Acessórios
           </p>
           <h2
@@ -78,7 +87,7 @@ export default function Acessorios() {
             Módulos que se encaixam em qualquer degrau da escada.
           </h2>
           <p
-            className="mt-6 text-va-gray-700 leading-relaxed"
+            className="mt-6 text-va-gray-200 leading-relaxed"
             style={{ fontSize: 'var(--text-body-l)' }}
           >
             Plug-ins de método, dado e governança que aceleram o ICIA Start,
@@ -101,13 +110,16 @@ export default function Acessorios() {
                   ease: [0.16, 1, 0.3, 1] as const,
                 }}
                 whileHover={{ x: 4 }}
-                className="group relative bg-white border border-va-gray-200 rounded-2xl px-7 py-8 lg:px-9 lg:py-10 overflow-hidden hover:shadow-xl transition-shadow"
+                className="group relative bg-white/[0.03] backdrop-blur-sm border border-white/10 rounded-2xl px-7 py-8 lg:px-9 lg:py-10 overflow-hidden hover:border-white/25 transition-all"
               >
                 {/* Hover left border */}
                 <span
                   aria-hidden="true"
                   className="absolute top-0 left-0 h-full w-[3px] scale-y-0 origin-top group-hover:scale-y-100 transition-transform duration-300"
-                  style={{ background: a.color }}
+                  style={{
+                    background: a.color,
+                    boxShadow: `0 0 20px ${a.color}AA`,
+                  }}
                 />
 
                 <div className="flex items-start justify-between gap-6">
@@ -115,20 +127,21 @@ export default function Acessorios() {
                     <span
                       className="shrink-0 inline-flex items-center justify-center w-12 h-12 rounded-xl"
                       style={{
-                        background: `${a.color}1A`,
+                        background: `${a.color}1F`,
                         color: a.color,
+                        boxShadow: `inset 0 0 0 1px ${a.color}55`,
                       }}
                     >
                       <Icon size={22} strokeWidth={2.2} />
                     </span>
                     <div>
                       <h3
-                        className="font-display font-extrabold tracking-[-0.02em] text-va-black leading-tight"
+                        className="font-display font-extrabold tracking-[-0.02em] text-white leading-tight"
                         style={{ fontSize: 'clamp(22px, 2.4vw, 28px)' }}
                       >
                         {a.name}
                       </h3>
-                      <p className="mt-3 text-sm text-va-gray-700 leading-relaxed pr-2">
+                      <p className="mt-3 text-sm text-va-gray-200 leading-relaxed pr-2">
                         {a.description}
                       </p>
                       <ul className="mt-5 flex flex-wrap gap-2">
@@ -137,8 +150,9 @@ export default function Acessorios() {
                             key={b}
                             className="text-[11px] font-mono uppercase tracking-[0.1em] px-2.5 py-1 rounded-full"
                             style={{
-                              background: `${a.color}14`,
+                              background: `${a.color}1F`,
                               color: a.color,
+                              border: `1px solid ${a.color}33`,
                             }}
                           >
                             {b}
@@ -150,7 +164,7 @@ export default function Acessorios() {
 
                   <ArrowUpRight
                     size={18}
-                    className="shrink-0 mt-2 text-va-gray-500 group-hover:text-va-black transition-colors"
+                    className="shrink-0 mt-2 text-va-gray-500 group-hover:text-white transition-colors"
                   />
                 </div>
               </motion.article>

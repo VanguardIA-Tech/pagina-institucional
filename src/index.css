@@ -16,10 +16,14 @@
   --color-va-white: #FAFAF7;
   --color-va-cream: #F5F1E8;
 
-  /* ── Azul Institucional (Primary) ── */
+  /* ── Azul Institucional (Primary) — logo real da VanguardIA ── */
   --color-va-blue-deep: #0B1A3E;
-  --color-va-blue-electric: #2D5BFF;
+  --color-va-blue-electric: #2046EA;
   --color-va-blue-glow: #4A7BFF;
+
+  /* ── Violeta de Profundidade (depth color) ── */
+  --color-va-violet-deep: #2D1050;
+  --color-va-violet-glow: #6B3FA0;
 
   /* ── Verde Amazônia (Accent 1) ── */
   --color-va-green-deep: #00563F;
@@ -42,9 +46,9 @@
   --color-va-gray-900: #18181B;
 
   /* ── Gradientes Nomeados ── */
-  --gradient-hero: radial-gradient(ellipse at top right, #2D5BFF 0%, #0B1A3E 40%, #0A0A0F 80%);
+  --gradient-hero: radial-gradient(ellipse at 70% 30%, #2046EA 0%, #4A1A8F 35%, #0A0A0F 75%);
   --gradient-amazon: linear-gradient(135deg, #00563F 0%, #00C896 50%, #FF6B1A 100%);
-  --gradient-data: linear-gradient(180deg, #0A0A0F 0%, #0B1A3E 100%);
+  --gradient-data: linear-gradient(180deg, #0A0A0F 0%, #1A0E38 40%, #0B1A3E 100%);
   --gradient-warm: linear-gradient(135deg, #FF6B1A 0%, #C9A66B 100%);
 
   /* ── Tipografia Escala ── */
@@ -156,8 +160,8 @@
 }
 
 @keyframes pulse-glow {
-  0%, 100% { box-shadow: 0 0 20px rgba(45, 91, 255, 0.3); }
-  50% { box-shadow: 0 0 40px rgba(45, 91, 255, 0.6); }
+  0%, 100% { box-shadow: 0 0 20px rgba(32, 70, 234, 0.3); }
+  50% { box-shadow: 0 0 40px rgba(32, 70, 234, 0.6); }
 }
 
 .animate-ticker {

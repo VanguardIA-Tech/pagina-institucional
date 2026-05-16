@@ -104,8 +104,8 @@ export default function CNHdaIA() {
               className="mt-12 mb-10"
             >
               <div
-                className="font-display font-extrabold tracking-[-0.04em] leading-none text-white"
-                style={{ fontSize: 'clamp(96px, 14vw, 180px)' }}
+                className="font-display font-extrabold tracking-[-0.05em] leading-[0.85] text-white"
+                style={{ fontSize: 'clamp(110px, 17vw, 220px)' }}
               >
                 <CountUp to={8000} prefix="+" />
               </div>
@@ -137,7 +137,7 @@ export default function CNHdaIA() {
             className="absolute inset-0"
             style={{
               background:
-                'radial-gradient(circle at 30% 30%, rgba(45,91,255,0.25), transparent 55%), radial-gradient(circle at 80% 70%, rgba(255,107,26,0.18), transparent 55%), #0A0A0F',
+                'radial-gradient(circle at 30% 30%, rgba(32,70,234,0.28), transparent 55%), radial-gradient(circle at 80% 70%, rgba(255,107,26,0.18), transparent 55%), #0A0A0F',
             }}
           />
           <img
