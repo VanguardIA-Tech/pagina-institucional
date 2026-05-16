@@ -40,9 +40,9 @@ const PLANOS: Plano[] = [
     ],
     ideal: 'Mid-market · 1ª iniciativa estruturada',
     cta: 'Quero começar com Start',
-    color: 'var(--color-va-blue-electric)',
-    colorSoft: 'rgba(32, 70, 234, 0.18)',
-    glow: '0 18px 60px -20px rgba(32, 70, 234, 0.55)',
+    color: 'var(--color-va-bronze)',
+    colorSoft: 'rgba(205, 127, 50, 0.18)',
+    glow: '0 18px 60px -20px rgba(205, 127, 50, 0.55)',
   },
   {
     id: 'core',
@@ -66,9 +66,9 @@ const PLANOS: Plano[] = [
     ],
     ideal: 'Médias e grandes · cultura de dados em formação',
     cta: 'Quero o Core',
-    color: 'var(--color-va-blue-glow)',
-    colorSoft: 'rgba(74, 123, 255, 0.14)',
-    glow: '0 22px 70px -18px rgba(74, 123, 255, 0.6)',
+    color: 'var(--color-va-silver)',
+    colorSoft: 'rgba(139, 164, 188, 0.18)',
+    glow: '0 22px 70px -18px rgba(139, 164, 188, 0.6)',
     featured: true,
   },
   {
@@ -94,8 +94,8 @@ const PLANOS: Plano[] = [
     ideal: 'Grandes · governos · operações críticas',
     cta: 'Avaliar ICIA OS',
     color: 'var(--color-va-gold)',
-    colorSoft: 'rgba(107, 63, 160, 0.22)',
-    glow: '0 26px 80px -18px rgba(107, 63, 160, 0.65)',
+    colorSoft: 'rgba(201, 166, 107, 0.22)',
+    glow: '0 26px 80px -18px rgba(201, 166, 107, 0.65)',
   },
 ]
 

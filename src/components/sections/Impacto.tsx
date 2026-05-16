@@ -15,11 +15,8 @@ import {
 } from 'recharts'
 import CountUp from '../ui/CountUp'
 
-const BLUE = 'var(--color-va-blue-electric)'
-const BLUE_GLOW = 'var(--color-va-blue-glow)'
-const BLUE_2 = 'var(--color-va-blue-electric)'
-const ORANGE = 'var(--color-va-orange-vivid)'
-const GOLD = 'var(--color-va-gold)'
+const TEAL = 'var(--color-va-teal)'
+const BURNT = 'var(--color-va-orange-deep)'
 const GRID = 'rgba(255,255,255,0.06)'
 const AXIS = 'rgba(250,250,247,0.4)'
 
@@ -112,7 +109,7 @@ export default function Impacto() {
             <div className="flex items-baseline justify-between gap-4 mb-1">
               <p
                 className="font-mono text-[11px] uppercase tracking-[0.18em]"
-                style={{ color: BLUE_GLOW }}
+                style={{ color: BURNT }}
               >
                 Perda operacional · % do tempo útil
               </p>
@@ -148,19 +145,19 @@ export default function Impacto() {
                     unit="%"
                   />
                   <Tooltip
-                    cursor={{ fill: 'rgba(32,70,234,0.08)' }}
+                    cursor={{ fill: 'rgba(184,74,0,0.1)' }}
                     content={({ active, payload, label }) =>
                       active && payload?.length ? (
                         <TooltipBox
                           label={String(label)}
                           value={payload[0].value as number}
                           unit="% do tempo útil"
-                          color={BLUE_GLOW}
+                          color={BURNT}
                         />
                       ) : null
                     }
                   />
-                  <Bar dataKey="valor" fill={BLUE} radius={[6, 6, 0, 0]} />
+                  <Bar dataKey="valor" fill={BURNT} radius={[6, 6, 0, 0]} />
                 </BarChart>
               </ResponsiveContainer>
             </div>
@@ -177,7 +174,7 @@ export default function Impacto() {
             <div className="flex items-baseline justify-between gap-4 mb-1">
               <p
                 className="font-mono text-[11px] uppercase tracking-[0.18em]"
-                style={{ color: BLUE_2 }}
+                style={{ color: BURNT }}
               >
                 Receita anual perdida
               </p>
@@ -204,7 +201,7 @@ export default function Impacto() {
                     endAngle={-270}
                     stroke="none"
                   >
-                    <Cell fill={BLUE_2} />
+                    <Cell fill={BURNT} />
                     <Cell fill="rgba(255,255,255,0.08)" />
                   </Pie>
                 </PieChart>
@@ -212,7 +209,7 @@ export default function Impacto() {
               <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
                 <span
                   className="font-display font-extrabold tracking-[-0.03em]"
-                  style={{ fontSize: '52px', color: BLUE_2, lineHeight: 1 }}
+                  style={{ fontSize: '52px', color: BURNT, lineHeight: 1 }}
                 >
                   <CountUp to={12} suffix="%" />
                 </span>
@@ -234,7 +231,7 @@ export default function Impacto() {
             <div className="flex items-baseline justify-between gap-4 mb-1">
               <p
                 className="font-mono text-[11px] uppercase tracking-[0.18em]"
-                style={{ color: ORANGE }}
+                style={{ color: TEAL }}
               >
                 Maturidade digital · escala 0–5
               </p>
@@ -270,7 +267,7 @@ export default function Impacto() {
                     domain={[0, 5]}
                   />
                   <Tooltip
-                    cursor={{ stroke: ORANGE, strokeWidth: 1 }}
+                    cursor={{ stroke: TEAL, strokeWidth: 1 }}
                     content={({ active, payload, label }) =>
                       active && payload?.length ? (
                         <div className="bg-va-black border border-white/15 rounded-md px-3 py-2 shadow-2xl">
@@ -302,9 +299,9 @@ export default function Impacto() {
                   <Line
                     type="monotone"
                     dataKey="norte"
-                    stroke={ORANGE}
+                    stroke={TEAL}
                     strokeWidth={3}
-                    dot={{ fill: ORANGE, r: 4, strokeWidth: 0 }}
+                    dot={{ fill: TEAL, r: 4, strokeWidth: 0 }}
                     activeDot={{ r: 6 }}
                   />
                 </LineChart>
@@ -321,14 +318,14 @@ export default function Impacto() {
             className="lg:col-span-5 bg-white/[0.03] border border-white/10 rounded-2xl p-7 lg:p-8 min-h-[360px] flex flex-col justify-between overflow-hidden relative"
             style={{
               background:
-                'linear-gradient(135deg, rgba(201,166,107,0.08) 0%, rgba(255,107,26,0.05) 100%)',
+                'linear-gradient(135deg, rgba(184,74,0,0.1) 0%, rgba(184,74,0,0.04) 100%)',
             }}
           >
             <div>
               <div className="flex items-baseline justify-between gap-4 mb-1">
                 <p
                   className="font-mono text-[11px] uppercase tracking-[0.18em]"
-                  style={{ color: GOLD }}
+                  style={{ color: BURNT }}
                 >
                   Projetos sem ROI
                 </p>
@@ -348,7 +345,7 @@ export default function Impacto() {
                 className="font-editorial italic font-bold tracking-[-0.03em] leading-[0.85]"
                 style={{
                   fontSize: 'var(--text-display-xl)',
-                  color: GOLD,
+                  color: BURNT,
                 }}
               >
                 <CountUp to={42} suffix="%" />

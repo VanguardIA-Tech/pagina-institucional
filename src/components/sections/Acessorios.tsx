@@ -32,7 +32,7 @@ const ACESSORIOS: Acessorio[] = [
       'Integração com legados',
     ],
     icon: Database,
-    color: 'var(--color-va-green-vivid)',
+    color: 'var(--color-va-teal)',
   },
   {
     id: 'governanca',
@@ -45,7 +45,7 @@ const ACESSORIOS: Acessorio[] = [
       'Treinamento de jurídico',
     ],
     icon: Shield,
-    color: 'var(--color-va-orange-vivid)',
+    color: 'var(--color-va-violet-glow)',
   },
   {
     id: 'residencia',
@@ -54,7 +54,7 @@ const ACESSORIOS: Acessorio[] = [
       'Especialistas alocados na sua operação para acelerar adoção e blindar a curva de aprendizado.',
     bullets: ['Onsite ou híbrido', 'Squad sênior dedicado', 'SLA 12x6'],
     icon: UserCheck,
-    color: 'var(--color-va-gold)',
+    color: 'var(--color-va-orange-vivid)',
   },
 ]
 

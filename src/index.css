@@ -38,6 +38,13 @@
   /* ── Dourado Editorial ── */
   --color-va-gold: #C9A66B;
 
+  /* ── Contextual / Tier ── */
+  --color-va-bronze: #CD7F32;
+  --color-va-silver: #8BA4BC;
+
+  /* ── Teal de Dados (positive growth, data, governance technical) ── */
+  --color-va-teal: #00875A;
+
   /* ── Cinzas Funcionais ── */
   --color-va-gray-50: #F4F4F5;
   --color-va-gray-200: #D4D4D8;

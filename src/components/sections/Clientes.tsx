@@ -2,45 +2,49 @@ import { useEffect, useRef, useState } from 'react'
 import { motion, useAnimationControls, useReducedMotion } from 'framer-motion'
 import RevealSection from '../ui/RevealSection'
 
-type Client = { name: string; slug: string }
+type Client = { name: string; slug: string; bg: string }
 
 const CLIENTS: Client[] = [
-  { name: 'BBB', slug: 'bbb' },
-  { name: 'Paraferro', slug: 'paraferro' },
-  { name: 'Grupo Mega', slug: 'grupo-mega' },
-  { name: 'Grupo Lotus', slug: 'grupo-lotus' },
-  { name: 'CF Distribuidora', slug: 'cf-distribuidora' },
-  { name: 'MedNutri', slug: 'mednutri' },
-  { name: 'Silveira Athias', slug: 'silveira-athias' },
-  { name: 'Alves Martins', slug: 'alves-martins' },
-  { name: 'Montalvão Neves', slug: 'montalvao-neves' },
-  { name: 'Nativa Uniformes', slug: 'nativa-uniformes' },
-  { name: 'Facilita Serviços', slug: 'facilita' },
-  { name: 'Fibra', slug: 'fibra' },
-  { name: 'Mave', slug: 'mave' },
-  { name: 'IT Protect', slug: 'it-protect' },
-  { name: 'Silnave', slug: 'silnave' },
-  { name: 'Supermercado Econômico', slug: 'supermercado-economico' },
-  { name: 'Nevoni', slug: 'nevoni' },
-  { name: 'Prime Equipaments', slug: 'prime-equipaments' },
-  { name: 'Toca Hub', slug: 'toca-hub' },
-  { name: 'Cabotia', slug: 'cabotia' },
-  { name: 'Dal Ferragens', slug: 'dal-ferragens' },
-  { name: 'Unineuro', slug: 'unineuro' },
+  { name: 'BBB', slug: 'bbb', bg: '#72ae26' },
+  { name: 'Paraferro', slug: 'paraferro', bg: '#004aad' },
+  { name: 'Grupo Mega', slug: 'grupo-mega', bg: '#1d2f79' },
+  { name: 'Grupo Lotus', slug: 'grupo-lotus', bg: '#fefefe' },
+  { name: 'CF Distribuidora', slug: 'cf-distribuidora', bg: '#192446' },
+  { name: 'MedNutri', slug: 'mednutri', bg: '#eeeeee' },
+  { name: 'Silveira Athias', slug: 'silveira-athias', bg: '#e4e4e4' },
+  { name: 'Alves Martins', slug: 'alves-martins', bg: '#041930' },
+  { name: 'Montalvão Neves', slug: 'montalvao-neves', bg: '#bdbec1' },
+  { name: 'Nativa Uniformes', slug: 'nativa-uniformes', bg: '#00345e' },
+  { name: 'Facilita Serviços', slug: 'facilita', bg: '#fefefe' },
+  { name: 'Fibra', slug: 'fibra', bg: '#fefefe' },
+  { name: 'Mave', slug: 'mave', bg: '#ffffff' },
+  { name: 'IT Protect', slug: 'it-protect', bg: '#3366fd' },
+  { name: 'Silnave', slug: 'silnave', bg: '#ffffff' },
+  { name: 'Supermercado Econômico', slug: 'supermercado-economico', bg: '#ca2e28' },
+  { name: 'Nevoni', slug: 'nevoni', bg: '#2e276c' },
+  { name: 'Prime Equipaments', slug: 'prime-equipaments', bg: '#5d9b7d' },
+  { name: 'Toca Hub', slug: 'toca-hub', bg: '#db5701' },
+  { name: 'Cabotia', slug: 'cabotia', bg: '#ffffff' },
+  { name: 'Dal Ferragens', slug: 'dal-ferragens', bg: '#ffffff' },
+  { name: 'Unineuro', slug: 'unineuro', bg: '#ffffff' },
 ]
 
-const STAGGER_MS = 150
-const COLOR_HOLD_MS = 600
-const COLOR_TRANSITION_MS = 300
-const WAVE_PAUSE_MS = 1200
+const STAGGER_MS = 250
+const BLOOM_MS = 400
+const FADE_MS = 400
+const WAVE_PAUSE_MS = 1500
+const FAINT_ALPHA = 0.08
 
-const GRAY_STYLE = {
-  filter: 'grayscale(1) brightness(1.6) contrast(0.9)',
-  opacity: 0.55,
-}
-const COLOR_STYLE = {
-  filter: 'grayscale(0) brightness(1) contrast(1)',
-  opacity: 1,
+const GRAY_STYLE = { filter: 'grayscale(1) brightness(1.6) contrast(0.9)', opacity: 0.55 }
+const COLOR_STYLE = { filter: 'grayscale(0) brightness(1) contrast(1)', opacity: 1 }
+
+function hexToRgba(hex: string, alpha: number): string {
+  const h = hex.replace('#', '')
+  const full = h.length === 3 ? h.split('').map((c) => c + c).join('') : h
+  const r = parseInt(full.slice(0, 2), 16)
+  const g = parseInt(full.slice(2, 4), 16)
+  const b = parseInt(full.slice(4, 6), 16)
+  return `rgba(${r}, ${g}, ${b}, ${alpha})`
 }
 
 function ClienteCellAnimated({
@@ -54,7 +58,8 @@ function ClienteCellAnimated({
   total: number
   paused: boolean
 }) {
-  const controls = useAnimationControls()
+  const logoControls = useAnimationControls()
+  const bgControls = useAnimationControls()
   const pausedRef = useRef(paused)
 
   useEffect(() => {
@@ -80,32 +85,48 @@ function ClienteCellAnimated({
       }
     }
 
-    const cycleMs = total * STAGGER_MS + COLOR_HOLD_MS + WAVE_PAUSE_MS
-    const remainAfterFade = Math.max(
-      cycleMs - COLOR_HOLD_MS - COLOR_TRANSITION_MS * 2,
-      400,
-    )
+    const bgFull = hexToRgba(client.bg, 1)
+    const bgFaint = hexToRgba(client.bg, FAINT_ALPHA)
+
+    // Full wave cycle: every cell starts staggered, blooms, fades, then waits the rest of the cycle
+    const cycleMs =
+      (total - 1) * STAGGER_MS + BLOOM_MS + FADE_MS + WAVE_PAUSE_MS
+    const ownActivity = BLOOM_MS + FADE_MS
+    const restAfterFade = Math.max(cycleMs - ownActivity - index * STAGGER_MS, 600)
 
     const loop = async () => {
+      // initial offset puts each cell on the wave timeline
       await sleep(index * STAGGER_MS)
       while (!cancelled) {
         await waitWhilePaused()
         if (cancelled) return
-        await controls.start({
+
+        // Bloom: bg + logo together
+        logoControls.start({
           ...COLOR_STYLE,
-          transition: { duration: COLOR_TRANSITION_MS / 1000, ease: 'easeOut' },
+          transition: { duration: BLOOM_MS / 1000, ease: [0.4, 0, 0.2, 1] },
+        })
+        await bgControls.start({
+          background: bgFull,
+          transition: { duration: BLOOM_MS / 1000, ease: [0.4, 0, 0.2, 1] },
         })
         if (cancelled) return
-        await sleep(COLOR_HOLD_MS)
-        if (cancelled) return
+
         await waitWhilePaused()
         if (cancelled) return
-        await controls.start({
+
+        // Fade: bg + logo together
+        logoControls.start({
           ...GRAY_STYLE,
-          transition: { duration: COLOR_TRANSITION_MS / 1000, ease: 'easeIn' },
+          transition: { duration: FADE_MS / 1000, ease: [0.4, 0, 0.2, 1] },
+        })
+        await bgControls.start({
+          background: bgFaint,
+          transition: { duration: FADE_MS / 1000, ease: [0.4, 0, 0.2, 1] },
         })
         if (cancelled) return
-        await sleep(remainAfterFade)
+
+        await sleep(restAfterFade)
       }
     }
 
@@ -113,28 +134,37 @@ function ClienteCellAnimated({
 
     return () => {
       cancelled = true
-      controls.stop()
+      logoControls.stop()
+      bgControls.stop()
       timers.forEach((id) => clearTimeout(id))
       timers.clear()
     }
-  }, [controls, index, total])
+  }, [logoControls, bgControls, index, total, client.bg])
 
   return (
     <li
-      className="group relative bg-va-black aspect-[4/3] flex items-center justify-center p-5"
+      className="group relative bg-va-black aspect-[4/3] overflow-hidden"
       title={client.name}
     >
-      <motion.img
-        src={`/logos/${client.slug}.png`}
-        alt={client.name}
-        loading="lazy"
-        width={160}
-        height={60}
-        className="max-h-12 sm:max-h-14 w-auto max-w-full object-contain"
-        initial={GRAY_STYLE}
-        animate={controls}
+      <motion.span
+        aria-hidden="true"
+        className="absolute inset-0 z-0"
+        initial={{ background: hexToRgba(client.bg, FAINT_ALPHA) }}
+        animate={bgControls}
       />
-      <span className="pointer-events-none absolute bottom-2 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity font-mono text-[10px] uppercase tracking-[0.15em] text-va-gray-500 whitespace-nowrap">
+      <div className="relative z-10 w-full h-full flex items-center justify-center p-5">
+        <motion.img
+          src={`/logos/${client.slug}.png`}
+          alt={client.name}
+          loading="lazy"
+          width={160}
+          height={60}
+          className="max-h-12 sm:max-h-14 w-auto max-w-full object-contain"
+          initial={GRAY_STYLE}
+          animate={logoControls}
+        />
+      </div>
+      <span className="pointer-events-none absolute z-20 bottom-2 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity font-mono text-[10px] uppercase tracking-[0.15em] text-white/80 whitespace-nowrap drop-shadow">
         {client.name}
       </span>
     </li>
@@ -142,29 +172,41 @@ function ClienteCellAnimated({
 }
 
 function ClienteCellStatic({ client }: { client: Client }) {
+  const faint = hexToRgba(client.bg, FAINT_ALPHA)
+  const full = hexToRgba(client.bg, 1)
+
   return (
     <li
-      className="group relative bg-va-black hover:bg-white/[0.03] transition-colors aspect-[4/3] flex items-center justify-center p-5"
+      className="group relative bg-va-black aspect-[4/3] overflow-hidden transition-colors duration-300"
       title={client.name}
+      style={{ background: faint }}
+      onMouseEnter={(e) => {
+        e.currentTarget.style.background = full
+      }}
+      onMouseLeave={(e) => {
+        e.currentTarget.style.background = faint
+      }}
     >
-      <img
-        src={`/logos/${client.slug}.png`}
-        alt={client.name}
-        loading="lazy"
-        width={160}
-        height={60}
-        className="max-h-12 sm:max-h-14 w-auto max-w-full object-contain transition-all duration-300"
-        style={GRAY_STYLE}
-        onMouseEnter={(e) => {
-          e.currentTarget.style.filter = COLOR_STYLE.filter
-          e.currentTarget.style.opacity = String(COLOR_STYLE.opacity)
-        }}
-        onMouseLeave={(e) => {
-          e.currentTarget.style.filter = GRAY_STYLE.filter
-          e.currentTarget.style.opacity = String(GRAY_STYLE.opacity)
-        }}
-      />
-      <span className="pointer-events-none absolute bottom-2 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity font-mono text-[10px] uppercase tracking-[0.15em] text-va-gray-500 whitespace-nowrap">
+      <div className="relative z-10 w-full h-full flex items-center justify-center p-5">
+        <img
+          src={`/logos/${client.slug}.png`}
+          alt={client.name}
+          loading="lazy"
+          width={160}
+          height={60}
+          className="max-h-12 sm:max-h-14 w-auto max-w-full object-contain transition-all duration-300"
+          style={GRAY_STYLE}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.filter = COLOR_STYLE.filter
+            e.currentTarget.style.opacity = String(COLOR_STYLE.opacity)
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.filter = GRAY_STYLE.filter
+            e.currentTarget.style.opacity = String(GRAY_STYLE.opacity)
+          }}
+        />
+      </div>
+      <span className="pointer-events-none absolute z-20 bottom-2 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity font-mono text-[10px] uppercase tracking-[0.15em] text-white/80 whitespace-nowrap drop-shadow">
         {client.name}
       </span>
     </li>
@@ -216,7 +258,7 @@ export default function Clientes() {
           </h2>
         </RevealSection>
 
-        {/* Logo grid with wave animation */}
+        {/* Logo grid with fluid colored wave */}
         <ul
           aria-label="Empresas que operam com a VanguardIA"
           onMouseEnter={() => setHovered(true)}
