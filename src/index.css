@@ -1,0 +1,176 @@
+@import "tailwindcss";
+
+/* ═══════════════════════════════════════════════
+   VANGUARDIA DESIGN SYSTEM — Tokens
+   ═══════════════════════════════════════════════ */
+
+@theme {
+  /* ── Fontes ── */
+  --font-display: "Inter Display", "Inter", sans-serif;
+  --font-body: "Inter", sans-serif;
+  --font-editorial: "Fraunces", "Tiempos", serif;
+  --font-mono: "JetBrains Mono", monospace;
+
+  /* ── Bases ── */
+  --color-va-black: #0A0A0F;
+  --color-va-white: #FAFAF7;
+  --color-va-cream: #F5F1E8;
+
+  /* ── Azul Institucional (Primary) ── */
+  --color-va-blue-deep: #0B1A3E;
+  --color-va-blue-electric: #2D5BFF;
+  --color-va-blue-glow: #4A7BFF;
+
+  /* ── Verde Amazônia (Accent 1) ── */
+  --color-va-green-deep: #00563F;
+  --color-va-green-vivid: #00C896;
+  --color-va-green-glow: #4DFFB8;
+
+  /* ── Laranja Solar (Accent 2) ── */
+  --color-va-orange-deep: #B84A00;
+  --color-va-orange-vivid: #FF6B1A;
+  --color-va-orange-glow: #FF9550;
+
+  /* ── Dourado Editorial ── */
+  --color-va-gold: #C9A66B;
+
+  /* ── Cinzas Funcionais ── */
+  --color-va-gray-50: #F4F4F5;
+  --color-va-gray-200: #D4D4D8;
+  --color-va-gray-500: #71717A;
+  --color-va-gray-700: #3F3F46;
+  --color-va-gray-900: #18181B;
+
+  /* ── Gradientes Nomeados ── */
+  --gradient-hero: radial-gradient(ellipse at top right, #2D5BFF 0%, #0B1A3E 40%, #0A0A0F 80%);
+  --gradient-amazon: linear-gradient(135deg, #00563F 0%, #00C896 50%, #FF6B1A 100%);
+  --gradient-data: linear-gradient(180deg, #0A0A0F 0%, #0B1A3E 100%);
+  --gradient-warm: linear-gradient(135deg, #FF6B1A 0%, #C9A66B 100%);
+
+  /* ── Tipografia Escala ── */
+  --text-display-xl: clamp(48px, 7vw, 96px);
+  --text-display-l: clamp(36px, 5.5vw, 72px);
+  --text-display-m: clamp(28px, 4vw, 48px);
+  --text-heading-l: clamp(24px, 3vw, 36px);
+  --text-heading-m: clamp(20px, 2.5vw, 28px);
+  --text-body-l: clamp(18px, 2vw, 20px);
+  --text-body-m: clamp(16px, 1.8vw, 18px);
+  --text-label: 12px;
+  --text-mono: clamp(14px, 1.6vw, 16px);
+}
+
+/* ═══════════════════════════════════════════════
+   BASE STYLES
+   ═══════════════════════════════════════════════ */
+
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    font-family: var(--font-body);
+    background: var(--color-va-black);
+    color: var(--color-va-white);
+    line-height: 1.65;
+    overflow-x: hidden;
+  }
+
+  /* ── Accessibility: Skip Link ── */
+  .skip-link {
+    position: absolute;
+    top: -100%;
+    left: 16px;
+    z-index: 9999;
+    padding: 12px 24px;
+    background: var(--color-va-orange-vivid);
+    color: white;
+    font-weight: 700;
+    border-radius: 6px;
+    transition: top 0.2s;
+  }
+  .skip-link:focus {
+    top: 16px;
+  }
+
+  /* ── Focus Visible ── */
+  :focus-visible {
+    outline: 2px solid var(--color-va-orange-vivid);
+    outline-offset: 2px;
+  }
+
+  /* ── Reduced Motion ── */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+/* ═══════════════════════════════════════════════
+   UTILITY CLASSES
+   ═══════════════════════════════════════════════ */
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .container-site {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+  @media (max-width: 640px) {
+    .container-site {
+      padding: 0 20px;
+    }
+  }
+}
+
+/* ═══════════════════════════════════════════════
+   ANIMATIONS
+   ═══════════════════════════════════════════════ */
+
+@keyframes ticker {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes hero-breathe {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 20px rgba(45, 91, 255, 0.3); }
+  50% { box-shadow: 0 0 40px rgba(45, 91, 255, 0.6); }
+}
+
+.animate-ticker {
+  animation: ticker 60s linear infinite;
+}
+.animate-ticker:hover {
+  animation-play-state: paused;
+}
+
+.animate-hero-breathe {
+  animation: hero-breathe 8s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
