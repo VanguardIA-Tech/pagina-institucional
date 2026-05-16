@@ -95,9 +95,9 @@ function ClienteCellAnimated({
     const restAfterFade = Math.max(cycleMs - ownActivity - index * STAGGER_MS, 600)
 
     const loop = async () => {
-      // initial offset puts each cell on the wave timeline
-      await sleep(index * STAGGER_MS)
       while (!cancelled) {
+        // stagger inside loop so every cycle respects the wave position
+        await sleep(index * STAGGER_MS)
         await waitWhilePaused()
         if (cancelled) return
 
