@@ -1,3 +1,6 @@
+import { useEffect, useRef, useState } from 'react'
+import { motion, useAnimationControls, useReducedMotion } from 'framer-motion'
+
 type Client = { name: string; slug: string }
 
 const CLIENTS: Client[] = [
@@ -25,7 +28,105 @@ const CLIENTS: Client[] = [
   { name: 'Unineuro', slug: 'unineuro' },
 ]
 
-function LogoChip({ client }: { client: Client }) {
+const STAGGER_MS = 80
+const COLOR_HOLD_MS = 800
+const COLOR_DURATION_MS = 400
+const WAVE_PAUSE_MS = 2000
+
+function LogoChipAnimated({
+  client,
+  index,
+  total,
+  paused,
+}: {
+  client: Client
+  index: number
+  total: number
+  paused: boolean
+}) {
+  const controls = useAnimationControls()
+  const pausedRef = useRef(paused)
+
+  useEffect(() => {
+    pausedRef.current = paused
+  }, [paused])
+
+  useEffect(() => {
+    let cancelled = false
+
+    const sleep = (ms: number) =>
+      new Promise<void>((resolve) => {
+        const id = setTimeout(resolve, ms)
+        return () => clearTimeout(id)
+      })
+
+    const waitWhilePaused = async () => {
+      while (!cancelled && pausedRef.current) {
+        await sleep(120)
+      }
+    }
+
+    const loop = async () => {
+      while (!cancelled) {
+        await waitWhilePaused()
+        if (cancelled) return
+
+        await sleep(WAVE_PAUSE_MS + index * STAGGER_MS)
+        if (cancelled) return
+        await waitWhilePaused()
+        if (cancelled) return
+
+        await controls.start({
+          filter: 'grayscale(0) brightness(1)',
+          opacity: 1,
+          transition: { duration: COLOR_DURATION_MS / 1000, ease: 'easeOut' },
+        })
+        if (cancelled) return
+
+        await sleep(COLOR_HOLD_MS)
+        if (cancelled) return
+        await waitWhilePaused()
+        if (cancelled) return
+
+        await sleep((total - index) * STAGGER_MS)
+        if (cancelled) return
+
+        await controls.start({
+          filter: 'grayscale(1) brightness(0.85)',
+          opacity: 0.7,
+          transition: { duration: COLOR_DURATION_MS / 1000, ease: 'easeIn' },
+        })
+      }
+    }
+
+    loop()
+
+    return () => {
+      cancelled = true
+      controls.stop()
+    }
+  }, [controls, index, total])
+
+  return (
+    <div
+      className="flex items-center gap-3 shrink-0 px-8 py-3 border-r border-va-gray-200/40"
+      title={client.name}
+    >
+      <motion.img
+        src={`/logos/${client.slug}.png`}
+        alt={client.name}
+        loading="lazy"
+        width={120}
+        height={32}
+        className="h-7 sm:h-8 w-auto max-w-[140px] object-contain"
+        initial={{ filter: 'grayscale(1) brightness(0.85)', opacity: 0.7 }}
+        animate={controls}
+      />
+    </div>
+  )
+}
+
+function LogoChipStatic({ client }: { client: Client }) {
   return (
     <div
       className="group flex items-center gap-3 shrink-0 px-8 py-3 border-r border-va-gray-200/40"
@@ -56,7 +157,9 @@ function LogoChip({ client }: { client: Client }) {
 }
 
 export default function LogoBar() {
+  const prefersReducedMotion = useReducedMotion()
   const list = [...CLIENTS, ...CLIENTS]
+  const [hovered, setHovered] = useState(false)
 
   return (
     <section
@@ -64,7 +167,11 @@ export default function LogoBar() {
       className="relative bg-va-cream border-y border-va-gray-200/60"
       style={{ minHeight: 120 }}
     >
-      <div className="flex items-stretch h-[120px] group/ticker">
+      <div
+        className="flex items-stretch h-[120px] group/ticker"
+        onMouseEnter={() => setHovered(true)}
+        onMouseLeave={() => setHovered(false)}
+      >
         {/* Vertical label */}
         <div className="shrink-0 flex items-center justify-center px-5 sm:px-8 border-r border-va-gray-200/60 bg-va-cream">
           <span
@@ -89,9 +196,19 @@ export default function LogoBar() {
           }}
         >
           <div className="flex items-center h-full animate-ticker w-max group-hover/ticker:[animation-play-state:paused]">
-            {list.map((client, i) => (
-              <LogoChip key={`${client.slug}-${i}`} client={client} />
-            ))}
+            {list.map((client, i) =>
+              prefersReducedMotion ? (
+                <LogoChipStatic key={`${client.slug}-${i}`} client={client} />
+              ) : (
+                <LogoChipAnimated
+                  key={`${client.slug}-${i}`}
+                  client={client}
+                  index={i % CLIENTS.length}
+                  total={CLIENTS.length}
+                  paused={hovered}
+                />
+              ),
+            )}
           </div>
         </div>
       </div>

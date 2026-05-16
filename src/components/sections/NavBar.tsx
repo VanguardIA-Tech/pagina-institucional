@@ -65,34 +65,22 @@ export default function NavBar() {
             aria-label="Grupo VanguardIA - Início"
             className="flex items-center gap-2 shrink-0"
           >
-            <svg
-              width="32"
-              height="32"
-              viewBox="0 0 32 32"
-              fill="none"
-              aria-hidden="true"
-            >
-              <path
-                d="M4 6 L16 26 L28 6"
-                stroke="var(--color-va-white)"
-                strokeWidth="2.5"
-                strokeLinejoin="round"
-              />
-              <circle
-                cx="16"
-                cy="14"
-                r="2.5"
-                fill="var(--color-va-orange-vivid)"
-              />
-            </svg>
-            <span className="font-display text-white font-bold tracking-tight text-base lg:text-lg">
-              VanguardIA
-              {isGov && (
-                <span className="text-va-orange-vivid font-mono text-xs ml-1">
-                  · GOV
-                </span>
-              )}
-            </span>
+            <img
+              src="/logos/vanguardia-horizontal.png"
+              alt="Grupo VanguardIA"
+              loading="eager"
+              width={140}
+              height={32}
+              className="w-[120px] lg:w-[140px] h-auto"
+              style={{
+                filter: 'brightness(0) invert(1)',
+              }}
+            />
+            {isGov && (
+              <span className="text-va-orange-vivid font-mono text-xs font-bold tracking-wider">
+                .GOV
+              </span>
+            )}
           </NavLink>
 
           {/* Desktop links */}
