@@ -2,16 +2,38 @@
 <html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <!-- ── Identidade / favicon ── -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="theme-color" content="#0A0A0F" />
+    <meta name="color-scheme" content="dark light" />
+
+    <!-- ── SEO primário ── -->
     <title>Grupo VanguardIA · Inteligência Aplicada para empresas e governo</title>
     <meta
       name="description"
       content="A única arquitetura brasileira de Inteligência Aplicada que une método, certificação, processos e dados soberanos. CNH da IA, ICIA OS e arquitetura ICIA.GOV."
     />
+    <meta
+      name="keywords"
+      content="Inteligência Artificial, IA, VanguardIA, ICIA, CNH da IA, ICIA OS, ICIA Gov, governança de IA, IA soberana, IA Brasil, IA setor público, Amazônia, COP30"
+    />
+    <meta name="author" content="Grupo VanguardIA" />
+    <meta name="publisher" content="Grupo VanguardIA" />
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <meta name="googlebot" content="index, follow" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+
     <link rel="canonical" href="https://vanguardia.com.br/" />
+    <link rel="alternate" hreflang="pt-BR" href="https://vanguardia.com.br/" />
+    <link rel="alternate" hreflang="x-default" href="https://vanguardia.com.br/" />
+
+    <!-- ── Open Graph ── -->
     <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Grupo VanguardIA" />
     <meta property="og:locale" content="pt_BR" />
     <meta property="og:title" content="Grupo VanguardIA · Inteligência Aplicada" />
     <meta
@@ -19,9 +41,60 @@
       content="Cultura, método e sistema que transformam IA em resultado mensurável — para empresas e governos brasileiros."
     />
     <meta property="og:url" content="https://vanguardia.com.br/" />
+    <meta property="og:image" content="https://vanguardia.com.br/og-image.jpg" />
+    <meta property="og:image:secure_url" content="https://vanguardia.com.br/og-image.jpg" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Grupo VanguardIA — Inteligência Aplicada para empresas e governo" />
+
+    <!-- ── Twitter / X ── -->
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@grupovanguardia" />
+    <meta name="twitter:creator" content="@grupovanguardia" />
+    <meta name="twitter:title" content="Grupo VanguardIA · Inteligência Aplicada" />
+    <meta
+      name="twitter:description"
+      content="Cultura, método e sistema que transformam IA em resultado mensurável — para empresas e governos brasileiros."
+    />
+    <meta name="twitter:image" content="https://vanguardia.com.br/og-image.jpg" />
+    <meta name="twitter:image:alt" content="Grupo VanguardIA — Inteligência Aplicada" />
+
+    <!-- ── Preconnect / performance ── -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="dns-prefetch" href="//wa.me" />
+
+    <!-- ── Sitemap ── -->
+    <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
+
+    <!-- ── JSON-LD: Organization ── -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Grupo VanguardIA",
+        "url": "https://vanguardia.com.br/",
+        "logo": "https://vanguardia.com.br/favicon.svg",
+        "description": "Arquitetura brasileira de Inteligência Aplicada que une cultura, método e sistema — para empresas e governos.",
+        "foundingDate": "2020",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Tv. Avertano Rocha, 192",
+          "addressLocality": "Belém",
+          "addressRegion": "PA",
+          "addressCountry": "BR"
+        },
+        "areaServed": { "@type": "Country", "name": "Brasil" },
+        "sameAs": [
+          "https://www.linkedin.com/company/grupovanguardia",
+          "https://www.instagram.com/grupovanguardia"
+        ]
+      }
+    </script>
   </head>
   <body>
+    <a href="#main-content" class="skip-link">Pular para o conteúdo</a>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

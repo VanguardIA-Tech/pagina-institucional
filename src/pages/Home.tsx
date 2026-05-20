@@ -12,6 +12,7 @@ import Clientes from '../components/sections/Clientes'
 import Depoimentos from '../components/sections/Depoimentos'
 import DoItHub from '../components/sections/DoItHub'
 import Parcerias from '../components/sections/Parcerias'
+import FAQ from '../components/sections/FAQ'
 import ManifestoCTA from '../components/sections/ManifestoCTA'
 import Footer from '../components/sections/Footer'
 import ScrollProgress from '../components/ui/ScrollProgress'
@@ -30,6 +31,7 @@ const SECTIONS: SideNavSection[] = [
   { id: 'clientes', label: 'Clientes' },
   { id: 'do-it-hub', label: 'Do It Hub' },
   { id: 'parcerias', label: 'Parcerias' },
+  { id: 'faq', label: 'FAQ' },
   { id: 'manifesto', label: 'Manifesto' },
 ]
 
@@ -52,6 +54,7 @@ export default function Home() {
         <Depoimentos />
         <DoItHub />
         <Parcerias />
+        <FAQ />
         <ManifestoCTA />
       </main>
       <Footer />

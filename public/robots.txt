@@ -1,0 +1,29 @@
+# robots.txt — Grupo VanguardIA
+# https://vanguardia.com.br
+# Inteligência Aplicada para empresas e governo
+
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /admin/
+
+# Bots de IA — permitidos para indexação institucional
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+# Crawl-delay (segundos) para evitar sobrecarga
+Crawl-delay: 1
+
+Sitemap: https://vanguardia.com.br/sitemap.xml

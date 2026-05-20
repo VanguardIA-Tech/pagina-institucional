@@ -54,7 +54,7 @@ export default function ManifestoCTA() {
           viewport={{ once: true, amount: 0.5 }}
           className="font-mono text-xs uppercase tracking-[0.18em] text-va-gray-500 mb-8"
         >
-          11 · Manifesto + CTA
+          12 · Manifesto + CTA
         </motion.p>
 
         <motion.h2
