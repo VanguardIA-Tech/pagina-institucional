@@ -3,7 +3,7 @@ import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion
 import { ArrowRight } from 'lucide-react'
 
 const CTA_PRIVATE =
-  'https://wa.me/559132233355?text=Quero%20conhecer%20a%20ICIA%20para%20empresas'
+  'https://wa.me/5591983012908?text=Quero%20conhecer%20a%20ICIA%20para%20empresas'
 
 export default function ManifestoCTA() {
   const reduce = useReducedMotion()

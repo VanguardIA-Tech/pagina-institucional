@@ -9,11 +9,10 @@ import Acessorios from '../components/sections/Acessorios'
 import Impacto from '../components/sections/Impacto'
 import CNHdaIA from '../components/sections/CNHdaIA'
 import Clientes from '../components/sections/Clientes'
-import Depoimentos from '../components/sections/Depoimentos'
 import DoItHub from '../components/sections/DoItHub'
 import Parcerias from '../components/sections/Parcerias'
-import FAQ from '../components/sections/FAQ'
 import ManifestoCTA from '../components/sections/ManifestoCTA'
+import FaleConosco from '../components/sections/FaleConosco'
 import Footer from '../components/sections/Footer'
 import ScrollProgress from '../components/ui/ScrollProgress'
 import SideNav, { type SideNavSection } from '../components/ui/SideNav'
@@ -31,8 +30,8 @@ const SECTIONS: SideNavSection[] = [
   { id: 'clientes', label: 'Clientes' },
   { id: 'do-it-hub', label: 'Do It Hub' },
   { id: 'parcerias', label: 'Parcerias' },
-  { id: 'faq', label: 'FAQ' },
   { id: 'manifesto', label: 'Manifesto' },
+  { id: 'fale-conosco', label: 'Fale Conosco' },
 ]
 
 export default function Home() {
@@ -51,11 +50,10 @@ export default function Home() {
         <Impacto />
         <CNHdaIA />
         <Clientes />
-        <Depoimentos />
         <DoItHub />
         <Parcerias />
-        <FAQ />
         <ManifestoCTA />
+        <FaleConosco />
       </main>
       <Footer />
       <Suspense fallback={null}>

@@ -10,10 +10,11 @@ const NAV_LINKS = [
   { label: 'ICIA OS', href: '#escada' },
   { label: 'Do It Hub', href: '#do-it-hub' },
   { label: 'Clientes', href: '#clientes' },
+  { label: 'Fale Conosco', href: '#fale-conosco' },
 ]
 
 const CTA_URL =
-  'https://wa.me/559132233355?text=Quero%20falar%20com%20a%20VanguardIA'
+  'https://wa.me/5591983012908?text=Quero%20falar%20com%20a%20VanguardIA'
 
 export default function NavBar() {
   const [scrolled, setScrolled] = useState(false)
