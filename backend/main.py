@@ -1,4 +1,5 @@
 import os
+import typing
 
 from dotenv import load_dotenv
 from fastapi import FastAPI, HTTPException
@@ -68,13 +69,19 @@ def create_realtime_token() -> dict:
 
     try:
         session = client.post(
-            "/realtime/sessions",
-            cast_to=dict,
+            "/realtime/client_secrets",
+            cast_to=typing.Dict[str, typing.Any],
             body={
-                "model": REALTIME_MODEL,
-                "voice": REALTIME_VOICE,
-                "modalities": ["audio", "text"],
-                "instructions": VANGUARDIA_INSTRUCTIONS,
+                "session": {
+                    "type": "realtime",
+                    "model": REALTIME_MODEL,
+                    "instructions": VANGUARDIA_INSTRUCTIONS,
+                    "audio": {
+                        "output": {
+                            "voice": REALTIME_VOICE
+                        }
+                    }
+                }
             },
         )
     except APIStatusError as exc:
@@ -94,3 +101,20 @@ def create_realtime_token() -> dict:
         ) from exc
 
     return session
+
+
+class ClientError(typing.TypedDict, total=False):
+    message: str
+    stack: str
+    userAgent: str
+
+
+@app.post("/api/log-error")
+def log_error(err: ClientError) -> dict[str, str]:
+    print(f"\n--- CLIENT ERROR LOG ---")
+    print(f"Message: {err.get('message')}")
+    print(f"Stack: {err.get('stack')}")
+    print(f"UserAgent: {err.get('userAgent')}")
+    print(f"------------------------\n")
+    return {"status": "ok"}
+

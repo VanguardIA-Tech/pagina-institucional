@@ -120,49 +120,6 @@ export default function SideNav({ sections, variant = 'home' }: Props) {
             )
           })}
         </ul>
-      </nav>
-
-      {/* Mobile: horizontal bottom bar (above the orb on mobile) */}
-      <nav
-        aria-label="Navegação por seção"
-        className="lg:hidden fixed left-0 right-0 z-30 pointer-events-none"
-        style={{ bottom: 154 }}
-      >
-        <div className="mx-auto max-w-fit pointer-events-auto">
-          <ul
-            className="flex items-center gap-2 px-3 py-2 rounded-full border border-white/10 backdrop-blur-md"
-            style={{ background: 'rgba(10,10,15,0.7)' }}
-          >
-            {sections.map((s) => {
-              const isActive = s.id === active
-              const accent = s.accent ?? fallback
-              return (
-                <li key={s.id}>
-                  <a
-                    href={`#${s.id}`}
-                    onClick={(e) => onClick(e, s.id)}
-                    aria-label={s.label}
-                    aria-current={isActive ? 'true' : undefined}
-                    className="inline-flex items-center justify-center"
-                    style={{ width: 18, height: 18 }}
-                  >
-                    <span
-                      aria-hidden="true"
-                      className="block rounded-full transition-all duration-300"
-                      style={{
-                        width: isActive ? 10 : 6,
-                        height: isActive ? 10 : 6,
-                        background: isActive ? accent : 'rgba(255,255,255,0.35)',
-                        boxShadow: isActive ? `0 0 10px ${accent}` : 'none',
-                      }}
-                    />
-                  </a>
-                </li>
-              )
-            })}
-          </ul>
-        </div>
-      </nav>
-    </>
+      </nav>    </>
   )
 }

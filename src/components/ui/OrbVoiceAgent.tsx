@@ -223,8 +223,6 @@ export default function OrbVoiceAgent({
     remoteAnalyserRef.current = null
     if (audioRef.current) {
       audioRef.current.srcObject = null
-      audioRef.current.remove()
-      audioRef.current = null
     }
     amplitudeRef.current = 0
   }, [])
@@ -247,7 +245,7 @@ export default function OrbVoiceAgent({
         throw new Error('Backend token endpoint returned an error')
       }
       const session = await res.json()
-      const token = session.client_secret?.value
+      const token = session.client_secret?.value ?? session.value
       if (!token) {
         throw new Error('No client token received from backend')
       }
@@ -264,18 +262,24 @@ export default function OrbVoiceAgent({
       micSource.connect(micAnalyser)
       micAnalyserRef.current = micAnalyser
 
-      // 4. Create local RTCPeerConnection
-      const pc = new RTCPeerConnection()
+      // 4. Create local RTCPeerConnection with STUN server
+      const pc = new RTCPeerConnection({
+        iceServers: [{ urls: 'stun:stun.l.google.com:19302' }]
+      })
       pcRef.current = pc
 
       // 5. Add local mic track to WebRTC
-      pc.addTrack(micStream.getTracks()[0])
+      const track = micStream.getTracks()[0]
+      if (!track) {
+        throw new Error('Nenhuma faixa de áudio encontrada no microfone.')
+      }
+      pc.addTrack(track, micStream)
 
       // 6. Handle remote track (AI speech)
-      const audioEl = document.createElement('audio')
-      audioEl.autoplay = true
-      audioRef.current = audioEl
-      document.body.appendChild(audioEl)
+      const audioEl = audioRef.current
+      if (!audioEl) {
+        throw new Error('Elemento de áudio não inicializado.')
+      }
 
       pc.ontrack = (e) => {
         const remoteStream = e.streams[0]
@@ -302,7 +306,11 @@ export default function OrbVoiceAgent({
         try {
           const event = JSON.parse(e.data)
           // Handle AI speech indicator events to change state dynamically
-          if (event.type === 'response.audio.delta') {
+          if (
+            event.type === 'response.audio.delta' ||
+            event.type === 'response.output_audio.delta' ||
+            event.type === 'response.audio_transcript.delta'
+          ) {
             setState('speaking')
           }
           if (event.type === 'response.done') {
@@ -320,12 +328,27 @@ export default function OrbVoiceAgent({
       const offer = await pc.createOffer()
       await pc.setLocalDescription(offer)
 
+      // Wait for ICE gathering to complete so all candidates are included in the SDP offer
+      await new Promise<void>((resolve) => {
+        if (pc.iceGatheringState === 'complete') {
+          resolve()
+        } else {
+          const checkState = () => {
+            if (pc.iceGatheringState === 'complete') {
+              pc.removeEventListener('icegatheringstatechange', checkState)
+              resolve()
+            }
+          }
+          pc.addEventListener('icegatheringstatechange', checkState)
+        }
+      })
+
       // 9. Send local SDP to OpenAI Realtime gateway
       const baseUrl = 'https://api.openai.com/v1/realtime'
       const model = 'gpt-realtime-2'
-      const sdpRes = await fetch(`${baseUrl}?model=${model}`, {
+      const sdpRes = await fetch(`${baseUrl}/calls?model=${model}`, {
         method: 'POST',
-        body: offer.sdp,
+        body: pc.localDescription?.sdp ?? offer.sdp,
         headers: {
           Authorization: `Bearer ${token}`,
           'Content-Type': 'application/sdp',
@@ -347,10 +370,37 @@ export default function OrbVoiceAgent({
 
     } catch (err) {
       console.error(err)
-      setError(err instanceof Error ? err.message : 'Falha ao conectar')
+      const msg = err instanceof Error ? err.message : String(err)
+      const stack = err instanceof Error ? err.stack : undefined
+      setError(msg)
+      
+      // Log to backend
+      fetch('/api/log-error', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message: msg, stack, userAgent: navigator.userAgent })
+      }).catch(() => {})
+
       stopSession()
     }
   }, [tokenEndpoint, stopSession])
+
+  // Global uncaught error logging helper
+  useEffect(() => {
+    const handleGlobalError = (event: ErrorEvent) => {
+      fetch('/api/log-error', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          message: event.message,
+          stack: event.error?.stack,
+          userAgent: navigator.userAgent
+        })
+      }).catch(() => {})
+    }
+    window.addEventListener('error', handleGlobalError)
+    return () => window.removeEventListener('error', handleGlobalError)
+  }, [])
 
   const onToggle = useCallback(() => {
     if (state === 'idle') {
@@ -371,9 +421,6 @@ export default function OrbVoiceAgent({
       if (audioCtxRef.current) {
         audioCtxRef.current.close().catch(() => {})
       }
-      if (audioRef.current) {
-        audioRef.current.remove()
-      }
     }
   }, [])
 
@@ -393,10 +440,11 @@ export default function OrbVoiceAgent({
       className="fixed z-50 pointer-events-none"
       style={
         isMobile
-          ? { bottom: 16, left: '50%', transform: 'translateX(-50%)' }
+          ? { bottom: 16, right: 16 }
           : { bottom: 24, right: 24 }
       }
     >
+      <audio ref={audioRef} autoPlay style={{ display: 'none' }} />
       <AnimatePresence>
         {tooltipOpen && state === 'idle' && !isMobile && (
           <motion.div
@@ -440,7 +488,7 @@ export default function OrbVoiceAgent({
           camera={{ position: [0, 0, 3.4], fov: 50 }}
           dpr={[1, 1.5]}
           gl={{ antialias: true, alpha: true, powerPreference: 'low-power' }}
-          style={{ position: 'absolute', inset: 0 }}
+          style={{ position: 'absolute', inset: 0, pointerEvents: 'none' }}
         >
           <ambientLight intensity={0.6} />
           <pointLight position={[2, 2, 2]} intensity={0.7} />
@@ -479,7 +527,7 @@ export default function OrbVoiceAgent({
         {/* State icon overlay */}
         <span
           aria-hidden="true"
-          className="absolute bottom-2 left-1/2 -translate-x-1/2 inline-flex items-center justify-center w-8 h-8 rounded-full backdrop-blur-md"
+          className="absolute bottom-2 left-1/2 -translate-x-1/2 inline-flex items-center justify-center w-8 h-8 rounded-full backdrop-blur-md pointer-events-none"
           style={{
             background: 'rgba(10,10,15,0.6)',
             color:
@@ -500,7 +548,7 @@ export default function OrbVoiceAgent({
         </span>
       </motion.button>
 
-      {error && state !== 'idle' && (
+      {error && (
         <p
           role="status"
           className="absolute top-full mt-2 right-0 max-w-[220px] text-[10px] font-mono uppercase tracking-[0.12em] text-va-orange-glow text-right pointer-events-none"
