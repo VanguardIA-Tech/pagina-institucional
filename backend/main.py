@@ -14,7 +14,7 @@ load_dotenv()
 
 
 REALTIME_MODEL = "gpt-realtime-2"
-REALTIME_VOICE = "marin"
+REALTIME_VOICE = "cedar"
 CLIENT_SECRET_TTL_SECONDS = 120
 
 VANGUARDIA_INSTRUCTIONS = """Você é o Jarvis da VanguardIA, assistente de IA por voz que interage com leads, clientes e parceiros do Grupo VanguardIA.
