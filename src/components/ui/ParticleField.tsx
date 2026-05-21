@@ -23,32 +23,38 @@ function generatePositions(
   const base = new Float32Array(count * 3)
   const vShape = new Float32Array(count * 3)
 
+  let seed = 4321
+  const random = () => {
+    const x = Math.sin(seed++) * 10000
+    return x - Math.floor(x)
+  }
+
   for (let i = 0; i < count; i++) {
     if (variant === 'orb') {
       const phi = Math.acos(1 - (2 * (i + 0.5)) / count)
       const theta = Math.PI * (1 + Math.sqrt(5)) * i
-      const r = radius * (0.88 + Math.random() * 0.18)
+      const r = radius * (0.88 + random() * 0.18)
       base[i * 3] = r * Math.sin(phi) * Math.cos(theta)
       base[i * 3 + 1] = r * Math.sin(phi) * Math.sin(theta)
       base[i * 3 + 2] = r * Math.cos(phi)
     } else {
-      base[i * 3] = (Math.random() - 0.5) * radius * 2
-      base[i * 3 + 1] = (Math.random() - 0.5) * radius * 2
-      base[i * 3 + 2] = (Math.random() - 0.5) * radius * 0.4
+      base[i * 3] = (random() - 0.5) * radius * 2
+      base[i * 3 + 1] = (random() - 0.5) * radius * 2
+      base[i * 3 + 2] = (random() - 0.5) * radius * 0.4
     }
 
     // Procedural "V" silhouette in XY plane:
     // V opens at top; two legs meeting at apex (0, -h/2).
     const w = radius * 1.2
     const h = radius * 1.4
-    const leg = Math.random() < 0.5 ? -1 : 1
-    const t = Math.random()
+    const leg = random() < 0.5 ? -1 : 1
+    const t = random()
     const x = leg * (t * (w / 2))
     const y = -h / 2 + t * h
     const jitter = radius * 0.05
-    vShape[i * 3] = x + (Math.random() - 0.5) * jitter
-    vShape[i * 3 + 1] = y + (Math.random() - 0.5) * jitter
-    vShape[i * 3 + 2] = (Math.random() - 0.5) * jitter
+    vShape[i * 3] = x + (random() - 0.5) * jitter
+    vShape[i * 3 + 1] = y + (random() - 0.5) * jitter
+    vShape[i * 3 + 2] = (random() - 0.5) * jitter
   }
 
   return { base, vShape }

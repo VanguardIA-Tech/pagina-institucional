@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 
 type FrequencyData = Uint8Array<ArrayBuffer>
 
@@ -23,16 +23,13 @@ export default function useAudioVisualizer({
   fftSize = 128,
 }: Options): AudioVisualizer {
   const bins = fftSize / 2
-  const dataRef = useRef<FrequencyData>(
-    new Uint8Array(new ArrayBuffer(bins)),
-  )
+  const data = useMemo(() => new Uint8Array(new ArrayBuffer(bins)), [bins])
   const amplitudeRef = useRef<number>(0)
   const [active, setActive] = useState(false)
   const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
     if (!enabled) {
-      setActive(false)
       return
     }
 
@@ -68,12 +65,12 @@ export default function useAudioVisualizer({
 
         const tick = () => {
           if (cancelled || !analyser) return
-          analyser.getByteFrequencyData(dataRef.current)
+          analyser.getByteFrequencyData(data)
           let sum = 0
-          for (let i = 0; i < dataRef.current.length; i++) {
-            sum += dataRef.current[i]
+          for (let i = 0; i < data.length; i++) {
+            sum += data[i]
           }
-          amplitudeRef.current = sum / (dataRef.current.length * 255)
+          amplitudeRef.current = sum / (data.length * 255)
           rafId = requestAnimationFrame(tick)
         }
         rafId = requestAnimationFrame(tick)
@@ -103,7 +100,7 @@ export default function useAudioVisualizer({
       amplitudeRef.current = 0
       setActive(false)
     }
-  }, [enabled, fftSize])
+  }, [enabled, fftSize, data])
 
-  return { data: dataRef.current, amplitudeRef, active, error }
+  return { data, amplitudeRef, active, error }
 }

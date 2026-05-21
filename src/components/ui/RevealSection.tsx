@@ -25,7 +25,6 @@ export default function RevealSection({
   ...rest
 }: RevealSectionProps) {
   const prefersReducedMotion = useReducedMotion()
-  const MotionTag = motion(as as any) as any
 
   const containerVariants: Variants = stagger
     ? {
@@ -54,8 +53,24 @@ export default function RevealSection({
         },
       }
 
+  if (as === 'div') {
+    return (
+      <motion.div
+        id={id}
+        className={className}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount }}
+        variants={containerVariants}
+        {...rest}
+      >
+        {children}
+      </motion.div>
+    )
+  }
+
   return (
-    <MotionTag
+    <motion.section
       id={id}
       className={className}
       initial="hidden"
@@ -65,10 +80,11 @@ export default function RevealSection({
       {...rest}
     >
       {children}
-    </MotionTag>
+    </motion.section>
   )
 }
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const revealItemVariants: Variants = {
   hidden: { opacity: 0, y: 24 },
   visible: {

@@ -3,7 +3,6 @@ import { Canvas, useFrame } from '@react-three/fiber'
 import * as THREE from 'three'
 import { Mic, MicOff, Sparkles } from 'lucide-react'
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion'
-import useAudioVisualizer from '../../hooks/useAudioVisualizer'
 
 type OrbState = 'idle' | 'listening' | 'speaking'
 
@@ -37,11 +36,17 @@ function OrbParticles({ state, amplitudeRef, pointCount }: OrbParticlesProps) {
 
   const { positions, basePositions } = useMemo(() => {
     const base = new Float32Array(pointCount * 3)
+    let seed = 77777
+    const random = () => {
+      const x = Math.sin(seed++) * 10000
+      return x - Math.floor(x)
+    }
+
     for (let i = 0; i < pointCount; i++) {
       // Fibonacci sphere for even distribution
       const phi = Math.acos(1 - (2 * (i + 0.5)) / pointCount)
       const theta = Math.PI * (1 + Math.sqrt(5)) * i
-      const r = 1 + (Math.random() - 0.5) * 0.08
+      const r = 1 + (random() - 0.5) * 0.08
       base[i * 3] = r * Math.sin(phi) * Math.cos(theta)
       base[i * 3 + 1] = r * Math.sin(phi) * Math.sin(theta)
       base[i * 3 + 2] = r * Math.cos(phi)
@@ -73,17 +78,12 @@ function OrbParticles({ state, amplitudeRef, pointCount }: OrbParticlesProps) {
     const posAttr = geometry.getAttribute('position') as THREE.BufferAttribute
     const arr = posAttr.array as Float32Array
 
-    let displacement = 0
-    if (state === 'listening') {
-      // Particles accelerate inward
-      displacement = -0.18 + Math.sin(timeRef.current * 4) * 0.04
-    } else if (state === 'speaking') {
-      // Burst outward driven by audio
-      displacement = 0.12 + amp * 0.55
-    } else {
-      // Idle gentle breath
-      displacement = Math.sin(timeRef.current * 1.2) * 0.05
-    }
+    const displacement =
+      state === 'listening'
+        ? -0.18 + Math.sin(timeRef.current * 4) * 0.04
+        : state === 'speaking'
+          ? 0.12 + amp * 0.55
+          : Math.sin(timeRef.current * 1.2) * 0.05
 
     for (let i = 0; i < arr.length; i += 3) {
       const bx = basePositions[i]
@@ -141,7 +141,7 @@ function OrbCore({ state }: { state: OrbState }) {
 }
 
 type OrbVoiceAgentProps = {
-  /** Backend endpoint that mints a realtime token. Optional — UI works without backend. */
+  /** Backend endpoint that mints a realtime token. */
   tokenEndpoint?: string
 }
 
@@ -151,7 +151,18 @@ export default function OrbVoiceAgent({
   const [state, setState] = useState<OrbState>('idle')
   const [isMobile, setIsMobile] = useState(false)
   const [tooltipOpen, setTooltipOpen] = useState(false)
+  const [error, setError] = useState<string | null>(null)
   const reduceMotion = useReducedMotion()
+
+  const pcRef = useRef<RTCPeerConnection | null>(null)
+  const dcRef = useRef<RTCDataChannel | null>(null)
+  const audioCtxRef = useRef<AudioContext | null>(null)
+  const micAnalyserRef = useRef<AnalyserNode | null>(null)
+  const remoteAnalyserRef = useRef<AnalyserNode | null>(null)
+  const audioRef = useRef<HTMLAudioElement | null>(null)
+  const micStreamRef = useRef<MediaStream | null>(null)
+  const amplitudeRef = useRef<number>(0)
+  const rafRef = useRef<number>(0)
 
   useEffect(() => {
     const mq = window.matchMedia('(max-width: 640px)')
@@ -161,39 +172,209 @@ export default function OrbVoiceAgent({
     return () => mq.removeEventListener('change', sync)
   }, [])
 
-  const { amplitudeRef, active, error } = useAudioVisualizer({
-    enabled: state === 'listening' || state === 'speaking',
-    fftSize: 128,
-  })
-
-  // After mic goes active and we have a token endpoint, attempt the WebRTC
-  // handshake. If it fails (no backend yet), we stay in 'listening' so the
-  // user still sees mic-driven feedback.
+  // Animation frame loop for amplitude analysis
   useEffect(() => {
-    if (state !== 'listening' || !active) return
-    let cancelled = false
-    const attempt = async () => {
-      try {
-        const res = await fetch(tokenEndpoint, { method: 'POST' })
-        if (!res.ok) throw new Error('token endpoint unavailable')
-        const body = await res.json().catch(() => ({}))
-        if (cancelled) return
-        if (body && typeof body === 'object' && 'token' in body) {
-          // Token acquired — flip to 'speaking' to show response visualization.
-          setState('speaking')
+    const tick = () => {
+      let amp = 0
+      const activeAnalyser = state === 'speaking' ? remoteAnalyserRef.current : micAnalyserRef.current
+      if (activeAnalyser) {
+        const dataArray = new Uint8Array(activeAnalyser.frequencyBinCount)
+        activeAnalyser.getByteFrequencyData(dataArray)
+        let sum = 0
+        for (let i = 0; i < dataArray.length; i++) {
+          sum += dataArray[i]
         }
-      } catch {
-        // Backend not configured yet — graceful no-op.
+        amp = sum / (dataArray.length * 255)
+      }
+      amplitudeRef.current = amp
+      rafRef.current = requestAnimationFrame(tick)
+    }
+
+    if (state !== 'idle') {
+      rafRef.current = requestAnimationFrame(tick)
+    }
+
+    return () => {
+      if (rafRef.current) {
+        cancelAnimationFrame(rafRef.current)
       }
     }
-    attempt()
-    return () => {
-      cancelled = true
+  }, [state])
+
+  const stopSession = useCallback(() => {
+    setState('idle')
+    if (pcRef.current) {
+      pcRef.current.close()
+      pcRef.current = null
     }
-  }, [state, active, tokenEndpoint])
+    if (dcRef.current) {
+      dcRef.current.close()
+      dcRef.current = null
+    }
+    if (micStreamRef.current) {
+      micStreamRef.current.getTracks().forEach((track) => track.stop())
+      micStreamRef.current = null
+    }
+    if (audioCtxRef.current) {
+      audioCtxRef.current.close().catch(() => {})
+      audioCtxRef.current = null
+    }
+    micAnalyserRef.current = null
+    remoteAnalyserRef.current = null
+    if (audioRef.current) {
+      audioRef.current.srcObject = null
+      audioRef.current.remove()
+      audioRef.current = null
+    }
+    amplitudeRef.current = 0
+  }, [])
+
+  const startSession = useCallback(async () => {
+    try {
+      setError(null)
+      setState('listening')
+
+      // 1. Get microphone access
+      if (!navigator.mediaDevices?.getUserMedia) {
+        throw new Error('Microphone API not available')
+      }
+      const micStream = await navigator.mediaDevices.getUserMedia({ audio: true })
+      micStreamRef.current = micStream
+
+      // 2. Fetch the token from the backend
+      const res = await fetch(tokenEndpoint, { method: 'POST' })
+      if (!res.ok) {
+        throw new Error('Backend token endpoint returned an error')
+      }
+      const session = await res.json()
+      const token = session.client_secret?.value
+      if (!token) {
+        throw new Error('No client token received from backend')
+      }
+
+      // 3. Set up Audio Context and local microphone analyser
+      const AC = window.AudioContext || (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext
+      const audioCtx = new AC()
+      audioCtxRef.current = audioCtx
+
+      const micSource = audioCtx.createMediaStreamSource(micStream)
+      const micAnalyser = audioCtx.createAnalyser()
+      micAnalyser.fftSize = 128
+      micAnalyser.smoothingTimeConstant = 0.75
+      micSource.connect(micAnalyser)
+      micAnalyserRef.current = micAnalyser
+
+      // 4. Create local RTCPeerConnection
+      const pc = new RTCPeerConnection()
+      pcRef.current = pc
+
+      // 5. Add local mic track to WebRTC
+      pc.addTrack(micStream.getTracks()[0])
+
+      // 6. Handle remote track (AI speech)
+      const audioEl = document.createElement('audio')
+      audioEl.autoplay = true
+      audioRef.current = audioEl
+      document.body.appendChild(audioEl)
+
+      pc.ontrack = (e) => {
+        const remoteStream = e.streams[0]
+        audioEl.srcObject = remoteStream
+
+        // Create remote speaking analyser
+        const remoteSource = audioCtx.createMediaStreamSource(remoteStream)
+        const remoteAnalyser = audioCtx.createAnalyser()
+        remoteAnalyser.fftSize = 128
+        remoteAnalyser.smoothingTimeConstant = 0.75
+        remoteSource.connect(remoteAnalyser)
+        remoteAnalyserRef.current = remoteAnalyser
+      }
+
+      // 7. Create data channel
+      const dc = pc.createDataChannel('oai-events')
+      dcRef.current = dc
+
+      dc.onopen = () => {
+        console.log('OpenAI Realtime Data Channel connected')
+      }
+
+      dc.onmessage = (e) => {
+        try {
+          const event = JSON.parse(e.data)
+          // Handle AI speech indicator events to change state dynamically
+          if (event.type === 'response.audio.delta') {
+            setState('speaking')
+          }
+          if (event.type === 'response.done') {
+            setState('listening')
+          }
+          if (event.type === 'input_audio_buffer.speech_started') {
+            setState('listening')
+          }
+        } catch {
+          // Ignore
+        }
+      }
+
+      // 8. Create WebRTC offer
+      const offer = await pc.createOffer()
+      await pc.setLocalDescription(offer)
+
+      // 9. Send local SDP to OpenAI Realtime gateway
+      const baseUrl = 'https://api.openai.com/v1/realtime'
+      const model = 'gpt-realtime-2'
+      const sdpRes = await fetch(`${baseUrl}?model=${model}`, {
+        method: 'POST',
+        body: offer.sdp,
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/sdp',
+        },
+      })
+
+      if (!sdpRes.ok) {
+        const errText = await sdpRes.text()
+        throw new Error(`OpenAI Realtime connection failed: ${errText}`)
+      }
+
+      // 10. Complete connection with answer
+      const answerSdp = await sdpRes.text()
+      const answer = {
+        type: 'answer' as RTCSdpType,
+        sdp: answerSdp,
+      }
+      await pc.setRemoteDescription(answer)
+
+    } catch (err) {
+      console.error(err)
+      setError(err instanceof Error ? err.message : 'Falha ao conectar')
+      stopSession()
+    }
+  }, [tokenEndpoint, stopSession])
 
   const onToggle = useCallback(() => {
-    setState((prev) => (prev === 'idle' ? 'listening' : 'idle'))
+    if (state === 'idle') {
+      startSession()
+    } else {
+      stopSession()
+    }
+  }, [state, startSession, stopSession])
+
+  // Cleanup on unmount
+  useEffect(() => {
+    return () => {
+      if (pcRef.current) pcRef.current.close()
+      if (dcRef.current) dcRef.current.close()
+      if (micStreamRef.current) {
+        micStreamRef.current.getTracks().forEach((track) => track.stop())
+      }
+      if (audioCtxRef.current) {
+        audioCtxRef.current.close().catch(() => {})
+      }
+      if (audioRef.current) {
+        audioRef.current.remove()
+      }
+    }
   }, [])
 
   const orbSize = isMobile ? 120 : 180
@@ -231,6 +412,7 @@ export default function OrbVoiceAgent({
       </AnimatePresence>
 
       <motion.button
+        layout
         type="button"
         onClick={onToggle}
         onMouseEnter={() => setTooltipOpen(true)}

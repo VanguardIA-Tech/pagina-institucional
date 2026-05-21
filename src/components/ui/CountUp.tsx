@@ -31,8 +31,8 @@ export default function CountUp({
   useEffect(() => {
     if (!inView) return
     if (prefersReducedMotion) {
-      setDisplay(to)
-      return
+      const raf = requestAnimationFrame(() => setDisplay(to))
+      return () => cancelAnimationFrame(raf)
     }
     const controls = animate(from, to, {
       duration,
