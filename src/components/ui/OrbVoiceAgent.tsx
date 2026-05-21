@@ -141,12 +141,12 @@ function OrbCore({ state }: { state: OrbState }) {
 }
 
 type OrbVoiceAgentProps = {
-  /** Backend endpoint that mints a realtime token. */
+  /** Backend endpoint that creates the Realtime WebRTC session from an SDP offer. */
   tokenEndpoint?: string
 }
 
 export default function OrbVoiceAgent({
-  tokenEndpoint = '/api/realtime/token',
+  tokenEndpoint = '/api/realtime/session',
 }: OrbVoiceAgentProps) {
   const [state, setState] = useState<OrbState>('idle')
   const [isMobile, setIsMobile] = useState(false)
@@ -248,18 +248,7 @@ export default function OrbVoiceAgent({
       const micStream = await navigator.mediaDevices.getUserMedia({ audio: true })
       micStreamRef.current = micStream
 
-      // 2. Fetch the token from the backend
-      const res = await fetch(tokenEndpoint, { method: 'POST' })
-      if (!res.ok) {
-        throw new Error('Backend token endpoint returned an error')
-      }
-      const session = await res.json()
-      const token = session.client_secret?.value ?? session.value
-      if (!token) {
-        throw new Error('No client token received from backend')
-      }
-
-      // 3. Set up Audio Context and local microphone analyser
+      // 2. Set up Audio Context and local microphone analyser
       const AC = window.AudioContext || (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext
       const audioCtx = new AC()
       audioCtxRef.current = audioCtx
@@ -271,20 +260,20 @@ export default function OrbVoiceAgent({
       micSource.connect(micAnalyser)
       micAnalyserRef.current = micAnalyser
 
-      // 4. Create local RTCPeerConnection with STUN server
+      // 3. Create local RTCPeerConnection with STUN server
       const pc = new RTCPeerConnection({
         iceServers: [{ urls: 'stun:stun.l.google.com:19302' }]
       })
       pcRef.current = pc
 
-      // 5. Add local mic track to WebRTC
+      // 4. Add local mic track to WebRTC
       const track = micStream.getTracks()[0]
       if (!track) {
         throw new Error('Nenhuma faixa de áudio encontrada no microfone.')
       }
       pc.addTrack(track, micStream)
 
-      // 6. Handle remote track (AI speech)
+      // 5. Handle remote track (AI speech)
       const audioEl = audioRef.current
       if (!audioEl) {
         throw new Error('Elemento de áudio não inicializado.')
@@ -303,7 +292,7 @@ export default function OrbVoiceAgent({
         remoteAnalyserRef.current = remoteAnalyser
       }
 
-      // 7. Create data channel
+      // 6. Create data channel
       const dc = pc.createDataChannel('oai-events')
       dcRef.current = dc
 
@@ -333,7 +322,7 @@ export default function OrbVoiceAgent({
         }
       }
 
-      // 8. Create WebRTC offer
+      // 7. Create WebRTC offer
       const offer = await pc.createOffer()
       await pc.setLocalDescription(offer)
 
@@ -352,14 +341,11 @@ export default function OrbVoiceAgent({
         }
       })
 
-      // 9. Send local SDP to OpenAI Realtime gateway
-      const baseUrl = 'https://api.openai.com/v1/realtime'
-      const model = 'gpt-realtime-2'
-      const sdpRes = await fetch(`${baseUrl}/calls?model=${model}`, {
+      // 8. Send local SDP to our backend, which creates the OpenAI Realtime call
+      const sdpRes = await fetch(tokenEndpoint, {
         method: 'POST',
         body: pc.localDescription?.sdp ?? offer.sdp,
         headers: {
-          Authorization: `Bearer ${token}`,
           'Content-Type': 'application/sdp',
         },
       })
@@ -369,7 +355,7 @@ export default function OrbVoiceAgent({
         throw new Error(`OpenAI Realtime connection failed: ${errText}`)
       }
 
-      // 10. Complete connection with answer
+      // 9. Complete connection with answer
       const answerSdp = await sdpRes.text()
       const answer = {
         type: 'answer' as RTCSdpType,
