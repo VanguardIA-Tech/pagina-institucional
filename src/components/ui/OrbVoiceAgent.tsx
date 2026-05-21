@@ -143,10 +143,13 @@ function OrbCore({ state }: { state: OrbState }) {
 type OrbVoiceAgentProps = {
   /** Backend endpoint that creates the Realtime WebRTC session from an SDP offer. */
   tokenEndpoint?: string
+  /** Fallback endpoint that mints an ephemeral Realtime client secret. */
+  fallbackTokenEndpoint?: string
 }
 
 export default function OrbVoiceAgent({
   tokenEndpoint = '/api/realtime/session',
+  fallbackTokenEndpoint = '/api/realtime/token',
 }: OrbVoiceAgentProps) {
   const [state, setState] = useState<OrbState>('idle')
   const [isMobile, setIsMobile] = useState(false)
@@ -350,13 +353,43 @@ export default function OrbVoiceAgent({
         },
       })
 
-      if (!sdpRes.ok) {
+      let answerSdp: string
+      if (sdpRes.ok) {
+        answerSdp = await sdpRes.text()
+      } else {
         const errText = await sdpRes.text()
-        throw new Error(`OpenAI Realtime connection failed: ${errText}`)
+        console.warn('Backend Realtime session failed, trying ephemeral token fallback:', errText)
+
+        const tokenRes = await fetch(fallbackTokenEndpoint, { method: 'POST' })
+        if (!tokenRes.ok) {
+          const tokenErrText = await tokenRes.text()
+          throw new Error(`OpenAI Realtime connection failed: ${errText || tokenErrText}`)
+        }
+
+        const session = await tokenRes.json()
+        const token = session.client_secret?.value ?? session.value
+        if (!token) {
+          throw new Error('No client token received from backend')
+        }
+
+        const fallbackSdpRes = await fetch('https://api.openai.com/v1/realtime/calls', {
+          method: 'POST',
+          body: pc.localDescription?.sdp ?? offer.sdp,
+          headers: {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/sdp',
+          },
+        })
+
+        if (!fallbackSdpRes.ok) {
+          const fallbackErrText = await fallbackSdpRes.text()
+          throw new Error(`OpenAI Realtime connection failed: ${fallbackErrText}`)
+        }
+
+        answerSdp = await fallbackSdpRes.text()
       }
 
       // 9. Complete connection with answer
-      const answerSdp = await sdpRes.text()
       const answer = {
         type: 'answer' as RTCSdpType,
         sdp: answerSdp,
@@ -378,7 +411,7 @@ export default function OrbVoiceAgent({
 
       stopSession()
     }
-  }, [tokenEndpoint, stopSession])
+  }, [tokenEndpoint, fallbackTokenEndpoint, stopSession])
 
   // Global uncaught error logging helper
   useEffect(() => {

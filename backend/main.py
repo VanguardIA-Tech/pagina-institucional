@@ -162,7 +162,7 @@ async def create_realtime_session(request: Request) -> Response:
         "OpenAI-Safety-Identifier": build_safety_identifier(request, api_key),
     }
     files = {
-        "sdp": ("offer.sdp", sdp, "application/sdp"),
+        "sdp": (None, sdp.decode("utf-8"), "application/sdp"),
         "session": (
             None,
             json.dumps(realtime_session_config()),
