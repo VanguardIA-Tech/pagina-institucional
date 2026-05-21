@@ -17,7 +17,7 @@ load_dotenv()
 
 
 REALTIME_MODEL = "gpt-realtime-2"
-REALTIME_VOICE = "cedar"
+REALTIME_VOICE = "marin"
 CLIENT_SECRET_TTL_SECONDS = 120
 MAX_REALTIME_SESSIONS_PER_HOUR = 12
 KNOWLEDGE_PATH = Path(__file__).resolve().parent / "knowledge" / "vanguardia_public.md"
