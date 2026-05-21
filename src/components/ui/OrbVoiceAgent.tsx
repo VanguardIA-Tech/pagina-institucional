@@ -164,6 +164,8 @@ export default function OrbVoiceAgent({
   const amplitudeRef = useRef<number>(0)
   const rafRef = useRef<number>(0)
 
+  const [animationDone, setAnimationDone] = useState(false)
+
   useEffect(() => {
     const mq = window.matchMedia('(max-width: 640px)')
     const sync = () => setIsMobile(mq.matches)
@@ -171,6 +173,13 @@ export default function OrbVoiceAgent({
     mq.addEventListener('change', sync)
     return () => mq.removeEventListener('change', sync)
   }, [])
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setAnimationDone(true)
+    }, reduceMotion ? 100 : 2000)
+    return () => clearTimeout(timer)
+  }, [reduceMotion])
 
   // Animation frame loop for amplitude analysis
   useEffect(() => {
@@ -484,21 +493,23 @@ export default function OrbVoiceAgent({
           transition: 'box-shadow 0.4s ease',
         }}
       >
-        <Canvas
-          camera={{ position: [0, 0, 3.4], fov: 50 }}
-          dpr={[1, 1.5]}
-          gl={{ antialias: true, alpha: true, powerPreference: 'low-power' }}
-          style={{ position: 'absolute', inset: 0, pointerEvents: 'none' }}
-        >
-          <ambientLight intensity={0.6} />
-          <pointLight position={[2, 2, 2]} intensity={0.7} />
-          <OrbCore state={state} />
-          <OrbParticles
-            state={state}
-            amplitudeRef={amplitudeRef}
-            pointCount={isMobile ? 500 : 1200}
-          />
-        </Canvas>
+        {animationDone && (
+          <Canvas
+            camera={{ position: [0, 0, 3.4], fov: 50 }}
+            dpr={[1, 1.5]}
+            gl={{ antialias: true, alpha: true, powerPreference: 'low-power' }}
+            style={{ position: 'absolute', inset: 0, pointerEvents: 'none' }}
+          >
+            <ambientLight intensity={0.6} />
+            <pointLight position={[2, 2, 2]} intensity={0.7} />
+            <OrbCore state={state} />
+            <OrbParticles
+              state={state}
+              amplitudeRef={amplitudeRef}
+              pointCount={isMobile ? 500 : 1200}
+            />
+          </Canvas>
+        )}
 
         {/* Audio rings on speaking */}
         <AnimatePresence>
