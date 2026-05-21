@@ -5,6 +5,7 @@ import { Mic, MicOff, Sparkles } from 'lucide-react'
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion'
 
 type OrbState = 'idle' | 'listening' | 'speaking'
+const MAX_RESPONSES_PER_SESSION = 8
 
 const COLORS: Record<OrbState, { core: string; particle: string; glow: string }> = {
   idle: {
@@ -166,6 +167,7 @@ export default function OrbVoiceAgent({
   const micStreamRef = useRef<MediaStream | null>(null)
   const amplitudeRef = useRef<number>(0)
   const rafRef = useRef<number>(0)
+  const responseCountRef = useRef<number>(0)
 
   const [animationDone, setAnimationDone] = useState(false)
 
@@ -215,6 +217,7 @@ export default function OrbVoiceAgent({
 
   const stopSession = useCallback(() => {
     setState('idle')
+    responseCountRef.current = 0
     if (pcRef.current) {
       pcRef.current.close()
       pcRef.current = null
@@ -299,6 +302,54 @@ export default function OrbVoiceAgent({
       const dc = pc.createDataChannel('oai-events')
       dcRef.current = dc
 
+      const sendRealtimeEvent = (event: unknown) => {
+        if (dc.readyState !== 'open') return
+        dc.send(JSON.stringify(event))
+      }
+
+      const handleKnowledgeSearch = async (callId: string, rawArguments: string) => {
+        let query: string
+        try {
+          const args = JSON.parse(rawArguments || '{}') as { query?: string }
+          query = typeof args.query === 'string' ? args.query : ''
+        } catch {
+          query = ''
+        }
+
+        try {
+          const knowledgeRes = await fetch('/api/knowledge/search', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ query }),
+          })
+          const output = knowledgeRes.ok
+            ? await knowledgeRes.json()
+            : { error: await knowledgeRes.text() }
+
+          sendRealtimeEvent({
+            type: 'conversation.item.create',
+            item: {
+              type: 'function_call_output',
+              call_id: callId,
+              output: JSON.stringify(output),
+            },
+          })
+          sendRealtimeEvent({ type: 'response.create' })
+        } catch (toolErr) {
+          sendRealtimeEvent({
+            type: 'conversation.item.create',
+            item: {
+              type: 'function_call_output',
+              call_id: callId,
+              output: JSON.stringify({
+                error: toolErr instanceof Error ? toolErr.message : String(toolErr),
+              }),
+            },
+          })
+          sendRealtimeEvent({ type: 'response.create' })
+        }
+      }
+
       dc.onopen = () => {
         console.log('OpenAI Realtime Data Channel connected')
       }
@@ -315,10 +366,31 @@ export default function OrbVoiceAgent({
             setState('speaking')
           }
           if (event.type === 'response.done') {
+            responseCountRef.current += 1
+            if (responseCountRef.current >= MAX_RESPONSES_PER_SESSION) {
+              setError('Limite de interações atingido. Reabra a conversa para continuar.')
+              stopSession()
+              return
+            }
             setState('listening')
           }
           if (event.type === 'input_audio_buffer.speech_started') {
             setState('listening')
+          }
+          if (
+            event.type === 'response.function_call_arguments.done' &&
+            event.name === 'search_vanguardia_knowledge' &&
+            typeof event.call_id === 'string'
+          ) {
+            handleKnowledgeSearch(event.call_id, event.arguments ?? '')
+          }
+          if (
+            event.type === 'response.output_item.done' &&
+            event.item?.type === 'function_call' &&
+            event.item?.name === 'search_vanguardia_knowledge' &&
+            typeof event.item?.call_id === 'string'
+          ) {
+            handleKnowledgeSearch(event.item.call_id, event.item.arguments ?? '')
           }
         } catch {
           // Ignore
