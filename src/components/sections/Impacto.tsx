@@ -15,31 +15,29 @@ import {
 } from 'recharts'
 import CountUp from '../ui/CountUp'
 
-const TEAL = 'var(--color-va-teal)'
-const BURNT = 'var(--color-va-orange-deep)'
+const GREEN = 'var(--color-va-green-vivid)'
+const ORANGE = 'var(--color-va-orange-vivid)'
 const GRID = 'rgba(255,255,255,0.06)'
 const AXIS = 'rgba(250,250,247,0.4)'
 
 const perdaData = [
-  { area: 'Atendimento', valor: 38 },
-  { area: 'Backoffice', valor: 27 },
-  { area: 'Comercial', valor: 22 },
-  { area: 'Jurídico', valor: 18 },
-  { area: 'Operações', valor: 31 },
+  { name: 'Sem integração', valor: 20, fill: 'var(--color-va-orange-vivid)' },
+  { name: 'Com ICIA', valor: 4, fill: 'var(--color-va-green-vivid)' },
 ]
 
 const receitaData = [
-  { name: 'Perda anual', value: 12 },
+  { name: 'Perda', value: 12 },
   { name: 'Receita retida', value: 88 },
 ]
 
 const maturidadeData = [
-  { ano: '2020', norte: 1.4, brasil: 2.1 },
-  { ano: '2021', norte: 1.6, brasil: 2.3 },
-  { ano: '2022', norte: 1.9, brasil: 2.5 },
-  { ano: '2023', norte: 2.2, brasil: 2.7 },
-  { ano: '2024', norte: 2.6, brasil: 2.9 },
-  { ano: '2025', norte: 2.9, brasil: 3.1 },
+  { ano: '2020', maturidade: 1.4 },
+  { ano: '2021', maturidade: 1.8 },
+  { ano: '2022', maturidade: 2.2 },
+  { ano: '2023', maturidade: 2.7 },
+  { ano: '2024', maturidade: 3.2 },
+  { ano: '2025', maturidade: 3.8 },
+  { ano: '2026', maturidade: 4.8, label: 'Grupo VanguardIA' },
 ]
 
 function TooltipBox({
@@ -77,24 +75,16 @@ export default function Impacto() {
     >
       <div className="max-w-7xl mx-auto px-5 sm:px-8">
         <div className="max-w-3xl mb-14 lg:mb-20">
-          <p className="font-mono text-xs uppercase tracking-[0.18em] text-va-gray-500 mb-4">
-            05 · Impacto mensurável
+          <p className="font-mono text-xs uppercase tracking-[0.18em] text-va-orange-vivid mb-4 animate-pulse">
+            05  ·  IMPACTO MENSURÁVEL
           </p>
           <h2
             id="impacto-headline"
             className="font-display font-extrabold tracking-[-0.025em] leading-[1] text-balance"
             style={{ fontSize: 'var(--text-display-l)' }}
           >
-            O custo de não fazer IA{' '}
-            <span className="text-va-orange-vivid">com método</span>.
+            Os números que a Nova Era exige.
           </h2>
-          <p
-            className="mt-6 text-va-gray-200 leading-relaxed"
-            style={{ fontSize: 'var(--text-body-l)' }}
-          >
-            Quatro recortes que sustentam a tese ICIA — todos com fonte
-            pública e ano da medição.
-          </p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-6">
@@ -104,34 +94,36 @@ export default function Impacto() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.6 }}
-            className="lg:col-span-7 bg-white/[0.03] border border-white/10 rounded-2xl p-7 lg:p-8 min-h-[360px] flex flex-col"
+            className="lg:col-span-7 bg-white/[0.03] border border-white/10 rounded-2xl p-7 lg:p-8 min-h-[360px] flex flex-col justify-between"
           >
-            <div className="flex items-baseline justify-between gap-4 mb-1">
-              <p
-                className="font-mono text-[11px] uppercase tracking-[0.18em]"
-                style={{ color: BURNT }}
+            <div>
+              <div className="flex items-baseline justify-between gap-4 mb-1">
+                <p
+                  className="font-mono text-[11px] uppercase tracking-[0.18em]"
+                  style={{ color: ORANGE }}
+                >
+                  Perda operacional por baixa integração
+                </p>
+                <span className="font-mono text-[10px] text-va-gray-500">
+                  IDC 2024
+                </span>
+              </div>
+              <h3
+                className="font-display font-extrabold tracking-[-0.02em] text-balance"
+                style={{ fontSize: 'clamp(20px, 2vw, 26px)' }}
               >
-                Perda operacional · % do tempo útil
-              </p>
-              <span className="font-mono text-[10px] text-va-gray-500">
-                IDC 2024
-              </span>
+                Incompatibilidade entre sistemas legados e fluxos manuais
+              </h3>
             </div>
-            <h3
-              className="font-display font-extrabold tracking-[-0.02em] text-balance"
-              style={{ fontSize: 'clamp(22px, 2.4vw, 30px)' }}
-            >
-              Onde a empresa brasileira queima hora sem IA aplicada
-            </h3>
             <div className="flex-1 mt-6 -ml-4">
-              <ResponsiveContainer width="100%" height={240}>
+              <ResponsiveContainer width="100%" height={200}>
                 <BarChart
                   data={perdaData}
                   margin={{ top: 10, right: 10, left: 0, bottom: 0 }}
                 >
                   <CartesianGrid stroke={GRID} vertical={false} />
                   <XAxis
-                    dataKey="area"
+                    dataKey="name"
                     stroke={AXIS}
                     fontSize={11}
                     tickLine={false}
@@ -145,19 +137,23 @@ export default function Impacto() {
                     unit="%"
                   />
                   <Tooltip
-                    cursor={{ fill: 'rgba(184,74,0,0.1)' }}
+                    cursor={{ fill: 'rgba(255,255,255,0.03)' }}
                     content={({ active, payload, label }) =>
                       active && payload?.length ? (
                         <TooltipBox
                           label={String(label)}
                           value={payload[0].value as number}
-                          unit="% do tempo útil"
-                          color={BURNT}
+                          unit="%"
+                          color={payload[0].payload.fill}
                         />
                       ) : null
                     }
                   />
-                  <Bar dataKey="valor" fill={BURNT} radius={[6, 6, 0, 0]} />
+                  <Bar dataKey="valor" radius={[6, 6, 0, 0]}>
+                    {perdaData.map((entry, index) => (
+                      <Cell key={`cell-${index}`} fill={entry.fill} />
+                    ))}
+                  </Bar>
                 </BarChart>
               </ResponsiveContainer>
             </div>
@@ -169,39 +165,41 @@ export default function Impacto() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.6, delay: 0.08 }}
-            className="lg:col-span-5 bg-white/[0.03] border border-white/10 rounded-2xl p-7 lg:p-8 min-h-[360px] flex flex-col"
+            className="lg:col-span-5 bg-white/[0.03] border border-white/10 rounded-2xl p-7 lg:p-8 min-h-[360px] flex flex-col justify-between"
           >
-            <div className="flex items-baseline justify-between gap-4 mb-1">
-              <p
-                className="font-mono text-[11px] uppercase tracking-[0.18em]"
-                style={{ color: BURNT }}
+            <div>
+              <div className="flex items-baseline justify-between gap-4 mb-1">
+                <p
+                  className="font-mono text-[11px] uppercase tracking-[0.18em]"
+                  style={{ color: GREEN }}
+                >
+                  Receita perdida por dados ruins
+                </p>
+                <span className="font-mono text-[10px] text-va-gray-500">
+                  MIT Sloan
+                </span>
+              </div>
+              <h3
+                className="font-display font-extrabold tracking-[-0.02em] text-balance"
+                style={{ fontSize: 'clamp(20px, 2vw, 26px)' }}
               >
-                Receita anual perdida
-              </p>
-              <span className="font-mono text-[10px] text-va-gray-500">
-                MIT Sloan 2024
-              </span>
+                Inconsistência de relatórios e silos operacionais
+              </h3>
             </div>
-            <h3
-              className="font-display font-extrabold tracking-[-0.02em] text-balance"
-              style={{ fontSize: 'clamp(22px, 2.4vw, 30px)' }}
-            >
-              12% da receita evapora em decisões mal informadas
-            </h3>
             <div className="flex-1 flex items-center justify-center mt-2 relative">
-              <ResponsiveContainer width="100%" height={220}>
+              <ResponsiveContainer width="100%" height={180}>
                 <PieChart>
                   <Pie
                     data={receitaData}
-                    innerRadius={64}
-                    outerRadius={92}
+                    innerRadius={54}
+                    outerRadius={75}
                     paddingAngle={2}
                     dataKey="value"
                     startAngle={90}
                     endAngle={-270}
                     stroke="none"
                   >
-                    <Cell fill={BURNT} />
+                    <Cell fill={GREEN} />
                     <Cell fill="rgba(255,255,255,0.08)" />
                   </Pie>
                 </PieChart>
@@ -209,12 +207,9 @@ export default function Impacto() {
               <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
                 <span
                   className="font-display font-extrabold tracking-[-0.03em]"
-                  style={{ fontSize: '52px', color: BURNT, lineHeight: 1 }}
+                  style={{ fontSize: '48px', color: GREEN, lineHeight: 1 }}
                 >
                   <CountUp to={12} suffix="%" />
-                </span>
-                <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-va-gray-500 mt-2">
-                  da receita
                 </span>
               </div>
             </div>
@@ -226,30 +221,32 @@ export default function Impacto() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.6, delay: 0.16 }}
-            className="lg:col-span-7 bg-white/[0.03] border border-white/10 rounded-2xl p-7 lg:p-8 min-h-[360px] flex flex-col"
+            className="lg:col-span-7 bg-white/[0.03] border border-white/10 rounded-2xl p-7 lg:p-8 min-h-[360px] flex flex-col justify-between"
           >
-            <div className="flex items-baseline justify-between gap-4 mb-1">
-              <p
-                className="font-mono text-[11px] uppercase tracking-[0.18em]"
-                style={{ color: TEAL }}
+            <div>
+              <div className="flex items-baseline justify-between gap-4 mb-1">
+                <p
+                  className="font-mono text-[11px] uppercase tracking-[0.18em]"
+                  style={{ color: GREEN }}
+                >
+                  Maturidade digital · Norte do Brasil
+                </p>
+                <span className="font-mono text-[10px] text-va-gray-500">
+                  Sebrae TIC 2025
+                </span>
+              </div>
+              <h3
+                className="font-display font-extrabold tracking-[-0.02em] text-balance"
+                style={{ fontSize: 'clamp(20px, 2vw, 26px)' }}
               >
-                Maturidade digital · escala 0–5
-              </p>
-              <span className="font-mono text-[10px] text-va-gray-500">
-                SEBRAE TIC 2025
-              </span>
+                Aceleração da adoção de tecnologia na região amazônica
+              </h3>
             </div>
-            <h3
-              className="font-display font-extrabold tracking-[-0.02em] text-balance"
-              style={{ fontSize: 'clamp(22px, 2.4vw, 30px)' }}
-            >
-              Norte do Brasil amadurece — e ainda corre atrás
-            </h3>
             <div className="flex-1 mt-6 -ml-4">
-              <ResponsiveContainer width="100%" height={220}>
+              <ResponsiveContainer width="100%" height={180}>
                 <LineChart
                   data={maturidadeData}
-                  margin={{ top: 10, right: 16, left: 0, bottom: 0 }}
+                  margin={{ top: 10, right: 24, left: 0, bottom: 0 }}
                 >
                   <CartesianGrid stroke={GRID} vertical={false} />
                   <XAxis
@@ -267,41 +264,27 @@ export default function Impacto() {
                     domain={[0, 5]}
                   />
                   <Tooltip
-                    cursor={{ stroke: TEAL, strokeWidth: 1 }}
+                    cursor={{ stroke: GREEN, strokeWidth: 1 }}
                     content={({ active, payload, label }) =>
                       active && payload?.length ? (
                         <div className="bg-va-black border border-white/15 rounded-md px-3 py-2 shadow-2xl">
                           <p className="font-mono text-[10px] uppercase tracking-[0.15em] text-va-gray-500 mb-1">
                             {label}
                           </p>
-                          {payload.map((p) => (
-                            <p
-                              key={p.dataKey as string}
-                              className="font-display text-sm font-bold"
-                              style={{ color: p.color as string }}
-                            >
-                              {p.dataKey === 'norte' ? 'Norte' : 'Brasil'}:{' '}
-                              {p.value}
-                            </p>
-                          ))}
+                          <p className="font-display text-sm font-bold text-va-green-vivid">
+                            Maturidade: {payload[0].value}
+                            {payload[0].payload.label && ` (${payload[0].payload.label})`}
+                          </p>
                         </div>
                       ) : null
                     }
                   />
                   <Line
                     type="monotone"
-                    dataKey="brasil"
-                    stroke="rgba(250,250,247,0.5)"
-                    strokeWidth={2}
-                    dot={false}
-                    strokeDasharray="4 4"
-                  />
-                  <Line
-                    type="monotone"
-                    dataKey="norte"
-                    stroke={TEAL}
+                    dataKey="maturidade"
+                    stroke={GREEN}
                     strokeWidth={3}
-                    dot={{ fill: TEAL, r: 4, strokeWidth: 0 }}
+                    dot={{ fill: GREEN, r: 4, strokeWidth: 0 }}
                     activeDot={{ r: 6 }}
                   />
                 </LineChart>
@@ -325,33 +308,35 @@ export default function Impacto() {
               <div className="flex items-baseline justify-between gap-4 mb-1">
                 <p
                   className="font-mono text-[11px] uppercase tracking-[0.18em]"
-                  style={{ color: BURNT }}
+                  style={{ color: ORANGE }}
                 >
-                  Projetos sem ROI
+                  Fracasso de projetos de dados
                 </p>
                 <span className="font-mono text-[10px] text-va-gray-500">
                   Fivetran 2025
                 </span>
               </div>
               <h3
-                className="font-display font-extrabold tracking-[-0.02em] text-balance"
-                style={{ fontSize: 'clamp(22px, 2.4vw, 30px)' }}
+                className="font-display font-extrabold tracking-[-0.02em] text-balance text-va-gray-200"
+                style={{ fontSize: 'clamp(18px, 1.8vw, 22px)' }}
               >
-                Das iniciativas de IA não atingem KPI de negócio
+                das empresas tiveram fracasso na maioria dos projetos de dados em 2025
               </h3>
             </div>
             <div className="text-right -mr-2">
               <div
-                className="font-editorial italic font-bold tracking-[-0.03em] leading-[0.85]"
+                className="font-display font-black tracking-[-0.03em] leading-[0.85]"
                 style={{
                   fontSize: 'var(--text-display-xl)',
-                  color: BURNT,
+                  color: ORANGE,
                 }}
               >
                 <CountUp to={42} suffix="%" />
               </div>
-              <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-va-gray-500 mt-3">
-                · sem método, sem retorno
+            </div>
+            <div className="mt-4 pt-4 border-t border-white/10">
+              <p className="font-editorial italic text-va-gold text-base leading-snug">
+                "Não é falta de IA. É falta de arquitetura."
               </p>
             </div>
           </motion.article>
@@ -359,7 +344,7 @@ export default function Impacto() {
 
         {/* Sources */}
         <p className="mt-10 font-mono text-[10px] uppercase tracking-[0.18em] text-va-gray-500 text-center">
-          Fontes: IDC 2024 · MIT Sloan 2024 · SEBRAE TIC 2025 · Fivetran 2025
+          Fontes: IDC 2024 · MIT Sloan · Sebrae TIC 2025 · Fivetran 2025
         </p>
       </div>
     </section>

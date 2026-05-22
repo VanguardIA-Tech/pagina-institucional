@@ -4,36 +4,36 @@ import RevealSection, { revealItemVariants } from '../ui/RevealSection'
 
 const FILMES = [
   {
-    title: 'O Copilot da diretoria',
-    body: 'R$ 480k em licenças anuais para 1.200 cadeiras. Adoção real: 9%. Ninguém ousa cancelar — virou status, não ferramenta.',
+    title: 'FILME 1',
+    body: 'Contratou consultoria de processos. Ganhou um Notion bonito que ninguém abriu.',
   },
   {
-    title: 'O RAG do jurídico',
-    body: 'Seis meses de PoC, dois fornecedores, três jurídicos diferentes consultados. O modelo responde rápido. As respostas estão erradas em 4 de 10 casos.',
+    title: 'FILME 2',
+    body: 'Implantou um sistema caro. O time continuou na planilha do Drive.',
   },
   {
-    title: 'O agente de atendimento',
-    body: 'Promessa: reduzir 40% do volume humano. Realidade: o agente devolve para o humano em 73% dos contatos — e o cliente já chega irritado.',
+    title: 'FILME 3',
+    body: 'Colocou ChatGPT na operação. Cada um virou um especialista em prompt no escuro. Sem padrão. Sem memória. Sem método.',
   },
 ]
 
 const ORDEM = [
   {
     n: '01',
-    title: 'Pessoas',
-    body: 'Quem decide precisa entender o que está decidindo. Sem CNH, o piloto é cego.',
-    color: 'var(--color-va-blue-glow)',
+    title: 'PESSOAS',
+    body: 'Habilitar',
+    color: 'var(--color-va-green-glow)',
   },
   {
     n: '02',
-    title: 'Processos',
-    body: 'IA sem processo é improviso caro. Mapeamos onde o método sustenta a tecnologia.',
-    color: 'var(--color-va-blue-electric)',
+    title: 'PROCESSOS',
+    body: 'Diagnosticar',
+    color: 'var(--color-va-green-vivid)',
   },
   {
     n: '03',
-    title: 'Tecnologia',
-    body: 'Só agora a stack. E só a stack que cabe no problema — não a que está em alta no LinkedIn.',
+    title: 'TECNOLOGIA',
+    body: 'Personalizar',
     color: 'var(--color-va-orange-vivid)',
   },
 ]
@@ -59,8 +59,8 @@ export default function Tese() {
       <div className="relative max-w-7xl mx-auto px-5 sm:px-8">
         {/* Label */}
         <RevealSection as="div" className="mb-14 lg:mb-20">
-          <p className="font-mono text-xs uppercase tracking-[0.18em] text-va-gray-500 mb-3">
-            01 · A Tese
+          <p className="font-mono text-xs uppercase tracking-[0.18em] text-va-orange-vivid mb-3">
+            01  ·  A TESE
           </p>
           <div className="h-px bg-white/10 max-w-[120px]" />
         </RevealSection>
@@ -70,27 +70,17 @@ export default function Tese() {
           <div className="lg:col-span-5">
             <h2
               id="tese-headline"
-              className="font-display font-extrabold tracking-[-0.025em] leading-[1] text-balance"
+              className="font-display font-extrabold tracking-[-0.025em] leading-[1] text-balance text-white"
               style={{ fontSize: 'var(--text-display-l)' }}
             >
-              A maioria dos projetos de IA do Brasil
-              <br />
-              <span className="text-va-gray-500">vai falhar.</span>
+              A maioria das empresas não tem um problema de IA.
             </h2>
 
             <p
-              className="mt-8 max-w-md text-va-gray-200 leading-relaxed"
-              style={{ fontSize: 'var(--text-body-l)' }}
-            >
-              Não por falta de modelo. Não por falta de orçamento. Por
-              ignorarem a ordem.
-            </p>
-
-            <p
-              className="mt-10 font-editorial italic text-va-orange-vivid leading-[1.15] text-balance"
+              className="mt-10 font-editorial italic text-va-orange-vivid leading-[1.15] text-balance animate-pulse-glow"
               style={{ fontSize: 'clamp(24px, 3vw, 36px)' }}
             >
-              "Compraram a ferramenta antes de aprender a dirigir."
+              Tem um problema de organização que a IA expôs.
             </p>
           </div>
 
@@ -110,7 +100,7 @@ export default function Tese() {
                   </span>
                   <div>
                     <h3 className="font-display font-bold text-lg text-white mb-2">
-                      {f.title}
+                      ❌ {f.title}
                     </h3>
                     <p className="text-sm text-va-gray-200 leading-relaxed">
                       {f.body}
@@ -122,25 +112,20 @@ export default function Tese() {
           </div>
         </div>
 
-        {/* Blue anchor banner */}
+        {/* Green anchor banner */}
         <RevealSection as="div" className="mb-16">
           <div
-            className="rounded-2xl px-8 py-10 lg:px-14 lg:py-14 border border-va-blue-electric/30"
+            className="rounded-2xl px-8 py-10 lg:px-14 lg:py-14 text-center border border-va-green-deep/30"
             style={{
               background:
-                'linear-gradient(135deg, var(--color-va-blue-deep) 0%, rgba(32, 70, 234, 0.18) 100%)',
+                'linear-gradient(135deg, var(--color-va-green-deep) 0%, rgba(32, 70, 234, 0.1) 100%)',
             }}
           >
-            <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-va-blue-glow mb-4">
-              O diagnóstico real
-            </p>
             <p
               className="font-display font-extrabold text-white leading-[1.05] tracking-[-0.02em] text-balance"
               style={{ fontSize: 'var(--text-display-m)' }}
             >
-              O problema não foi a ferramenta.
-              <br />
-              <span className="text-va-blue-glow">Foi a ordem.</span>
+              O problema não foi a ferramenta. Foi a ordem.
             </p>
           </div>
         </RevealSection>
@@ -159,7 +144,7 @@ export default function Tese() {
               className="bg-va-black p-8 lg:p-10 relative"
             >
               <div
-                className="font-mono text-xs uppercase tracking-[0.18em] mb-6"
+                className="font-mono text-xs uppercase tracking-[0.18em] mb-6 animate-pulse"
                 style={{ color: step.color }}
               >
                 {step.n}
@@ -186,11 +171,9 @@ export default function Tese() {
         <RevealSection as="div" className="mt-20 lg:mt-28 text-center">
           <p
             className="font-editorial italic text-va-gold leading-[1.15] max-w-3xl mx-auto text-balance"
-            style={{ fontSize: 'clamp(24px, 3.2vw, 40px)' }}
+            style={{ fontSize: 'clamp(20px, 2.5vw, 32px)' }}
           >
-            Primeiro a cultura. Depois o método.
-            <br />
-            Só então a máquina aprende a trabalhar.
+            "Antes de tecnologia, falta clareza. Antes de agente, falta processo. Antes de processo, falta pessoa habilitada para operar."
           </p>
         </RevealSection>
       </div>

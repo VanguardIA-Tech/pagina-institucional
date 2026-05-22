@@ -25,75 +25,75 @@ const PROGRAMAS: Programa[] = [
   {
     id: 'cnh',
     number: '01',
-    title: 'CNH da IA para Servidores',
-    tagline: 'Capacidade instalada',
-    body: 'Certificação adaptada ao regime estatutário, com banca técnica e registro nacional.',
+    title: 'CNH DA IA PARA SERVIDORES',
+    tagline: 'Faixa verde',
+    body: 'Certificação corporativa adaptada ao regime estatutário. Forma, avalia e certifica servidores por cargo, nível e função.',
     bullets: [
-      'Diagnóstico de maturidade institucional',
-      'Formação por área e nível de atuação',
-      'Manutenção contínua semestral',
+      'Diagnóstico inicial por cargo',
+      'Formação modular EAD/presencial',
+      'Certificação institucional'
     ],
-    color: 'var(--color-va-blue-glow)',
-    colorSoft: 'rgba(74, 123, 255, 0.10)',
+    color: 'var(--color-va-green-vivid, #00C896)',
+    colorSoft: 'rgba(0, 200, 150, 0.10)',
     icon: GraduationCap,
   },
   {
     id: 'deep',
     number: '02',
-    title: 'Diagnóstico DEEP Process Gov',
-    tagline: 'Imersão presencial',
-    body: 'Mergulho nos processos reais do ente público para encontrar onde a IA gera valor mensurável.',
+    title: 'DIAGNÓSTICO DEEP PROCESS GOV',
+    tagline: 'Faixa azul',
+    body: 'Mergulho presencial nos processos reais da administração. Mapa de tarefas repetitivas, oportunidades de modernização e matriz de prioridade.',
     bullets: [
-      'Mapeamento de fluxos AS-IS / TO-BE',
-      'Catálogo priorizado de casos de uso',
-      'Estimativa de ROI por trilha',
+      'Mapeamento de processos reais',
+      'Matriz de priorização',
+      'Catálogo de tarefas repetitivas'
     ],
-    color: 'var(--color-va-blue-electric)',
-    colorSoft: 'rgba(32, 70, 234, 0.14)',
+    color: 'var(--color-va-blue-glow, #4A7BFF)',
+    colorSoft: 'rgba(74, 123, 255, 0.10)',
     icon: Search,
   },
   {
     id: 'politica',
     number: '03',
-    title: 'Política Institucional de IA',
-    tagline: 'Documento completo',
-    body: 'Política conforme LGPD, Marco Civil e diretrizes do CPSI — pronta para publicação.',
+    title: 'POLÍTICA INSTITUCIONAL DE IA',
+    tagline: 'Faixa dourada',
+    body: 'Documento institucional completo: princípios, classificação de risco, regras de uso, governança, controles e fluxo de responsabilização. Conforme LGPD e Marco Civil.',
     bullets: [
-      'Termo de referência modelo',
-      'Pareceres jurídicos de suporte',
-      'Plano de comunicação interna',
+      'Princípios de uso e governança',
+      'Conformidade LGPD e Marco Civil',
+      'Fluxo de responsabilização'
     ],
-    color: 'var(--color-va-gold)',
+    color: 'var(--va-gold, #C9A66B)',
     colorSoft: 'rgba(201, 166, 107, 0.12)',
     icon: FileText,
   },
   {
     id: 'houselake',
     number: '04',
-    title: 'House Lake Governamental',
-    tagline: 'Dados soberanos',
-    body: 'Lakehouse com camada ouro auditável, dados em residência brasileira e linhagem completa.',
+    title: 'HOUSE LAKE GOVERNAMENTAL',
+    tagline: 'Faixa azul profundo',
+    body: 'Infraestrutura de dados soberana. Lakehouse construído sobre dados da administração, com camada ouro governada e auditável.',
     bullets: [
-      'Residência de dados em território nacional',
-      'Catálogo de dados governamentais',
-      'Auditoria e linhagem rastreável',
+      'Infraestrutura soberana',
+      'Camada ouro governada',
+      'Rastreabilidade total'
     ],
-    color: 'var(--color-va-blue-deep)',
+    color: 'var(--color-va-blue-deep, #0B1A3E)',
     colorSoft: 'rgba(11, 26, 62, 0.12)',
     icon: Database,
   },
   {
     id: 'agentes',
     number: '05',
-    title: 'Agentes IPC e Automação',
-    tagline: 'Trabalhadores digitais',
-    body: 'Agentes auditáveis para triagem documental, atendimento e backoffice — com humano no loop.',
+    title: 'AGENTES IPC E AUTOMAÇÃO PÚBLICA',
+    tagline: 'Faixa laranja',
+    body: 'Trabalhadores digitais aplicados a tarefas específicas: triagem de documentos, análise de processos, atendimento, suporte à decisão. Sempre auditáveis.',
     bullets: [
-      'Triagem documental assistida',
-      'Atendimento ao cidadão com IA',
-      'Trilha de auditoria por decisão',
+      'Triagem documental automatizada',
+      'Atendimento e suporte à decisão',
+      'Agentes 100% auditáveis'
     ],
-    color: 'var(--color-va-orange-vivid)',
+    color: 'var(--color-va-orange-vivid, #FF6B1A)',
     colorSoft: 'rgba(255, 107, 26, 0.10)',
     icon: Bot,
   },
@@ -101,14 +101,14 @@ const PROGRAMAS: Programa[] = [
     id: 'os',
     number: '06',
     title: 'ICIA.GOV OS',
-    tagline: 'Sistema nervoso',
-    body: 'Orquestrador multi-modelo para a administração pública — observabilidade, custo e qualidade.',
+    tagline: 'Faixa dourada',
+    body: 'Sistema nervoso da administração. Conecta sistemas legados, dados, servidores capacitados, políticas e agentes em uma camada permanente. Para grandes órgãos e estados.',
     bullets: [
-      'Orquestração multi-modelo',
-      'Observabilidade de custo e qualidade',
-      'Governança board institucional',
+      'Integração de sistemas legados',
+      'Camada de orquestração permanente',
+      'Governança centralizada'
     ],
-    color: 'var(--color-va-gold)',
+    color: 'var(--va-gold, #C9A66B)',
     colorSoft: 'rgba(201, 166, 107, 0.12)',
     icon: Cpu,
   },
@@ -127,9 +127,9 @@ export default function ProgramasICIAgov() {
             initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.6 }}
-            className="font-mono text-xs uppercase tracking-[0.18em] text-va-gray-700 mb-4"
+            className="font-mono text-xs uppercase tracking-[0.18em] text-va-orange-vivid mb-4 font-semibold"
           >
-            04 · Arquitetura ICIA.GOV
+            03 · ALÉM DA EDUCAÇÃO
           </motion.p>
           <motion.h2
             id="programas-gov-headline"
@@ -137,7 +137,7 @@ export default function ProgramasICIAgov() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.4 }}
             transition={{ duration: 0.6 }}
-            className="font-display font-extrabold tracking-[-0.025em] leading-[1] text-balance"
+            className="font-display font-extrabold tracking-[-0.025em] leading-[1] text-balance text-va-black"
             style={{ fontSize: 'var(--text-display-l)' }}
           >
             A CNH da IA abre a porta.
@@ -154,9 +154,7 @@ export default function ProgramasICIAgov() {
             className="mt-8 max-w-2xl text-va-gray-700 leading-relaxed"
             style={{ fontSize: 'var(--text-body-l)' }}
           >
-            Seis programas integrados — contratáveis individualmente — desenhados
-            para o regime jurídico brasileiro e a realidade da administração
-            pública.
+            Depois que servidores e gestores operam com critério, a VanguardIA entrega as próximas camadas — na ordem certa, com governança pública, em ciclos contratáveis individualmente.
           </motion.p>
         </div>
 
@@ -194,7 +192,7 @@ export default function ProgramasICIAgov() {
                       <Icon size={20} strokeWidth={2.2} />
                     </span>
                     <span
-                      className="font-mono text-[10px] uppercase tracking-[0.18em]"
+                      className="font-mono text-[10px] uppercase tracking-[0.18em] font-semibold"
                       style={{ color: p.color }}
                     >
                       {p.number} · {p.tagline}
@@ -232,15 +230,16 @@ export default function ProgramasICIAgov() {
           })}
         </div>
 
-        <motion.p
+        <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true, amount: 0.5 }}
-          className="mt-12 lg:mt-16 text-center font-mono text-xs uppercase tracking-[0.18em] text-va-gray-700"
+          className="mt-16 text-center"
         >
-          Cada programa é contratável individualmente · todos integráveis em
-          fases
-        </motion.p>
+          <p className="font-editorial italic text-va-gray-700 text-lg lg:text-xl max-w-2xl mx-auto leading-relaxed">
+            "Cada programa é contratável individualmente. Cada um abre a porta para o próximo. Nenhum exige os outros como pré-requisito."
+          </p>
+        </motion.div>
       </div>
     </section>
   )

@@ -15,7 +15,8 @@ const CLIENTS: Client[] = [
   { name: 'Alves Martins', slug: 'alves-martins', bg: '#041930' },
   { name: 'Montalvão Neves', slug: 'montalvao-neves', bg: '#bdbec1' },
   { name: 'Nativa Uniformes', slug: 'nativa-uniformes', bg: '#00345e' },
-  { name: 'Facilita Serviços', slug: 'facilita', bg: '#fefefe' },
+  { name: 'Rede+ Saúde', slug: 'rede-mais-saude', bg: '#e53e3e' },
+  { name: 'Facilita Serviços', slug: 'facilita-servicos', bg: '#fefefe' },
   { name: 'Fibra', slug: 'fibra', bg: '#fefefe' },
   { name: 'Mave', slug: 'mave', bg: '#ffffff' },
   { name: 'IT Protect', slug: 'it-protect', bg: '#3366fd' },
@@ -24,9 +25,11 @@ const CLIENTS: Client[] = [
   { name: 'Nevoni', slug: 'nevoni', bg: '#2e276c' },
   { name: 'Prime Equipaments', slug: 'prime-equipaments', bg: '#5d9b7d' },
   { name: 'Toca Hub', slug: 'toca-hub', bg: '#db5701' },
+  { name: 'Sandrinha Deluxe', slug: 'sandrinha-deluxe', bg: '#f43f5e' },
+  { name: 'Oyamota', slug: 'oyamota', bg: '#10b981' },
   { name: 'Cabotia', slug: 'cabotia', bg: '#ffffff' },
-  { name: 'Dal Ferragens', slug: 'dal-ferragens', bg: '#ffffff' },
-  { name: 'Unineuro', slug: 'unineuro', bg: '#ffffff' },
+  { name: 'Health Food', slug: 'health-food', bg: '#eab308' },
+  { name: 'Frutalí', slug: 'frutali', bg: '#f97316' },
 ]
 
 const STAGGER_MS = 250
@@ -61,6 +64,7 @@ function ClienteCellAnimated({
   const logoControls = useAnimationControls()
   const bgControls = useAnimationControls()
   const pausedRef = useRef(paused)
+  const [imgError, setImgError] = useState(false)
 
   useEffect(() => {
     pausedRef.current = paused
@@ -88,7 +92,6 @@ function ClienteCellAnimated({
     const bgFull = hexToRgba(client.bg, 1)
     const bgFaint = hexToRgba(client.bg, FAINT_ALPHA)
 
-    // Full wave cycle: every cell starts staggered, blooms, fades, then waits the rest of the cycle
     const cycleMs =
       (total - 1) * STAGGER_MS + BLOOM_MS + FADE_MS + WAVE_PAUSE_MS
     const ownActivity = BLOOM_MS + FADE_MS
@@ -96,12 +99,10 @@ function ClienteCellAnimated({
 
     const loop = async () => {
       while (!cancelled) {
-        // stagger inside loop so every cycle respects the wave position
         await sleep(index * STAGGER_MS)
         await waitWhilePaused()
         if (cancelled) return
 
-        // Bloom: bg + logo together
         logoControls.start({
           ...COLOR_STYLE,
           transition: { duration: BLOOM_MS / 1000, ease: [0.4, 0, 0.2, 1] },
@@ -115,7 +116,6 @@ function ClienteCellAnimated({
         await waitWhilePaused()
         if (cancelled) return
 
-        // Fade: bg + logo together
         logoControls.start({
           ...GRAY_STYLE,
           transition: { duration: FADE_MS / 1000, ease: [0.4, 0, 0.2, 1] },
@@ -152,17 +152,24 @@ function ClienteCellAnimated({
         initial={{ background: hexToRgba(client.bg, FAINT_ALPHA) }}
         animate={bgControls}
       />
-      <div className="relative z-10 w-full h-full flex items-center justify-center p-5">
-        <motion.img
-          src={`/logos/${client.slug}.png`}
-          alt={client.name}
-          loading="lazy"
-          width={160}
-          height={60}
-          className="max-h-12 sm:max-h-14 w-auto max-w-full object-contain"
-          initial={GRAY_STYLE}
-          animate={logoControls}
-        />
+      <div className="relative z-10 w-full h-full flex items-center justify-center p-4">
+        {imgError ? (
+          <span className="font-display font-black text-xs uppercase tracking-wider text-white text-center break-words max-w-[90%]">
+            {client.name}
+          </span>
+        ) : (
+          <motion.img
+            src={`/logos/${client.slug}.png`}
+            alt={client.name}
+            loading="lazy"
+            width={160}
+            height={60}
+            className="max-h-12 sm:max-h-14 w-auto max-w-full object-contain"
+            initial={GRAY_STYLE}
+            animate={logoControls}
+            onError={() => setImgError(true)}
+          />
+        )}
       </div>
       <span className="pointer-events-none absolute z-20 bottom-2 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity font-mono text-[10px] uppercase tracking-[0.15em] text-white/80 whitespace-nowrap drop-shadow">
         {client.name}
@@ -174,6 +181,7 @@ function ClienteCellAnimated({
 function ClienteCellStatic({ client }: { client: Client }) {
   const faint = hexToRgba(client.bg, FAINT_ALPHA)
   const full = hexToRgba(client.bg, 1)
+  const [imgError, setImgError] = useState(false)
 
   return (
     <li
@@ -187,24 +195,31 @@ function ClienteCellStatic({ client }: { client: Client }) {
         e.currentTarget.style.background = faint
       }}
     >
-      <div className="relative z-10 w-full h-full flex items-center justify-center p-5">
-        <img
-          src={`/logos/${client.slug}.png`}
-          alt={client.name}
-          loading="lazy"
-          width={160}
-          height={60}
-          className="max-h-12 sm:max-h-14 w-auto max-w-full object-contain transition-all duration-300"
-          style={GRAY_STYLE}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.filter = COLOR_STYLE.filter
-            e.currentTarget.style.opacity = String(COLOR_STYLE.opacity)
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.filter = GRAY_STYLE.filter
-            e.currentTarget.style.opacity = String(GRAY_STYLE.opacity)
-          }}
-        />
+      <div className="relative z-10 w-full h-full flex items-center justify-center p-4">
+        {imgError ? (
+          <span className="font-display font-black text-xs uppercase tracking-wider text-white text-center break-words max-w-[90%]">
+            {client.name}
+          </span>
+        ) : (
+          <img
+            src={`/logos/${client.slug}.png`}
+            alt={client.name}
+            loading="lazy"
+            width={160}
+            height={60}
+            className="max-h-12 sm:max-h-14 w-auto max-w-full object-contain transition-all duration-300"
+            style={GRAY_STYLE}
+            onError={() => setImgError(true)}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.filter = COLOR_STYLE.filter
+              e.currentTarget.style.opacity = String(COLOR_STYLE.opacity)
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.filter = GRAY_STYLE.filter
+              e.currentTarget.style.opacity = String(GRAY_STYLE.opacity)
+            }}
+          />
+        )}
       </div>
       <span className="pointer-events-none absolute z-20 bottom-2 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity font-mono text-[10px] uppercase tracking-[0.15em] text-white/80 whitespace-nowrap drop-shadow">
         {client.name}

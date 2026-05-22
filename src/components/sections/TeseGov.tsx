@@ -4,36 +4,36 @@ import RevealSection, { revealItemVariants } from '../ui/RevealSection'
 
 const DIAGNOSTICO = [
   {
-    title: 'Sistemas legados sem método de operação',
-    body: 'Plataformas modernizadas que continuam subutilizadas porque o servidor não foi formado para operá-las com critério.',
+    title: 'DIAGNÓSTICO 1',
+    body: 'Sistemas legados acumulam décadas de dados. A administração não consegue transformar esses dados em decisão pública.',
   },
   {
-    title: 'IA contratada sem método de adoção',
-    body: 'Pilotos isolados, sem governança institucional, sem indicadores e sem responsabilização clara — pareceres dispersos.',
+    title: 'DIAGNÓSTICO 2',
+    body: 'Servidores usam IA generativa sem método, sem política, sem governança. O risco jurídico cresce. A produtividade não.',
   },
   {
-    title: 'Consultorias sem capacidade real de transferência',
-    body: 'Relatórios entregues, recomendações arquivadas. Sai a consultoria, fica o servidor — e o conhecimento vai embora.',
+    title: 'DIAGNÓSTICO 3',
+    body: 'Consultorias entregam relatórios. Software vendors entregam licenças. Ninguém entrega capacidade real de operar.',
   },
 ]
 
 const PASSOS = [
   {
     n: '01',
-    title: 'Habilitar servidores',
-    body: 'Formação técnica e ética da força de trabalho pública. Capacidade instalada antes de qualquer sistema.',
+    title: 'HABILITAR',
+    body: 'servidores e gestores',
     color: 'var(--color-va-orange-vivid)',
   },
   {
     n: '02',
-    title: 'Diagnosticar processos',
-    body: 'Imersão presencial nos fluxos reais do ente público. Onde a IA gera valor mensurável e onde não cabe.',
+    title: 'DIAGNOSTICAR',
+    body: 'processos reais',
     color: 'var(--color-va-blue-glow)',
   },
   {
     n: '03',
-    title: 'Modernizar com governança',
-    body: 'Tecnologia só depois que existe gente preparada e processo mapeado. Sempre conforme LGPD e Lei 14.133/21.',
+    title: 'MODERNIZAR',
+    body: 'com governança e tecnologia',
     color: 'var(--color-va-gold)',
   },
 ]
@@ -57,8 +57,8 @@ export default function TeseGov() {
 
       <div className="relative max-w-7xl mx-auto px-5 sm:px-8">
         <RevealSection as="div" className="mb-14 lg:mb-20">
-          <p className="font-mono text-xs uppercase tracking-[0.18em] text-va-gray-500 mb-3">
-            01 · A Tese
+          <p className="font-mono text-xs uppercase tracking-[0.18em] text-va-orange-vivid mb-3">
+            01 · A TESE GOV
           </p>
           <div className="h-px bg-white/10 max-w-[120px]" />
         </RevealSection>
@@ -67,30 +67,19 @@ export default function TeseGov() {
           <div className="lg:col-span-5">
             <h2
               id="tese-gov-headline"
-              className="font-display font-extrabold tracking-[-0.025em] leading-[1] text-balance"
+              className="font-display font-extrabold tracking-[-0.025em] leading-[1] text-balance text-white"
               style={{ fontSize: 'var(--text-display-l)' }}
             >
               A administração pública brasileira
               <br />
-              <span className="text-va-gray-500">
-                não tem um problema de tecnologia.
-              </span>
+              não tem um problema de tecnologia.
             </h2>
-
-            <p
-              className="mt-8 max-w-md text-va-gray-200 leading-relaxed"
-              style={{ fontSize: 'var(--text-body-l)' }}
-            >
-              Tem investimento, tem fornecedor, tem licença. O que falta
-              raramente está na nota fiscal.
-            </p>
 
             <p
               className="mt-10 font-editorial italic text-va-orange-vivid leading-[1.15] text-balance"
               style={{ fontSize: 'clamp(24px, 3vw, 36px)' }}
             >
-              Tem um problema de capacidade instalada para operar a tecnologia
-              que já tem.
+              Tem um problema de capacidade instalada para operar a tecnologia que já tem.
             </p>
           </div>
 
@@ -125,25 +114,25 @@ export default function TeseGov() {
           </div>
         </div>
 
-        {/* Blue anchor banner */}
+        {/* Green anchor banner */}
         <RevealSection as="div" className="mb-16">
           <div
-            className="rounded-2xl px-8 py-10 lg:px-14 lg:py-14 border border-va-blue-electric/30"
+            className="rounded-2xl px-8 py-10 lg:px-14 lg:py-14 border border-va-green-deep/30"
             style={{
               background:
-                'linear-gradient(135deg, var(--color-va-blue-deep) 0%, rgba(32, 70, 234, 0.18) 100%)',
+                'linear-gradient(135deg, var(--color-va-green-deep, #00563F) 0%, rgba(0, 200, 150, 0.15) 100%)',
             }}
           >
-            <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-va-blue-glow mb-4">
+            <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-va-green-vivid mb-4">
               O método VanguardIA
             </p>
             <p
               className="font-display font-extrabold text-white leading-[1.05] tracking-[-0.02em] text-balance"
               style={{ fontSize: 'var(--text-display-m)' }}
             >
-              Capacidade vem primeiro.
+              Pelo método VanguardIA, capacidade vem primeiro.
               <br />
-              <span className="text-va-blue-glow">Tecnologia vem depois.</span>
+              <span className="text-va-green-vivid">Tecnologia vem depois.</span>
             </p>
           </div>
         </RevealSection>

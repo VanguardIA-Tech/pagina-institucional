@@ -1,5 +1,4 @@
 import { motion } from 'framer-motion'
-import { ArrowRight } from 'lucide-react'
 
 const CTA_URL =
   'https://wa.me/559132233355?text=Quero%20conversar%20sobre%20o%20legado%20COP-30'
@@ -32,7 +31,7 @@ export default function COP30() {
           viewport={{ once: true, amount: 0.6 }}
           className="font-mono text-xs uppercase tracking-[0.18em] text-white/85 mb-5"
         >
-          08 · Janela COP-30 · Belém · novembro 2026
+          07 · CONTEXTO HISTÓRICO
         </motion.p>
 
         <motion.h2
@@ -41,13 +40,13 @@ export default function COP30() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.4 }}
           transition={{ duration: 0.7 }}
-          className="font-display font-extrabold tracking-[-0.025em] leading-[1.02] text-white text-balance max-w-5xl"
+          className="font-display font-extrabold tracking-[-0.025em] leading-[1.02] text-white text-balance max-w-5xl animate-breath"
           style={{ fontSize: 'var(--text-display-l)' }}
         >
-          COP-30 em Belém. O Pará é a vitrine.
+          COP-30 em Belém.
           <br />
           <span className="text-white/85">
-            A administração pública pode ser parte do legado.
+            O Pará é a vitrine. A administração pública pode ser parte do legado.
           </span>
         </motion.h2>
 
@@ -59,17 +58,13 @@ export default function COP30() {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="rounded-2xl bg-va-black/40 backdrop-blur-sm border border-white/15 p-7 lg:p-9"
           >
-            <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-va-orange-glow mb-4">
-              O que está em jogo
-            </p>
             <p
               className="text-white/95 leading-relaxed"
               style={{ fontSize: 'var(--text-body-l)' }}
             >
-              Belém será o centro do debate global sobre clima, soberania
-              amazônica e governança digital. A administração pública
-              brasileira tem uma janela única para mostrar que a IA aplicada à
-              gestão pode ser feita com método, soberania e responsabilidade.
+              A escolha de Belém para sediar a COP-30 colocou a Amazônia no centro do mundo. Em 2026, delegações de mais de 190 países circularão por aqui. Imprensa internacional. Investidores institucionais. Fundos soberanos. Organismos multilaterais.
+              <br /><br />
+              Cada órgão público que estiver operando com Inteligência Aplicada, governança de IA instalada e servidores certificados estará contando uma história — a de uma administração pública amazônica madura, tecnicamente competente, integrada à fronteira da inovação.
             </p>
           </motion.div>
 
@@ -80,17 +75,13 @@ export default function COP30() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="rounded-2xl bg-va-black/40 backdrop-blur-sm border border-white/15 p-7 lg:p-9"
           >
-            <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-va-green-glow mb-4">
-              O que entregamos
-            </p>
             <p
               className="text-white/95 leading-relaxed"
               style={{ fontSize: 'var(--text-body-l)' }}
             >
-              CNH da IA para servidores, política institucional pronta,
-              arquitetura soberana de dados, agentes auditáveis e governança
-              board. Tudo conforme Lei 14.133/21, LGPD e diretrizes do CPSI —
-              entregue antes da janela COP-30.
+              A VanguardIA nasceu na Amazônia, opera na Amazônia e construiu sua arquitetura aqui por tese, não por limitação. Atendemos do Pará para o Brasil e para o mundo.
+              <br /><br />
+              Trabalhar com a VanguardIA é, também, escolher um parceiro que parte do mesmo solo institucional do gestor público amazônico — com a sofisticação técnica de quem atende empresas de R$ 1 bilhão de faturamento.
             </p>
           </motion.div>
         </div>
@@ -100,7 +91,7 @@ export default function COP30() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.5 }}
           transition={{ duration: 0.6, delay: 0.3 }}
-          className="mt-12 lg:mt-16"
+          className="mt-12 lg:mt-16 text-center lg:text-left"
         >
           <a
             href={CTA_URL}
@@ -108,8 +99,7 @@ export default function COP30() {
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 border-2 border-white hover:bg-white hover:text-va-green-deep transition-colors text-white font-semibold px-7 py-4 rounded-full"
           >
-            Conversar sobre o legado COP-30
-            <ArrowRight size={16} />
+            CONVERSAR SOBRE O LEGADO COP-30 →
           </a>
         </motion.div>
       </div>

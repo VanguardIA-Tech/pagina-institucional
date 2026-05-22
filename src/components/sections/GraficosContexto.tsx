@@ -25,8 +25,8 @@ const maturidadeData = [
 ]
 
 const triagemData = [
-  { metodo: 'Sem IA', horas: 48, fill: 'rgba(255,255,255,0.18)' },
-  { metodo: 'Com CNH', horas: 6, fill: 'var(--color-va-orange-vivid)' },
+  { metodo: 'Sem IA aplicada', horas: 48, fill: 'rgba(255,255,255,0.18)' },
+  { metodo: 'Com servidores CNH-habilitados', horas: 6, fill: 'var(--color-va-orange-vivid)' },
 ]
 
 export default function GraficosContexto() {
@@ -39,23 +39,15 @@ export default function GraficosContexto() {
       <div className="max-w-7xl mx-auto px-5 sm:px-8">
         <div className="max-w-3xl mb-14 lg:mb-20">
           <p className="font-mono text-xs uppercase tracking-[0.18em] text-va-gray-500 mb-4">
-            05 · Contexto setorial
+            05 · O CONTEXTO
           </p>
           <h2
             id="graficos-gov-headline"
             className="font-display font-extrabold tracking-[-0.025em] leading-[1] text-balance"
             style={{ fontSize: 'var(--text-display-l)' }}
           >
-            O quadro brasileiro,{' '}
-            <span className="text-va-orange-vivid">em quatro recortes</span>.
+            O Brasil está a uma geração de servidores de virar referência.
           </h2>
-          <p
-            className="mt-6 text-va-gray-200 leading-relaxed"
-            style={{ fontSize: 'var(--text-body-l)' }}
-          >
-            Os números que sustentam por que o setor público precisa de CNH da
-            IA antes de qualquer nova licença.
-          </p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-6">
@@ -77,33 +69,32 @@ export default function GraficosContexto() {
                   className="font-mono text-[11px] uppercase tracking-[0.18em]"
                   style={{ color: ORANGE }}
                 >
-                  Uso de IA sem método
+                  DADOS DO SETOR
                 </p>
                 <span className="font-mono text-[10px] text-va-gray-500">
-                  Pesquisa setorial 2025
+                  Pesquisa setorial · 2025
                 </span>
               </div>
               <h3
-                className="font-display font-extrabold tracking-[-0.02em] text-balance mt-2"
-                style={{ fontSize: 'clamp(22px, 2.4vw, 30px)' }}
+                className="font-display font-extrabold tracking-[-0.02em] text-balance mt-3 text-white"
+                style={{ fontSize: 'clamp(15px, 1.8vw, 18px)', lineHeight: '1.4' }}
               >
-                Dos servidores já usam IA generativa
-                <span className="text-va-gray-500"> — sem política, sem trilha de auditoria.</span>
+                dos servidores públicos brasileiros declaram já usar IA generativa no trabalho — a maioria sem política institucional, sem treinamento e sem padrão.
               </h3>
+              <p className="font-editorial italic text-va-gold text-sm mt-3">
+                "O risco é não capacitar. Não é capacitar."
+              </p>
             </div>
             <div className="text-right -mr-2">
               <div
                 className="font-display font-extrabold tracking-[-0.05em] leading-none"
                 style={{
-                  fontSize: 'clamp(96px, 14vw, 180px)',
+                  fontSize: 'clamp(96px, 12vw, 150px)',
                   color: ORANGE,
                 }}
               >
                 <CountUp to={73} suffix="%" />
               </div>
-              <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-va-gray-500 mt-3">
-                · risco institucional não monitorado
-              </p>
             </div>
           </motion.article>
 
@@ -130,7 +121,7 @@ export default function GraficosContexto() {
               className="font-display font-extrabold tracking-[-0.02em] text-balance"
               style={{ fontSize: 'clamp(22px, 2.4vw, 30px)' }}
             >
-              Setor público brasileiro estaciona em 2.8/5
+              Maturidade digital do setor público brasileiro
             </h3>
             <div className="flex-1 flex items-center justify-center mt-2 relative">
               <ResponsiveContainer width="100%" height={220}>
@@ -158,7 +149,7 @@ export default function GraficosContexto() {
                   2.8
                 </span>
                 <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-va-gray-500 mt-2">
-                  de 5 · referência setorial
+                  de 5 · Privado: 3.6/5
                 </span>
               </div>
             </div>
@@ -177,17 +168,17 @@ export default function GraficosContexto() {
                 className="font-mono text-[11px] uppercase tracking-[0.18em]"
                 style={{ color: ORANGE }}
               >
-                Triagem documental · horas de servidor
+                Tempo médio de triagem documental
               </p>
               <span className="font-mono text-[10px] text-va-gray-500">
-                VanguardIA · projetos 2024–2025
+                Estudo VanguardIA · 2025
               </span>
             </div>
             <h3
               className="font-display font-extrabold tracking-[-0.02em] text-balance"
               style={{ fontSize: 'clamp(22px, 2.4vw, 30px)' }}
             >
-              De 48h para 6h — com servidor habilitado
+              De 48h para 6h — com servidores CNH-habilitados
             </h3>
             <div className="flex-1 mt-6 -ml-4">
               <ResponsiveContainer width="100%" height={220}>
@@ -254,30 +245,39 @@ export default function GraficosContexto() {
                 className="font-mono text-[11px] uppercase tracking-[0.18em]"
                 style={{ color: GOLD }}
               >
-                Janela COP-30 · Belém
+                Legado COP-30 · Belém
               </p>
               <h3
-                className="font-display font-extrabold tracking-[-0.02em] text-balance mt-3"
-                style={{ fontSize: 'clamp(22px, 2.4vw, 30px)' }}
+                className="font-display font-extrabold tracking-[-0.02em] text-balance mt-3 text-white"
+                style={{ fontSize: 'clamp(15px, 1.8vw, 18px)', lineHeight: '1.4' }}
               >
-                2026: o Pará é o palco.
+                O Pará é o palco da COP-30. Modernizar a administração pública com IA aplicada agora é parte do legado.
               </h3>
             </div>
-            <p
-              className="font-editorial italic text-va-gold leading-[1.2] mt-6"
-              style={{ fontSize: 'clamp(20px, 2.4vw, 28px)' }}
-            >
-              O legado depende do que for entregue —
-              não do que for anunciado.
-            </p>
-            <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-va-gray-500 mt-6">
-              · novembro 2026
-            </p>
+            <div className="my-4">
+              <p className="font-editorial italic text-va-gold text-sm">
+                "A vitrine internacional já está marcada. O legado depende do que for entregue até lá."
+              </p>
+            </div>
+            <div className="flex justify-between items-baseline mt-auto">
+              <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-va-gray-500">
+                · novembro 2026
+              </p>
+              <div
+                className="font-display font-extrabold tracking-[-0.05em] leading-none"
+                style={{
+                  fontSize: 'clamp(64px, 8vw, 96px)',
+                  color: GREEN,
+                }}
+              >
+                2026
+              </div>
+            </div>
           </motion.article>
         </div>
 
         <p className="mt-10 font-mono text-[10px] uppercase tracking-[0.18em] text-va-gray-500 text-center">
-          Fontes: Pesquisa setorial 2025 · PwC ITDBr 2025 · VanguardIA 2024–2025
+          Fontes: Pesquisa setorial · 2025 · PwC ITDBr 2025 · Estudo VanguardIA · 2025
         </p>
       </div>
     </section>

@@ -23,75 +23,72 @@ type Plano = {
 const PLANOS: Plano[] = [
   {
     id: 'start',
-    level: 'Nível 01',
-    name: 'ICIA Start',
-    headline:
-      'Tração imediata para empresas que precisam destravar o primeiro caso.',
+    level: '01',
+    name: 'ICIA START',
+    headline: 'A entrada estratégica.',
     price: 'R$ 25k',
     priceCaption: 'setup único · R$ 12,9k/mês',
     heightClass: 'lg:h-[480px]',
     pxHeight: 480,
     inclui: [
-      '1 CNH da IA Executiva (turma 25)',
-      '1 caso de uso em produção (90 dias)',
-      'Mapa de maturidade IA inicial',
-      'Comitê de IA + ritual mensal',
-      'Suporte 8x5',
+      'CNH da IA para áreas críticas',
+      'Diagnóstico DEEP inicial',
+      '1-2 agentes piloto em produção',
+      'Linguagem comum instalada',
+      'Ciclo: 6 meses',
     ],
-    ideal: 'Mid-market · 1ª iniciativa estruturada',
+    ideal: 'Primeira experiência estruturada com IA aplicada no corporativo.',
     cta: 'Quero começar com Start',
-    color: 'var(--color-va-bronze)',
-    colorSoft: 'rgba(205, 127, 50, 0.18)',
-    glow: '0 18px 60px -20px rgba(205, 127, 50, 0.55)',
+    color: 'var(--color-va-blue-glow)',
+    colorSoft: 'rgba(74, 123, 255, 0.12)',
+    glow: '0 18px 60px -20px rgba(74, 123, 255, 0.55)',
   },
   {
     id: 'core',
-    level: 'Nível 02',
-    name: 'ICIA Core',
-    tag: { icon: 'star', label: 'Recomendado' },
-    headline:
-      'O sistema completo: cultura, processo e orquestração rodando junto.',
+    level: '02',
+    name: 'ICIA CORE',
+    tag: { icon: 'star', label: 'RECOMENDADO' },
+    headline: 'A transformação multissetorial.',
     price: 'R$ 65k',
     priceCaption: 'setup + R$ 28,9k/mês',
     heightClass: 'lg:h-[540px]',
     pxHeight: 540,
     inclui: [
-      'Tudo do Start +',
-      'CNH Operacional em 3 áreas',
-      'House Lake (dados em residência BR)',
-      '3 agentes em produção (trilhas críticas)',
-      'Política de IA + LGPD aplicada',
-      'Observabilidade de custo e qualidade',
-      'Suporte 12x6',
+      'CNH da IA em múltiplas áreas',
+      'DEEP + PEI completos',
+      'Múltiplos agentes em produção',
+      'Data Lake operacional',
+      'Governança IA instalada',
+      'Dashboards conversacionais',
+      'Ciclo: 12 meses',
     ],
-    ideal: 'Médias e grandes · cultura de dados em formação',
+    ideal: 'Empresas prontas para fazer da IA Aplicada um diferencial competitivo permanente.',
     cta: 'Quero o Core',
-    color: 'var(--color-va-silver)',
-    colorSoft: 'rgba(139, 164, 188, 0.18)',
-    glow: '0 22px 70px -18px rgba(139, 164, 188, 0.6)',
+    color: 'var(--color-va-green-glow)',
+    colorSoft: 'rgba(0, 200, 150, 0.12)',
+    glow: '0 22px 70px -18px rgba(0, 200, 150, 0.6)',
     featured: true,
   },
   {
     id: 'os',
-    level: 'Nível 03',
+    level: '03',
     name: 'ICIA OS',
-    tag: { icon: 'patent', label: 'Patenteado' },
-    headline:
-      'O sistema operacional de IA do grupo. Para quem opera escala bilionária.',
+    tag: { icon: 'patent', label: 'PATENTEADO' },
+    headline: 'O sistema nervoso completo.',
     price: 'Sob consulta',
     priceCaption: 'a partir de R$ 180k/mês',
     heightClass: 'lg:h-[600px]',
     pxHeight: 600,
     inclui: [
-      'Tudo do Core +',
-      'Orquestrador multi-modelo (ICIA OS)',
-      'Agentes ilimitados por trilha',
-      'Conselho ICIA dedicado (mensal)',
-      'SLA 24x7 + Residência onsite',
-      'Modelo proprietário (fine-tuning)',
-      'Programa C-level + governança board',
+      'Sistema entre sistemas',
+      'Agentes orquestrados',
+      'Dados governados',
+      'Pessoas habilitadas',
+      'ICIA 360 integrado',
+      'Camada permanente',
+      'Contrato perpétuo',
     ],
-    ideal: 'Grandes · governos · operações críticas',
+    ideal: 'Empresas que querem deixar legado operacional.',
     cta: 'Avaliar ICIA OS',
     color: 'var(--color-va-gold)',
     colorSoft: 'rgba(201, 166, 107, 0.22)',
@@ -119,23 +116,21 @@ export default function EscadaICIA() {
 
       <div className="relative max-w-7xl mx-auto px-5 sm:px-8">
         <div className="max-w-3xl mb-14 lg:mb-20">
-          <p className="font-mono text-xs uppercase tracking-[0.18em] text-va-gray-500 mb-4">
-            03 · Escada ICIA
+          <p className="font-mono text-xs uppercase tracking-[0.18em] text-va-orange-vivid mb-4 animate-pulse">
+            03  ·  IMPLEMENTAÇÃO
           </p>
           <h2
             id="escada-headline"
             className="font-display font-extrabold tracking-[-0.025em] leading-[1] text-balance"
             style={{ fontSize: 'var(--text-display-l)' }}
           >
-            Três níveis. Uma só{' '}
-            <span className="text-va-blue-glow">arquitetura</span>.
+            Três níveis. Uma escada natural.
           </h2>
           <p
-            className="mt-6 text-va-gray-200 leading-relaxed"
+            className="mt-6 text-va-gray-200 leading-relaxed text-balance"
             style={{ fontSize: 'var(--text-body-l)' }}
           >
-            Você entra no degrau que sustenta a sua operação hoje. E sobe
-            quando o método pedir — não quando o discurso quiser.
+            Cada empresa entra pelo nível certo. Ninguém pula degrau. Ninguém regride.
           </p>
         </div>
 
@@ -182,7 +177,7 @@ export default function EscadaICIA() {
 
               <div className="px-7 pt-8 pb-6">
                 <p
-                  className="font-mono text-[11px] uppercase tracking-[0.16em] mb-2"
+                  className="font-mono text-[11px] uppercase tracking-[0.16em] mb-2 font-bold animate-pulse"
                   style={{ color: p.color }}
                 >
                   {p.level}
@@ -206,7 +201,7 @@ export default function EscadaICIA() {
                 style={{ background: 'rgba(255,255,255,0.02)' }}
               >
                 <p
-                  className="font-display font-extrabold leading-none"
+                  className="font-display font-extrabold leading-none animate-pulse-glow"
                   style={{ fontSize: '32px', color: p.color }}
                 >
                   {p.price}
@@ -265,8 +260,8 @@ export default function EscadaICIA() {
           ))}
         </div>
 
-        <p className="mt-10 text-center font-mono text-xs uppercase tracking-[0.18em] text-va-gray-500">
-          Tickets a partir de R$ 25k setup + R$ 12,9k/mês · contratos 12 meses
+        <p className="mt-10 text-center font-mono text-xs uppercase tracking-[0.18em] text-va-gray-500 text-balance">
+          Tickets a partir de R$ 25k de setup + R$ 12,9k/mês. Todos os programas são semestrais com renovação automática.
         </p>
       </div>
     </section>

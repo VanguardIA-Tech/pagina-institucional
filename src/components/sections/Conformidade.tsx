@@ -3,34 +3,34 @@ import { ShieldCheck } from 'lucide-react'
 
 const SELOS = [
   {
-    sigla: 'Lei 14.133/21',
-    nome: 'Nova Lei de Licitações',
-    body: 'Inexigibilidade aplicada — Art. 74. Caderno técnico completo entregue.',
+    sigla: 'LEI 14.133/21',
+    nome: 'Licitações e Contratos',
+    body: 'Nova Lei de Licitações e Contratos.',
   },
   {
     sigla: 'LC 182/2021',
     nome: 'Marco Legal das Startups',
-    body: 'Contratação de inovação com base em metodologia proprietária.',
+    body: 'Marco Legal das Startups · ETE.',
   },
   {
     sigla: 'LGPD',
-    nome: 'Lei Geral de Proteção de Dados',
-    body: 'Dados em residência brasileira, governança documentada e DPO designado.',
+    nome: 'Proteção de Dados',
+    body: 'Lei Geral de Proteção de Dados.',
   },
   {
-    sigla: 'Marco Civil',
+    sigla: 'MARCO CIVIL',
     nome: 'Marco Civil da Internet',
-    body: 'Princípios de neutralidade, privacidade e responsabilidade observados.',
+    body: 'Princípios e governança.',
   },
   {
     sigla: 'CPSI',
-    nome: 'Comitê de Política de Segurança da Informação',
-    body: 'Aderência às diretrizes de segurança da informação no setor público.',
+    nome: 'Contratação Pública de Inovação',
+    body: 'Contratação Pública de Soluções de Inovação.',
   },
   {
-    sigla: 'Controle Externo',
-    nome: 'TCU e Tribunais de Contas',
-    body: 'Estrutura auditável por linhagem, custos e decisões automatizadas.',
+    sigla: 'CONTROLE EXTERNO',
+    nome: 'TCU, TCE e Controladorias',
+    body: 'TCU, TCE e controladorias internas.',
   },
 ]
 
@@ -49,7 +49,7 @@ export default function Conformidade() {
             viewport={{ once: true, amount: 0.6 }}
             className="font-mono text-xs uppercase tracking-[0.18em] text-va-gray-700 mb-4"
           >
-            07 · Conformidade
+            06 · CONFORMIDADE
           </motion.p>
           <motion.h2
             id="conformidade-headline"
@@ -72,9 +72,7 @@ export default function Conformidade() {
             className="mt-6 max-w-2xl text-va-gray-700 leading-relaxed"
             style={{ fontSize: 'var(--text-body-l)' }}
           >
-            Cada programa é desenhado com assessoria jurídica especializada em
-            contratos públicos. Os marcos abaixo estruturam a contratação,
-            execução e auditoria.
+            A VanguardIA opera com acompanhamento de assessoria jurídica especializada em contratos públicos. Cada entrega é desenhada para passar pelo crivo de controladorias, tribunais de contas e procuradorias.
           </motion.p>
         </div>
 
@@ -128,7 +126,7 @@ export default function Conformidade() {
           viewport={{ once: true, amount: 0.5 }}
           className="mt-12 lg:mt-16 text-center font-mono text-xs uppercase tracking-[0.18em] text-va-gray-700"
         >
-          Pareceres jurídicos fornecidos sob solicitação
+          Pareceres jurídicos, atestados de capacidade técnica e caderno completo de instrução processual fornecidos sob solicitação.
         </motion.p>
       </div>
     </section>

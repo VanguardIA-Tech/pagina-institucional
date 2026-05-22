@@ -17,13 +17,15 @@ const CARDS: Card[] = [
   {
     id: 'valor',
     number: '01',
-    title: 'Valor entregue',
-    subtitle: 'Resultado mensurável em 90 dias',
+    title: 'VALOR',
+    subtitle: 'Servidores deixam de usar IA no escuro e passam a usar com método, padrão e responsabilidade.',
     bullets: [
-      'Produtividade individual auditada por área',
-      'Triagem documental até 8× mais rápida',
-      'Análise técnica assistida com rastreabilidade',
-      'Atendimento ao cidadão com humano no loop',
+      'Ganho imediato em produtividade documental',
+      'Triagem e classificação otimizadas',
+      'Análise jurídica e técnica qualificada',
+      'Atendimento qualificado ao cidadão',
+      'Elaboração rápida de pareceres',
+      'Resultado mensurável em 90 dias.',
     ],
     color: 'var(--color-va-orange-vivid)',
     colorSoft: 'rgba(255, 107, 26, 0.10)',
@@ -32,13 +34,15 @@ const CARDS: Card[] = [
   {
     id: 'risco',
     number: '02',
-    title: 'Risco baixo',
-    subtitle: 'Educação não altera sistemas críticos',
+    title: 'RISCO',
+    subtitle: 'Educação corporativa é o investimento de menor exposição política e jurídica disponível a um gestor público.',
     bullets: [
-      'Capacitação é a menor exposição institucional',
-      'Sem integração em sistemas críticos',
-      'Sem dependência de fornecedor único',
-      'Cancelamento simples a qualquer momento',
+      'Sem alteração de sistemas críticos',
+      'Sem migração de banco de dados',
+      'Sem dependência tecnológica',
+      'Sem captura de fornecedor único',
+      'Resultado verificável por certificação individual',
+      'Reversível, escalável, modular.',
     ],
     color: 'var(--color-va-blue-glow)',
     colorSoft: 'rgba(74, 123, 255, 0.10)',
@@ -47,13 +51,13 @@ const CARDS: Card[] = [
   {
     id: 'juridica',
     number: '03',
-    title: 'Viabilidade jurídica',
-    subtitle: 'Inexigibilidade conforme Lei 14.133/21',
+    title: 'CONTRATAÇÃO',
+    subtitle: 'A CNH da IA é metodologia singular, proprietária e sem concorrente direto no Brasil. Permite contratação direta.',
     bullets: [
-      'Art. 74 — inexigibilidade aplicável',
-      'Objeto singular e notória especialização',
-      'Caderno técnico completo fornecido',
-      'Pareceres de suporte ao processo',
+      'Inexigibilidade de Licitação (Lei 14.133/21, Art. 74)',
+      'Objeto singular e notória especialização comprovada',
+      'Inviabilidade de competição atestada',
+      'Caderno técnico completo fornecido para instrução processual.',
     ],
     color: 'var(--color-va-gold)',
     colorSoft: 'rgba(201, 166, 107, 0.12)',
@@ -80,7 +84,7 @@ export default function PorQueCNH() {
       <div className="relative max-w-7xl mx-auto px-5 sm:px-8">
         <div className="max-w-4xl mb-14 lg:mb-20">
           <p className="font-mono text-xs uppercase tracking-[0.18em] text-va-gray-500 mb-4">
-            03 · A decisão racional
+            04 · ENTRADA SEGURA
           </p>
           <h2
             id="por-que-cnh-headline"
@@ -97,9 +101,9 @@ export default function PorQueCNH() {
             className="mt-6 max-w-3xl text-va-gray-200 leading-relaxed"
             style={{ fontSize: 'var(--text-body-l)' }}
           >
-            Três eixos sustentam a decisão — valor entregue, exposição
+            Três eixos fundamentais sustentam a decisão — valor entregue, exposição
             institucional e viabilidade jurídica. Os três convergem para o
-            mesmo ponto de entrada.
+            mesmo ponto de entrada de menor atrito.
           </p>
         </div>
 
@@ -182,16 +186,16 @@ export default function PorQueCNH() {
           }}
         >
           <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-va-blue-glow mb-4">
-            O recado
+            A DIRETRIZ
           </p>
           <p
             className="font-display font-extrabold text-white leading-[1.05] tracking-[-0.02em] text-balance"
             style={{ fontSize: 'var(--text-display-m)' }}
           >
-            Não capacitar servidores em IA é o risco.
+            Em 2026, não capacitar servidores em IA é o risco.
             <br />
             <span className="text-va-blue-glow">
-              Capacitar com método é o caminho seguro.
+              Capacitar com método, com prova social e com base jurídica é o caminho seguro.
             </span>
           </p>
         </motion.div>

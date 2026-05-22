@@ -17,57 +17,50 @@ type Pilar = {
 const PILARES: Pilar[] = [
   {
     id: 'pessoas',
-    label: 'Pilar 01 · Pessoas',
-    title: 'A cultura precede a ferramenta.',
-    description:
-      'Antes da stack, formamos quem decide. CNH da IA, mentorias e governança humana — para que o time pare de pilotar no escuro.',
+    label: 'PESSOAS',
+    title: 'Camada cultural',
+    description: 'Formação continuada e governança humana para que toda a empresa opere sob o mesmo método.',
     color: 'var(--color-va-orange-vivid)',
-    colorSoft: 'rgba(255, 107, 26, 0.18)',
+    colorSoft: 'rgba(255, 107, 26, 0.12)',
     icon: Users,
     entregas: [
-      'CNH da IA Executiva (8h)',
-      'CNH Operacional por área (24h)',
-      'Comitê de IA setup + ritual mensal',
-      'Mapa de Maturidade IA (NPS interno)',
-      'Plano de comunicação interna',
+      'CNH da IA',
+      'Habilitação contínua',
+      'Cultura de IA aplicada',
     ],
-    prova: { stat: '8.000+', caption: 'pessoas certificadas em 5 anos' },
+    prova: { stat: '8.000+', caption: 'pessoas habilitadas' },
   },
   {
     id: 'processos',
-    label: 'Pilar 02 · Processos',
-    title: 'Onde o método sustenta a máquina.',
-    description:
-      'Mapeamos cadeias críticas, encaixamos IA onde gera valor mensurável e blindamos contra alucinação, vazamento e descontrole de custo.',
+    label: 'PROCESSOS',
+    title: 'Camada diagnóstica',
+    description: 'Diagnóstico profundo e desenho de rituais que evitam o desperdício em automações inúteis.',
     color: 'var(--color-va-blue-electric)',
-    colorSoft: 'rgba(32, 70, 234, 0.18)',
+    colorSoft: 'rgba(32, 70, 234, 0.12)',
     icon: Workflow,
     entregas: [
-      'Mapa AS-IS / TO-BE assistido por IA',
-      'Catálogo de casos de uso priorizados',
-      'Playbook de operação (SLAs, owners)',
-      'Política de uso e LGPD aplicada',
-      'KPIs de adoção e ROI por trilha',
+      'DEEP',
+      'PEI',
+      'ICIA Process',
+      'Documentação viva',
     ],
-    prova: { stat: '600+', caption: 'projetos entregues em produção' },
+    prova: { stat: '1.000+', caption: 'POPs modernizados' },
   },
   {
     id: 'tecnologia',
-    label: 'Pilar 03 · Tecnologia',
-    title: 'A stack que cabe no problema.',
-    description:
-      'Orquestração multi-modelo, dados soberanos em residência brasileira, agentes específicos por trilha — não a moda da semana.',
-    color: 'var(--color-va-violet-glow)',
-    colorSoft: 'rgba(107, 63, 160, 0.18)',
+    label: 'TECNOLOGIA',
+    title: 'Camada de execução',
+    description: 'Workers autônomos, lakehouses sob medida e governança soberana permanente.',
+    color: 'var(--color-va-green-vivid)',
+    colorSoft: 'rgba(32, 70, 234, 0.1)',
     icon: Cpu,
     entregas: [
-      'ICIA OS — orquestrador multi-modelo',
-      'House Lake (dados em residência BR)',
-      'Agentes por trilha (jurídico, comercial, ops)',
-      'Observabilidade de custo e qualidade',
-      'Integração com sistemas legados',
+      'Data Lake',
+      'Workers AI',
+      'ICIA 360',
+      'ICIA OS (patenteado)',
     ],
-    prova: { stat: 'R$ 1bi+', caption: 'em ativos sob orquestração' },
+    prova: { stat: 'Dezenas', caption: 'de agentes em produção' },
   },
 ]
 
@@ -96,9 +89,9 @@ export default function ArquiteturaICIA() {
             initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.6 }}
-            className="font-mono text-xs uppercase tracking-[0.18em] text-va-gray-500 mb-4"
+            className="font-mono text-xs uppercase tracking-[0.18em] text-va-orange-vivid mb-4"
           >
-            02 · Arquitetura
+            02  ·  ARQUITETURA
           </motion.p>
           <motion.h2
             id="arquitetura-headline"
@@ -109,10 +102,10 @@ export default function ArquiteturaICIA() {
             className="font-display font-extrabold tracking-[-0.025em] leading-[1] text-balance"
             style={{ fontSize: 'var(--text-display-l)' }}
           >
-            Três pilares. Uma única ordem.
+            ICIA.
             <br />
-            <span className="text-va-gray-500">
-              Pessoas → Processos → Tecnologia.
+            <span className="text-va-white">
+              A arquitetura da Inteligência Aplicada.
             </span>
           </motion.h2>
           <motion.p
@@ -120,12 +113,10 @@ export default function ArquiteturaICIA() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.4 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="mt-8 max-w-2xl text-va-gray-200 leading-relaxed"
+            className="mt-8 max-w-2xl text-va-gray-200 leading-relaxed text-balance"
             style={{ fontSize: 'var(--text-body-l)' }}
           >
-            A Arquitetura ICIA é o esqueleto operacional do Grupo VanguardIA.
-            Cada pilar opera como um sistema, mas é a conexão entre eles que
-            mantém a IA dentro do orçamento — e fora do escândalo.
+            Não é consultoria. Não é treinamento. Não é software. É o sistema que organiza Pessoas, Processos e Tecnologia em camada permanente.
           </motion.p>
         </div>
 
@@ -209,15 +200,17 @@ export default function ArquiteturaICIA() {
                     >
                       {p.title}
                     </h3>
-                    <p className="mt-3 text-sm text-va-gray-200 leading-relaxed">
-                      {p.description}
-                    </p>
+                    {p.description && (
+                      <p className="mt-3 text-sm text-va-gray-200 leading-relaxed">
+                        {p.description}
+                      </p>
+                    )}
                   </div>
 
                   {/* Entregas */}
                   <div className="px-7 py-7 flex-1">
                     <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-va-gray-500 mb-4">
-                      Entregas
+                      ENTREGAS
                     </p>
                     <ul className="space-y-3">
                       {p.entregas.map((e) => (
@@ -270,15 +263,18 @@ export default function ArquiteturaICIA() {
           className="mt-16 lg:mt-20 rounded-2xl px-8 py-10 lg:px-14 lg:py-14 text-center border border-white/10"
           style={{
             background:
-              'linear-gradient(135deg, rgba(45,16,80,0.45) 0%, rgba(10,10,15,0.85) 100%)',
+              'linear-gradient(135deg, rgba(32,70,234,0.1) 0%, rgba(10,10,15,0.85) 100%)',
           }}
         >
           <p
-            className="font-editorial italic text-va-gold leading-[1.1] max-w-3xl mx-auto text-balance"
-            style={{ fontSize: 'clamp(24px, 3vw, 36px)' }}
+            className="font-editorial italic text-va-gold leading-[1.2] max-w-4xl mx-auto text-balance"
+            style={{ fontSize: 'clamp(20px, 2.5vw, 32px)' }}
           >
-            Não orquestramos modelos. Orquestramos pessoas, processos e
-            tecnologia — nessa ordem.
+            "A tecnologia só se sustenta quando há cultura, diagnóstico e clareza."
+            <br />
+            <span className="text-va-gray-200 text-base font-body font-normal block mt-2">
+              Inverter a ordem é o que torna IA cara e descartável.
+            </span>
           </p>
         </motion.div>
       </div>

@@ -16,43 +16,35 @@ const ACESSORIOS: Acessorio[] = [
     id: 'icia-360',
     name: 'ICIA 360',
     description:
-      'Diagnóstico completo de maturidade, riscos e oportunidades de IA em até 30 dias.',
-    bullets: ['Mapa AS-IS / TO-BE', 'Score NPS interno', 'Roadmap 12 meses'],
+      'Integração e substituição de sistemas. Substitui um, dois, três ou mais sistemas pré-existentes por um ambiente central fabricado para as regras do seu negócio. "A pergunta não é se vamos substituir. É em que ordem."',
+    bullets: [],
     icon: Layers,
     color: 'var(--color-va-blue-electric)',
   },
   {
     id: 'data-lake',
-    name: 'Data Lake (House Lake)',
+    name: 'ICIA Data Lake',
     description:
-      'Repositório soberano em residência brasileira — pronto para alimentar agentes sem expor dados sensíveis.',
-    bullets: [
-      'Hospedagem nacional',
-      'Pipelines auditáveis',
-      'Integração com legados',
-    ],
+      'Fundação de dados governada. Lakehouse sob medida, com camada ouro entregue. Dados deixam de ser arquivo isolado e viram base de decisão, dashboard, agente e governança.',
+    bullets: [],
     icon: Database,
     color: 'var(--color-va-teal)',
   },
   {
     id: 'governanca',
-    name: 'Governança IA',
+    name: 'ICIA Governança IA',
     description:
-      'Política, comitê e controles para operar IA sem violar LGPD, Marco Civil ou compliance setorial.',
-    bullets: [
-      'Política de uso interna',
-      'Matriz de risco por trilha',
-      'Treinamento de jurídico',
-    ],
+      'POPs vivos e políticas de uso. POPs vivos, agentes-oráculos por área, políticas de uso de IA, documentação que se atualiza sozinha. Conhecimento sai da cabeça das pessoas e vira patrimônio.',
+    bullets: [],
     icon: Shield,
     color: 'var(--color-va-violet-glow)',
   },
   {
     id: 'residencia',
-    name: 'Residência ICIA',
+    name: 'ICIA Residência',
     description:
-      'Especialistas alocados na sua operação para acelerar adoção e blindar a curva de aprendizado.',
-    bullets: ['Onsite ou híbrido', 'Squad sênior dedicado', 'SLA 12x6'],
+      'Arquiteto de IA presencial. Um arquiteto VanguardIA dentro do seu escritório, duas vezes por semana. Embaixador interno do método.',
+    bullets: [],
     icon: UserCheck,
     color: 'var(--color-va-orange-vivid)',
   },
@@ -76,22 +68,21 @@ export default function Acessorios() {
       />
       <div className="relative max-w-7xl mx-auto px-5 sm:px-8">
         <div className="mb-14 lg:mb-20 max-w-3xl">
-          <p className="font-mono text-xs uppercase tracking-[0.18em] text-va-gray-500 mb-4">
-            04 · Acessórios
+          <p className="font-mono text-xs uppercase tracking-[0.18em] text-va-gray-500 mb-4 animate-pulse">
+            04  ·  ACESSÓRIOS
           </p>
           <h2
             id="acessorios-headline"
             className="font-display font-extrabold tracking-[-0.025em] leading-[1] text-balance"
             style={{ fontSize: 'var(--text-display-l)' }}
           >
-            Módulos que se encaixam em qualquer degrau da escada.
+            Os multiplicadores de valor.
           </h2>
           <p
-            className="mt-6 text-va-gray-700 leading-relaxed"
+            className="mt-6 text-va-gray-700 leading-relaxed text-balance"
             style={{ fontSize: 'var(--text-body-l)' }}
           >
-            Plug-ins de método, dado e governança que aceleram o ICIA Start,
-            Core ou OS — sem retrabalho de arquitetura.
+            Soluções que se combinam com qualquer nível para resolver dores que o mercado cobra caro e entrega pela metade.
           </p>
         </div>
 

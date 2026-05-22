@@ -2,12 +2,12 @@ import { motion } from 'framer-motion'
 import { ArrowRight, Check, Scale, Zap } from 'lucide-react'
 
 const BENEFITS = [
-  'Diagnóstico de maturidade individual e institucional',
-  'Formação técnica e ética por área de atuação',
-  'Avaliação por banca com critérios objetivos',
-  'Certificação registrada com QR-code público',
-  'Manutenção contínua — atualização semestral',
-  'Política institucional de IA pronta para publicação',
+  'Diagnóstico inicial por cargo, nível e setor',
+  'Formação modular (presencial e/ou EAD)',
+  'Avaliação individual com selo de aproveitamento',
+  'Certificação institucional VanguardIA',
+  'Manutenção contínua + biblioteca de prompts e POPs',
+  'Política institucional de uso de IA entregue ao final',
 ]
 
 const FUNDAMENTOS = [
@@ -28,33 +28,33 @@ const FUNDAMENTOS = [
 const PASSOS = [
   {
     n: '01',
-    title: 'Diagnóstico',
-    body: 'Maturidade individual e institucional em até 24h',
+    title: 'DIAGNÓSTICO',
+    body: 'o que cada cargo precisa saber',
   },
   {
     n: '02',
-    title: 'Formação',
-    body: 'Imersão presencial + casos reais do setor público',
+    title: 'FORMAÇÃO',
+    body: 'treinamento por cargo e função',
   },
   {
     n: '03',
-    title: 'Avaliação',
-    body: 'Banca técnica e ética por especialistas',
+    title: 'AVALIAÇÃO',
+    body: 'quem opera, quem só assiste',
   },
   {
     n: '04',
-    title: 'Certificação',
-    body: 'CNH da IA + cadastro no registro nacional',
+    title: 'CERTIFICAÇÃO',
+    body: 'selo oficial VanguardIA',
   },
   {
     n: '05',
-    title: 'Cultura',
-    body: 'Política institucional de IA e comunicação interna',
+    title: 'CULTURA',
+    body: 'IA vira hábito da operação',
   },
   {
     n: '06',
-    title: 'Continuidade',
-    body: 'Manutenção semestral e atualização normativa',
+    title: 'CONTINUIDADE',
+    body: 'recertificação contínua',
   },
 ]
 
@@ -94,7 +94,7 @@ export default function CNHdaIAServidores() {
               viewport={{ once: true, amount: 0.4 }}
               className="font-mono text-xs uppercase tracking-[0.18em] text-white/90 mb-5"
             >
-              02 · Por onde começar
+              02 · POR ONDE COMEÇAR
             </motion.p>
 
             <motion.h2
@@ -103,14 +103,10 @@ export default function CNHdaIAServidores() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.4 }}
               transition={{ duration: 0.6 }}
-              className="font-display font-extrabold tracking-[-0.025em] leading-[1] text-white text-balance"
+              className="font-editorial italic tracking-[-0.025em] leading-[1] text-white text-balance"
               style={{ fontSize: 'var(--text-display-l)' }}
             >
-              CNH da IA para
-              <br />
-              <span className="font-editorial italic font-normal">
-                Servidores Públicos.
-              </span>
+              CNH da IA para Servidores Públicos.
             </motion.h2>
 
             <motion.p
@@ -118,13 +114,40 @@ export default function CNHdaIAServidores() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.4 }}
               transition={{ duration: 0.6, delay: 0.1 }}
+              className="mt-6 font-display font-extrabold text-white text-balance"
+              style={{ fontSize: 'var(--text-display-m)' }}
+            >
+              A porta de entrada de maior valor entregue e menor atrito para modernizar uma administração pública agora.
+            </motion.p>
+
+            <motion.p
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.4 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
               className="mt-6 text-white/90 leading-relaxed"
               style={{ fontSize: 'var(--text-body-l)' }}
             >
-              A porta de entrada de maior valor entregue e menor atrito —
-              educação institucional não altera sistemas críticos e habilita o
-              servidor a operar IA com responsabilidade pública.
+              Compreensão. Navegação. Habilitação.
+              <br />
+              Metodologia de pilotagem da IA aplicada ao serviço público — desenhada por cargo, nível e função. Cada servidor é diagnosticado, formado, avaliado e certificado.
             </motion.p>
+
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.4 }}
+              transition={{ duration: 0.6, delay: 0.25 }}
+              className="mt-8 rounded-xl p-6 border border-white/20"
+              style={{ background: 'rgba(10, 10, 15, 0.35)', backdropFilter: 'blur(4px)' }}
+            >
+              <p className="text-sm font-semibold text-white">
+                8.000+ profissionais já habilitados no setor privado.
+              </p>
+              <p className="mt-2 text-xs text-white/80 leading-relaxed">
+                Agora estruturada para servidores públicos, com adaptações ao regime estatutário, conformidade LGPD e linguagem jurídico-administrativa.
+              </p>
+            </motion.div>
 
             <motion.ul
               initial="hidden"
@@ -149,7 +172,7 @@ export default function CNHdaIAServidores() {
                   }}
                   className="flex items-start gap-3 text-white/95 leading-snug"
                 >
-                  <span className="shrink-0 mt-0.5 inline-flex items-center justify-center w-5 h-5 rounded-full bg-va-blue-electric text-white">
+                  <span className="shrink-0 mt-0.5 inline-flex items-center justify-center w-5 h-5 rounded-full bg-va-green-vivid text-va-black">
                     <Check size={12} strokeWidth={3.5} />
                   </span>
                   <span className="text-sm">{b}</span>
@@ -157,19 +180,21 @@ export default function CNHdaIAServidores() {
               ))}
             </motion.ul>
 
-            <motion.a
-              href={CTA_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              initial={{ opacity: 0, y: 12 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.5 }}
-              transition={{ delay: 0.3 }}
-              className="mt-10 inline-flex items-center gap-2 bg-va-black hover:bg-va-gray-900 transition-colors text-white font-semibold px-7 py-4 rounded-full"
-            >
-              Começar pela CNH da IA
-              <ArrowRight size={16} />
-            </motion.a>
+            <div className="mt-10">
+              <motion.a
+                href={CTA_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                initial={{ opacity: 0, y: 12 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.5 }}
+                transition={{ delay: 0.3 }}
+                className="inline-flex items-center gap-2 bg-va-black hover:bg-va-gray-900 transition-colors text-white font-semibold px-7 py-4 rounded-full border border-white/20"
+              >
+                Começar pela CNH da IA
+                <ArrowRight size={16} />
+              </motion.a>
+            </div>
           </div>
         </div>
 
@@ -187,7 +212,7 @@ export default function CNHdaIAServidores() {
                 className="inline-flex items-center justify-center w-10 h-10 rounded-lg ring-1"
                 style={{
                   background: 'rgba(255, 69, 0, 0.14)',
-                  color: '#FF4500',
+                  color: '#FF6B1A',
                   boxShadow: 'inset 0 0 0 1px rgba(255, 69, 0, 0.4)',
                 }}
                 aria-hidden="true"
@@ -195,22 +220,25 @@ export default function CNHdaIAServidores() {
                 <Scale size={20} strokeWidth={2.2} />
               </span>
               <p
-                className="font-mono text-[11px] uppercase tracking-[0.18em] font-semibold"
-                style={{ color: '#FF4500' }}
+                className="font-mono text-[11px] uppercase tracking-[0.18em] font-semibold text-va-orange-glow"
               >
-                Contratação por inexigibilidade
+                ⚖️ CONTRATAÇÃO POR INEXIGIBILIDADE
               </p>
             </div>
 
             <p
-              className="font-display font-extrabold tracking-[-0.02em] text-white leading-tight text-balance"
-              style={{ fontSize: 'clamp(20px, 2.4vw, 28px)' }}
+              className="text-sm text-va-gray-200 leading-relaxed mb-4"
             >
-              A CNH da IA é metodologia proprietária.
+              A CNH da IA é metodologia proprietária da VanguardIA, com registro, marca própria e singularidade de objeto.
+            </p>
+            <p
+              className="text-sm text-va-gray-200 leading-relaxed mb-6"
+            >
+              Não existe concorrente direto no Brasil ofertando a mesma certificação corporativa de Inteligência Aplicada para o setor público.
             </p>
 
             <div
-              className="mt-6 rounded-xl px-5 py-4 border"
+              className="mt-6 rounded-xl px-5 py-4 border mb-6"
               style={{
                 background:
                   'linear-gradient(135deg, rgba(255,69,0,0.14) 0%, rgba(255,107,26,0.04) 100%)',
@@ -220,13 +248,12 @@ export default function CNHdaIAServidores() {
               <div className="flex items-center gap-2 mb-2">
                 <Zap
                   size={14}
-                  style={{ color: '#FF4500' }}
+                  className="text-va-orange-vivid"
                   strokeWidth={2.5}
                   aria-hidden="true"
                 />
                 <p
-                  className="font-mono text-[10px] uppercase tracking-[0.18em] font-semibold"
-                  style={{ color: '#FF4500' }}
+                  className="font-mono text-[10px] uppercase tracking-[0.18em] font-semibold text-va-orange-vivid"
                 >
                   Inexigibilidade de licitação
                 </p>
@@ -236,26 +263,29 @@ export default function CNHdaIAServidores() {
               </p>
             </div>
 
-            <ul className="mt-7 space-y-4">
+            <p className="font-mono text-[10px] uppercase tracking-[0.16em] mb-4 text-va-orange-glow">
+              Fundamentos aplicáveis:
+            </p>
+            <ul className="mt-2 space-y-4">
               {FUNDAMENTOS.map((f) => (
                 <li key={f.label}>
                   <p
-                    className="font-mono text-[10px] uppercase tracking-[0.16em] mb-1"
-                    style={{ color: 'var(--color-va-orange-glow)' }}
+                    className="font-mono text-[10px] uppercase tracking-[0.16em] mb-1 font-semibold text-white"
                   >
-                    {f.label}
+                    • {f.label}
                   </p>
-                  <p className="text-sm text-va-gray-200 leading-relaxed">
+                  <p className="text-sm text-va-gray-300 leading-relaxed ml-2">
                     {f.body}
                   </p>
                 </li>
               ))}
             </ul>
 
-            <p className="mt-7 pt-6 border-t border-white/10 text-xs text-va-gray-500 leading-relaxed">
-              A VanguardIA entrega o caderno técnico completo — pareceres,
-              referências jurídicas e modelo de termo de referência — para
-              instruir o processo administrativo do ente público.
+            <p className="mt-7 pt-6 border-t border-white/10 text-xs text-va-gray-400 leading-relaxed">
+              A VanguardIA entrega o caderno técnico completo para instrução do processo: justificativa técnica, comprovação de singularidade, atestados de capacidade técnica e parecer de razoabilidade do preço.
+            </p>
+            <p className="mt-4 text-xs text-va-gray-400 leading-relaxed border-t border-white/5 pt-4">
+              Com acompanhamento de assessoria jurídica especializada em contratos públicos.
             </p>
           </motion.div>
         </div>

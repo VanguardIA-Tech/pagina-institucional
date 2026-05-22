@@ -1,37 +1,36 @@
 import { motion } from 'framer-motion'
-import { ArrowRight } from 'lucide-react'
 import CountUp from '../ui/CountUp'
 
 const PASSOS = [
   {
     n: '01',
-    title: 'Diagnóstico',
-    body: 'Maturidade individual e setorial em 24h',
+    title: 'DIAGNÓSTICO',
+    body: 'Mapeamento de gaps e maturidade por setor.',
   },
   {
     n: '02',
-    title: 'Imersão',
-    body: 'Aula-conceito + casos brasileiros reais',
+    title: 'FORMAÇÃO',
+    body: 'Conteúdo desenhado para cada cargo e nível.',
   },
   {
     n: '03',
-    title: 'Lab guiado',
-    body: 'Praticar nas ferramentas com mentor',
+    title: 'AVALIAÇÃO',
+    body: 'Testes práticos de aplicação real de prompts.',
   },
   {
     n: '04',
-    title: 'Caso aplicado',
-    body: 'Aluno entrega caso da própria operação',
+    title: 'CERTIFICAÇÃO',
+    body: 'Selo oficial de habilitação e registro nacional.',
   },
   {
     n: '05',
-    title: 'Banca',
-    body: 'Avaliação técnica e ética por especialistas',
+    title: 'CULTURA',
+    body: 'Instalação de hábitos de IA na rotina diária.',
   },
   {
     n: '06',
-    title: 'Certificação',
-    body: 'CNH da IA + cadastro no registro nacional',
+    title: 'CONTINUIDADE',
+    body: 'Reciclagem e manutenção da curva de aprendizado.',
   },
 ]
 
@@ -66,9 +65,9 @@ export default function CNHdaIA() {
               initial={{ opacity: 0, y: 12 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.4 }}
-              className="font-mono text-xs uppercase tracking-[0.18em] text-white/80 mb-5"
+              className="font-mono text-xs uppercase tracking-[0.18em] text-white/80 mb-5 animate-pulse"
             >
-              06 · CNH da IA
+              06  ·  CERTIFICAÇÃO
             </motion.p>
 
             <motion.h2
@@ -77,23 +76,32 @@ export default function CNHdaIA() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.4 }}
               transition={{ duration: 0.6 }}
-              className="font-display font-extrabold tracking-[-0.025em] leading-[1] text-white text-balance"
+              className="font-display font-editorial italic text-white text-balance"
               style={{ fontSize: 'var(--text-display-l)' }}
             >
-              Não se dirige IA sem habilitação.
+              CNH da IA.
             </motion.h2>
+
+            <motion.h3
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.4 }}
+              transition={{ duration: 0.6, delay: 0.05 }}
+              className="font-display font-extrabold text-white text-balance mt-3"
+              style={{ fontSize: 'var(--text-display-m)' }}
+            >
+              A única certificação corporativa de Inteligência Aplicada do Brasil.
+            </motion.h3>
 
             <motion.p
               initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.4 }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="mt-6 text-white/90 leading-relaxed"
+              className="mt-6 text-white/90 leading-relaxed text-balance"
               style={{ fontSize: 'var(--text-body-l)' }}
             >
-              A CNH da IA é o programa de certificação que formou mais de 8.000
-              executivos, servidores e operadores no Brasil. Conteúdo
-              brasileiro, banca técnica e registro nacional.
+              Compreensão. Navegação. Habilitação. Não é treinamento. É metodologia de pilotagem. Cada cargo, cada nível, cada função recebe formação desenhada — e é avaliado.
             </motion.p>
 
             <motion.div
@@ -104,13 +112,13 @@ export default function CNHdaIA() {
               className="mt-12 mb-10"
             >
               <div
-                className="font-display font-extrabold tracking-[-0.05em] leading-[0.85] text-white"
-                style={{ fontSize: 'clamp(110px, 17vw, 220px)' }}
+                className="font-display font-black tracking-[-0.05em] leading-[0.85] text-white"
+                style={{ fontSize: 'clamp(90px, 15vw, 180px)' }}
               >
                 <CountUp to={8000} prefix="+" />
               </div>
               <p className="font-mono text-xs uppercase tracking-[0.18em] text-white/80 mt-3">
-                Pessoas habilitadas · turmas 1 a 47
+                profissionais habilitados em 3 anos
               </p>
             </motion.div>
 
@@ -124,8 +132,7 @@ export default function CNHdaIA() {
               transition={{ delay: 0.3 }}
               className="inline-flex items-center gap-2 border-2 border-white hover:bg-white hover:text-va-orange-deep transition-colors text-white font-semibold px-7 py-4 rounded-full"
             >
-              Inscrever minha turma
-              <ArrowRight size={16} />
+              Conhecer a CNH da IA →
             </motion.a>
           </div>
         </div>
@@ -166,10 +173,7 @@ export default function CNHdaIA() {
             className="absolute bottom-8 left-8 right-8 lg:right-auto lg:max-w-sm bg-va-black/80 backdrop-blur-md border border-white/15 rounded-xl p-5"
           >
             <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-va-orange-vivid mb-1">
-              Turma 48 · Belém
-            </p>
-            <p className="font-display font-bold text-white text-base leading-snug">
-              Inscrições abertas · início em 12.06
+              WORKSHOP · PARAFERRO · MAR 2026
             </p>
           </motion.div>
         </div>
@@ -200,8 +204,8 @@ export default function CNHdaIA() {
                   <span
                     className="font-mono text-xs font-medium px-2 py-0.5 rounded-full"
                     style={{
-                      color: 'var(--color-va-orange-vivid)',
-                      background: 'rgba(255,107,26,0.12)',
+                      color: 'var(--color-va-green-vivid)',
+                      background: 'rgba(0,200,150,0.12)',
                     }}
                   >
                     {p.n}
@@ -211,10 +215,10 @@ export default function CNHdaIA() {
                     className="h-px flex-1 bg-white/10"
                   />
                 </div>
-                <h3 className="font-display font-bold text-white text-lg leading-tight">
+                <h3 className="font-display font-bold text-white text-base leading-tight">
                   {p.title}
                 </h3>
-                <p className="mt-1.5 text-sm text-va-gray-200 leading-snug">
+                <p className="mt-1.5 text-xs text-va-gray-500 leading-snug">
                   {p.body}
                 </p>
               </motion.li>

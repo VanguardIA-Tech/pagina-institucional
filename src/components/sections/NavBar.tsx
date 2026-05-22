@@ -3,24 +3,37 @@ import { NavLink, useLocation } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X, ArrowRight } from 'lucide-react'
 
-const NAV_LINKS = [
+const PRIVATE_LINKS = [
   { label: 'Tese', href: '#tese' },
   { label: 'Arquitetura', href: '#arquitetura' },
   { label: 'CNH da IA', href: '#cnh' },
   { label: 'ICIA OS', href: '#escada' },
   { label: 'Do It Hub', href: '#do-it-hub' },
   { label: 'Clientes', href: '#clientes' },
-  { label: 'Fale Conosco', href: '#fale-conosco' },
 ]
 
-const CTA_URL =
-  'https://wa.me/5591983012908?text=Quero%20falar%20com%20a%20VanguardIA'
+const GOV_LINKS = [
+  { label: 'Tese', href: '#tese-gov' },
+  { label: 'CNH para Servidores', href: '#cnh-gov' },
+  { label: 'ICIA.GOV', href: '#programas-gov' },
+  { label: 'Conformidade', href: '#conformidade' },
+  { label: 'Cases', href: '#depoimentos-gov' },
+  { label: 'COP-30', href: '#cop30' },
+]
+
+const CTA_PRIVATE = 'https://wa.me/5591983012908?text=Quero%20falar%20com%20a%20VanguardIA'
+const CTA_GOV = 'https://wa.me/5591983012908?text=Quero%20falar%20com%20a%20VanguardIA%20Gov'
 
 export default function NavBar() {
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
   const { pathname } = useLocation()
   const isGov = pathname.startsWith('/icia-gov')
+
+  const links = isGov ? GOV_LINKS : PRIVATE_LINKS
+  const ctaUrl = isGov ? CTA_GOV : CTA_PRIVATE
+  const ctaLabel = isGov ? 'Falar com a VanguardIA Gov' : 'Falar com a VanguardIA'
+  const ctaBgColor = isGov ? 'bg-va-orange-vivid hover:bg-va-orange-glow' : 'bg-va-blue-electric hover:bg-va-blue-glow'
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 80)
@@ -54,7 +67,7 @@ export default function NavBar() {
             : 'rgba(255, 255, 255, 0)',
         }}
         transition={{ duration: 0.25, ease: 'easeOut' }}
-        className="fixed top-0 left-0 right-0 z-50 border-b"
+        className="fixed top-0 left-0 right-0 z-50 border-b border-transparent"
       >
         <nav
           aria-label="Navegação principal"
@@ -78,15 +91,15 @@ export default function NavBar() {
               }}
             />
             {isGov && (
-              <span className="text-va-orange-vivid font-mono text-xs font-bold tracking-wider">
-                .GOV
+              <span className="text-va-orange-vivid font-mono text-[10px] sm:text-xs font-bold tracking-wider ml-1">
+                · GOV
               </span>
             )}
           </NavLink>
 
           {/* Desktop links */}
           <ul className="hidden lg:flex items-center gap-7 text-sm font-medium">
-            {NAV_LINKS.map((link) => (
+            {links.map((link) => (
               <li key={link.href}>
                 <a
                   href={link.href}
@@ -111,7 +124,7 @@ export default function NavBar() {
                 aria-current={!isGov ? 'page' : undefined}
                 className={({ isActive }) =>
                   `px-4 py-1.5 text-xs font-mono uppercase tracking-wider rounded-full transition-colors ${
-                    isActive
+                    isActive && !isGov
                       ? 'bg-va-blue-electric text-white'
                       : 'text-va-gray-200 hover:text-white'
                   }`
@@ -136,12 +149,12 @@ export default function NavBar() {
             </div>
 
             <a
-              href={CTA_URL}
+              href={ctaUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 bg-va-blue-electric hover:bg-va-blue-glow transition-colors text-white font-semibold text-sm px-5 py-2.5 rounded-full"
+              className={`inline-flex items-center gap-2 ${ctaBgColor} transition-colors text-white font-semibold text-xs px-5 py-2.5 rounded-full`}
             >
-              Falar com a VanguardIA
+              {ctaLabel}
               <ArrowRight size={14} />
             </a>
           </div>
@@ -172,7 +185,7 @@ export default function NavBar() {
             className="fixed inset-0 z-40 bg-va-black lg:hidden pt-20 pb-10 px-6 overflow-y-auto"
           >
             <ul className="flex flex-col gap-2 mb-10">
-              {NAV_LINKS.map((link, i) => (
+              {links.map((link, i) => (
                 <motion.li
                   key={link.href}
                   initial={{ opacity: 0, x: -16 }}
@@ -196,7 +209,7 @@ export default function NavBar() {
                 onClick={() => setOpen(false)}
                 className={({ isActive }) =>
                   `flex-1 text-center px-4 py-2 text-xs font-mono uppercase tracking-wider rounded-full ${
-                    isActive
+                    isActive && !isGov
                       ? 'bg-va-blue-electric text-white'
                       : 'text-va-gray-200'
                   }`
@@ -220,12 +233,12 @@ export default function NavBar() {
             </div>
 
             <a
-              href={CTA_URL}
+              href={ctaUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-center gap-2 bg-va-blue-electric text-white font-semibold text-base px-5 py-4 rounded-full w-full"
+              className={`flex items-center justify-center gap-2 ${ctaBgColor} text-white font-semibold text-base px-5 py-4 rounded-full w-full`}
             >
-              Falar com a VanguardIA
+              {ctaLabel}
               <ArrowRight size={16} />
             </a>
           </motion.div>

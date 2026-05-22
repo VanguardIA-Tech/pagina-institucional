@@ -1,6 +1,6 @@
 import { lazy, Suspense } from 'react'
 import { motion, useReducedMotion } from 'framer-motion'
-import { ArrowRight, ChevronDown } from 'lucide-react'
+import { ChevronDown } from 'lucide-react'
 import CountUp from '../ui/CountUp'
 
 const HeroParticleBackground = lazy(
@@ -13,22 +13,22 @@ const CTA_PRIVATE =
 const STATS = [
   {
     value: 8000,
-    label: 'Pessoas certificadas em IA',
+    label: 'certificados CNH da IA',
     prefix: '+',
-    accent: 'var(--color-va-blue-glow)',
+    accent: 'var(--color-va-green-vivid)',
   },
   {
     value: 600,
-    label: 'Projetos entregues em produção',
+    label: 'empresas atendidas',
     prefix: '+',
     accent: 'var(--color-va-blue-electric)',
   },
   {
     value: 1,
-    label: 'Bilhão em ativos sob orquestração',
+    label: 'sob a metodologia ICIA',
     prefix: 'R$ ',
     suffix: 'bi+',
-    accent: 'var(--color-va-blue-glow)',
+    accent: 'var(--color-va-orange-vivid)',
   },
 ]
 
@@ -36,7 +36,7 @@ const HEADLINE_PARTS: { text: string; color?: string }[] = [
   { text: 'A única arquitetura brasileira de ' },
   { text: 'Inteligência Aplicada', color: 'var(--color-va-orange-vivid)' },
   { text: ' que une método, certificação, processos e dados soberanos em ' },
-  { text: 'um único sistema', color: 'var(--color-va-blue-glow)' },
+  { text: 'um único sistema', color: 'var(--color-va-green-vivid)' },
   { text: '.' },
 ]
 
@@ -98,7 +98,7 @@ export default function Hero() {
             className="font-mono text-[11px] sm:text-xs uppercase tracking-[0.18em] text-va-gray-200/80 mb-8"
           >
             <span className="inline-block w-2 h-2 bg-va-orange-vivid rounded-full mr-3 align-middle" />
-            Grupo VanguardIA · Da Amazônia para o Mundo · Est. 2020
+            GRUPO VANGUARDIA  ·  DA AMAZÔNIA PARA O MUNDO  ·  EST. 2020
           </motion.p>
 
           <motion.h1
@@ -122,9 +122,7 @@ export default function Hero() {
             className="mt-8 max-w-2xl text-va-gray-200 text-balance"
             style={{ fontSize: 'var(--text-body-l)' }}
           >
-            Não vendemos IA. Construímos a cultura, o método e o sistema que
-            transformam IA em resultado mensurável — para empresas e governos
-            brasileiros.
+            Com dezenas de agentes de IA operando no dia a dia dos nossos clientes. Consequência de um trabalho bem feito.
           </motion.p>
 
           {/* Stats */}
@@ -162,24 +160,27 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: reduce ? 0 : 1.8, duration: 0.6 }}
-            className="mt-12 flex flex-col sm:flex-row gap-4"
+            className="mt-12 flex flex-col items-center sm:items-start gap-3"
           >
-            <a
-              href={CTA_PRIVATE}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 bg-va-blue-electric hover:bg-va-blue-glow text-white font-semibold px-7 py-4 rounded-full transition-colors text-base"
-            >
-              Empresas
-              <ArrowRight size={16} />
-            </a>
-            <a
-              href="/icia-gov"
-              className="inline-flex items-center justify-center gap-2 border border-white/30 hover:border-white text-white font-semibold px-7 py-4 rounded-full transition-colors text-base"
-            >
-              Setor Público
-              <ArrowRight size={16} />
-            </a>
+            <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
+              <a
+                href={CTA_PRIVATE}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 bg-va-blue-electric hover:bg-va-blue-glow text-white font-semibold px-7 py-4 rounded-full transition-colors text-base animate-pulse-glow"
+              >
+                EMPRESAS ▶
+              </a>
+              <a
+                href="/icia-gov"
+                className="inline-flex items-center justify-center gap-2 border border-white/30 hover:border-white text-white font-semibold px-7 py-4 rounded-full transition-colors text-base"
+              >
+                SETOR PÚBLICO ▶
+              </a>
+            </div>
+            <p className="text-xs text-va-gray-500 font-mono tracking-wider pl-1 mt-1">
+              Escolha por onde você chega.
+            </p>
           </motion.div>
         </motion.div>
 

@@ -9,6 +9,7 @@ import Acessorios from '../components/sections/Acessorios'
 import Impacto from '../components/sections/Impacto'
 import CNHdaIA from '../components/sections/CNHdaIA'
 import Clientes from '../components/sections/Clientes'
+import Depoimentos from '../components/sections/Depoimentos'
 import DoItHub from '../components/sections/DoItHub'
 import Parcerias from '../components/sections/Parcerias'
 import ManifestoCTA from '../components/sections/ManifestoCTA'
@@ -28,6 +29,7 @@ const SECTIONS: SideNavSection[] = [
   { id: 'impacto', label: 'Impacto' },
   { id: 'cnh', label: 'CNH da IA' },
   { id: 'clientes', label: 'Clientes' },
+  { id: 'depoimentos', label: 'Depoimentos' },
   { id: 'do-it-hub', label: 'Do It Hub' },
   { id: 'parcerias', label: 'Parcerias' },
   { id: 'manifesto', label: 'Manifesto' },
@@ -50,6 +52,7 @@ export default function Home() {
         <Impacto />
         <CNHdaIA />
         <Clientes />
+        <Depoimentos />
         <DoItHub />
         <Parcerias />
         <ManifestoCTA />

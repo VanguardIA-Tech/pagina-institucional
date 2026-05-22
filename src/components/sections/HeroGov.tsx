@@ -1,5 +1,5 @@
 import { motion, useReducedMotion } from 'framer-motion'
-import { ArrowRight, ChevronDown } from 'lucide-react'
+import { ChevronDown } from 'lucide-react'
 import CountUp from '../ui/CountUp'
 
 const CTA_CNH =
@@ -10,30 +10,30 @@ const CTA_ICIA =
 const STATS = [
   {
     value: 8000,
-    label: 'Servidores e gestores certificados',
+    label: 'servidores e líderes já capacitados pela CNH da IA',
     prefix: '+',
     accent: 'var(--color-va-orange-vivid)',
   },
   {
     value: 6,
-    label: 'Programas PMI prontos para inexigibilidade',
+    label: 'programas PMI estruturados para o setor público',
     accent: 'var(--color-va-green-vivid)',
   },
   {
     value: null,
-    label: 'Lei 14.133/21 · LC 182/2021 · LGPD',
+    label: 'Lei 14.133/21 · LC 182/2021 · LGPD · CPSI',
     text: 'CONFORME',
     accent: 'var(--color-va-gold)',
   },
 ] as const
 
 const HEADLINE_PARTS: { text: string; color?: string }[] = [
-  { text: 'A ' },
+  { text: 'A primeira arquitetura brasileira de ' },
   {
-    text: 'primeira arquitetura brasileira',
+    text: 'Inteligência Aplicada',
     color: 'var(--color-va-orange-vivid)',
   },
-  { text: ' de Inteligência Aplicada desenhada para o ' },
+  { text: ' desenhada para o ' },
   { text: 'setor público', color: 'var(--color-va-green-vivid)' },
   { text: '.' },
 ]
@@ -69,7 +69,7 @@ export default function HeroGov() {
         className="absolute inset-0 animate-hero-breathe"
         style={{
           background:
-            'radial-gradient(ellipse at 20% 25%, #FF4500 0%, #FF6B1A 25%, #B84A00 50%, #2D1050 80%, #0A0A0F 100%)',
+            'radial-gradient(ellipse at 20% 25%, #FF6B1A 0%, #B84A00 30%, #00563F 70%, #0A0A0F 100%)',
         }}
       />
       <div
@@ -101,13 +101,13 @@ export default function HeroGov() {
             className="font-mono text-[11px] sm:text-xs uppercase tracking-[0.18em] text-white/90 mb-8"
           >
             <span
-              className="inline-block w-2 h-2 rounded-full mr-3 align-middle"
+              className="inline-block w-2 h-2 rounded-full mr-3 align-middle animate-pulse"
               style={{
-                background: '#FF4500',
-                boxShadow: '0 0 12px rgba(255, 69, 0, 0.7)',
+                background: '#FF6B1A',
+                boxShadow: '0 0 12px rgba(255, 107, 26, 0.7)',
               }}
             />
-            ICIA.GOV · Inteligência Aplicada para o Setor Público · Amazônia · Brasil
+            ICIA.GOV · INTELIGÊNCIA APLICADA PARA O SETOR PÚBLICO · AMAZÔNIA · BRASIL
           </motion.p>
 
           <motion.h1
@@ -131,9 +131,7 @@ export default function HeroGov() {
             className="mt-8 max-w-2xl text-va-gray-200 text-balance"
             style={{ fontSize: 'var(--text-body-l)' }}
           >
-            Começamos pela CNH da IA — a porta de entrada que já formou mais de
-            8.000 profissionais brasileiros e abre a contratação por
-            inexigibilidade conforme Lei 14.133/21, LC 182/2021 e LGPD.
+            Começa pela educação que já capacitou 8.000+ profissionais. Continua pela modernização de processos, governança de IA e infraestrutura de dados. Em conformidade com a Lei 14.133/21, a LC 182/2021 e a LGPD.
           </motion.p>
 
           {/* Carteirada tripla */}
@@ -184,8 +182,7 @@ export default function HeroGov() {
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-2 bg-va-orange-vivid hover:bg-va-orange-glow text-white font-semibold px-7 py-4 rounded-full transition-colors text-base"
             >
-              Começar pela CNH da IA
-              <ArrowRight size={16} />
+              COMEÇAR PELA CNH DA IA ▶
             </a>
             <a
               href={CTA_ICIA}
@@ -193,8 +190,7 @@ export default function HeroGov() {
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-2 border border-white/40 hover:border-white text-white font-semibold px-7 py-4 rounded-full transition-colors text-base"
             >
-              Conhecer ICIA.GOV
-              <ArrowRight size={16} />
+              CONHECER O PROGRAMA ICIA.GOV ▶
             </a>
           </motion.div>
 
@@ -216,14 +212,14 @@ export default function HeroGov() {
           transition={{ delay: reduce ? 0 : 2.4, duration: 0.6 }}
           className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-va-gray-200/70 hover:text-white transition-colors"
         >
-          <span className="font-mono text-[10px] uppercase tracking-[0.2em]">
-            Continue
+          <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-va-orange-vivid">
+            CONTINUE
           </span>
           <motion.span
             animate={reduce ? {} : { y: [0, 6, 0] }}
             transition={{ duration: 1.8, repeat: Infinity, ease: 'easeInOut' }}
           >
-            <ChevronDown size={18} />
+            <ChevronDown size={18} className="text-va-orange-vivid" />
           </motion.span>
         </motion.a>
       </div>

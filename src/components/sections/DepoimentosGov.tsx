@@ -14,16 +14,16 @@ const ITEMS: Item[] = [
   {
     id: 'acp',
     type: 'video',
-    org: 'ACP — Associação Comercial do Pará',
-    cargo: 'Liderança institucional',
+    org: 'Alberto Villar',
+    cargo: 'ACP · Associação Comercial do Pará',
     quote:
       'A CNH da IA mudou a forma como a Associação enxerga inovação no setor público. Cultura, método e prática nessa ordem — exatamente o que faltava.',
   },
   {
     id: 'sindarpa',
     type: 'video',
-    org: 'SINDARPA — Sindicato Patronal',
-    cargo: 'Diretoria executiva',
+    org: 'Edivaldo Carvalho Neto',
+    cargo: 'SINDARPA',
     quote:
       'Servidores certificados, política institucional pronta e processo de inexigibilidade documentado. O caderno técnico foi decisivo.',
   },
@@ -56,15 +56,14 @@ export default function DepoimentosGov() {
       <div className="max-w-7xl mx-auto px-5 sm:px-8">
         <div className="mb-12 lg:mb-16 max-w-3xl">
           <p className="font-mono text-xs uppercase tracking-[0.18em] text-va-gray-700 mb-4">
-            09 · Vozes do setor público
+            08 · VOZES INSTITUCIONAIS
           </p>
           <h2
             id="depoimentos-gov-headline"
-            className="font-display font-extrabold tracking-[-0.025em] leading-[1] text-balance"
+            className="font-editorial italic font-extrabold tracking-[-0.025em] leading-[1] text-balance text-va-black"
             style={{ fontSize: 'var(--text-display-l)' }}
           >
-            Quem já entrou pela{' '}
-            <span className="text-va-orange-vivid">porta da CNH</span>.
+            Quem já caminha conosco.
           </h2>
         </div>
 
@@ -104,7 +103,7 @@ export default function DepoimentosGov() {
                 ) : (
                   <div className="text-center px-6">
                     <p className="font-mono text-xs uppercase tracking-[0.18em] text-va-gray-500 mb-2">
-                      Depoimento em breve
+                      + DEPOIMENTO EM BREVE
                     </p>
                     <p className="font-display font-bold text-va-gray-500 text-2xl">
                       +
@@ -141,12 +140,12 @@ export default function DepoimentosGov() {
                     </div>
                   </>
                 ) : (
-                  <div className="m-auto text-center">
-                    <p className="font-mono text-xs uppercase tracking-[0.18em] text-va-gray-500">
-                      Depoimento em breve
+                  <div className="m-auto text-center px-5">
+                    <p className="font-mono text-xs uppercase tracking-[0.18em] text-va-gray-700 mb-2">
+                      + DEPOIMENTO EM BREVE
                     </p>
-                    <p className="mt-3 text-va-gray-700 text-sm">
-                      Novas vozes do setor público em produção.
+                    <p className="mt-3 text-va-gray-500 text-sm leading-relaxed max-w-xs mx-auto">
+                      Próximas vozes do ecossistema institucional VanguardIA Gov.
                     </p>
                   </div>
                 )}
