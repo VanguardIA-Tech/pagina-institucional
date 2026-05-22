@@ -141,6 +141,49 @@ function OrbCore({ state }: { state: OrbState }) {
   )
 }
 
+type OrbContentProps = {
+  state: OrbState
+  amplitudeRef: React.MutableRefObject<number>
+  isMobile: boolean
+  reduceMotion: boolean | null
+}
+
+function OrbContent({ state, amplitudeRef, isMobile, reduceMotion }: OrbContentProps) {
+  const groupRef = useRef<THREE.Group>(null)
+  const elapsedRef = useRef(0)
+
+  useFrame((_, delta) => {
+    if (reduceMotion) {
+      if (groupRef.current) groupRef.current.scale.setScalar(1.0)
+      return
+    }
+    elapsedRef.current += delta
+    if (groupRef.current) {
+      if (elapsedRef.current < 1.2) {
+        groupRef.current.scale.setScalar(0.6)
+      } else if (elapsedRef.current < 1.8) {
+        const t = (elapsedRef.current - 1.2) / 0.6
+        // Easing: easeOutCubic
+        const scale = 0.6 + 0.4 * (1 - Math.pow(1 - t, 3))
+        groupRef.current.scale.setScalar(scale)
+      } else {
+        groupRef.current.scale.setScalar(1.0)
+      }
+    }
+  })
+
+  return (
+    <group ref={groupRef}>
+      <OrbCore state={state} />
+      <OrbParticles
+        state={state}
+        amplitudeRef={amplitudeRef}
+        pointCount={isMobile ? 500 : 1200}
+      />
+    </group>
+  )
+}
+
 type OrbVoiceAgentProps = {
   /** Backend endpoint that creates the Realtime WebRTC session from an SDP offer. */
   tokenEndpoint?: string
@@ -169,8 +212,6 @@ export default function OrbVoiceAgent({
   const rafRef = useRef<number>(0)
   const responseCountRef = useRef<number>(0)
 
-  const [animationDone, setAnimationDone] = useState(false)
-
   useEffect(() => {
     const mq = window.matchMedia('(max-width: 640px)')
     const sync = () => setIsMobile(mq.matches)
@@ -178,13 +219,6 @@ export default function OrbVoiceAgent({
     mq.addEventListener('change', sync)
     return () => mq.removeEventListener('change', sync)
   }, [])
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setAnimationDone(true)
-    }, reduceMotion ? 100 : 2000)
-    return () => clearTimeout(timer)
-  }, [reduceMotion])
 
   // Animation frame loop for amplitude analysis
   useEffect(() => {
@@ -569,8 +603,8 @@ export default function OrbVoiceAgent({
         onBlur={() => setTooltipOpen(false)}
         aria-label={label}
         aria-pressed={state !== 'idle'}
-        initial={{ opacity: 0, scale: 0.6 }}
-        animate={{ opacity: 1, scale: 1 }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
         transition={{ delay: reduceMotion ? 0 : 1.2, duration: 0.6 }}
         whileHover={reduceMotion ? undefined : { scale: 1.05 }}
         whileTap={reduceMotion ? undefined : { scale: 0.94 }}
@@ -578,29 +612,37 @@ export default function OrbVoiceAgent({
         style={{
           width: orbSize,
           height: orbSize,
-          background:
-            'radial-gradient(circle at 50% 45%, rgba(11,26,62,0.95) 0%, rgba(10,10,15,0.98) 70%)',
-          boxShadow: `0 0 60px ${colors.glow}, inset 0 0 30px rgba(0,0,0,0.6)`,
-          transition: 'box-shadow 0.4s ease',
         }}
       >
-        {animationDone && (
-          <Canvas
-            camera={{ position: [0, 0, 3.4], fov: 50 }}
-            dpr={[1, 1.5]}
-            gl={{ antialias: true, alpha: true, powerPreference: 'low-power' }}
-            style={{ position: 'absolute', inset: 0, pointerEvents: 'none' }}
-          >
-            <ambientLight intensity={0.6} />
-            <pointLight position={[2, 2, 2]} intensity={0.7} />
-            <OrbCore state={state} />
-            <OrbParticles
-              state={state}
-              amplitudeRef={amplitudeRef}
-              pointCount={isMobile ? 500 : 1200}
-            />
-          </Canvas>
-        )}
+        {/* Animated background and shadow */}
+        <motion.div
+          initial={{ scale: reduceMotion ? 1 : 0.6 }}
+          animate={{ scale: 1 }}
+          transition={{ delay: reduceMotion ? 0 : 1.2, duration: 0.6 }}
+          className="absolute inset-0 rounded-full"
+          style={{
+            background:
+              'radial-gradient(circle at 50% 45%, rgba(11,26,62,0.95) 0%, rgba(10,10,15,0.98) 70%)',
+            boxShadow: `0 0 60px ${colors.glow}, inset 0 0 30px rgba(0,0,0,0.6)`,
+            transition: 'box-shadow 0.4s ease',
+          }}
+        />
+
+        <Canvas
+          camera={{ position: [0, 0, 3.4], fov: 50 }}
+          dpr={[1, 1.5]}
+          gl={{ antialias: true, alpha: true, powerPreference: 'low-power' }}
+          style={{ position: 'absolute', inset: 0, pointerEvents: 'none' }}
+        >
+          <ambientLight intensity={0.6} />
+          <pointLight position={[2, 2, 2]} intensity={0.7} />
+          <OrbContent
+            state={state}
+            amplitudeRef={amplitudeRef}
+            isMobile={isMobile}
+            reduceMotion={reduceMotion}
+          />
+        </Canvas>
 
         {/* Audio rings on speaking */}
         <AnimatePresence>
@@ -627,7 +669,10 @@ export default function OrbVoiceAgent({
         </AnimatePresence>
 
         {/* State icon overlay */}
-        <span
+        <motion.span
+          initial={{ scale: reduceMotion ? 1 : 0.6 }}
+          animate={{ scale: 1 }}
+          transition={{ delay: reduceMotion ? 0 : 1.2, duration: 0.6 }}
           aria-hidden="true"
           className="absolute bottom-2 left-1/2 -translate-x-1/2 inline-flex items-center justify-center w-8 h-8 rounded-full backdrop-blur-md pointer-events-none"
           style={{
@@ -647,7 +692,7 @@ export default function OrbVoiceAgent({
           ) : (
             <MicOff size={14} />
           )}
-        </span>
+        </motion.span>
       </motion.button>
 
       {error && (

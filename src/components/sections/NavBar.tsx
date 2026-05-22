@@ -98,8 +98,43 @@ export default function NavBar() {
             ))}
           </ul>
 
-          {/* Right: CTA */}
+          {/* Right: switcher + CTA */}
           <div className="hidden lg:flex items-center gap-4 shrink-0">
+            <div
+              role="tablist"
+              aria-label="Selecionar segmento"
+              className="flex bg-white/5 border border-white/10 rounded-full p-1"
+            >
+              <NavLink
+                to="/"
+                role="tab"
+                aria-current={!isGov ? 'page' : undefined}
+                className={({ isActive }) =>
+                  `px-4 py-1.5 text-xs font-mono uppercase tracking-wider rounded-full transition-colors ${
+                    isActive
+                      ? 'bg-va-blue-electric text-white'
+                      : 'text-va-gray-200 hover:text-white'
+                  }`
+                }
+              >
+                Empresas
+              </NavLink>
+              <NavLink
+                to="/icia-gov"
+                role="tab"
+                aria-current={isGov ? 'page' : undefined}
+                className={({ isActive }) =>
+                  `px-4 py-1.5 text-xs font-mono uppercase tracking-wider rounded-full transition-colors ${
+                    isActive
+                      ? 'bg-va-orange-vivid text-white'
+                      : 'text-va-gray-200 hover:text-white'
+                  }`
+                }
+              >
+                Setor Público
+              </NavLink>
+            </div>
+
             <a
               href={CTA_URL}
               target="_blank"
@@ -154,6 +189,35 @@ export default function NavBar() {
                 </motion.li>
               ))}
             </ul>
+
+            <div className="flex bg-white/5 border border-white/10 rounded-full p-1 mb-6">
+              <NavLink
+                to="/"
+                onClick={() => setOpen(false)}
+                className={({ isActive }) =>
+                  `flex-1 text-center px-4 py-2 text-xs font-mono uppercase tracking-wider rounded-full ${
+                    isActive
+                      ? 'bg-va-blue-electric text-white'
+                      : 'text-va-gray-200'
+                  }`
+                }
+              >
+                Empresas
+              </NavLink>
+              <NavLink
+                to="/icia-gov"
+                onClick={() => setOpen(false)}
+                className={({ isActive }) =>
+                  `flex-1 text-center px-4 py-2 text-xs font-mono uppercase tracking-wider rounded-full ${
+                    isActive
+                      ? 'bg-va-orange-vivid text-white'
+                      : 'text-va-gray-200'
+                  }`
+                }
+              >
+                Setor Público
+              </NavLink>
+            </div>
 
             <a
               href={CTA_URL}
