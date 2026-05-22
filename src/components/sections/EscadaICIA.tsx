@@ -8,7 +8,6 @@ type Plano = {
   tag?: { icon: 'star' | 'patent'; label: string }
   headline: string
   heightClass: string
-  pxHeight: number
   inclui: string[]
   ideal: string
   cta: string
@@ -24,8 +23,7 @@ const PLANOS: Plano[] = [
     level: '01',
     name: 'ICIA START',
     headline: 'A entrada estratégica.',
-    heightClass: 'lg:h-[410px]',
-    pxHeight: 410,
+    heightClass: 'lg:min-h-[460px]',
     inclui: [
       'CNH da IA para áreas críticas',
       'Diagnóstico DEEP inicial',
@@ -45,8 +43,7 @@ const PLANOS: Plano[] = [
     name: 'ICIA CORE',
     tag: { icon: 'star', label: 'RECOMENDADO' },
     headline: 'A transformação multissetorial.',
-    heightClass: 'lg:h-[470px]',
-    pxHeight: 470,
+    heightClass: 'lg:min-h-[520px]',
     inclui: [
       'CNH da IA em múltiplas áreas',
       'DEEP + PEI completos',
@@ -69,8 +66,7 @@ const PLANOS: Plano[] = [
     name: 'ICIA OS',
     tag: { icon: 'patent', label: 'PATENTEADO' },
     headline: 'O sistema nervoso completo.',
-    heightClass: 'lg:h-[530px]',
-    pxHeight: 530,
+    heightClass: 'lg:min-h-[580px]',
     inclui: [
       'Sistema entre sistemas',
       'Agentes orquestrados',
@@ -146,7 +142,6 @@ export default function EscadaICIA() {
               className={`relative rounded-2xl border bg-white/[0.03] backdrop-blur-sm flex flex-col overflow-hidden ${p.heightClass}`}
               style={{
                 borderColor: p.featured ? p.color : 'rgba(255,255,255,0.08)',
-                minHeight: p.pxHeight,
               }}
             >
               {p.tag && (
