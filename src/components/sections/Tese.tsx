@@ -1,5 +1,4 @@
 import { motion } from 'framer-motion'
-import { X } from 'lucide-react'
 import RevealSection, { revealItemVariants } from '../ui/RevealSection'
 
 const FILMES = [
@@ -77,7 +76,7 @@ export default function Tese() {
             </h2>
 
             <p
-              className="mt-10 font-editorial italic text-va-orange-vivid leading-[1.15] text-balance animate-pulse-glow"
+              className="mt-10 font-editorial italic text-va-orange-vivid leading-[1.15] text-balance"
               style={{ fontSize: 'clamp(24px, 3vw, 36px)' }}
             >
               Tem um problema de organização que a IA expôs.
@@ -92,20 +91,24 @@ export default function Tese() {
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.4 }}
-                className="border border-white/10 bg-white/[0.02] rounded-xl p-6 lg:p-7 hover:border-red-500/30 transition-colors"
+                className="border border-white/10 bg-white/[0.02] rounded-xl flex overflow-hidden hover:border-white/20 transition-colors group"
               >
-                <div className="flex items-start gap-4">
-                  <span className="shrink-0 inline-flex items-center justify-center w-8 h-8 rounded-full bg-red-500/15 text-red-400 ring-1 ring-red-500/30">
-                    <X size={16} strokeWidth={3} />
-                  </span>
-                  <div>
-                    <h3 className="font-display font-bold text-lg text-white mb-2">
-                      ❌ {f.title}
-                    </h3>
-                    <p className="text-sm text-va-gray-200 leading-relaxed">
-                      {f.body}
-                    </p>
-                  </div>
+                {/* Vintage Filmstrip Left Edge */}
+                <div className="w-8 shrink-0 bg-neutral-950 border-r border-white/10 flex flex-col justify-around py-3 items-center min-h-full">
+                  <div className="w-3.5 h-2 bg-va-black rounded-[1px] border border-white/5 shadow-[inset_0_1px_2px_rgba(0,0,0,0.8)]" />
+                  <div className="w-3.5 h-2 bg-va-black rounded-[1px] border border-white/5 shadow-[inset_0_1px_2px_rgba(0,0,0,0.8)]" />
+                  <div className="w-3.5 h-2 bg-va-black rounded-[1px] border border-white/5 shadow-[inset_0_1px_2px_rgba(0,0,0,0.8)]" />
+                  <div className="w-3.5 h-2 bg-va-black rounded-[1px] border border-white/5 shadow-[inset_0_1px_2px_rgba(0,0,0,0.8)]" />
+                  <div className="w-3.5 h-2 bg-va-black rounded-[1px] border border-white/5 shadow-[inset_0_1px_2px_rgba(0,0,0,0.8)]" />
+                </div>
+
+                <div className="p-6 lg:p-7 flex-1">
+                  <h3 className="font-display font-bold text-lg text-white mb-2">
+                    {f.title}
+                  </h3>
+                  <p className="text-sm text-va-gray-200 leading-relaxed">
+                    {f.body}
+                  </p>
                 </div>
               </motion.article>
             ))}

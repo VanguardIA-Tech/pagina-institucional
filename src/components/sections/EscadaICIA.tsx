@@ -7,8 +7,6 @@ type Plano = {
   name: string
   tag?: { icon: 'star' | 'patent'; label: string }
   headline: string
-  price: string
-  priceCaption: string
   heightClass: string
   pxHeight: number
   inclui: string[]
@@ -26,10 +24,8 @@ const PLANOS: Plano[] = [
     level: '01',
     name: 'ICIA START',
     headline: 'A entrada estratégica.',
-    price: 'R$ 25k',
-    priceCaption: 'setup único · R$ 12,9k/mês',
-    heightClass: 'lg:h-[480px]',
-    pxHeight: 480,
+    heightClass: 'lg:h-[410px]',
+    pxHeight: 410,
     inclui: [
       'CNH da IA para áreas críticas',
       'Diagnóstico DEEP inicial',
@@ -49,10 +45,8 @@ const PLANOS: Plano[] = [
     name: 'ICIA CORE',
     tag: { icon: 'star', label: 'RECOMENDADO' },
     headline: 'A transformação multissetorial.',
-    price: 'R$ 65k',
-    priceCaption: 'setup + R$ 28,9k/mês',
-    heightClass: 'lg:h-[540px]',
-    pxHeight: 540,
+    heightClass: 'lg:h-[470px]',
+    pxHeight: 470,
     inclui: [
       'CNH da IA em múltiplas áreas',
       'DEEP + PEI completos',
@@ -75,10 +69,8 @@ const PLANOS: Plano[] = [
     name: 'ICIA OS',
     tag: { icon: 'patent', label: 'PATENTEADO' },
     headline: 'O sistema nervoso completo.',
-    price: 'Sob consulta',
-    priceCaption: 'a partir de R$ 180k/mês',
-    heightClass: 'lg:h-[600px]',
-    pxHeight: 600,
+    heightClass: 'lg:h-[530px]',
+    pxHeight: 530,
     inclui: [
       'Sistema entre sistemas',
       'Agentes orquestrados',
@@ -196,20 +188,7 @@ export default function EscadaICIA() {
                 </p>
               </div>
 
-              <div
-                className="px-7 py-5 border-y border-white/10"
-                style={{ background: 'rgba(255,255,255,0.02)' }}
-              >
-                <p
-                  className="font-display font-extrabold leading-none animate-pulse-glow"
-                  style={{ fontSize: '32px', color: p.color }}
-                >
-                  {p.price}
-                </p>
-                <p className="font-mono text-[11px] text-va-gray-500 mt-1">
-                  {p.priceCaption}
-                </p>
-              </div>
+              <div className="h-px bg-white/10 mx-7" />
 
               <div className="px-7 py-6 flex-1">
                 <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-va-gray-500 mb-3">

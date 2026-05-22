@@ -167,7 +167,7 @@ export default function Hero() {
                 href={CTA_PRIVATE}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 bg-va-blue-electric hover:bg-va-blue-glow text-white font-semibold px-7 py-4 rounded-full transition-colors text-base animate-pulse-glow"
+                className="inline-flex items-center justify-center gap-2 bg-va-blue-electric hover:bg-va-blue-glow text-white font-semibold px-7 py-4 rounded-full transition-colors text-base"
               >
                 EMPRESAS ▶
               </a>
