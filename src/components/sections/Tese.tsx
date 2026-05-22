@@ -91,24 +91,54 @@ export default function Tese() {
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.4 }}
-                className="border border-white/10 bg-white/[0.02] rounded-xl flex overflow-hidden hover:border-white/20 transition-colors group"
+                className="relative border-2 border-neutral-800 bg-[#0c0c0e] rounded-xl flex overflow-hidden hover:border-red-500/40 transition-colors group shadow-lg shadow-black/40"
               >
-                {/* Vintage Filmstrip Left Edge */}
-                <div className="w-8 shrink-0 bg-neutral-950 border-r border-white/10 flex flex-col justify-around py-3 items-center min-h-full">
-                  <div className="w-3.5 h-2 bg-va-black rounded-[1px] border border-white/5 shadow-[inset_0_1px_2px_rgba(0,0,0,0.8)]" />
-                  <div className="w-3.5 h-2 bg-va-black rounded-[1px] border border-white/5 shadow-[inset_0_1px_2px_rgba(0,0,0,0.8)]" />
-                  <div className="w-3.5 h-2 bg-va-black rounded-[1px] border border-white/5 shadow-[inset_0_1px_2px_rgba(0,0,0,0.8)]" />
-                  <div className="w-3.5 h-2 bg-va-black rounded-[1px] border border-white/5 shadow-[inset_0_1px_2px_rgba(0,0,0,0.8)]" />
-                  <div className="w-3.5 h-2 bg-va-black rounded-[1px] border border-white/5 shadow-[inset_0_1px_2px_rgba(0,0,0,0.8)]" />
+                {/* VHS Spine Label on the Left */}
+                <div className="w-12 shrink-0 bg-[#f3f2f0] border-r border-neutral-800 flex flex-col justify-between py-4 items-center min-h-full select-none relative">
+                  {/* Retro sleeve stripes at the top of label */}
+                  <div className="absolute top-0 left-0 right-0 h-1.5 flex overflow-hidden">
+                    <div className="flex-1 bg-[#ff4a4a]" />
+                    <div className="flex-1 bg-[#ff9800]" />
+                    <div className="flex-1 bg-[#ffeb3b]" />
+                    <div className="flex-1 bg-[#2196f3]" />
+                  </div>
+
+                  {/* Red handwritten/marker style 'X' warning box */}
+                  <div className="mt-3 flex items-center justify-center w-7 h-7 rounded bg-red-500/10 border border-red-500/35 text-red-500 font-mono font-extrabold text-sm shadow-sm select-none">
+                    X
+                  </div>
+
+                  {/* Vertically written Title */}
+                  <div
+                    className="font-mono text-[9px] text-neutral-600 font-bold uppercase tracking-[0.2em] my-4 whitespace-nowrap"
+                    style={{ writingMode: 'vertical-rl', transform: 'rotate(180deg)' }}
+                  >
+                    {f.title}
+                  </div>
+
+                  {/* Cassette tab / notch style at the bottom */}
+                  <div className="w-4 h-2 bg-neutral-900 rounded-t-sm border-t border-x border-neutral-700/50" />
                 </div>
 
-                <div className="p-6 lg:p-7 flex-1">
-                  <h3 className="font-display font-bold text-lg text-white mb-2">
-                    {f.title}
-                  </h3>
+                {/* Content */}
+                <div className="p-6 lg:p-7 flex-1 flex flex-col justify-center">
+                  <div className="flex items-center gap-2 mb-2.5">
+                    <span className="text-[10px] font-mono text-red-500 font-extrabold tracking-wider px-1.5 py-0.5 rounded bg-red-500/10 border border-red-500/25 animate-pulse select-none">
+                      PLAY ◀
+                    </span>
+                    <h3 className="font-display font-bold text-lg text-white">
+                      ❌ {f.title}
+                    </h3>
+                  </div>
                   <p className="text-sm text-va-gray-200 leading-relaxed">
                     {f.body}
                   </p>
+                </div>
+
+                {/* Subtle cassette tape window background on hover */}
+                <div className="absolute right-4 bottom-4 w-12 h-8 border border-white/5 rounded opacity-10 group-hover:opacity-30 transition-opacity bg-gradient-to-t from-neutral-950 to-neutral-900 flex items-center justify-around px-1 pointer-events-none">
+                  <div className="w-2.5 h-2.5 rounded-full border border-dashed border-white/40 animate-spin" style={{ animationDuration: '6s' }} />
+                  <div className="w-2.5 h-2.5 rounded-full border border-dashed border-white/40 animate-spin" style={{ animationDuration: '6s' }} />
                 </div>
               </motion.article>
             ))}
