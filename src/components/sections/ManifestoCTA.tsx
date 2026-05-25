@@ -1,9 +1,9 @@
 import { motion } from 'framer-motion'
 import { ArrowRight } from 'lucide-react'
 import RevealSection from '../ui/RevealSection'
+import { whatsappLink } from '../../lib/whatsapp'
 
-const CTA_PRIVATE =
-  'https://wa.me/5591983012908?text=Quero%20conhecer%20a%20ICIA%20para%20empresas'
+const CTA_PRIVATE = whatsappLink('Quero conhecer a ICIA para empresas')
 
 export default function ManifestoCTA() {
   return (
@@ -37,7 +37,7 @@ export default function ManifestoCTA() {
         {/* Section Label */}
         <RevealSection as="div" className="mb-8">
           <p className="font-mono text-xs uppercase tracking-[0.18em] text-va-gray-500">
-            14 · MANIFESTO
+            11 · MANIFESTO
           </p>
         </RevealSection>
 
@@ -112,7 +112,8 @@ export default function ManifestoCTA() {
             rel="noopener noreferrer"
             className="inline-flex items-center justify-center gap-3 text-white font-bold px-12 py-5 rounded-full transition-all duration-300 text-base shadow-2xl hover:scale-105"
             style={{
-              background: 'linear-gradient(90deg, var(--color-va-blue-electric) 0%, var(--color-va-green-vivid) 100%)',
+              background:
+                'linear-gradient(90deg, var(--color-va-blue-electric) 0%, var(--color-va-teal) 100%)',
             }}
           >
             FALAR COM A VANGUARDIA

@@ -135,21 +135,23 @@ export default function Acessorios() {
                       <p className="mt-3 text-sm leading-relaxed pr-2 text-va-gray-700">
                         {a.description}
                       </p>
-                      <ul className="mt-5 flex flex-wrap gap-2">
-                        {a.bullets.map((b) => (
-                          <li
-                            key={b}
-                            className="text-[11px] font-mono uppercase tracking-[0.1em] px-2.5 py-1 rounded-full"
-                            style={{
-                              background: `${a.color}14`,
-                              color: a.color,
-                              border: `1px solid ${a.color}55`,
-                            }}
-                          >
-                            {b}
-                          </li>
-                        ))}
-                      </ul>
+                      {a.bullets.length > 0 && (
+                        <ul className="mt-5 flex flex-wrap gap-2">
+                          {a.bullets.map((b) => (
+                            <li
+                              key={b}
+                              className="text-[11px] font-mono uppercase tracking-[0.1em] px-2.5 py-1 rounded-full"
+                              style={{
+                                background: `${a.color}14`,
+                                color: a.color,
+                                border: `1px solid ${a.color}55`,
+                              }}
+                            >
+                              {b}
+                            </li>
+                          ))}
+                        </ul>
+                      )}
                     </div>
                   </div>
 

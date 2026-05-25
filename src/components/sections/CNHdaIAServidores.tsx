@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
 import { ArrowRight, Check, Scale, Zap } from 'lucide-react'
+import { whatsappLink } from '../../lib/whatsapp'
 
 const BENEFITS = [
   'Diagnóstico inicial por cargo, nível e setor',
@@ -58,8 +59,9 @@ const PASSOS = [
   },
 ]
 
-const CTA_URL =
-  'https://wa.me/559132233355?text=Quero%20a%20CNH%20da%20IA%20para%20servidores%20da%20minha%20instituição'
+const CTA_URL = whatsappLink(
+  'Quero a CNH da IA para servidores da minha instituição',
+)
 
 export default function CNHdaIAServidores() {
   return (
@@ -172,7 +174,7 @@ export default function CNHdaIAServidores() {
                   }}
                   className="flex items-start gap-3 text-white/95 leading-snug"
                 >
-                  <span className="shrink-0 mt-0.5 inline-flex items-center justify-center w-5 h-5 rounded-full bg-va-green-vivid text-va-black">
+                  <span className="shrink-0 mt-0.5 inline-flex items-center justify-center w-5 h-5 rounded-full bg-va-teal text-va-black">
                     <Check size={12} strokeWidth={3.5} />
                   </span>
                   <span className="text-sm">{b}</span>

@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion'
+import { whatsappLink } from '../../lib/whatsapp'
 
-const CTA_URL =
-  'https://wa.me/559132233355?text=Quero%20falar%20com%20a%20VanguardIA%20GOV'
+const CTA_URL = whatsappLink('Quero falar com a VanguardIA GOV')
 
 export default function ManifestoCTAGov() {
   return (
@@ -110,7 +110,7 @@ export default function ManifestoCTAGov() {
             className="group relative inline-flex items-center gap-3 px-10 lg:px-14 py-5 lg:py-7 rounded-full font-display font-extrabold text-white text-lg lg:text-2xl tracking-tight shadow-2xl transition-transform hover:scale-[1.02]"
             style={{
               background:
-                'linear-gradient(135deg, var(--color-va-orange-vivid) 0%, var(--color-va-green-vivid) 100%)',
+                'linear-gradient(135deg, var(--color-va-orange-vivid) 0%, var(--color-va-teal) 100%)',
             }}
           >
             FALAR COM A VANGUARDIA GOV →

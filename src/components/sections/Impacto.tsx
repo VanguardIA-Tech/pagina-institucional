@@ -15,14 +15,14 @@ import {
 } from 'recharts'
 import CountUp from '../ui/CountUp'
 
-const GREEN = 'var(--color-va-green-vivid)'
+const GREEN = 'var(--color-va-teal)'
 const ORANGE = 'var(--color-va-orange-vivid)'
 const GRID = 'rgba(255,255,255,0.06)'
 const AXIS = 'rgba(250,250,247,0.4)'
 
 const perdaData = [
   { name: 'Sem integração', valor: 20, fill: 'var(--color-va-orange-vivid)' },
-  { name: 'Com ICIA', valor: 4, fill: 'var(--color-va-green-vivid)' },
+  { name: 'Com ICIA', valor: 4, fill: 'var(--color-va-teal)' },
 ]
 
 const receitaData = [
@@ -76,7 +76,7 @@ export default function Impacto() {
       <div className="max-w-7xl mx-auto px-5 sm:px-8">
         <div className="max-w-3xl mb-14 lg:mb-20">
           <p className="font-mono text-xs uppercase tracking-[0.18em] text-va-orange-vivid mb-4 animate-pulse">
-            05  ·  IMPACTO MENSURÁVEL
+            05  ·  IMPACTO
           </p>
           <h2
             id="impacto-headline"
@@ -271,7 +271,7 @@ export default function Impacto() {
                           <p className="font-mono text-[10px] uppercase tracking-[0.15em] text-va-gray-500 mb-1">
                             {label}
                           </p>
-                          <p className="font-display text-sm font-bold text-va-green-vivid">
+                          <p className="font-display text-sm font-bold text-va-teal">
                             Maturidade: {payload[0].value}
                             {payload[0].payload.label && ` (${payload[0].payload.label})`}
                           </p>

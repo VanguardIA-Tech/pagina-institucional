@@ -1,6 +1,7 @@
 import { motion, useReducedMotion } from 'framer-motion'
 import { Phone, MessageSquare, ArrowRight, ScanLine } from 'lucide-react'
 import RevealSection, { revealItemVariants } from '../ui/RevealSection'
+import { whatsappLink } from '../../lib/whatsapp'
 
 function InstagramIcon({ size = 16, className = "" }: { size?: number; className?: string }) {
   return (
@@ -57,7 +58,7 @@ export default function FaleConosco() {
         {/* Label */}
         <RevealSection as="div" className="mb-14 lg:mb-20">
           <p className="font-mono text-xs uppercase tracking-[0.18em] text-va-gray-500 mb-3">
-            13 · Fale Conosco
+            12 · FALE CONOSCO
           </p>
           <div className="h-px bg-white/10 max-w-[120px]" />
         </RevealSection>
@@ -101,7 +102,7 @@ export default function FaleConosco() {
                 viewport={{ once: true }}
               >
                 <a
-                  href="https://wa.me/5591983012908?text=Quero%20falar%20com%20a%20VanguardIA"
+                  href={whatsappLink('Quero falar com a VanguardIA')}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-3 bg-va-blue-electric hover:bg-va-blue-glow text-white font-semibold px-8 py-4 rounded-full transition-colors text-base group shadow-lg"
@@ -129,7 +130,7 @@ export default function FaleConosco() {
                   Siga-nos no Instagram
                 </a>
 
-                <div className="inline-flex items-center gap-2 text-va-gray-500 font-mono text-sm">
+                <div className="inline-flex items-center gap-2 text-va-gray-200 font-mono text-sm">
                   <Phone size={14} />
                   +55 (91) 98301-2908
                 </div>
@@ -168,7 +169,7 @@ export default function FaleConosco() {
                 <ScanLine size={18} className="text-va-blue-glow" />
                 Escaneie o QR Code
               </h3>
-              <p className="text-sm text-va-gray-500 leading-relaxed max-w-[240px] mx-auto">
+              <p className="text-sm text-va-gray-200 leading-relaxed max-w-[240px] mx-auto">
                 Use a câmera do seu smartphone para abrir o chat de WhatsApp e falar conosco imediatamente.
               </p>
             </motion.div>

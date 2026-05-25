@@ -2,20 +2,20 @@ import { lazy, Suspense } from 'react'
 import { motion, useReducedMotion } from 'framer-motion'
 import { ChevronDown } from 'lucide-react'
 import CountUp from '../ui/CountUp'
+import { whatsappLink } from '../../lib/whatsapp'
 
 const HeroParticleBackground = lazy(
   () => import('../ui/HeroParticleBackground'),
 )
 
-const CTA_PRIVATE =
-  'https://wa.me/559132233355?text=Quero%20conhecer%20a%20ICIA%20para%20empresas'
+const CTA_PRIVATE = whatsappLink('Quero conhecer a ICIA para empresas')
 
 const STATS = [
   {
     value: 8000,
     label: 'certificados CNH da IA',
     prefix: '+',
-    accent: 'var(--color-va-green-vivid)',
+    accent: 'var(--color-va-teal)',
   },
   {
     value: 600,
@@ -36,7 +36,7 @@ const HEADLINE_PARTS: { text: string; color?: string }[] = [
   { text: 'A única arquitetura brasileira de ' },
   { text: 'Inteligência Aplicada', color: 'var(--color-va-orange-vivid)' },
   { text: ' que une método, certificação, processos e dados soberanos em ' },
-  { text: 'um único sistema', color: 'var(--color-va-green-vivid)' },
+  { text: 'um único sistema', color: 'var(--color-va-teal)' },
   { text: '.' },
 ]
 

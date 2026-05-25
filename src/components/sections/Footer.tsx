@@ -64,6 +64,8 @@ export default function Footer() {
             <img
               src="/logos/vanguardia-horizontal.png"
               alt="Grupo VanguardIA"
+              loading="lazy"
+              decoding="async"
               width={140}
               height={32}
               className="w-[140px] h-auto brightness-0 invert"
@@ -71,7 +73,7 @@ export default function Footer() {
             <p className="text-xs text-va-gray-200/80 leading-relaxed max-w-[240px]">
               A arquitetura aplicada da Nova Era. Da Amazônia para o Mundo.
             </p>
-            <p className="font-mono text-[10px] tracking-wider uppercase text-va-gray-500">
+            <p className="font-mono text-[10px] tracking-wider uppercase text-va-gray-300">
               Idioma: PT-BR | EN (em breve)
             </p>
           </div>

@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion'
+import { whatsappLink } from '../../lib/whatsapp'
 
-const CTA_URL =
-  'https://wa.me/559132233355?text=Quero%20conversar%20sobre%20o%20legado%20COP-30'
+const CTA_URL = whatsappLink('Quero conversar sobre o legado COP-30')
 
 export default function COP30() {
   return (
@@ -97,7 +97,7 @@ export default function COP30() {
             href={CTA_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 border-2 border-white hover:bg-white hover:text-va-green-deep transition-colors text-white font-semibold px-7 py-4 rounded-full"
+            className="inline-flex items-center gap-2 border-2 border-white hover:bg-white hover:text-va-blue-deep transition-colors text-white font-semibold px-7 py-4 rounded-full"
           >
             CONVERSAR SOBRE O LEGADO COP-30 →
           </a>

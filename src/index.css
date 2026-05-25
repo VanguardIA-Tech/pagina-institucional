@@ -25,11 +25,6 @@
   --color-va-violet-deep: #2D1050;
   --color-va-violet-glow: #6B3FA0;
 
-  /* ── Verde → repurposado para variantes azul (legado, mantido por compat) ── */
-  --color-va-green-deep: #0B1A3E;
-  --color-va-green-vivid: #2046EA;
-  --color-va-green-glow: #4A7BFF;
-
   /* ── Laranja Solar (Accent 2) ── */
   --color-va-orange-deep: #B84A00;
   --color-va-orange-vivid: #FF6B1A;
@@ -48,7 +43,10 @@
   /* ── Cinzas Funcionais ── */
   --color-va-gray-50: #F4F4F5;
   --color-va-gray-200: #D4D4D8;
+  --color-va-gray-300: #A1A1AA;
+  --color-va-gray-400: #8B8B93;
   --color-va-gray-500: #71717A;
+  --color-va-gray-600: #52525B;
   --color-va-gray-700: #3F3F46;
   --color-va-gray-900: #18181B;
 

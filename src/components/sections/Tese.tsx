@@ -21,13 +21,13 @@ const ORDEM = [
     n: '01',
     title: 'PESSOAS',
     body: 'Habilitar',
-    color: 'var(--color-va-green-glow)',
+    color: 'var(--color-va-teal)',
   },
   {
     n: '02',
     title: 'PROCESSOS',
     body: 'Diagnosticar',
-    color: 'var(--color-va-green-vivid)',
+    color: 'var(--color-va-blue-glow)',
   },
   {
     n: '03',
@@ -135,10 +135,10 @@ export default function Tese() {
         {/* Green anchor banner */}
         <RevealSection as="div" className="mb-16">
           <div
-            className="rounded-2xl px-8 py-10 lg:px-14 lg:py-14 text-center border border-va-green-deep/30"
+            className="rounded-2xl px-8 py-10 lg:px-14 lg:py-14 text-center border border-white/10"
             style={{
               background:
-                'linear-gradient(135deg, var(--color-va-green-deep) 0%, rgba(32, 70, 234, 0.1) 100%)',
+                'linear-gradient(135deg, var(--color-va-blue-deep) 0%, rgba(32, 70, 234, 0.1) 100%)',
             }}
           >
             <p

@@ -253,7 +253,7 @@ export default function Clientes() {
         {/* Label */}
         <RevealSection as="div" className="mb-14 lg:mb-20">
           <p className="font-mono text-xs uppercase tracking-[0.18em] text-va-gray-500 mb-3">
-            07 · Clientes
+            07 · CLIENTES
           </p>
           <div className="h-px bg-white/10 max-w-[120px]" />
         </RevealSection>

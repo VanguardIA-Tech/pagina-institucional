@@ -14,7 +14,7 @@ import {
 import CountUp from '../ui/CountUp'
 
 const ORANGE = 'var(--color-va-orange-vivid)'
-const GREEN = 'var(--color-va-green-vivid)'
+const GREEN = 'var(--color-va-teal)'
 const GOLD = 'var(--color-va-gold)'
 const GRID = 'rgba(255,255,255,0.06)'
 const AXIS = 'rgba(250,250,247,0.4)'

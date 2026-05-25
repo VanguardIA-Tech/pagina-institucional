@@ -1,11 +1,10 @@
 import { motion, useReducedMotion } from 'framer-motion'
 import { ChevronDown } from 'lucide-react'
 import CountUp from '../ui/CountUp'
+import { whatsappLink } from '../../lib/whatsapp'
 
-const CTA_CNH =
-  'https://wa.me/559132233355?text=Quero%20a%20CNH%20da%20IA%20para%20servidores'
-const CTA_ICIA =
-  'https://wa.me/559132233355?text=Quero%20conhecer%20a%20arquitetura%20ICIA.GOV'
+const CTA_CNH = whatsappLink('Quero a CNH da IA para servidores')
+const CTA_ICIA = whatsappLink('Quero conhecer a arquitetura ICIA.GOV')
 
 const STATS = [
   {
@@ -17,7 +16,7 @@ const STATS = [
   {
     value: 6,
     label: 'programas PMI estruturados para o setor público',
-    accent: 'var(--color-va-green-vivid)',
+    accent: 'var(--color-va-teal)',
   },
   {
     value: null,
@@ -34,7 +33,7 @@ const HEADLINE_PARTS: { text: string; color?: string }[] = [
     color: 'var(--color-va-orange-vivid)',
   },
   { text: ' desenhada para o ' },
-  { text: 'setor público', color: 'var(--color-va-green-vivid)' },
+  { text: 'setor público', color: 'var(--color-va-teal)' },
   { text: '.' },
 ]
 
@@ -63,13 +62,13 @@ export default function HeroGov() {
       aria-labelledby="hero-gov-headline"
       className="relative overflow-hidden bg-va-black"
     >
-      {/* Explosive gov gradient — high-saturation red-orange dominant */}
+      {/* Gov gradient — origin no canto inferior direito pra deixar a headline legível */}
       <div
         aria-hidden="true"
         className="absolute inset-0 animate-hero-breathe"
         style={{
           background:
-            'radial-gradient(ellipse at 20% 25%, #FF6B1A 0%, #B84A00 30%, #00563F 70%, #0A0A0F 100%)',
+            'radial-gradient(ellipse at 80% 80%, var(--color-va-orange-vivid) 0%, var(--color-va-orange-deep) 30%, var(--color-va-blue-deep) 70%, var(--color-va-black) 100%)',
         }}
       />
       <div

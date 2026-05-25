@@ -51,8 +51,8 @@ const PILARES: Pilar[] = [
     label: 'TECNOLOGIA',
     title: 'Camada de execução',
     description: 'Workers autônomos, lakehouses sob medida e governança soberana permanente.',
-    color: 'var(--color-va-green-vivid)',
-    colorSoft: 'rgba(32, 70, 234, 0.1)',
+    color: 'var(--color-va-teal)',
+    colorSoft: 'rgba(0, 135, 90, 0.12)',
     icon: Cpu,
     entregas: [
       'Data Lake',

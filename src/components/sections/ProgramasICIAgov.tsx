@@ -33,8 +33,8 @@ const PROGRAMAS: Programa[] = [
       'Formação modular EAD/presencial',
       'Certificação institucional'
     ],
-    color: 'var(--color-va-green-vivid, #00C896)',
-    colorSoft: 'rgba(0, 200, 150, 0.10)',
+    color: 'var(--color-va-teal)',
+    colorSoft: 'rgba(0, 135, 90, 0.10)',
     icon: GraduationCap,
   },
   {

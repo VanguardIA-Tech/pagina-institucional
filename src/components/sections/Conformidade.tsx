@@ -94,8 +94,8 @@ export default function Conformidade() {
                 <span
                   className="shrink-0 inline-flex items-center justify-center w-11 h-11 rounded-lg"
                   style={{
-                    background: 'rgba(0,86,63,0.10)',
-                    color: 'var(--color-va-green-deep)',
+                    background: 'rgba(0,135,90,0.10)',
+                    color: 'var(--color-va-teal)',
                   }}
                   aria-hidden="true"
                 >
@@ -104,7 +104,7 @@ export default function Conformidade() {
                 <div className="min-w-0">
                   <p
                     className="font-mono text-[11px] uppercase tracking-[0.18em] font-semibold"
-                    style={{ color: 'var(--color-va-green-deep)' }}
+                    style={{ color: 'var(--color-va-teal)' }}
                   >
                     {s.sigla}
                   </p>

@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { NavLink, useLocation } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X, ArrowRight } from 'lucide-react'
+import { whatsappLink } from '../../lib/whatsapp'
 
 const PRIVATE_LINKS = [
   { label: 'Tese', href: '#tese' },
@@ -21,8 +22,8 @@ const GOV_LINKS = [
   { label: 'COP-30', href: '#cop30' },
 ]
 
-const CTA_PRIVATE = 'https://wa.me/5591983012908?text=Quero%20falar%20com%20a%20VanguardIA'
-const CTA_GOV = 'https://wa.me/5591983012908?text=Quero%20falar%20com%20a%20VanguardIA%20Gov'
+const CTA_PRIVATE = whatsappLink('Quero falar com a VanguardIA')
+const CTA_GOV = whatsappLink('Quero falar com a VanguardIA Gov')
 
 export default function NavBar() {
   const [scrolled, setScrolled] = useState(false)

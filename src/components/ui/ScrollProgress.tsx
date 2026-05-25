@@ -15,7 +15,7 @@ export default function ScrollProgress() {
         scaleX,
         transformOrigin: '0% 50%',
         background:
-          'linear-gradient(90deg, var(--color-va-blue-electric) 0%, var(--color-va-green-vivid) 50%, var(--color-va-orange-vivid) 100%)',
+          'linear-gradient(90deg, var(--color-va-blue-electric) 0%, var(--color-va-teal) 50%, var(--color-va-orange-vivid) 100%)',
       }}
       className="fixed top-0 left-0 right-0 h-[2px] z-[100] pointer-events-none"
     />

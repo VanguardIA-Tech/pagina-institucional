@@ -114,16 +114,16 @@ export default function TeseGov() {
           </div>
         </div>
 
-        {/* Green anchor banner */}
+        {/* Anchor banner */}
         <RevealSection as="div" className="mb-16">
           <div
-            className="rounded-2xl px-8 py-10 lg:px-14 lg:py-14 border border-va-green-deep/30"
+            className="rounded-2xl px-8 py-10 lg:px-14 lg:py-14 border border-white/10"
             style={{
               background:
-                'linear-gradient(135deg, var(--color-va-green-deep, #00563F) 0%, rgba(0, 200, 150, 0.15) 100%)',
+                'linear-gradient(135deg, var(--color-va-blue-deep) 0%, rgba(0, 135, 90, 0.15) 100%)',
             }}
           >
-            <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-va-green-vivid mb-4">
+            <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-va-teal mb-4">
               O método VanguardIA
             </p>
             <p
@@ -132,7 +132,7 @@ export default function TeseGov() {
             >
               Pelo método VanguardIA, capacidade vem primeiro.
               <br />
-              <span className="text-va-green-vivid">Tecnologia vem depois.</span>
+              <span className="text-va-teal">Tecnologia vem depois.</span>
             </p>
           </div>
         </RevealSection>

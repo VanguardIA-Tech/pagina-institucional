@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
 import RevealSection, { revealItemVariants } from '../ui/RevealSection'
+import { whatsappLink } from '../../lib/whatsapp'
 
 type EventCard = {
   id: string
@@ -57,7 +58,8 @@ export default function DoItHub() {
       aria-labelledby="do-it-hub-headline"
       className="relative text-white py-24 lg:py-32 overflow-hidden"
       style={{
-        background: 'linear-gradient(135deg, var(--color-va-green-deep, #00563F) 0%, var(--color-va-green-vivid, #00C896) 50%, var(--color-va-orange-vivid, #FF6B1A) 100%)',
+        background:
+          'linear-gradient(135deg, var(--color-va-teal) 0%, var(--color-va-blue-electric) 50%, var(--color-va-orange-vivid) 100%)',
       }}
     >
       <div className="relative max-w-7xl mx-auto px-5 sm:px-8">
@@ -65,7 +67,7 @@ export default function DoItHub() {
         <div className="max-w-3xl mb-16 lg:mb-20">
           <RevealSection as="div" className="mb-4">
             <p className="font-mono text-xs uppercase tracking-[0.18em] text-white/80 mb-2">
-              09 · ECOSSISTEMA FÍSICO
+              09 · DO IT HUB
             </p>
             <div className="h-px bg-white/30 max-w-[120px]" />
           </RevealSection>
@@ -116,7 +118,7 @@ export default function DoItHub() {
               
               <div className="mt-8">
                 <a
-                  href="https://wa.me/5591983012908?text=Quero%20participar%20dos%20eventos%20do%20Do%20It%20Hub"
+                  href={whatsappLink('Quero participar dos eventos do Do It Hub')}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center text-xs font-mono uppercase tracking-wider text-white hover:text-va-orange-glow transition-colors group"

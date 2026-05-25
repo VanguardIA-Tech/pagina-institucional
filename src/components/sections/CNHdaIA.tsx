@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
 import CountUp from '../ui/CountUp'
+import { whatsappLink } from '../../lib/whatsapp'
 
 const PASSOS = [
   {
@@ -76,7 +77,7 @@ export default function CNHdaIA() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.4 }}
               transition={{ duration: 0.6 }}
-              className="font-display font-editorial italic text-white text-balance"
+              className="font-editorial italic text-white text-balance"
               style={{ fontSize: 'var(--text-display-l)' }}
             >
               CNH da IA.
@@ -123,7 +124,7 @@ export default function CNHdaIA() {
             </motion.div>
 
             <motion.a
-              href="https://wa.me/559132233355?text=Quero%20a%20CNH%20da%20IA"
+              href={whatsappLink('Quero a CNH da IA')}
               target="_blank"
               rel="noopener noreferrer"
               initial={{ opacity: 0, y: 12 }}
@@ -204,8 +205,8 @@ export default function CNHdaIA() {
                   <span
                     className="font-mono text-xs font-medium px-2 py-0.5 rounded-full"
                     style={{
-                      color: 'var(--color-va-green-vivid)',
-                      background: 'rgba(0,200,150,0.12)',
+                      color: 'var(--color-va-teal)',
+                      background: 'rgba(0,135,90,0.12)',
                     }}
                   >
                     {p.n}

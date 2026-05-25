@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
 import { ArrowRight, Star, Award } from 'lucide-react'
+import { whatsappLink } from '../../lib/whatsapp'
 
 type Plano = {
   id: string
@@ -55,9 +56,9 @@ const PLANOS: Plano[] = [
     ],
     ideal: 'Empresas prontas para fazer da IA Aplicada um diferencial competitivo permanente.',
     cta: 'Quero o Core',
-    color: 'var(--color-va-green-glow)',
-    colorSoft: 'rgba(0, 200, 150, 0.12)',
-    glow: '0 22px 70px -18px rgba(0, 200, 150, 0.6)',
+    color: 'var(--color-va-blue-glow)',
+    colorSoft: 'rgba(74, 123, 255, 0.12)',
+    glow: '0 22px 70px -18px rgba(74, 123, 255, 0.6)',
     featured: true,
   },
   {
@@ -105,7 +106,7 @@ export default function EscadaICIA() {
       <div className="relative max-w-7xl mx-auto px-5 sm:px-8">
         <div className="max-w-3xl mb-14 lg:mb-20">
           <p className="font-mono text-xs uppercase tracking-[0.18em] text-va-orange-vivid mb-4 animate-pulse">
-            03  ·  IMPLEMENTAÇÃO
+            03  ·  ICIA OS
           </p>
           <h2
             id="escada-headline"
@@ -214,7 +215,7 @@ export default function EscadaICIA() {
                 </p>
 
                 <a
-                  href="https://wa.me/559132233355"
+                  href={whatsappLink(p.cta)}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center justify-between w-full gap-2 px-5 py-3 rounded-full font-semibold text-sm transition-colors"
@@ -234,7 +235,7 @@ export default function EscadaICIA() {
           ))}
         </div>
 
-        <p className="mt-10 text-center font-mono text-xs uppercase tracking-[0.18em] text-va-gray-500 text-balance">
+        <p className="mt-10 text-center font-mono text-xs uppercase tracking-[0.18em] text-va-gray-200 text-balance">
           Tickets a partir de R$ 25k de setup + R$ 12,9k/mês. Todos os programas são semestrais com renovação automática.
         </p>
       </div>

@@ -32,7 +32,7 @@ export default function Parcerias() {
         {/* Label */}
         <RevealSection as="div" className="mb-14 lg:mb-20">
           <p className="font-mono text-xs uppercase tracking-[0.18em] text-va-gray-500 mb-3">
-            10 · Parcerias
+            10 · PARCERIAS
           </p>
           <div className="h-px bg-white/15 max-w-[120px]" />
         </RevealSection>
