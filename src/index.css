@@ -172,9 +172,6 @@
 .animate-ticker {
   animation: ticker 60s linear infinite;
 }
-.animate-ticker:hover {
-  animation-play-state: paused;
-}
 
 .animate-hero-breathe {
   animation: hero-breathe 8s ease-in-out infinite;
