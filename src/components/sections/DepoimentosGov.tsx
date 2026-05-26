@@ -5,6 +5,7 @@ import { ChevronLeft, ChevronRight, Play, Quote } from 'lucide-react'
 type Item = {
   id: string
   type: 'video' | 'placeholder'
+  videoUrl?: string
   org?: string
   cargo?: string
   quote?: string
@@ -14,6 +15,7 @@ const ITEMS: Item[] = [
   {
     id: 'acp',
     type: 'video',
+    videoUrl: '/videos/alberto-acp.mp4',
     org: 'Alberto Villar',
     cargo: 'ACP · Associação Comercial do Pará',
     quote:
@@ -88,18 +90,30 @@ export default function DepoimentosGov() {
                 }}
               >
                 {item.type === 'video' ? (
-                  <button
-                    type="button"
-                    aria-label={`Reproduzir depoimento — ${item.org}`}
-                    className="group inline-flex items-center justify-center w-20 h-20 rounded-full bg-va-orange-vivid hover:bg-va-orange-glow transition-colors shadow-2xl"
-                  >
-                    <Play
-                      size={28}
-                      className="text-white ml-1"
-                      fill="white"
-                      strokeWidth={0}
+                  item.videoUrl ? (
+                    <video
+                      src={item.videoUrl}
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
+                      aria-label={`Depoimento de ${item.org}`}
+                      className="absolute inset-0 w-full h-full object-cover"
                     />
-                  </button>
+                  ) : (
+                    <button
+                      type="button"
+                      aria-label={`Reproduzir depoimento — ${item.org}`}
+                      className="group inline-flex items-center justify-center w-20 h-20 rounded-full bg-va-orange-vivid hover:bg-va-orange-glow transition-colors shadow-2xl"
+                    >
+                      <Play
+                        size={28}
+                        className="text-white ml-1"
+                        fill="white"
+                        strokeWidth={0}
+                      />
+                    </button>
+                  )
                 ) : (
                   <div className="text-center px-6">
                     <p className="font-mono text-xs uppercase tracking-[0.18em] text-va-gray-500 mb-2">
