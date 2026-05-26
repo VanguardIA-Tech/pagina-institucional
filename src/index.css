@@ -194,3 +194,61 @@ section[id] {
 .animate-pulse-glow {
   animation: pulse-glow 2s ease-in-out infinite;
 }
+
+/* ═══════════════════════════════════════════════
+   SEÇÃO 07 — CLIENTES: WAVE BLOOM
+   ═══════════════════════════════════════════════ */
+
+@keyframes clientes-wave-filter {
+  0%, 9.64%, 100% {
+    filter: grayscale(1) brightness(1.6) contrast(0.9);
+    opacity: 0.55;
+  }
+  4.82% {
+    filter: grayscale(0) brightness(1) contrast(1);
+    opacity: 1;
+  }
+}
+
+@keyframes clientes-wave-bg {
+  0%, 9.64%, 100% {
+    background-color: rgba(var(--cell-bg-rgb), 0.08);
+  }
+  4.82% {
+    background-color: rgba(var(--cell-bg-rgb), 1);
+  }
+}
+
+.clientes-wave-cell {
+  background-color: rgba(var(--cell-bg-rgb), 0.08);
+  animation: clientes-wave-bg 8300ms linear infinite;
+  animation-delay: var(--cell-delay, 0ms);
+  will-change: background-color;
+}
+
+.clientes-wave-cell img {
+  filter: grayscale(1) brightness(1.6) contrast(0.9);
+  opacity: 0.55;
+  animation: clientes-wave-filter 8300ms linear infinite;
+  animation-delay: var(--cell-delay, 0ms);
+  will-change: filter, opacity;
+}
+
+[data-clientes-paused="true"] .clientes-wave-cell,
+[data-clientes-paused="true"] .clientes-wave-cell img {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .clientes-wave-cell,
+  .clientes-wave-cell img {
+    animation: none !important;
+  }
+  .clientes-wave-cell:hover {
+    background-color: rgba(var(--cell-bg-rgb), 1);
+  }
+  .clientes-wave-cell:hover img {
+    filter: grayscale(0) brightness(1) contrast(1);
+    opacity: 1;
+  }
+}
