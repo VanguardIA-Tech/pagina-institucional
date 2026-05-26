@@ -26,9 +26,7 @@ const CLIENTS: Client[] = [
   { name: 'Prime Equipaments', slug: 'prime-equipaments', bg: '#5d9b7d' },
   { name: 'Toca Hub', slug: 'toca-hub', bg: '#db5701' },
   { name: 'Sandrinha Deluxe', slug: 'sandrinha-deluxe', bg: '#f43f5e' },
-  { name: 'Oyamota', slug: 'oyamota', bg: '#10b981' },
   { name: 'Cabotia', slug: 'cabotia', bg: '#ffffff' },
-  { name: 'Health Food', slug: 'health-food', bg: '#eab308' },
   { name: 'Frutalí', slug: 'frutali', bg: '#f97316' },
 ]
 

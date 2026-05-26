@@ -10,6 +10,7 @@ const PARTNERS: Partner[] = [
   { name: 'SINDARPA', slug: 'sindarpa', ext: 'png' },
   { name: 'OAB-PA', slug: 'oab-pa', ext: 'png' },
   { name: 'SINDILOJAS-GO' },
+  { name: 'Monobloco Exata', slug: 'monobloco-exata', ext: 'png' },
 ]
 
 export default function Parcerias() {
