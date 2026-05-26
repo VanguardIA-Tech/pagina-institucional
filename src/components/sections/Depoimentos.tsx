@@ -13,40 +13,39 @@ type Testimonial = {
 
 const TESTIMONIALS: Testimonial[] = [
   {
-    id: 'ellen',
-    name: 'Ellen Martins',
-    role: 'Socia-Diretora',
-    company: 'Alves Martins Advocacia',
-    // Fallback/Mock video or CDN if available
-    videoUrl: 'https://assets.mixkit.co/videos/preview/mixkit-girl-in-neon-light-39871-large.mp4', 
+    id: 'augusto',
+    name: 'Augusto Teixeira',
+    role: 'CEO',
+    company: 'Grupo Lotus',
+    videoUrl: '/videos/augusto-lotus.mp4',
   },
   {
     id: 'afonso',
     name: 'Afonso Lobato',
     role: 'Sócio',
-    company: 'Silveira Athias Advogados',
-    videoUrl: 'https://assets.mixkit.co/videos/preview/mixkit-man-working-on-his-laptop-in-a-coffee-shop-41873-large.mp4',
+    company: 'Athias Soriano',
+    videoUrl: '/videos/afonso-silveira-athias.mp4',
   },
   {
     id: 'alberto',
     name: 'Alberto Villar',
     role: 'Presidente',
     company: 'Associação Comercial do Pará (ACP)',
-    videoUrl: 'https://assets.mixkit.co/videos/preview/mixkit-presentation-in-a-business-meeting-41870-large.mp4',
+    videoUrl: '/videos/alberto-acp.mp4',
   },
   {
     id: 'edivaldo',
     name: 'Edivaldo Carvalho Neto',
     role: 'Diretor',
     company: 'SINDARPA',
-    videoUrl: 'https://assets.mixkit.co/videos/preview/mixkit-man-holding-smartphone-with-blue-screen-40058-large.mp4',
+    videoUrl: '/videos/edivaldo-sindarpa.mp4',
   },
 ]
 
 export default function Depoimentos() {
   const [activeId, setActiveId] = useState<string | null>(null)
   const [mutedStates, setMutedStates] = useState<Record<string, boolean>>({
-    ellen: true,
+    augusto: true,
     afonso: true,
     alberto: true,
     edivaldo: true,
