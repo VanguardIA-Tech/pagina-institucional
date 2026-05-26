@@ -15,7 +15,7 @@ const CLIENTS: Client[] = [
   { name: 'Montalvão Neves', slug: 'montalvao-neves', bg: '#bdbec1' },
   { name: 'Nativa Uniformes', slug: 'nativa-uniformes', bg: '#00345e' },
   { name: 'Rede+ Saúde', slug: 'rede-mais-saude', bg: '#e53e3e' },
-  { name: 'Facilita Serviços', slug: 'facilita-servicos', bg: '#fefefe' },
+  { name: 'Facilita Serviços', slug: 'facilita', bg: '#fefefe' },
   { name: 'Fibra', slug: 'fibra', bg: '#fefefe' },
   { name: 'Mave', slug: 'mave', bg: '#ffffff' },
   { name: 'IT Protect', slug: 'it-protect', bg: '#3366fd' },
