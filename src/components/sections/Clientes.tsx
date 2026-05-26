@@ -22,6 +22,7 @@ const CLIENTS: Client[] = [
   { name: 'IT Protect', slug: 'it-protect', bg: '#3366fd' },
   { name: 'Silnave', slug: 'silnave', bg: '#ffffff' },
   { name: 'Supermercado Econômico', slug: 'supermercado-economico', bg: '#ca2e28' },
+  { name: 'Monobloco Exata', slug: 'monobloco-exata', bg: '#1a1a2e' },
   { name: 'Nevoni', slug: 'nevoni', bg: '#2e276c' },
   { name: 'Prime Equipaments', slug: 'prime-equipaments', bg: '#5d9b7d' },
   { name: 'Toca Hub', slug: 'toca-hub', bg: '#db5701' },

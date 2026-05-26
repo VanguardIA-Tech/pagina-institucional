@@ -174,7 +174,7 @@ export default function CNHdaIA() {
             className="absolute bottom-8 left-8 right-8 lg:right-auto lg:max-w-sm bg-va-black/80 backdrop-blur-md border border-white/15 rounded-xl p-5"
           >
             <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-va-orange-vivid mb-1">
-              WORKSHOP · PARAFERRO · MAR 2026
+              WORKSHOP · LOTUS · MAR 2026
             </p>
           </motion.div>
         </div>
