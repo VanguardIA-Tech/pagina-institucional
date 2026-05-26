@@ -225,6 +225,15 @@ def health() -> dict[str, str]:
     return {"status": "ok"}
 
 
+@app.post("/api/log-error")
+async def log_client_error(request: Request) -> dict[str, bool]:
+    payload = await request.json()
+    message = str(payload.get("message", ""))[:500]
+    user_agent = str(payload.get("userAgent", ""))[:300]
+    print(f"Client error: {message} | userAgent={user_agent}")
+    return {"ok": True}
+
+
 @app.post("/api/realtime/token")
 def create_realtime_token(request: Request) -> dict:
     api_key = get_api_key()
