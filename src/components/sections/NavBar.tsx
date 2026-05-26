@@ -60,19 +60,22 @@ export default function NavBar() {
         initial={false}
         animate={{
           backgroundColor: scrolled
-            ? 'rgba(10, 10, 15, 0.9)'
+            ? 'rgba(10, 10, 15, 0.82)'
             : 'rgba(10, 10, 15, 0)',
-          backdropFilter: scrolled ? 'blur(24px)' : 'blur(0px)',
+          backdropFilter: scrolled ? 'blur(20px)' : 'blur(0px)',
           borderBottomColor: scrolled
-            ? 'rgba(255, 255, 255, 0.08)'
+            ? 'rgba(255, 255, 255, 0.06)'
             : 'rgba(255, 255, 255, 0)',
+          boxShadow: scrolled
+            ? '0 8px 24px -12px rgba(0, 0, 0, 0.55)'
+            : '0 0 0 rgba(0, 0, 0, 0)',
         }}
-        transition={{ duration: 0.25, ease: 'easeOut' }}
+        transition={{ duration: 0.28, ease: [0.4, 0, 0.2, 1] }}
         className="fixed top-0 left-0 right-0 z-50 border-b border-transparent"
       >
         <nav
           aria-label="Navegação principal"
-          className="max-w-7xl mx-auto px-5 sm:px-8 h-16 lg:h-20 flex items-center justify-between gap-6"
+          className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 h-16 lg:h-[72px] flex items-center justify-between gap-4 lg:gap-6"
         >
           {/* Logo */}
           <NavLink
@@ -99,7 +102,7 @@ export default function NavBar() {
           </NavLink>
 
           {/* Desktop links */}
-          <ul className="hidden lg:flex items-center gap-7 text-sm font-medium">
+          <ul className="hidden lg:flex items-center gap-6 xl:gap-7 text-[13px] xl:text-sm font-medium">
             {links.map((link) => (
               <li key={link.href}>
                 <a
@@ -113,20 +116,20 @@ export default function NavBar() {
           </ul>
 
           {/* Right: switcher + CTA */}
-          <div className="hidden lg:flex items-center gap-4 shrink-0">
+          <div className="hidden lg:flex items-center gap-3 xl:gap-4 shrink-0">
             <div
               role="tablist"
               aria-label="Selecionar segmento"
-              className="flex bg-white/5 border border-white/10 rounded-full p-1"
+              className="flex bg-white/[0.06] border border-white/10 rounded-full p-1"
             >
               <NavLink
                 to="/"
                 role="tab"
                 aria-current={!isGov ? 'page' : undefined}
                 className={({ isActive }) =>
-                  `px-4 py-1.5 text-xs font-mono uppercase tracking-wider rounded-full transition-colors ${
+                  `px-3.5 py-1.5 text-[11px] font-mono uppercase tracking-[0.12em] rounded-full transition-colors ${
                     isActive && !isGov
-                      ? 'bg-va-blue-electric text-white'
+                      ? 'bg-va-blue-electric text-white shadow-[0_0_0_1px_rgba(255,255,255,0.06)_inset]'
                       : 'text-va-gray-200 hover:text-white'
                   }`
                 }
@@ -138,9 +141,9 @@ export default function NavBar() {
                 role="tab"
                 aria-current={isGov ? 'page' : undefined}
                 className={({ isActive }) =>
-                  `px-4 py-1.5 text-xs font-mono uppercase tracking-wider rounded-full transition-colors ${
+                  `px-3.5 py-1.5 text-[11px] font-mono uppercase tracking-[0.12em] rounded-full transition-colors ${
                     isActive
-                      ? 'bg-va-orange-vivid text-white'
+                      ? 'bg-va-orange-vivid text-white shadow-[0_0_0_1px_rgba(255,255,255,0.06)_inset]'
                       : 'text-va-gray-200 hover:text-white'
                   }`
                 }
@@ -153,7 +156,7 @@ export default function NavBar() {
               href={ctaUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className={`inline-flex items-center gap-2 ${ctaBgColor} transition-colors text-white font-semibold text-xs px-5 py-2.5 rounded-full`}
+              className={`inline-flex items-center gap-2 ${ctaBgColor} transition-colors text-white font-semibold text-[12.5px] xl:text-[13px] px-4 xl:px-5 py-2.5 rounded-full whitespace-nowrap`}
             >
               {ctaLabel}
               <ArrowRight size={14} />

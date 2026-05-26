@@ -71,9 +71,9 @@ export default function SideNav({ sections, variant = 'home' }: Props) {
       {/* Desktop: fixed left rail */}
       <nav
         aria-label="Navegação por seção"
-        className="hidden lg:flex fixed left-5 top-1/2 -translate-y-1/2 z-40 flex-col gap-3 pointer-events-none"
+        className="hidden xl:flex fixed left-8 2xl:left-12 top-1/2 -translate-y-1/2 z-30 flex-col gap-3 pointer-events-none"
       >
-        <ul className="flex flex-col gap-1.5 pointer-events-auto">
+        <ul className="flex flex-col gap-2 pointer-events-auto">
           {sections.map((s, idx) => {
             const isActive = s.id === active
             const accent = s.accent ?? fallback

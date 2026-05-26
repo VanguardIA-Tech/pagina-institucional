@@ -73,7 +73,7 @@ export default function Hero() {
       />
       <div
         aria-hidden="true"
-        className="absolute inset-0 opacity-[0.04]"
+        className="absolute inset-0 opacity-[0.035]"
         style={{
           backgroundImage:
             'radial-gradient(circle, var(--color-va-white) 1px, transparent 1px)',
@@ -86,8 +86,26 @@ export default function Hero() {
           <HeroParticleBackground />
         </Suspense>
       </div>
+      {/* Legibility overlay: darkens left/center where the headline sits */}
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background:
+            'radial-gradient(ellipse 70% 60% at 25% 50%, rgba(10,10,15,0.55) 0%, rgba(10,10,15,0) 65%)',
+        }}
+      />
+      {/* Bottom fade to smooth the transition into the next section */}
+      <div
+        aria-hidden="true"
+        className="absolute inset-x-0 bottom-0 h-32 pointer-events-none"
+        style={{
+          background:
+            'linear-gradient(to bottom, rgba(10,10,15,0) 0%, rgba(10,10,15,0.85) 100%)',
+        }}
+      />
 
-      <div className="relative max-w-7xl mx-auto px-5 sm:px-8 pt-32 lg:pt-40 pb-20 lg:pb-28 min-h-[100svh] flex flex-col justify-center">
+      <div className="relative max-w-7xl mx-auto px-5 sm:px-8 pt-24 lg:pt-28 pb-20 lg:pb-24 min-h-[640px] lg:min-h-[680px] flex flex-col justify-center">
         <motion.div
           variants={containerVariants}
           initial="hidden"
@@ -104,7 +122,7 @@ export default function Hero() {
           <motion.h1
             id="hero-headline"
             variants={itemVariants}
-            className="font-display text-white font-extrabold tracking-[-0.03em] leading-[0.98] max-w-5xl text-balance"
+            className="font-display text-white font-extrabold tracking-[-0.03em] leading-[1.04] max-w-[820px] text-balance"
             style={{ fontSize: 'var(--text-display-xl)' }}
           >
             {HEADLINE_PARTS.map((part, i) => (
@@ -119,7 +137,7 @@ export default function Hero() {
 
           <motion.p
             variants={itemVariants}
-            className="mt-8 max-w-2xl text-va-gray-200 text-balance"
+            className="mt-5 lg:mt-6 max-w-xl text-va-gray-200 text-balance leading-relaxed"
             style={{ fontSize: 'var(--text-body-l)' }}
           >
             Com dezenas de agentes de IA operando no dia a dia dos nossos clientes. Consequência de um trabalho bem feito.
@@ -128,17 +146,17 @@ export default function Hero() {
           {/* Stats */}
           <motion.div
             variants={itemVariants}
-            className="mt-14 grid grid-cols-1 sm:grid-cols-3 gap-4"
+            className="mt-8 lg:mt-10 grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 max-w-3xl"
           >
             {STATS.map((stat) => (
               <div
                 key={stat.label}
-                className="border border-white/10 bg-white/[0.03] backdrop-blur-sm rounded-2xl p-6 hover:border-white/20 transition-colors"
+                className="flex flex-col justify-between min-h-[112px] sm:min-h-[120px] border border-white/10 bg-white/[0.04] backdrop-blur-sm rounded-2xl px-5 py-4 sm:px-6 sm:py-5 hover:border-white/25 hover:bg-white/[0.06] transition-colors"
               >
                 <div
                   className="font-display font-extrabold tracking-tight leading-none"
                   style={{
-                    fontSize: 'clamp(40px, 5vw, 64px)',
+                    fontSize: 'clamp(30px, 2.8vw, 42px)',
                     color: stat.accent,
                   }}
                 >
@@ -148,7 +166,7 @@ export default function Hero() {
                     suffix={stat.suffix}
                   />
                 </div>
-                <p className="mt-3 text-sm text-va-gray-200 leading-snug">
+                <p className="mt-2 text-xs sm:text-sm text-va-gray-200 leading-snug">
                   {stat.label}
                 </p>
               </div>
@@ -160,20 +178,20 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: reduce ? 0 : 1.8, duration: 0.6 }}
-            className="mt-12 flex flex-col items-center sm:items-start gap-3"
+            className="mt-8 lg:mt-10 flex flex-col items-stretch sm:items-start gap-3"
           >
-            <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 w-full sm:w-auto">
               <a
                 href={CTA_PRIVATE}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 bg-va-blue-electric hover:bg-va-blue-glow text-white font-semibold px-7 py-4 rounded-full transition-colors text-base"
+                className="inline-flex items-center justify-center gap-2 bg-va-blue-electric hover:bg-va-blue-glow text-white font-semibold px-6 py-3.5 rounded-full transition-colors text-sm sm:text-base"
               >
                 EMPRESAS ▶
               </a>
               <a
                 href="/icia-gov"
-                className="inline-flex items-center justify-center gap-2 border border-white/30 hover:border-white text-white font-semibold px-7 py-4 rounded-full transition-colors text-base"
+                className="inline-flex items-center justify-center gap-2 border border-white/25 hover:border-white/60 hover:bg-white/5 text-white font-semibold px-6 py-3.5 rounded-full transition-colors text-sm sm:text-base"
               >
                 SETOR PÚBLICO ▶
               </a>
@@ -184,14 +202,14 @@ export default function Hero() {
           </motion.div>
         </motion.div>
 
-        {/* Scroll indicator */}
+        {/* Scroll indicator — hidden on short viewports to avoid overlap with CTAs */}
         <motion.a
           href="#tese"
           aria-label="Continuar para a próxima seção"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: reduce ? 0 : 2.4, duration: 0.6 }}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-va-gray-200/70 hover:text-white transition-colors"
+          className="hidden xl:flex absolute bottom-6 left-1/2 -translate-x-1/2 flex-col items-center gap-2 text-va-gray-200/60 hover:text-white transition-colors z-10"
         >
           <span className="font-mono text-[10px] uppercase tracking-[0.2em]">
             Continue

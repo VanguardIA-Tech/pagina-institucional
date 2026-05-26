@@ -558,7 +558,7 @@ export default function OrbVoiceAgent({
     }
   }, [])
 
-  const orbSize = isMobile ? 120 : 180
+  const orbSize = isMobile ? 88 : 132
   const colors = COLORS[state]
 
   const label =
@@ -571,11 +571,11 @@ export default function OrbVoiceAgent({
   return (
     <div
       aria-live="polite"
-      className="fixed z-50 pointer-events-none"
+      className="fixed z-40 pointer-events-none"
       style={
         isMobile
-          ? { bottom: 16, right: 16 }
-          : { bottom: 24, right: 24 }
+          ? { bottom: 20, right: 16 }
+          : { bottom: 28, right: 28 }
       }
     >
       <audio ref={audioRef} autoPlay style={{ display: 'none' }} />

@@ -57,15 +57,15 @@
   --gradient-warm: linear-gradient(135deg, #FF6B1A 0%, #C9A66B 100%);
 
   /* ── Tipografia Escala ── */
-  --text-display-xl: clamp(48px, 7vw, 96px);
-  --text-display-l: clamp(36px, 5.5vw, 72px);
-  --text-display-m: clamp(28px, 4vw, 48px);
-  --text-heading-l: clamp(24px, 3vw, 36px);
-  --text-heading-m: clamp(20px, 2.5vw, 28px);
-  --text-body-l: clamp(18px, 2vw, 20px);
-  --text-body-m: clamp(16px, 1.8vw, 18px);
+  --text-display-xl: clamp(38px, 4.6vw, 64px);
+  --text-display-l: clamp(32px, 4.6vw, 60px);
+  --text-display-m: clamp(26px, 3.4vw, 44px);
+  --text-heading-l: clamp(22px, 2.6vw, 32px);
+  --text-heading-m: clamp(19px, 2.2vw, 26px);
+  --text-body-l: clamp(17px, 1.5vw, 19px);
+  --text-body-m: clamp(15px, 1.4vw, 17px);
   --text-label: 12px;
-  --text-mono: clamp(14px, 1.6vw, 16px);
+  --text-mono: clamp(13px, 1.4vw, 15px);
 }
 
 /* ═══════════════════════════════════════════════
