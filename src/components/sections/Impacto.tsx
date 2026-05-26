@@ -75,8 +75,8 @@ export default function Impacto() {
     >
       <div className="max-w-7xl mx-auto px-5 sm:px-8">
         <div className="max-w-3xl mb-14 lg:mb-20">
-          <p className="font-mono text-xs uppercase tracking-[0.18em] text-va-orange-vivid mb-4 animate-pulse">
-            05  ·  IMPACTO
+          <p className="font-mono text-xs uppercase tracking-[0.22em] text-va-orange-vivid mb-4">
+            05 · IMPACTO
           </p>
           <h2
             id="impacto-headline"
@@ -327,7 +327,7 @@ export default function Impacto() {
               <div
                 className="font-display font-black tracking-[-0.03em] leading-[0.85]"
                 style={{
-                  fontSize: 'var(--text-display-xl)',
+                  fontSize: 'clamp(72px, 9vw, 132px)',
                   color: ORANGE,
                 }}
               >

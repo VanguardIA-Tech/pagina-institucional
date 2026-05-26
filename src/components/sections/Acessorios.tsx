@@ -68,12 +68,12 @@ export default function Acessorios() {
       />
       <div className="relative max-w-7xl mx-auto px-5 sm:px-8">
         <div className="mb-14 lg:mb-20 max-w-3xl">
-          <p className="font-mono text-xs uppercase tracking-[0.18em] text-va-gray-500 mb-4 animate-pulse">
-            04  ·  ACESSÓRIOS
+          <p className="font-mono text-xs uppercase tracking-[0.22em] text-va-gray-500 mb-4">
+            04 · ACESSÓRIOS
           </p>
           <h2
             id="acessorios-headline"
-            className="font-display font-extrabold tracking-[-0.025em] leading-[1] text-balance"
+            className="font-display font-extrabold tracking-[-0.025em] leading-[1] text-balance text-va-black"
             style={{ fontSize: 'var(--text-display-l)' }}
           >
             Os multiplicadores de valor.
@@ -100,39 +100,38 @@ export default function Acessorios() {
                   delay: i * 0.08,
                   ease: [0.16, 1, 0.3, 1] as const,
                 }}
-                whileHover={{ x: 4 }}
-                className="group relative rounded-2xl px-7 py-8 lg:px-9 lg:py-10 overflow-hidden transition-all bg-white border border-va-gray-200/80 hover:border-va-gray-300 shadow-[0_8px_30px_-8px_rgba(0,0,0,0.08)]"
+                className="group relative rounded-2xl px-7 py-8 lg:px-10 lg:py-10 overflow-hidden transition-all duration-300 bg-white border border-va-gray-200/70 hover:border-va-gray-300 shadow-[0_6px_24px_-12px_rgba(0,0,0,0.06)] hover:shadow-[0_20px_50px_-20px_rgba(0,0,0,0.18)] hover:-translate-y-1"
               >
-                {/* Hover left border */}
+                {/* Hover left accent */}
                 <span
                   aria-hidden="true"
-                  className="absolute top-0 left-0 h-full w-[3px] scale-y-0 origin-top group-hover:scale-y-100 transition-transform duration-300"
+                  className="absolute top-0 left-0 h-full w-[3px] scale-y-0 origin-top group-hover:scale-y-100 transition-transform duration-500"
                   style={{
                     background: a.color,
-                    boxShadow: `0 0 20px ${a.color}99`,
+                    boxShadow: `0 0 24px ${a.color}99`,
                   }}
                 />
 
-                <div className="flex items-start justify-between gap-6">
-                  <div className="flex items-start gap-5 flex-1">
+                <div className="flex items-start justify-between gap-5">
+                  <div className="flex items-start gap-5 flex-1 min-w-0">
                     <span
-                      className="shrink-0 inline-flex items-center justify-center w-12 h-12 rounded-xl"
+                      className="shrink-0 inline-flex items-center justify-center w-12 h-12 rounded-xl transition-transform duration-300 group-hover:scale-105"
                       style={{
-                        background: `${a.color}18`,
+                        background: `${a.color}14`,
                         color: a.color,
-                        boxShadow: `inset 0 0 0 1px ${a.color}44`,
+                        boxShadow: `inset 0 0 0 1px ${a.color}3A`,
                       }}
                     >
                       <Icon size={22} strokeWidth={2.2} />
                     </span>
-                    <div>
+                    <div className="min-w-0">
                       <h3
                         className="font-display font-extrabold tracking-[-0.02em] leading-tight text-va-black"
-                        style={{ fontSize: 'clamp(22px, 2.4vw, 28px)' }}
+                        style={{ fontSize: 'clamp(22px, 2.2vw, 26px)' }}
                       >
                         {a.name}
                       </h3>
-                      <p className="mt-3 text-sm leading-relaxed pr-2 text-va-gray-700">
+                      <p className="mt-3 text-[14px] lg:text-sm leading-relaxed text-va-gray-700">
                         {a.description}
                       </p>
                       {a.bullets.length > 0 && (
@@ -140,7 +139,7 @@ export default function Acessorios() {
                           {a.bullets.map((b) => (
                             <li
                               key={b}
-                              className="text-[11px] font-mono uppercase tracking-[0.1em] px-2.5 py-1 rounded-full"
+                              className="text-[11px] font-mono uppercase tracking-[0.12em] px-2.5 py-1 rounded-full"
                               style={{
                                 background: `${a.color}14`,
                                 color: a.color,
@@ -157,7 +156,7 @@ export default function Acessorios() {
 
                   <ArrowUpRight
                     size={18}
-                    className="shrink-0 mt-2 text-va-gray-400 group-hover:text-va-gray-800 transition-colors"
+                    className="shrink-0 mt-2 text-va-gray-400 group-hover:text-va-black group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-all"
                   />
                 </div>
               </motion.article>

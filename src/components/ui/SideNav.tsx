@@ -71,7 +71,7 @@ export default function SideNav({ sections, variant = 'home' }: Props) {
       {/* Desktop: fixed left rail */}
       <nav
         aria-label="Navegação por seção"
-        className="hidden xl:flex fixed left-8 2xl:left-12 top-1/2 -translate-y-1/2 z-30 flex-col gap-3 pointer-events-none"
+        className="hidden xl:flex fixed left-6 2xl:left-10 top-1/2 -translate-y-1/2 z-30 flex-col gap-3 pointer-events-none"
       >
         <ul className="flex flex-col gap-2 pointer-events-auto">
           {sections.map((s, idx) => {
@@ -83,11 +83,11 @@ export default function SideNav({ sections, variant = 'home' }: Props) {
                   href={`#${s.id}`}
                   onClick={(e) => onClick(e, s.id)}
                   aria-current={isActive ? 'true' : undefined}
-                  className="group relative flex items-center gap-3 py-1.5 pr-2"
+                  className="group relative flex items-center gap-3 py-1.5"
                 >
                   <span
                     aria-hidden="true"
-                    className="relative inline-flex items-center justify-center"
+                    className="relative inline-flex items-center justify-center shrink-0"
                     style={{ width: 18, height: 18 }}
                   >
                     <span
@@ -95,26 +95,24 @@ export default function SideNav({ sections, variant = 'home' }: Props) {
                       style={{
                         width: isActive ? 10 : 6,
                         height: isActive ? 10 : 6,
-                        background: isActive ? accent : 'rgba(255,255,255,0.3)',
+                        background: isActive ? accent : 'rgba(255,255,255,0.45)',
                         boxShadow: isActive ? `0 0 14px ${accent}` : 'none',
+                        outline: isActive
+                          ? 'none'
+                          : '1px solid rgba(0,0,0,0.18)',
                       }}
                     />
                   </span>
-                  <span
-                    className="font-mono text-[10px] uppercase tracking-[0.18em] whitespace-nowrap transition-all duration-300"
-                    style={{
-                      color: isActive
-                        ? 'var(--color-va-white)'
-                        : 'rgba(255,255,255,0.45)',
-                      opacity: isActive ? 1 : 0,
-                      transform: isActive ? 'translateX(0)' : 'translateX(-6px)',
-                    }}
-                  >
-                    <span className="text-va-gray-500 mr-2">
-                      {String(idx + 1).padStart(2, '0')}
+                  {isActive && (
+                    <span
+                      className="font-mono text-[10px] uppercase tracking-[0.18em] whitespace-nowrap transition-all duration-300 inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-va-black/85 backdrop-blur-md border border-white/10 text-white shadow-lg"
+                    >
+                      <span className="text-va-gray-500">
+                        {String(idx + 1).padStart(2, '0')}
+                      </span>
+                      {s.label}
                     </span>
-                    {s.label}
-                  </span>
+                  )}
                 </a>
               </li>
             )

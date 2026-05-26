@@ -155,31 +155,31 @@ export default function ArquiteturaICIA() {
                   viewport={{ once: true, amount: 0.2 }}
                   transition={{
                     duration: 0.6,
-                    delay: reduce ? 0 : i * 0.2,
+                    delay: reduce ? 0 : i * 0.15,
                     ease: [0.16, 1, 0.3, 1] as const,
                   }}
-                  className="bg-white/[0.03] backdrop-blur-sm border border-white/10 rounded-2xl flex flex-col overflow-hidden hover:-translate-y-1 transition-all duration-300"
+                  className="bg-white/[0.03] backdrop-blur-sm border border-white/10 rounded-2xl flex flex-col overflow-hidden hover:-translate-y-1 hover:bg-white/[0.05] transition-all duration-300"
                   style={{
-                    minHeight: 550,
-                    boxShadow: `0 0 0 1px ${p.color}22`,
+                    minHeight: 500,
+                    boxShadow: `0 0 0 1px ${p.color}1F`,
                   }}
                 >
                   {/* Top color banner */}
                   <div
-                    className="h-2"
+                    className="h-1"
                     style={{
                       background: p.color,
-                      boxShadow: `0 0 24px ${p.color}66`,
+                      boxShadow: `0 0 28px ${p.color}88`,
                     }}
                     aria-hidden="true"
                   />
                   <div
-                    className="px-7 py-7 border-b border-white/10"
+                    className="px-7 lg:px-8 py-6 lg:py-7 border-b border-white/10"
                     style={{ background: p.colorSoft }}
                   >
-                    <div className="flex items-center gap-3 mb-4">
+                    <div className="flex items-center gap-3 mb-5">
                       <span
-                        className="inline-flex items-center justify-center w-10 h-10 rounded-lg ring-1 bg-va-black/40"
+                        className="inline-flex items-center justify-center w-11 h-11 rounded-xl bg-va-black/50"
                         style={{
                           color: p.color,
                           boxShadow: `inset 0 0 0 1px ${p.color}55`,
@@ -188,7 +188,7 @@ export default function ArquiteturaICIA() {
                         <Icon size={20} strokeWidth={2.2} />
                       </span>
                       <p
-                        className="font-mono text-[11px] uppercase tracking-[0.16em] font-medium"
+                        className="font-mono text-[11px] uppercase tracking-[0.18em] font-medium"
                         style={{ color: p.color }}
                       >
                         {p.label}
@@ -196,30 +196,30 @@ export default function ArquiteturaICIA() {
                     </div>
                     <h3
                       className="font-display font-extrabold tracking-[-0.02em] leading-[1.05] text-white text-balance"
-                      style={{ fontSize: 'clamp(22px, 2.5vw, 30px)' }}
+                      style={{ fontSize: 'clamp(22px, 2.2vw, 28px)' }}
                     >
                       {p.title}
                     </h3>
                     {p.description && (
-                      <p className="mt-3 text-sm text-va-gray-200 leading-relaxed">
+                      <p className="mt-3 text-[13.5px] lg:text-sm text-va-gray-200 leading-relaxed">
                         {p.description}
                       </p>
                     )}
                   </div>
 
                   {/* Entregas */}
-                  <div className="px-7 py-7 flex-1">
-                    <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-va-gray-500 mb-4">
-                      ENTREGAS
+                  <div className="px-7 lg:px-8 py-6 lg:py-7 flex-1">
+                    <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-va-gray-500 mb-4">
+                      Entregas
                     </p>
-                    <ul className="space-y-3">
+                    <ul className="space-y-2.5">
                       {p.entregas.map((e) => (
                         <li
                           key={e}
-                          className="flex items-start gap-3 text-sm text-va-gray-200"
+                          className="flex items-center gap-3 text-[13.5px] lg:text-sm text-va-gray-200"
                         >
                           <span
-                            className="shrink-0 mt-0.5 inline-flex items-center justify-center w-4 h-4 rounded-full"
+                            className="shrink-0 inline-flex items-center justify-center w-4 h-4 rounded-full"
                             style={{ background: p.colorSoft, color: p.color }}
                           >
                             <Check size={11} strokeWidth={3} />
@@ -232,14 +232,14 @@ export default function ArquiteturaICIA() {
 
                   {/* Proof footer */}
                   <div
-                    className="px-7 py-5 border-t border-white/10 flex items-baseline gap-3"
+                    className="px-7 lg:px-8 py-5 border-t border-white/10 flex items-baseline gap-3"
                     style={{ background: p.colorSoft }}
                   >
                     <span
-                      className="font-display font-extrabold tracking-[-0.02em]"
+                      className="font-display font-extrabold tracking-[-0.02em] leading-none"
                       style={{
                         color: p.color,
-                        fontSize: 'clamp(24px, 2.8vw, 32px)',
+                        fontSize: 'clamp(22px, 2.4vw, 30px)',
                       }}
                     >
                       {p.prova.stat}

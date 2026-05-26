@@ -132,20 +132,33 @@ export default function Tese() {
           </div>
         </div>
 
-        {/* Green anchor banner */}
-        <RevealSection as="div" className="mb-16">
+        {/* Anchor banner — premium dark with gold accent */}
+        <RevealSection as="div" className="mb-20 lg:mb-24">
           <div
-            className="rounded-2xl px-8 py-10 lg:px-14 lg:py-14 text-center border border-white/10"
+            className="relative rounded-2xl px-8 py-12 lg:px-16 lg:py-16 text-center border border-white/10 overflow-hidden"
             style={{
               background:
-                'linear-gradient(135deg, var(--color-va-blue-deep) 0%, rgba(32, 70, 234, 0.1) 100%)',
+                'radial-gradient(ellipse 80% 100% at 50% 0%, rgba(32,70,234,0.18) 0%, rgba(10,10,15,0.95) 70%)',
             }}
           >
+            <div
+              aria-hidden="true"
+              className="absolute inset-0 opacity-[0.05] pointer-events-none"
+              style={{
+                backgroundImage:
+                  'radial-gradient(circle, var(--color-va-white) 1px, transparent 1px)',
+                backgroundSize: '24px 24px',
+              }}
+            />
+            <p className="relative font-mono text-[10px] lg:text-[11px] uppercase tracking-[0.28em] text-va-gold mb-5">
+              A tese, em uma linha
+            </p>
             <p
-              className="font-display font-extrabold text-white leading-[1.05] tracking-[-0.02em] text-balance"
-              style={{ fontSize: 'var(--text-display-m)' }}
+              className="relative font-display font-extrabold text-white leading-[1.05] tracking-[-0.02em] text-balance max-w-4xl mx-auto"
+              style={{ fontSize: 'clamp(28px, 3.6vw, 48px)' }}
             >
-              O problema não foi a ferramenta. Foi a ordem.
+              O problema não foi a ferramenta.{' '}
+              <span style={{ color: 'var(--color-va-gold)' }}>Foi a ordem.</span>
             </p>
           </div>
         </RevealSection>
@@ -161,26 +174,36 @@ export default function Tese() {
             <motion.div
               key={step.n}
               variants={revealItemVariants}
-              className="bg-va-black p-8 lg:p-10 relative"
+              className="bg-va-black p-8 lg:p-10 relative group"
             >
-              <div
-                className="font-mono text-xs uppercase tracking-[0.18em] mb-6 animate-pulse"
-                style={{ color: step.color }}
-              >
-                {step.n}
+              <div className="flex items-center gap-3 mb-5">
+                <span
+                  className="font-mono text-xs uppercase tracking-[0.22em] font-medium"
+                  style={{ color: step.color }}
+                >
+                  {step.n}
+                </span>
+                <span
+                  aria-hidden="true"
+                  className="h-px flex-1"
+                  style={{ background: `${step.color}55` }}
+                />
               </div>
               <h3
-                className="font-display font-extrabold tracking-[-0.02em] text-white mb-4"
-                style={{ fontSize: 'clamp(28px, 3.5vw, 40px)' }}
+                className="font-display font-extrabold tracking-[-0.02em] text-white mb-3 leading-none"
+                style={{ fontSize: 'clamp(26px, 2.8vw, 36px)' }}
               >
                 {step.title}
               </h3>
-              <p className="text-va-gray-200 text-sm leading-relaxed">
+              <p
+                className="font-editorial italic text-va-gray-200 leading-snug"
+                style={{ fontSize: 'clamp(15px, 1.4vw, 17px)' }}
+              >
                 {step.body}
               </p>
               <div
                 aria-hidden="true"
-                className="absolute bottom-0 left-0 h-[3px] w-12"
+                className="absolute bottom-0 left-0 h-[3px] w-12 group-hover:w-24 transition-all duration-500"
                 style={{ background: step.color }}
               />
             </motion.div>

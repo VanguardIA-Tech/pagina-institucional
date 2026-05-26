@@ -28,7 +28,7 @@ const CLIENTS: Client[] = [
 function LogoChip({ client }: { client: Client }) {
   return (
     <div
-      className="flex items-center gap-3 shrink-0 px-10 py-4 border-r border-va-gray-200/40"
+      className="flex items-center justify-center shrink-0 px-10 lg:px-12"
       title={client.name}
     >
       <img
@@ -37,7 +37,7 @@ function LogoChip({ client }: { client: Client }) {
         loading="lazy"
         width={160}
         height={48}
-        className="h-10 sm:h-12 w-auto max-w-[180px] object-contain"
+        className="h-10 lg:h-11 w-auto max-w-[180px] object-contain opacity-80 hover:opacity-100 transition-opacity"
       />
     </div>
   )
@@ -50,37 +50,33 @@ export default function LogoBar() {
     <section
       aria-label="Clientes que operam com a VanguardIA"
       className="relative bg-va-cream border-y border-va-gray-200/60"
-      style={{ minHeight: 140 }}
     >
-      <div className="flex items-stretch h-[140px]">
-        {/* Vertical label */}
-        <div className="shrink-0 flex items-center justify-center px-5 sm:px-8 border-r border-va-gray-200/60 bg-va-cream">
-          <span
-            className="font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.25em] text-va-gray-700 font-medium"
-            style={{
-              writingMode: 'vertical-rl',
-              transform: 'rotate(180deg)',
-            }}
-          >
-            Operam Conosco
-          </span>
+      <div className="max-w-7xl mx-auto px-5 sm:px-8 pt-7 lg:pt-9">
+        <div className="flex items-baseline justify-between gap-6 mb-5 lg:mb-6">
+          <p className="font-mono text-[10px] lg:text-[11px] uppercase tracking-[0.22em] text-va-gray-700 font-medium">
+            <span aria-hidden="true" className="inline-block w-6 h-px bg-va-gray-500 align-middle mr-3" />
+            Operam com a VanguardIA
+          </p>
+          <p className="font-mono text-[10px] lg:text-[11px] uppercase tracking-[0.22em] text-va-gray-500">
+            +600 empresas
+          </p>
         </div>
+      </div>
 
-        {/* Ticker */}
-        <div
-          className="relative flex-1 overflow-hidden"
-          style={{
-            maskImage:
-              'linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%)',
-            WebkitMaskImage:
-              'linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%)',
-          }}
-        >
-          <div className="flex items-center h-full animate-ticker w-max">
-            {list.map((client, i) => (
-              <LogoChip key={`${client.slug}-${i}`} client={client} />
-            ))}
-          </div>
+      {/* Ticker */}
+      <div
+        className="relative overflow-hidden pb-7 lg:pb-9"
+        style={{
+          maskImage:
+            'linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%)',
+          WebkitMaskImage:
+            'linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%)',
+        }}
+      >
+        <div className="flex items-center animate-ticker w-max">
+          {list.map((client, i) => (
+            <LogoChip key={`${client.slug}-${i}`} client={client} />
+          ))}
         </div>
       </div>
     </section>

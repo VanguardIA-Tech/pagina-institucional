@@ -66,9 +66,9 @@ export default function CNHdaIA() {
               initial={{ opacity: 0, y: 12 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.4 }}
-              className="font-mono text-xs uppercase tracking-[0.18em] text-white/80 mb-5 animate-pulse"
+              className="font-mono text-xs uppercase tracking-[0.22em] text-white/85 mb-5"
             >
-              06  ·  CERTIFICAÇÃO
+              06 · CERTIFICAÇÃO
             </motion.p>
 
             <motion.h2
@@ -131,7 +131,7 @@ export default function CNHdaIA() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.5 }}
               transition={{ delay: 0.3 }}
-              className="inline-flex items-center gap-2 border-2 border-white hover:bg-white hover:text-va-orange-deep transition-colors text-white font-semibold px-7 py-4 rounded-full"
+              className="inline-flex items-center gap-2 bg-white hover:bg-white/90 text-va-orange-deep transition-colors font-semibold px-6 py-3.5 rounded-full text-sm shadow-lg shadow-black/20"
             >
               Conhecer a CNH da IA →
             </motion.a>
@@ -181,13 +181,14 @@ export default function CNHdaIA() {
       </div>
 
       {/* 6-step horizontal process */}
-      <div className="border-t border-white/10">
+      <div className="border-t border-white/10 bg-va-black">
         <div className="max-w-7xl mx-auto px-5 sm:px-8 py-16 lg:py-20">
-          <p className="font-mono text-xs uppercase tracking-[0.18em] text-va-gray-500 mb-8">
+          <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-va-gray-500 mb-10">
+            <span aria-hidden="true" className="inline-block w-6 h-px bg-va-gray-500 align-middle mr-3" />
             O método em 6 passos
           </p>
 
-          <ol className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-4 lg:gap-2">
+          <ol className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-x-2 gap-y-8">
             {PASSOS.map((p, i) => (
               <motion.li
                 key={p.n}
@@ -196,17 +197,18 @@ export default function CNHdaIA() {
                 viewport={{ once: true, amount: 0.3 }}
                 transition={{
                   duration: 0.5,
-                  delay: i * 0.08,
+                  delay: i * 0.07,
                   ease: [0.16, 1, 0.3, 1] as const,
                 }}
-                className="relative lg:px-4 py-4 lg:border-r border-white/10 last:border-r-0"
+                className="relative lg:px-5 py-1 lg:border-r border-white/10 last:border-r-0"
               >
-                <div className="flex items-center gap-3 mb-3">
+                <div className="flex items-center gap-3 mb-4">
                   <span
-                    className="font-mono text-xs font-medium px-2 py-0.5 rounded-full"
+                    className="font-mono text-[11px] font-semibold px-2 py-0.5 rounded-full tracking-wider"
                     style={{
                       color: 'var(--color-va-teal)',
-                      background: 'rgba(0,135,90,0.12)',
+                      background: 'rgba(0,135,90,0.14)',
+                      border: '1px solid rgba(0,135,90,0.3)',
                     }}
                   >
                     {p.n}
@@ -216,10 +218,10 @@ export default function CNHdaIA() {
                     className="h-px flex-1 bg-white/10"
                   />
                 </div>
-                <h3 className="font-display font-bold text-white text-base leading-tight">
+                <h3 className="font-display font-bold text-white text-[15px] leading-tight tracking-tight">
                   {p.title}
                 </h3>
-                <p className="mt-1.5 text-xs text-va-gray-500 leading-snug">
+                <p className="mt-2 text-[12.5px] text-va-gray-400 leading-snug">
                   {p.body}
                 </p>
               </motion.li>

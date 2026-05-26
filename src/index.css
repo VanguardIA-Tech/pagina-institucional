@@ -150,6 +150,20 @@
   }
 }
 
+/* Anchored section landings: offset for fixed header so labels are visible */
+section[id] {
+  scroll-margin-top: 96px;
+}
+
+/* Hide scrollbars on horizontal scroll containers */
+.scrollbar-none {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+
 /* ═══════════════════════════════════════════════
    ANIMATIONS
    ═══════════════════════════════════════════════ */

@@ -113,10 +113,13 @@ export default function Hero() {
         >
           <motion.p
             variants={itemVariants}
-            className="font-mono text-[11px] sm:text-xs uppercase tracking-[0.18em] text-va-gray-200/80 mb-8"
+            className="font-mono text-[11px] sm:text-xs uppercase tracking-[0.22em] text-va-gray-200/80 mb-7 flex items-center gap-3"
           >
-            <span className="inline-block w-2 h-2 bg-va-orange-vivid rounded-full mr-3 align-middle" />
-            GRUPO VANGUARDIA  ·  DA AMAZÔNIA PARA O MUNDO  ·  EST. 2020
+            <span
+              aria-hidden="true"
+              className="inline-block h-px w-8 bg-va-orange-vivid"
+            />
+            <span>GRUPO VANGUARDIA · DA AMAZÔNIA PARA O MUNDO · EST. 2020</span>
           </motion.p>
 
           <motion.h1

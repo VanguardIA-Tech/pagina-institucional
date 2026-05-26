@@ -105,8 +105,8 @@ export default function EscadaICIA() {
 
       <div className="relative max-w-7xl mx-auto px-5 sm:px-8">
         <div className="max-w-3xl mb-14 lg:mb-20">
-          <p className="font-mono text-xs uppercase tracking-[0.18em] text-va-orange-vivid mb-4 animate-pulse">
-            03  ·  ICIA OS
+          <p className="font-mono text-xs uppercase tracking-[0.22em] text-va-orange-vivid mb-4">
+            03 · ICIA OS
           </p>
           <h2
             id="escada-headline"
@@ -140,18 +140,29 @@ export default function EscadaICIA() {
                 boxShadow: p.glow,
                 transition: { duration: 0.25 },
               }}
-              className={`relative rounded-2xl border bg-white/[0.03] backdrop-blur-sm flex flex-col overflow-hidden ${p.heightClass}`}
+              className={`relative rounded-2xl border bg-white/[0.035] backdrop-blur-sm flex flex-col overflow-hidden ${p.heightClass}`}
               style={{
                 borderColor: p.featured ? p.color : 'rgba(255,255,255,0.08)',
+                boxShadow: p.featured ? `0 0 0 1px ${p.color}33` : undefined,
               }}
             >
+              {p.featured && (
+                <div
+                  aria-hidden="true"
+                  className="absolute inset-x-0 top-0 h-1"
+                  style={{
+                    background: p.color,
+                    boxShadow: `0 0 24px ${p.color}88`,
+                  }}
+                />
+              )}
               {p.tag && (
                 <div
-                  className="absolute top-5 right-5 inline-flex items-center gap-1.5 text-[10px] font-mono uppercase tracking-[0.16em] px-2.5 py-1 rounded-full font-medium"
+                  className="absolute top-5 right-5 inline-flex items-center gap-1.5 text-[10px] font-mono uppercase tracking-[0.18em] px-2.5 py-1 rounded-full font-medium"
                   style={{
                     background: p.colorSoft,
                     color: p.color,
-                    border: `1px solid ${p.color}55`,
+                    border: `1px solid ${p.color}66`,
                   }}
                 >
                   {p.tag.icon === 'star' ? (
@@ -163,23 +174,20 @@ export default function EscadaICIA() {
                 </div>
               )}
 
-              <div className="px-7 pt-8 pb-6">
+              <div className="px-7 pt-9 pb-6">
                 <p
-                  className="font-mono text-[11px] uppercase tracking-[0.16em] mb-2 font-bold animate-pulse"
+                  className="font-mono text-[11px] uppercase tracking-[0.22em] mb-3 font-bold"
                   style={{ color: p.color }}
                 >
                   {p.level}
                 </p>
                 <h3
-                  className="font-display font-extrabold tracking-[-0.02em] leading-none"
-                  style={{
-                    fontSize: 'clamp(28px, 3.5vw, 40px)',
-                    color: 'white',
-                  }}
+                  className="font-display font-extrabold tracking-[-0.02em] leading-none text-white"
+                  style={{ fontSize: 'clamp(26px, 2.8vw, 34px)' }}
                 >
                   {p.name}
                 </h3>
-                <p className="mt-3 text-sm text-va-gray-200 leading-relaxed pr-6">
+                <p className="mt-3 text-[13.5px] lg:text-sm text-va-gray-200 leading-relaxed pr-6">
                   {p.headline}
                 </p>
               </div>
@@ -187,14 +195,14 @@ export default function EscadaICIA() {
               <div className="h-px bg-white/10 mx-7" />
 
               <div className="px-7 py-6 flex-1">
-                <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-va-gray-500 mb-3">
+                <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-va-gray-500 mb-3">
                   O que inclui
                 </p>
-                <ul className="space-y-2 text-sm text-va-gray-200">
+                <ul className="space-y-2 text-[13.5px] lg:text-sm text-va-gray-200">
                   {p.inclui.map((item) => (
                     <li
                       key={item}
-                      className="flex items-start gap-2 leading-snug"
+                      className="flex items-start gap-2.5 leading-snug"
                     >
                       <span
                         className="shrink-0 mt-2 w-1.5 h-1.5 rounded-full"
@@ -206,8 +214,8 @@ export default function EscadaICIA() {
                 </ul>
               </div>
 
-              <div className="px-7 pb-6 mt-auto">
-                <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-va-gray-500 mb-2">
+              <div className="px-7 pb-7 mt-auto">
+                <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-va-gray-500 mb-2">
                   Ideal para
                 </p>
                 <p className="text-xs text-va-gray-200 mb-5 leading-snug">
@@ -218,7 +226,7 @@ export default function EscadaICIA() {
                   href={whatsappLink(p.cta)}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-between w-full gap-2 px-5 py-3 rounded-full font-semibold text-sm transition-colors"
+                  className="inline-flex items-center justify-between w-full gap-2 px-5 py-3 rounded-full font-semibold text-sm transition-all hover:gap-3"
                   style={{
                     background: p.featured ? p.color : 'transparent',
                     color: p.featured ? 'var(--color-va-black)' : 'white',
@@ -235,7 +243,7 @@ export default function EscadaICIA() {
           ))}
         </div>
 
-        <p className="mt-10 text-center font-mono text-xs uppercase tracking-[0.18em] text-va-gray-200 text-balance">
+        <p className="mt-12 text-center font-mono text-[11px] uppercase tracking-[0.22em] text-va-gray-200 text-balance max-w-3xl mx-auto">
           Tickets a partir de R$ 25k de setup + R$ 12,9k/mês. Todos os programas são semestrais com renovação automática.
         </p>
       </div>

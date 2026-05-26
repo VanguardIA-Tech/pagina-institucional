@@ -102,16 +102,16 @@ export default function DoItHub() {
               className="bg-va-black/85 backdrop-blur-md rounded-2xl border border-white/10 p-8 lg:p-10 flex flex-col justify-between min-h-[380px] hover:-translate-y-2 hover:shadow-2xl transition-all duration-300"
             >
               <div>
-                <div className="flex items-center gap-2 mb-6">
-                  <span className={`w-2.5 h-2.5 rounded-full ${evt.dotColor} animate-pulse`} />
-                  <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-va-gray-500">
+                <div className="flex items-center gap-2.5 mb-6">
+                  <span className={`w-2 h-2 rounded-full ${evt.dotColor}`} />
+                  <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-va-gray-400">
                     {evt.tag}
                   </span>
                 </div>
-                <h3 className="font-display font-extrabold text-2xl tracking-tight text-white mb-4">
+                <h3 className="font-display font-extrabold text-2xl lg:text-[26px] tracking-tight text-white mb-4 leading-none">
                   {evt.title}
                 </h3>
-                <p className="text-sm text-va-gray-200 leading-relaxed">
+                <p className="text-[13.5px] lg:text-sm text-va-gray-200 leading-relaxed">
                   {evt.description}
                 </p>
               </div>

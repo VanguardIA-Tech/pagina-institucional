@@ -48,8 +48,8 @@ export default function ManifestoCTA() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.4 }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className="font-editorial italic font-bold text-va-gold tracking-[-0.025em] leading-[1.1] text-balance mb-6"
-          style={{ fontSize: 'var(--text-display-xl)' }}
+          className="font-editorial italic font-bold text-va-gold tracking-[-0.025em] leading-[1.05] text-balance mb-6"
+          style={{ fontSize: 'clamp(44px, 6.4vw, 88px)' }}
         >
           "Manejar o artificial,<br />pra viver mais do que é real."
         </motion.h2>
