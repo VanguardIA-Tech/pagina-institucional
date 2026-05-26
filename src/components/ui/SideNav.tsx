@@ -107,9 +107,11 @@ export default function SideNav({ sections, variant = 'home' }: Props) {
                     <span
                       className="font-mono text-[10px] uppercase tracking-[0.18em] whitespace-nowrap transition-all duration-300 inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-va-black/85 backdrop-blur-md border border-white/10 text-white shadow-lg"
                     >
-                      <span className="text-va-gray-500">
-                        {String(idx + 1).padStart(2, '0')}
-                      </span>
+                      {idx > 0 && (
+                        <span className="text-va-gray-500">
+                          {String(idx).padStart(2, '0')}
+                        </span>
+                      )}
                       {s.label}
                     </span>
                   )}
