@@ -149,7 +149,7 @@ export default function CNHdaIA() {
             }}
           />
           <img
-            src="https://images.unsplash.com/photo-1531545514256-b1400bc00f31?auto=format&fit=crop&w=1400&q=80"
+            src="/images/cnh-habilitados-final.jpg"
             alt="Turma da CNH da IA em sessão presencial em Belém"
             loading="lazy"
             width={1400}
