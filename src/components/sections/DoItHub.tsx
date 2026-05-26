@@ -11,6 +11,8 @@ type EventCard = {
   cta: string
 }
 
+type GalleryItem = { type: 'video'; src: string } | { type: 'image'; src: string }
+
 const EVENTS: EventCard[] = [
   {
     id: 'ai-night',
@@ -38,17 +40,17 @@ const EVENTS: EventCard[] = [
   },
 ]
 
-const GALLERY_IMAGES = [
-  'https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=620&h=460&q=80',
-  'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=620&h=460&q=80',
-  'https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=620&h=460&q=80',
-  'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=620&h=460&q=80',
-  'https://images.unsplash.com/photo-1528605248644-14dd04022da1?auto=format&fit=crop&w=620&h=460&q=80',
-  'https://images.unsplash.com/photo-1515187029135-18ee286d815b?auto=format&fit=crop&w=620&h=460&q=80',
-  'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=620&h=460&q=80',
-  'https://images.unsplash.com/photo-1431540015161-0bf868a2d407?auto=format&fit=crop&w=620&h=460&q=80',
-  'https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=620&h=460&q=80',
-  'https://images.unsplash.com/photo-1542744173-8e0ee26cf195?auto=format&fit=crop&w=620&h=460&q=80',
+const GALLERY_ITEMS: GalleryItem[] = [
+  { type: 'video', src: '/images/doit-2.webm' },
+  { type: 'image', src: '/images/mesas-doit.webp' },
+  { type: 'image', src: '/images/espaco-doit.webp' },
+  { type: 'image', src: '/images/estudio-doit.webp' },
+]
+
+const GALLERY_IMAGE_ALTS = [
+  'Mesas de trabalho compartilhadas no Do It Hub',
+  'Espaço físico do Do It Hub preparado para encontros',
+  'Estúdio de gravação e conteúdo do Do It Hub',
 ]
 
 export default function DoItHub() {
@@ -130,22 +132,34 @@ export default function DoItHub() {
           ))}
         </RevealSection>
 
-        {/* Horizontal photo gallery */}
+        {/* Horizontal media gallery */}
         <div className="-mx-5 sm:-mx-8 overflow-x-auto pb-4 scrollbar-none touch-pan-x">
           <div className="flex gap-4 px-5 sm:px-8">
-            {GALLERY_IMAGES.map((imgSrc, i) => (
+            {GALLERY_ITEMS.map((item, i) => (
               <div
                 key={i}
                 className="relative flex-shrink-0 w-[320px] h-[240px] rounded-2xl overflow-hidden group shadow-lg border border-white/5"
               >
-                <img
-                  src={imgSrc}
-                  alt={`Do It Hub ambient ${i + 1}`}
-                  loading="lazy"
-                  width={320}
-                  height={240}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                />
+                {item.type === 'video' ? (
+                  <video
+                    src={item.src}
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    aria-label="Vídeo do espaço físico do Do It Hub em Belém"
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                ) : (
+                  <img
+                    src={item.src}
+                    alt={GALLERY_IMAGE_ALTS[i - 1]}
+                    loading="lazy"
+                    width={320}
+                    height={240}
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                )}
                 <div className="absolute inset-0 bg-gradient-to-t from-va-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
                   <p className="font-mono text-[10px] uppercase tracking-wider text-white">
                     DO IT HUB · BELÉM · 2026
