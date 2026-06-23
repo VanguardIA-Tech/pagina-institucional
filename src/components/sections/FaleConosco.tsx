@@ -132,7 +132,7 @@ export default function FaleConosco() {
 
                 <div className="inline-flex items-center gap-2 text-va-gray-200 font-mono text-sm">
                   <Phone size={14} />
-                  +55 (91) 98301-2908
+                  +55 (91) 98762-4620
                 </div>
               </motion.div>
             </div>
