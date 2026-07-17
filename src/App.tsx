@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import { lazy, Suspense } from 'react'
+import AnalyticsTracker from './components/AnalyticsTracker'
 
 const Home = lazy(() => import('./pages/Home'))
 const IciaGov = lazy(() => import('./pages/IciaGov'))
@@ -15,6 +16,7 @@ function Loading() {
 export default function App() {
   return (
     <BrowserRouter>
+      <AnalyticsTracker />
       <Suspense fallback={<Loading />}>
         <Routes>
           <Route path="/" element={<Home />} />

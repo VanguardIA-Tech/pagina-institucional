@@ -103,6 +103,8 @@ export default function FaleConosco() {
               >
                 <a
                   href={whatsappLink('Quero falar com a VanguardIA')}
+                  data-track-event="whatsapp_click"
+                  data-track-label="Fale Conosco · Iniciar conversa"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-3 bg-va-blue-electric hover:bg-va-blue-glow text-white font-semibold px-8 py-4 rounded-full transition-colors text-base group shadow-lg"

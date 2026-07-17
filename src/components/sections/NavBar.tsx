@@ -154,6 +154,7 @@ export default function NavBar() {
 
             <a
               href={ctaUrl}
+              data-track-label={`Menu · ${ctaLabel}`}
               target="_blank"
               rel="noopener noreferrer"
               className={`inline-flex items-center gap-2 ${ctaBgColor} transition-colors text-white font-semibold text-[12.5px] xl:text-[13px] px-4 xl:px-5 py-2.5 rounded-full whitespace-nowrap`}
@@ -238,6 +239,7 @@ export default function NavBar() {
 
             <a
               href={ctaUrl}
+              data-track-label={`Menu mobile · ${ctaLabel}`}
               target="_blank"
               rel="noopener noreferrer"
               className={`flex items-center justify-center gap-2 ${ctaBgColor} text-white font-semibold text-base px-5 py-4 rounded-full w-full`}

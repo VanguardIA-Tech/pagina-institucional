@@ -186,6 +186,7 @@ export default function Hero() {
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 w-full sm:w-auto">
               <a
                 href={CTA_PRIVATE}
+                data-track-label="Hero · Empresas"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-2 bg-va-blue-electric hover:bg-va-blue-glow text-white font-semibold px-6 py-3.5 rounded-full transition-colors text-sm sm:text-base"
@@ -194,6 +195,8 @@ export default function Hero() {
               </a>
               <a
                 href="/icia-gov"
+                data-track-event="cta_click"
+                data-track-label="Hero · Setor Público"
                 className="inline-flex items-center justify-center gap-2 border border-white/25 hover:border-white/60 hover:bg-white/5 text-white font-semibold px-6 py-3.5 rounded-full transition-colors text-sm sm:text-base"
               >
                 SETOR PÚBLICO ▶
