@@ -14,6 +14,11 @@ type TrackingPayload = Record<string, string | number | boolean | undefined>
 declare global {
   interface Window {
     dataLayer?: Array<Record<string, unknown>>
+    gtag?: (
+      command: 'event',
+      eventName: TrackingEvent,
+      parameters: Record<string, unknown>,
+    ) => void
   }
 }
 
@@ -24,13 +29,19 @@ function clean(value: string | null | undefined, maxLength = 100) {
 export function trackEvent(event: TrackingEvent, payload: TrackingPayload = {}) {
   if (typeof window === 'undefined') return
 
+  const parameters = {
+    page_path: `${window.location.pathname}${window.location.search}`,
+    page_title: document.title,
+    ...payload,
+  }
+
   window.dataLayer = window.dataLayer || []
   window.dataLayer.push({
     event,
-    page_path: window.location.pathname,
-    page_title: document.title,
-    ...payload,
+    ...parameters,
   })
+
+  window.gtag?.('event', event, parameters)
 }
 
 function sectionFor(element: Element) {
@@ -80,4 +91,3 @@ export function classifyInteraction(element: HTMLElement) {
   if (anchor) return { event: 'navigation_click' as const, payload: common }
   return { event: 'ui_click' as const, payload: common }
 }
-
