@@ -48,6 +48,20 @@ describe('public proof contract', () => {
       expect(existsSync(`${root}/public/logos/${client.slug}.png`)
         || existsSync(`${root}/public/logos/${client.slug}.jpg`)).toBe(true)
     }
+
+    expect(
+      publicProof.clients
+        .filter(({ logoTreatment }) => logoTreatment === 'light')
+        .map(({ slug }) => slug),
+    ).toEqual([
+      'paraferro',
+      'cf-distribuidora',
+      'supermercado-economico',
+      'prime-equipaments',
+    ])
+    expect(
+      publicProof.clients.find(({ slug }) => slug === 'unineuro')?.logoTreatment,
+    ).toBe('paper-wide')
   })
 
   it('ships the declared media manifest', () => {
@@ -74,6 +88,7 @@ describe('public proof contract', () => {
 describe('home editorial contract', () => {
   const home = read('src/pages/Home.tsx')
   const sections = read('src/components/portfolio/PortfolioSections.tsx')
+  const styles = read('src/portfolio.css')
 
   it('renders exactly the seven planned sections in order', () => {
     const renderedSections = Array.from(
@@ -102,6 +117,25 @@ describe('home editorial contract', () => {
     expect(positions.every((position) => position >= 0)).toBe(true)
     expect(positions).toEqual([...positions].sort((a, b) => a - b))
   })
+
+  it('preserves complete portal screens and the two-line hero at every breakpoint', () => {
+    expect(sections).toContain('case-media case-media--portal')
+    expect(styles).toMatch(/\.case-media--portal\s*\{[^}]*aspect-ratio:\s*8\s*\/\s*5/s)
+    expect(styles).toMatch(/\.case-media--portal img\s*\{[^}]*object-fit:\s*contain/s)
+    expect(styles).toContain('font-size: min(9.25vw, 71px)')
+  })
+
+  it('keeps the content target focusable for the skip link', () => {
+    const entry = read('src/main.tsx')
+
+    expect(home).toContain('<main id="main-content" tabIndex={-1}>')
+    expect(entry).toContain("'.skip-link[href=\"#main-content\"]'")
+    expect(entry).toContain("document.getElementById('main-content')?.focus")
+  })
+
+  it('renders the site footer as a sibling after the main landmark', () => {
+    expect(home.indexOf('</main>')).toBeLessThan(home.indexOf('<PortfolioFooter />'))
+  })
 })
 
 describe('testimonial media contract', () => {
@@ -113,6 +147,11 @@ describe('testimonial media contract', () => {
     expect(testimonials).toContain('playsInline')
     expect(testimonials).toContain('kind="captions"')
     expect(testimonials).not.toMatch(/<video[^>]*autoPlay/)
+  })
+
+  it('moves focus into playback and returns it to the poster', () => {
+    expect(testimonials).toContain('video.focus({ preventScroll: true })')
+    expect(testimonials).toContain('posterButtonRef.current?.focus({ preventScroll: true })')
   })
 
   it('ships local responsive posters and Portuguese captions', () => {
@@ -128,6 +167,15 @@ describe('testimonial media contract', () => {
 })
 
 describe('voice fallback contract', () => {
+  it('hands keyboard focus from the lazy loader to the inline agent', () => {
+    const voiceDemo = read('src/components/portfolio/VoiceDemo.tsx')
+    const agent = read('src/components/ui/OrbVoiceAgent.tsx')
+
+    expect(voiceDemo).toContain('role="status" tabIndex={-1}')
+    expect(voiceDemo).toContain('<OrbVoiceAgent variant="inline" autoFocus />')
+    expect(agent).toContain('controlRef.current?.focus({ preventScroll: true })')
+  })
+
   it.each([
     [new DOMException('Permission denied', 'NotAllowedError'), 'denied'],
     [new Error('Microphone API not available'), 'unavailable'],

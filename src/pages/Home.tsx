@@ -5,6 +5,7 @@ import {
   ClientPortfolio,
   DoItHubClose,
   Outcomes,
+  PortfolioFooter,
   PortfolioHero,
   ProductSystem,
 } from '../components/portfolio/PortfolioSections'
@@ -93,7 +94,7 @@ export default function Home() {
   return (
     <div className="portfolio-home">
       <PortfolioNav />
-      <main id="main-content">
+      <main id="main-content" tabIndex={-1}>
         <PortfolioHero
           metrics={publicProof.metrics}
           portals={publicProof.mediaManifest.portalPreviews}
@@ -109,6 +110,7 @@ export default function Home() {
         <Testimonials items={publicProof.testimonials} />
         <DoItHubClose outcome={doItOutcome} image={doItImage} />
       </main>
+      <PortfolioFooter />
     </div>
   )
 }

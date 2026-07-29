@@ -181,12 +181,12 @@
     { "name": "Alves Martins", "slug": "alves-martins", "sector": "Jurídico" },
     { "name": "Montalvão Neves", "slug": "montalvao-neves", "sector": "Jurídico" },
     { "name": "Nativa Uniformes", "slug": "nativa-uniformes", "sector": "Indústria" },
-    { "name": "Paraferro", "slug": "paraferro", "sector": "Indústria" },
+    { "name": "Paraferro", "slug": "paraferro", "sector": "Indústria", "logoTreatment": "light" },
     { "name": "Belém Bioenergia Brasil", "slug": "bbb", "sector": "Indústria" },
     { "name": "Nevoni", "slug": "nevoni", "sector": "Indústria" },
-    { "name": "CF Distribuidora", "slug": "cf-distribuidora", "sector": "Varejo e distribuição" },
-    { "name": "Supermercado Econômico", "slug": "supermercado-economico", "sector": "Varejo e distribuição" },
-    { "name": "Prime Equipaments", "slug": "prime-equipaments", "sector": "Varejo e distribuição" },
+    { "name": "CF Distribuidora", "slug": "cf-distribuidora", "sector": "Varejo e distribuição", "logoTreatment": "light" },
+    { "name": "Supermercado Econômico", "slug": "supermercado-economico", "sector": "Varejo e distribuição", "logoTreatment": "light" },
+    { "name": "Prime Equipaments", "slug": "prime-equipaments", "sector": "Varejo e distribuição", "logoTreatment": "light" },
     { "name": "DAL Ferragens", "slug": "dal-ferragens", "sector": "Varejo e distribuição" },
     { "name": "Cabotia", "slug": "cabotia", "sector": "Varejo e distribuição" },
     { "name": "Silnave Navegação", "slug": "silnave", "sector": "Navegação e logística" },
@@ -198,7 +198,7 @@
     { "name": "MedNutri", "slug": "mednutri", "sector": "Saúde e educação" },
     { "name": "Faculdade FIBRA", "slug": "fibra", "sector": "Saúde e educação" },
     { "name": "Mave Assistência 24h", "slug": "mave", "sector": "Saúde e educação" },
-    { "name": "Unineuro Diagnósticos", "slug": "unineuro", "sector": "Saúde e educação" }
+    { "name": "Unineuro Diagnósticos", "slug": "unineuro", "sector": "Saúde e educação", "logoTreatment": "paper-wide" }
   ],
   "testimonials": [
     {

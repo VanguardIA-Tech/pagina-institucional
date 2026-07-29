@@ -125,7 +125,7 @@ export default function IciaGov() {
       <ScrollProgress />
       <NavBar />
       <SideNav sections={SECTIONS} variant="gov" />
-      <main id="main-content">
+      <main id="main-content" tabIndex={-1}>
         <HeroGov />
         <TeseGov />
         <CNHdaIAServidores />

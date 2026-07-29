@@ -1,10 +1,16 @@
-import { lazy, Suspense, useState } from 'react'
+import { lazy, Suspense, useEffect, useRef, useState } from 'react'
 
 const OrbVoiceAgent = lazy(() => import('../ui/OrbVoiceAgent'))
 
 function VoiceLoading() {
+  const statusRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    statusRef.current?.focus({ preventScroll: true })
+  }, [])
+
   return (
-    <div className="voice-demo-loading" role="status">
+    <div ref={statusRef} className="voice-demo-loading" role="status" tabIndex={-1}>
       Preparando a conversa
     </div>
   )
@@ -38,7 +44,7 @@ export default function VoiceDemo() {
   return (
     <div className="voice-demo-live">
       <Suspense fallback={<VoiceLoading />}>
-        <OrbVoiceAgent variant="inline" />
+        <OrbVoiceAgent variant="inline" autoFocus />
       </Suspense>
     </div>
   )

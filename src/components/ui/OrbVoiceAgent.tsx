@@ -229,12 +229,15 @@ type OrbVoiceAgentProps = {
   fallbackTokenEndpoint?: string
   /** Inline is used inside the enterprise product story; floating preserves the GOV behavior. */
   variant?: 'inline' | 'floating'
+  /** Moves keyboard focus from a user-triggered lazy loader to the inline control. */
+  autoFocus?: boolean
 }
 
 export default function OrbVoiceAgent({
   tokenEndpoint = '/api/realtime/session',
   fallbackTokenEndpoint = '/api/realtime/token',
   variant = 'floating',
+  autoFocus = false,
 }: OrbVoiceAgentProps) {
   const [state, setState] = useState<OrbState>('idle')
   const [isMobile, setIsMobile] = useState(false)
@@ -252,6 +255,11 @@ export default function OrbVoiceAgent({
   const amplitudeRef = useRef<number>(0)
   const rafRef = useRef<number>(0)
   const responseCountRef = useRef<number>(0)
+  const controlRef = useRef<HTMLButtonElement>(null)
+
+  useEffect(() => {
+    if (autoFocus) controlRef.current?.focus({ preventScroll: true })
+  }, [autoFocus])
 
   useEffect(() => {
     const mq = window.matchMedia('(max-width: 640px)')
@@ -643,6 +651,7 @@ export default function OrbVoiceAgent({
       </AnimatePresence>
 
       <motion.button
+        ref={controlRef}
         layout
         type="button"
         onClick={onToggle}

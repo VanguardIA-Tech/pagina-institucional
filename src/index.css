@@ -101,7 +101,7 @@
     z-index: 9999;
     padding: 12px 24px;
     background: var(--color-va-orange-vivid);
-    color: white;
+    color: #0a0a0f;
     font-weight: 700;
     border-radius: 6px;
     transition: top 0.2s;
