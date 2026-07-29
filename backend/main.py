@@ -4,6 +4,7 @@ import os
 import re
 import time
 import typing
+from functools import lru_cache
 from pathlib import Path
 
 from dotenv import load_dotenv
@@ -21,22 +22,23 @@ REALTIME_VOICE = "marin"
 CLIENT_SECRET_TTL_SECONDS = 120
 MAX_REALTIME_SESSIONS_PER_HOUR = 12
 KNOWLEDGE_PATH = Path(__file__).resolve().parent / "knowledge" / "vanguardia_public.md"
+PUBLIC_PROOF_PATH = (
+    Path(__file__).resolve().parents[1] / "public" / "data" / "public-proof.json"
+)
 SESSION_STARTS: dict[str, list[float]] = {}
 
-VANGUARDIA_INSTRUCTIONS = """Você é o Jarvis da VanguardIA, assistente de IA por voz que interage com leads, clientes e parceiros do Grupo VanguardIA.
+VANGUARDIA_INSTRUCTIONS_BASE = """Você é o Jarvis da VanguardIA, assistente de IA por voz que interage com leads, clientes e parceiros do Grupo VanguardIA.
 
 SOBRE A VANGUARDIA:
-O Grupo VanguardIA é a primeira aceleradora de cultura de Inteligência Aplicada do Brasil, sediada em Belém, Pará. Criamos a Arquitetura ICIA — método proprietário que une pessoas, processos e tecnologia em camada permanente.
+O Grupo VanguardIA é a primeira aceleradora de cultura de Inteligência Aplicada do Brasil, sediada em Belém, Pará. Criamos a Arquitetura ICIA, método proprietário que une pessoas, processos e tecnologia em camada permanente.
 
 NOSSOS PRODUTOS:
-- CNH da IA: certificação corporativa com 8.000+ profissionais habilitados
+- CNH da IA: certificação corporativa para habilitar pessoas a operar IA com critério
 - ICIA START / CORE / OS: três níveis de implementação (entrada, transformação, legado)
 - ICIA 360: integração e substituição de sistemas
 - ICIA Data Lake: fundação de dados governada
 - ICIA Governança IA: POPs vivos e políticas de uso
 - Do It Hub: ecossistema físico em Belém com eventos semanais
-
-CLIENTES: Atendemos 22+ empresas como Paraferro, Grupo Mega, Alves Martins, Silveira Athias, CF Distribuidora, MedNutri, Facilita, BBB, e instituições como ACP, SEBRAE, OAB-PA, SINDARPA.
 
 PARA O SETOR PÚBLICO: CNH da IA para servidores, contatável por inexigibilidade (Lei 14.133/21, Art. 74), em conformidade com LGPD e LC 182/2021.
 
@@ -46,7 +48,7 @@ TOM DE VOZ:
 - Quando não souber algo, ofereça conectar com um humano
 - Use português brasileiro natural, sem anglicismos forçados
 - Se for uma reunião guiada pelo CEO (Jorge), assuma tom de apresentação institucional
-- Se for um lead, seja consultivo — entenda a dor antes de oferecer solução
+- Se for um lead, seja consultivo: entenda a dor antes de oferecer solução
 
 BASE DE CONHECIMENTO:
 - Para responder perguntas factuais sobre a VanguardIA, ICIA, CNH da IA, DEEP, PEI, ICIA 360, ICIA OS, cases, clientes citáveis, métricas públicas, posicionamento, metodologia ou produtos, use a ferramenta search_vanguardia_knowledge antes de responder.
@@ -115,13 +117,109 @@ def enforce_session_rate_limit(safety_identifier: str) -> None:
     SESSION_STARTS[safety_identifier] = recent_starts
 
 
+@lru_cache(maxsize=1)
+def public_proof() -> dict[str, typing.Any]:
+    """Load the public, publishable proof shared with the frontend."""
+    try:
+        proof = json.loads(PUBLIC_PROOF_PATH.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError) as exc:
+        raise RuntimeError("Public proof source is unavailable or invalid.") from exc
+
+    required_keys = {
+        "asOf",
+        "metrics",
+        "outcomes",
+        "cases",
+        "mediaManifest",
+        "clients",
+        "testimonials",
+    }
+    if not required_keys.issubset(proof):
+        raise RuntimeError("Public proof source is missing required fields.")
+    return proof
+
+
+def public_proof_chunk() -> dict[str, str]:
+    proof = public_proof()
+    year, month, day = proof["asOf"].split("-")
+    month_names = {
+        "01": "janeiro",
+        "02": "fevereiro",
+        "03": "março",
+        "04": "abril",
+        "05": "maio",
+        "06": "junho",
+        "07": "julho",
+        "08": "agosto",
+        "09": "setembro",
+        "10": "outubro",
+        "11": "novembro",
+        "12": "dezembro",
+    }
+    reference = f"{int(day)} de {month_names[month]} de {year}"
+
+    metric_lines = [
+        f"- {metric['display']} {metric['label']}: {metric['context']}."
+        for metric in proof["metrics"]
+    ]
+    outcome_lines = [
+        (
+            f"- {outcome['organization']}: {outcome['label']} passou de "
+            f"{outcome['beforeDisplay']} para {outcome['afterDisplay']}."
+        )
+        for outcome in proof["outcomes"]
+    ]
+    case_lines = [
+        (
+            f"- {case['organization']} ({case['sector']}): {case['metric']} "
+            f"{case['metricLabel']}. {case['summary']}"
+        )
+        for case in proof["cases"]
+    ]
+    client_names = ", ".join(client["name"] for client in proof["clients"])
+
+    content = "\n".join(
+        [
+            "## Prova social pública canônica",
+            f"Referência dos dados: {reference}.",
+            "",
+            "Métricas públicas:",
+            *metric_lines,
+            "",
+            "Resultados públicos:",
+            *outcome_lines,
+            "",
+            "Cases públicos:",
+            *case_lines,
+            "",
+            f"Clientes publicáveis: {client_names}.",
+            "",
+            "Os resultados são exemplos verificados e não constituem garantia.",
+        ]
+    )
+    return {"title": "Prova social pública canônica", "content": content}
+
+
+def vanguardia_instructions() -> str:
+    proof = public_proof()
+    metric_summary = "; ".join(
+        f"{metric['display']} {metric['label']}" for metric in proof["metrics"]
+    )
+    return (
+        f"{VANGUARDIA_INSTRUCTIONS_BASE}\n\n"
+        "FATOS PÚBLICOS CANÔNICOS:\n"
+        f"Referência: {proof['asOf']}. {metric_summary}. "
+        "Use a busca de conhecimento para contexto, resultados, cases e clientes."
+    )
+
+
 def knowledge_chunks() -> list[dict[str, str]]:
+    chunks = [public_proof_chunk()]
     if not KNOWLEDGE_PATH.exists():
-        return []
+        return chunks
 
     content = KNOWLEDGE_PATH.read_text(encoding="utf-8")
     sections = re.split(r"\n(?=## )", content)
-    chunks: list[dict[str, str]] = []
     for section in sections:
         section = section.strip()
         if not section:
@@ -129,6 +227,8 @@ def knowledge_chunks() -> list[dict[str, str]]:
 
         lines = section.splitlines()
         title = lines[0].lstrip("# ").strip() if lines else "Base publica"
+        if title.lower() in {"prova social publica", "prova social pública"}:
+            continue
         chunks.append({"title": title, "content": section})
     return chunks
 
@@ -198,7 +298,7 @@ def realtime_session_config() -> dict[str, typing.Any]:
     return {
         "type": "realtime",
         "model": REALTIME_MODEL,
-        "instructions": VANGUARDIA_INSTRUCTIONS,
+        "instructions": vanguardia_instructions(),
         "tools": realtime_tools(),
         "tool_choice": "auto",
         "audio": {
@@ -346,19 +446,3 @@ def search_public_knowledge(payload: KnowledgeSearchRequest) -> dict[str, typing
             "If evidence is insufficient, say so and offer human follow-up.",
         ],
     }
-
-
-class ClientError(typing.TypedDict, total=False):
-    message: str
-    stack: str
-    userAgent: str
-
-
-@app.post("/api/log-error")
-def log_error(err: ClientError) -> dict[str, str]:
-    print(f"\n--- CLIENT ERROR LOG ---")
-    print(f"Message: {err.get('message')}")
-    print(f"Stack: {err.get('stack')}")
-    print(f"UserAgent: {err.get('userAgent')}")
-    print(f"------------------------\n")
-    return {"status": "ok"}

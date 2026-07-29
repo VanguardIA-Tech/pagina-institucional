@@ -3,6 +3,8 @@ import { Canvas, useFrame } from '@react-three/fiber'
 import * as THREE from 'three'
 import { Mic, MicOff, Sparkles } from 'lucide-react'
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion'
+import { whatsappLink } from '../../lib/whatsapp'
+import { getVoiceErrorFeedback } from '../../lib/voiceErrors'
 
 type OrbState = 'idle' | 'listening' | 'speaking'
 const MAX_RESPONSES_PER_SESSION = 8
@@ -25,13 +27,32 @@ const COLORS: Record<OrbState, { core: string; particle: string; glow: string }>
   },
 }
 
+const INLINE_COLORS: Record<OrbState, { core: string; particle: string; glow: string }> = {
+  idle: {
+    core: '#2046EA',
+    particle: '#EEF0EA',
+    glow: 'transparent',
+  },
+  listening: {
+    core: '#FF6B1A',
+    particle: '#FAFAF7',
+    glow: 'transparent',
+  },
+  speaking: {
+    core: '#00875A',
+    particle: '#EEF0EA',
+    glow: 'transparent',
+  },
+}
+
 type OrbParticlesProps = {
   state: OrbState
   amplitudeRef: React.MutableRefObject<number>
   pointCount: number
+  palette: Record<OrbState, { core: string; particle: string; glow: string }>
 }
 
-function OrbParticles({ state, amplitudeRef, pointCount }: OrbParticlesProps) {
+function OrbParticles({ state, amplitudeRef, pointCount, palette }: OrbParticlesProps) {
   const pointsRef = useRef<THREE.Points>(null)
   const timeRef = useRef(0)
 
@@ -63,7 +84,10 @@ function OrbParticles({ state, amplitudeRef, pointCount }: OrbParticlesProps) {
 
   useEffect(() => () => geometry.dispose(), [geometry])
 
-  const colorObj = useMemo(() => new THREE.Color(COLORS[state].particle), [state])
+  const colorObj = useMemo(
+    () => new THREE.Color(palette[state].particle),
+    [palette, state],
+  )
 
   useFrame((_, delta) => {
     const pts = pointsRef.current
@@ -114,10 +138,16 @@ function OrbParticles({ state, amplitudeRef, pointCount }: OrbParticlesProps) {
   )
 }
 
-function OrbCore({ state }: { state: OrbState }) {
+function OrbCore({
+  state,
+  palette,
+}: {
+  state: OrbState
+  palette: Record<OrbState, { core: string; particle: string; glow: string }>
+}) {
   const meshRef = useRef<THREE.Mesh>(null)
   const timeRef = useRef(0)
-  const color = useMemo(() => new THREE.Color(COLORS[state].core), [state])
+  const color = useMemo(() => new THREE.Color(palette[state].core), [palette, state])
 
   useFrame((_, delta) => {
     timeRef.current += delta
@@ -146,9 +176,16 @@ type OrbContentProps = {
   amplitudeRef: React.MutableRefObject<number>
   isMobile: boolean
   reduceMotion: boolean | null
+  palette: Record<OrbState, { core: string; particle: string; glow: string }>
 }
 
-function OrbContent({ state, amplitudeRef, isMobile, reduceMotion }: OrbContentProps) {
+function OrbContent({
+  state,
+  amplitudeRef,
+  isMobile,
+  reduceMotion,
+  palette,
+}: OrbContentProps) {
   const groupRef = useRef<THREE.Group>(null)
   const elapsedRef = useRef(0)
 
@@ -174,11 +211,12 @@ function OrbContent({ state, amplitudeRef, isMobile, reduceMotion }: OrbContentP
 
   return (
     <group ref={groupRef}>
-      <OrbCore state={state} />
+      <OrbCore state={state} palette={palette} />
       <OrbParticles
         state={state}
         amplitudeRef={amplitudeRef}
         pointCount={isMobile ? 500 : 1200}
+        palette={palette}
       />
     </group>
   )
@@ -189,11 +227,14 @@ type OrbVoiceAgentProps = {
   tokenEndpoint?: string
   /** Fallback endpoint that mints an ephemeral Realtime client secret. */
   fallbackTokenEndpoint?: string
+  /** Inline is used inside the enterprise product story; floating preserves the GOV behavior. */
+  variant?: 'inline' | 'floating'
 }
 
 export default function OrbVoiceAgent({
   tokenEndpoint = '/api/realtime/session',
   fallbackTokenEndpoint = '/api/realtime/token',
+  variant = 'floating',
 }: OrbVoiceAgentProps) {
   const [state, setState] = useState<OrbState>('idle')
   const [isMobile, setIsMobile] = useState(false)
@@ -506,7 +547,7 @@ export default function OrbVoiceAgent({
       console.error(err)
       const msg = err instanceof Error ? err.message : String(err)
       const stack = err instanceof Error ? err.stack : undefined
-      setError(msg)
+      setError(getVoiceErrorFeedback(err).message)
       
       // Log to backend
       fetch('/api/log-error', {
@@ -558,8 +599,10 @@ export default function OrbVoiceAgent({
     }
   }, [])
 
-  const orbSize = isMobile ? 88 : 132
-  const colors = COLORS[state]
+  const isInline = variant === 'inline'
+  const orbSize = isInline ? (isMobile ? 156 : 196) : isMobile ? 88 : 132
+  const palette = isInline ? INLINE_COLORS : COLORS
+  const colors = palette[state]
 
   const label =
     state === 'listening'
@@ -571,16 +614,22 @@ export default function OrbVoiceAgent({
   return (
     <div
       aria-live="polite"
-      className="fixed z-40 pointer-events-none"
+      className={
+        isInline
+          ? 'relative flex flex-col items-center pointer-events-auto'
+          : 'fixed z-40 pointer-events-none'
+      }
       style={
-        isMobile
+        isInline
+          ? undefined
+          : isMobile
           ? { bottom: 20, right: 16 }
           : { bottom: 28, right: 28 }
       }
     >
       <audio ref={audioRef} autoPlay style={{ display: 'none' }} />
       <AnimatePresence>
-        {tooltipOpen && state === 'idle' && !isMobile && (
+        {!isInline && tooltipOpen && state === 'idle' && !isMobile && (
           <motion.div
             initial={{ opacity: 0, x: 12 }}
             animate={{ opacity: 1, x: 0 }}
@@ -603,12 +652,15 @@ export default function OrbVoiceAgent({
         onBlur={() => setTooltipOpen(false)}
         aria-label={label}
         aria-pressed={state !== 'idle'}
-        initial={{ opacity: 0 }}
+        initial={isInline ? false : { opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: reduceMotion ? 0 : 1.2, duration: 0.6 }}
-        whileHover={reduceMotion ? undefined : { scale: 1.05 }}
-        whileTap={reduceMotion ? undefined : { scale: 0.94 }}
-        className="pointer-events-auto relative rounded-full overflow-hidden border border-white/10 cursor-pointer"
+        transition={{
+          delay: isInline || reduceMotion ? 0 : 1.2,
+          duration: isInline ? 0.2 : 0.6,
+        }}
+        whileHover={isInline || reduceMotion ? undefined : { scale: 1.05 }}
+        whileTap={isInline || reduceMotion ? undefined : { scale: 0.94 }}
+        className="voice-orb-button pointer-events-auto relative rounded-full overflow-hidden cursor-pointer"
         style={{
           width: orbSize,
           height: orbSize,
@@ -616,15 +668,21 @@ export default function OrbVoiceAgent({
       >
         {/* Animated background and shadow */}
         <motion.div
-          initial={{ scale: reduceMotion ? 1 : 0.6 }}
+          initial={isInline ? false : { scale: reduceMotion ? 1 : 0.6 }}
           animate={{ scale: 1 }}
-          transition={{ delay: reduceMotion ? 0 : 1.2, duration: 0.6 }}
+          transition={{
+            delay: isInline || reduceMotion ? 0 : 1.2,
+            duration: isInline ? 0.2 : 0.6,
+          }}
           className="absolute inset-0 rounded-full"
           style={{
-            background:
-              'radial-gradient(circle at 50% 45%, rgba(11,26,62,0.95) 0%, rgba(10,10,15,0.98) 70%)',
-            boxShadow: `0 0 60px ${colors.glow}, inset 0 0 30px rgba(0,0,0,0.6)`,
-            transition: 'box-shadow 0.4s ease',
+            background: isInline
+              ? '#11130f'
+              : 'radial-gradient(circle at 50% 45%, rgba(11,26,62,0.95) 0%, rgba(10,10,15,0.98) 70%)',
+            boxShadow: isInline
+              ? 'inset 0 0 0 1px rgba(238, 240, 234, 0.18)'
+              : `0 0 60px ${colors.glow}, inset 0 0 30px rgba(0,0,0,0.6)`,
+            transition: 'box-shadow 200ms cubic-bezier(0.23, 1, 0.32, 1)',
           }}
         />
 
@@ -641,6 +699,7 @@ export default function OrbVoiceAgent({
             amplitudeRef={amplitudeRef}
             isMobile={isMobile}
             reduceMotion={reduceMotion}
+            palette={palette}
           />
         </Canvas>
 
@@ -670,7 +729,7 @@ export default function OrbVoiceAgent({
 
         {/* State icon overlay */}
         <motion.span
-          initial={{ scale: reduceMotion ? 1 : 0.6 }}
+          initial={isInline ? false : { scale: reduceMotion ? 1 : 0.6 }}
           animate={{ scale: 1 }}
           transition={{ delay: reduceMotion ? 0 : 1.2, duration: 0.6 }}
           aria-hidden="true"
@@ -695,13 +754,37 @@ export default function OrbVoiceAgent({
         </motion.span>
       </motion.button>
 
-      {error && (
-        <p
-          role="status"
-          className="absolute top-full mt-2 right-0 max-w-[220px] text-[10px] font-mono uppercase tracking-[0.12em] text-va-orange-glow text-right pointer-events-none"
-        >
-          {error}
+      {isInline && (
+        <p className="mt-4 max-w-[26ch] text-center text-sm text-current">
+          {state === 'idle'
+            ? 'Clique para iniciar. O microfone só é solicitado depois da sua ação.'
+            : state === 'listening'
+              ? 'Ouvindo. Fale sobre a VanguardIA, o ICIA ou os nossos produtos.'
+              : 'Respondendo com a base pública da VanguardIA.'}
         </p>
+      )}
+
+      {error && (
+        <div
+          role="status"
+          className={
+            isInline
+              ? 'mt-4 max-w-sm text-center text-sm text-current'
+              : 'absolute top-full mt-2 right-0 max-w-[220px] text-[10px] font-mono uppercase tracking-[0.12em] text-va-orange-glow text-right pointer-events-none'
+          }
+        >
+          <p>{error}</p>
+          {isInline && (
+            <a
+              href={whatsappLink('Quero falar com a VanguardIA')}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-2 inline-block font-semibold underline underline-offset-4"
+            >
+              Continuar pelo WhatsApp
+            </a>
+          )}
+        </div>
       )}
     </div>
   )

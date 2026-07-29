@@ -1,8 +1,6 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
-import tailwindcss from '@tailwindcss/vite'
 import { readFileSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
+import { defineConfig } from 'vitest/config'
 
 const publicProofPath = fileURLToPath(
   new URL('./public/data/public-proof.json', import.meta.url),
@@ -10,14 +8,11 @@ const publicProofPath = fileURLToPath(
 const publicProof = JSON.parse(readFileSync(publicProofPath, 'utf8')) as unknown
 
 export default defineConfig({
-  plugins: [react(), tailwindcss()],
   define: {
     __PUBLIC_PROOF__: JSON.stringify(publicProof),
   },
-  server: {
-    allowedHosts: true,
-    proxy: {
-      '/api': 'http://localhost:8000',
-    },
+  test: {
+    environment: 'jsdom',
+    include: ['tests/**/*.test.ts'],
   },
 })

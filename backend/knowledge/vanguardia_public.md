@@ -58,7 +58,7 @@ Nao e apenas treinamento. E a base cultural, comportamental e cognitiva da camad
 
 A CNH cria disciplina, sigilo, responsabilidade e padrao para usar IA sem virar risco, vazamento, improviso ou baixa qualidade.
 
-Metricas publicas permitidas: mais de 7.500 lideres e profissionais certificados em tres anos; mais de 1.000 membros ativos em manutencao e aprofundamento continuo.
+As metricas publicas de certificacao e membros ativos devem vir exclusivamente da fonte canonica de prova carregada pelo backend.
 
 Jornada: Compreender, Navegar e Habilitar.
 
@@ -137,25 +137,6 @@ Cliente em maturidade avancada: pode discutir Data Lake, ICIA Process, modulos I
 Cliente permanente: pode ter ICIA OS como camada central e contrato de inteligencia corporativa continuada.
 
 Nao apresentar valores, precos, descontos, ticket minimo, margem, ARR, MRR, NRR, condicoes comerciais ou especificacoes financeiras. Quando perguntarem sobre preco, responder que o escopo depende de diagnostico e que um consultor deve conduzir a conversa.
-
-## Prova social publica
-
-Metricas publicas permitidas:
-
-- Mais de 700 empresas atendidas no historico acumulado do grupo.
-- 27 contas ativas na carteira de 2026.
-- Mais de 7.500 CPFs certificados na CNH da IA em tres anos.
-- Mais de 1.000 membros ativos em manutencao e aprofundamento continuo.
-
-Clientes citaveis em alto nivel, sem revelar informacoes confidenciais: Athias Soriano, Grupo Lotus, Nevoni, Silnave Navegacao, MedNutri, CF Distribuidora, Do It Hub, Facilita Servicos, IT Protect Brasil, Paraferro, Prime Equipaments, Faculdade FIBRA, Alves Martins Advocacia, Nativa Uniformes, Montalvao Neves & Oliveira, TocaHUB, Supermercados Economico, Mave Assistencia 24h, CNPAG Advogados, DAL Ferragens, Unineuro Diagnosticos e Cabotia Healthy Food.
-
-Cases publicos permitidos:
-
-- Athias Soriano: escritorio juridico enterprise que testou diversos fornecedores de IA antes de implementar o programa ICIA por seis meses e renovar por mais um ano. A narrativa correta e que compraram clareza e padrao, nao ferramenta isolada.
-- Nevoni: industria em Sao Paulo. Orcamento de projetos de alto valor antes levava cerca de 25 dias e passou a sair em cerca de 3 dias. A narrativa correta e que a arquitetura, nao automacao solta, mudou o resultado.
-- Do It Hub: reposicionamento de coworking para hub de aceleracao, com ticket medio multiplicado por seis. A narrativa correta e que mudou a planta da casa, nao o tijolo.
-- Nativa Uniformes: exemplo publico de ERP fechado, migracao de dados e personalizacao. Demonstra capacidade de substituir sistemas, nao apenas criar modulos.
-- Operacoes de RH e relatorios: exemplos publicos de reducao de retrabalho manual e fechamento mais rapido de relatorios. Nao prometer reducao de pessoas.
 
 ## Frases canonicas
 
