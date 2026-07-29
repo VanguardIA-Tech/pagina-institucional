@@ -106,6 +106,7 @@
   display: inline-flex;
   align-items: center;
   min-width: 130px;
+  min-height: 44px;
 }
 
 .portfolio-nav-brand img {
@@ -126,6 +127,9 @@
 
 .portfolio-nav-links a,
 .portfolio-nav-gov {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
   color: var(--portfolio-muted-on-dark);
   font-size: 13px;
   font-weight: 650;
@@ -146,7 +150,7 @@
 .portfolio-home .portfolio-nav-contact {
   display: inline-flex;
   align-items: center;
-  min-height: 40px;
+  min-height: 44px;
   padding: 0 16px;
   background: var(--portfolio-white);
   color: var(--portfolio-ink);
@@ -285,6 +289,7 @@
 }
 
 .portal-mosaic-wrap {
+  position: relative;
   min-width: 0;
   margin: 0;
 }
@@ -351,6 +356,7 @@
   display: inline-flex;
   align-items: center;
   gap: 12px;
+  min-height: 44px;
   color: var(--portfolio-white);
   font-weight: 760;
   transition: color 160ms ease, transform 160ms var(--portfolio-ease-out);
@@ -875,6 +881,18 @@
   object-fit: cover;
 }
 
+.case-media--portal {
+  width: min(100%, 960px);
+  height: auto;
+  aspect-ratio: 8 / 5;
+  margin-inline: auto;
+  background: var(--portfolio-white);
+}
+
+.case-media--portal img {
+  object-fit: contain;
+}
+
 .case-story[data-order='1'] .case-media {
   clip-path: polygon(0 0, 72% 0, 76% 7%, 100% 7%, 100% 100%, 0 100%);
 }
@@ -885,6 +903,11 @@
 
 .case-story[data-order='3'] .case-media {
   clip-path: polygon(0 0, 100% 0, 100% 93%, 76% 93%, 72% 100%, 0 100%);
+}
+
+.case-story[data-order='1'] .case-media--portal,
+.case-story[data-order='2'] .case-media--portal {
+  clip-path: none;
 }
 
 /* Clients */
@@ -955,26 +978,29 @@
 .client-sector li {
   display: grid;
   place-items: center;
-  min-width: 110px;
-  min-height: 64px;
+  flex: 0 0 150px;
+  width: 150px;
+  height: 64px;
 }
 
 .client-sector img {
   display: block;
-  width: auto;
-  max-width: 150px;
+  width: 100%;
   height: 54px;
   object-fit: contain;
-  filter: grayscale(1) contrast(1.08);
-  opacity: 0.76;
-  transition: filter 180ms ease, opacity 180ms ease;
+  filter: grayscale(1) contrast(1.12);
+  opacity: 0.84;
 }
 
-@media (hover: hover) and (pointer: fine) {
-  .client-sector img:hover {
-    filter: grayscale(0) contrast(1);
-    opacity: 1;
-  }
+.client-sector img.client-logo--light {
+  filter: brightness(0);
+  opacity: 0.82;
+}
+
+.client-sector img.client-logo--paper-wide {
+  object-fit: cover;
+  object-position: center 52%;
+  mix-blend-mode: multiply;
 }
 
 /* Testimonials */
@@ -1036,6 +1062,7 @@
   align-items: baseline;
   gap: 12px;
   width: 100%;
+  min-height: 44px;
   padding: 15px 0;
   border: 0;
   background: transparent;
@@ -1049,7 +1076,7 @@
 }
 
 .testimonial-selector button span {
-  color: #6f756e;
+  color: #8f958e;
   font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
   font-size: 11px;
   font-variant-numeric: tabular-nums;
@@ -1287,6 +1314,9 @@
 }
 
 .portfolio-footer nav a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
   color: var(--portfolio-mineral);
   font-size: 12px;
   transition: color 160ms ease;
@@ -1361,7 +1391,7 @@
   }
 
   .portfolio-hero h1 {
-    font-size: 9.25vw;
+    font-size: min(9.25vw, 71px);
     line-height: 0.88;
   }
 
@@ -1382,6 +1412,10 @@
   .portal-panel-3 { grid-column: 1; grid-row: 2; }
   .portal-panel-4 { grid-column: 2; grid-row: 2; }
   .portal-panel-5 { grid-column: 1 / 3; grid-row: 3; }
+
+  .portal-panel img {
+    object-fit: contain;
+  }
 
   .portfolio-proof-rail {
     grid-template-columns: repeat(2, 1fr);
@@ -1608,8 +1642,12 @@
     margin-left: 0;
   }
 
-  .case-media {
+  .case-media--photo {
     height: 76vw;
+  }
+
+  .case-media--portal {
+    height: auto;
   }
 
   .clients-opening {
@@ -1628,6 +1666,7 @@
 
   .client-sector li {
     min-width: 0;
+    width: 100%;
   }
 
   .client-sector img {

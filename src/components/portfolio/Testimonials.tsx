@@ -1,5 +1,5 @@
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
-import { Fragment, useCallback, useMemo, useState } from 'react'
+import { Fragment, useCallback, useMemo, useRef, useState } from 'react'
 import type { KeyboardEvent as ReactKeyboardEvent } from 'react'
 import type { Testimonial } from '../../content/publicProof'
 import ResponsivePicture from './ResponsivePicture'
@@ -13,6 +13,7 @@ function ActiveVideo({
 }) {
   const startPlayback = useCallback((video: HTMLVideoElement | null) => {
     if (!video) return
+    video.focus({ preventScroll: true })
     video.play().catch(() => {
       video.focus()
     })
@@ -46,6 +47,7 @@ export default function Testimonials({ items }: { items: Testimonial[] }) {
   const [activeId, setActiveId] = useState(items[0]?.id ?? '')
   const [playingId, setPlayingId] = useState<string | null>(null)
   const reduceMotion = useReducedMotion()
+  const posterButtonRef = useRef<HTMLButtonElement>(null)
 
   const active = useMemo(
     () => items.find((item) => item.id === activeId) ?? items[0],
@@ -65,6 +67,13 @@ export default function Testimonials({ items }: { items: Testimonial[] }) {
   const selectTestimonial = (id: string) => {
     setActiveId(id)
     setPlayingId(null)
+  }
+
+  const finishPlayback = () => {
+    setPlayingId(null)
+    window.requestAnimationFrame(() => {
+      posterButtonRef.current?.focus({ preventScroll: true })
+    })
   }
 
   const handleTabKeyDown = (
@@ -161,10 +170,11 @@ export default function Testimonials({ items }: { items: Testimonial[] }) {
                 {playingId === active.id ? (
                   <ActiveVideo
                     testimonial={active}
-                    onEnded={() => setPlayingId(null)}
+                    onEnded={finishPlayback}
                   />
                 ) : (
                   <button
+                    ref={posterButtonRef}
                     type="button"
                     className="testimonial-poster"
                     aria-label={`Reproduzir depoimento de ${active.organization}`}

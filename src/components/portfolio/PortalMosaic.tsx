@@ -31,7 +31,7 @@ function PortalPanel({
         width={portal.width}
         height={portal.height}
         loading={portal.priority ? 'eager' : 'lazy'}
-        fetchPriority={portal.priority ? 'high' : 'low'}
+        fetchPriority={portal.priority ? 'high' : 'auto'}
       />
     </motion.div>
   )

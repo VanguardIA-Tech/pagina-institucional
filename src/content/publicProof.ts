@@ -32,6 +32,7 @@ export type ClientProof = {
   name: string
   slug: string
   sector: string
+  logoTreatment?: 'light' | 'paper-wide'
 }
 
 export type PortalPreview = {

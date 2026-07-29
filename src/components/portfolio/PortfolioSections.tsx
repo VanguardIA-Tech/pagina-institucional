@@ -213,7 +213,7 @@ function CaseMedia({ item, doItImage }: { item: CaseStudy; doItImage: FeatureIma
         alt="Espaço do Do It Hub em Belém"
         width={doItImage.width}
         height={doItImage.height}
-        className="case-media"
+        className="case-media case-media--photo"
       />
     )
   }
@@ -224,7 +224,7 @@ function CaseMedia({ item, doItImage }: { item: CaseStudy; doItImage: FeatureIma
       alt={`Portal ICIA 360 de ${item.organization}`}
       width={600}
       height={375}
-      className="case-media"
+      className="case-media case-media--portal"
     />
   )
 }
@@ -311,10 +311,15 @@ export function ClientPortfolio({
                       <img
                         src={`/logos/${client.slug}.png`}
                         alt={client.name}
-                        width={180}
-                        height={80}
+                        width={300}
+                        height={108}
                         loading="lazy"
                         decoding="async"
+                        className={
+                          client.logoTreatment
+                            ? `client-logo--${client.logoTreatment}`
+                            : undefined
+                        }
                       />
                     </li>
                   ))}
@@ -363,22 +368,26 @@ export function DoItHubClose({
           Falar com a VanguardIA <span aria-hidden="true">↗</span>
         </a>
       </div>
-
-      <footer className="portfolio-footer">
-        <div className="portfolio-section-frame">
-          <img src="/logos/vanguardia-horizontal.png" alt="VanguardIA" width={180} height={42} />
-          <p>Pessoas. Processos. Tecnologia.</p>
-          <nav aria-label="Redes sociais">
-            <a href="https://www.linkedin.com/company/grupo-vanguardia" target="_blank" rel="noopener noreferrer">
-              LinkedIn
-            </a>
-            <a href="https://www.instagram.com/grupovanguard.ia" target="_blank" rel="noopener noreferrer">
-              Instagram
-            </a>
-          </nav>
-          <small>© {new Date().getFullYear()} Grupo VanguardIA</small>
-        </div>
-      </footer>
     </section>
+  )
+}
+
+export function PortfolioFooter() {
+  return (
+    <footer className="portfolio-footer">
+      <div className="portfolio-section-frame">
+        <img src="/logos/vanguardia-horizontal.png" alt="VanguardIA" width={180} height={42} />
+        <p>Pessoas. Processos. Tecnologia.</p>
+        <nav aria-label="Redes sociais">
+          <a href="https://www.linkedin.com/company/grupo-vanguardia" target="_blank" rel="noopener noreferrer">
+            LinkedIn
+          </a>
+          <a href="https://www.instagram.com/grupovanguard.ia" target="_blank" rel="noopener noreferrer">
+            Instagram
+          </a>
+        </nav>
+        <small>© {new Date().getFullYear()} Grupo VanguardIA</small>
+      </div>
+    </footer>
   )
 }
