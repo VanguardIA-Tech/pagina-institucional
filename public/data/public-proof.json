@@ -1,0 +1,261 @@
+{
+  "asOf": "2026-07-06",
+  "metrics": [
+    {
+      "id": "companies-served",
+      "value": 700,
+      "display": "700+",
+      "label": "empresas atendidas",
+      "context": "histórico acumulado do grupo"
+    },
+    {
+      "id": "active-accounts",
+      "value": 22,
+      "display": "22",
+      "label": "contas ativas",
+      "context": "empresas médias e grandes"
+    },
+    {
+      "id": "certified-people",
+      "value": 7500,
+      "display": "7.500+",
+      "label": "profissionais certificados",
+      "context": "CNH da IA em três anos"
+    },
+    {
+      "id": "active-members",
+      "value": 1000,
+      "display": "1.000+",
+      "label": "membros ativos",
+      "context": "manutenção e aprofundamento contínuos"
+    }
+  ],
+  "outcomes": [
+    {
+      "id": "nevoni-budget",
+      "organization": "Nevoni",
+      "label": "Prazo para gerar orçamento",
+      "before": 25,
+      "after": 3,
+      "beforeDisplay": "25 dias",
+      "afterDisplay": "3 dias",
+      "direction": "reduction"
+    },
+    {
+      "id": "payroll-operation",
+      "organization": "Operação de RH",
+      "label": "Trabalho manual diário",
+      "before": 6,
+      "after": 1,
+      "beforeDisplay": "6 horas",
+      "afterDisplay": "1 hora",
+      "direction": "reduction"
+    },
+    {
+      "id": "daily-reports",
+      "organization": "Relatórios diários",
+      "label": "Tempo por relatório",
+      "before": 180,
+      "after": 15,
+      "beforeDisplay": "3 horas",
+      "afterDisplay": "15 min",
+      "direction": "reduction"
+    },
+    {
+      "id": "do-it-ticket",
+      "organization": "Do It Hub",
+      "label": "Multiplicador do ticket médio",
+      "before": 1,
+      "after": 6,
+      "beforeDisplay": "base 1×",
+      "afterDisplay": "6×",
+      "direction": "growth"
+    }
+  ],
+  "cases": [
+    {
+      "id": "athias",
+      "organization": "Athias Soriano",
+      "sector": "Jurídico enterprise",
+      "metric": "8 → 1",
+      "metricLabel": "fornecedores de IA avaliados antes da escolha",
+      "summary": "Depois de testar oito fornecedores pelo Brasil, a Athias implementou o ICIA por seis meses e renovou por mais um ano. A decisão foi por clareza e padrão, não por uma ferramenta isolada.",
+      "logoSlug": "silveira-athias",
+      "mediaBase": "/portal-previews/athias-soriano"
+    },
+    {
+      "id": "nevoni",
+      "organization": "Nevoni",
+      "sector": "Indústria",
+      "metric": "25 → 3 dias",
+      "metricLabel": "para gerar orçamentos de projetos de alto valor",
+      "summary": "O orçamento deixou de depender de um fluxo manual de vinte e cinco dias e passou a sair em três. O ganho veio da arquitetura aplicada à operação, não de uma automação solta.",
+      "logoSlug": "nevoni",
+      "mediaBase": "/portal-previews/nevoni"
+    },
+    {
+      "id": "do-it-hub",
+      "organization": "Do It Hub",
+      "sector": "Escola de Inteligência Aplicada",
+      "metric": "6×",
+      "metricLabel": "multiplicador do ticket médio",
+      "summary": "O antigo coworking foi reposicionado como a primeira Escola de Inteligência Aplicada da Amazônia. A estrutura física permaneceu; a proposta, a comunidade e o valor entregue mudaram.",
+      "logoSlug": "do-it-hub",
+      "mediaBase": "/images/espaco-doit"
+    }
+  ],
+  "mediaManifest": {
+    "portalPreviews": [
+      {
+        "id": "athias-soriano",
+        "name": "Athias Soriano",
+        "base": "/portal-previews/athias-soriano",
+        "width": 600,
+        "height": 375,
+        "depth": -18,
+        "priority": true,
+        "formats": ["avif", "webp", "png"]
+      },
+      {
+        "id": "cf-distribuidora",
+        "name": "CF Distribuidora",
+        "base": "/portal-previews/cf-distribuidora",
+        "width": 600,
+        "height": 375,
+        "depth": 12,
+        "priority": false,
+        "formats": ["avif", "webp", "png"]
+      },
+      {
+        "id": "nativa-uniformes",
+        "name": "Nativa Uniformes",
+        "base": "/portal-previews/nativa-uniformes",
+        "width": 600,
+        "height": 375,
+        "depth": -9,
+        "priority": false,
+        "formats": ["avif", "webp", "png"]
+      },
+      {
+        "id": "silnave",
+        "name": "Silnave Navegação",
+        "base": "/portal-previews/silnave",
+        "width": 600,
+        "height": 375,
+        "depth": 16,
+        "priority": false,
+        "formats": ["avif", "webp", "png"]
+      },
+      {
+        "id": "grupo-lotus",
+        "name": "Grupo Lotus",
+        "base": "/portal-previews/grupo-lotus",
+        "width": 600,
+        "height": 375,
+        "depth": -12,
+        "priority": false,
+        "formats": ["avif", "webp", "png"]
+      }
+    ],
+    "featureImages": [
+      {
+        "id": "cnh-training",
+        "base": "/images/cnh-habilitados",
+        "fallback": "/images/cnh-habilitados-final.jpg",
+        "width": 1400,
+        "height": 1050,
+        "formats": ["avif", "webp"]
+      },
+      {
+        "id": "do-it-hub",
+        "base": "/images/espaco-doit-optimized",
+        "fallback": "/images/espaco-doit.webp",
+        "width": 4284,
+        "height": 4228,
+        "formats": ["avif", "webp"]
+      }
+    ]
+  },
+  "clients": [
+    { "name": "Athias Soriano", "slug": "silveira-athias", "sector": "Jurídico" },
+    { "name": "Alves Martins", "slug": "alves-martins", "sector": "Jurídico" },
+    { "name": "Montalvão Neves", "slug": "montalvao-neves", "sector": "Jurídico" },
+    { "name": "Nativa Uniformes", "slug": "nativa-uniformes", "sector": "Indústria" },
+    { "name": "Paraferro", "slug": "paraferro", "sector": "Indústria" },
+    { "name": "Belém Bioenergia Brasil", "slug": "bbb", "sector": "Indústria" },
+    { "name": "Nevoni", "slug": "nevoni", "sector": "Indústria" },
+    { "name": "CF Distribuidora", "slug": "cf-distribuidora", "sector": "Varejo e distribuição" },
+    { "name": "Supermercado Econômico", "slug": "supermercado-economico", "sector": "Varejo e distribuição" },
+    { "name": "Prime Equipaments", "slug": "prime-equipaments", "sector": "Varejo e distribuição" },
+    { "name": "DAL Ferragens", "slug": "dal-ferragens", "sector": "Varejo e distribuição" },
+    { "name": "Cabotia", "slug": "cabotia", "sector": "Varejo e distribuição" },
+    { "name": "Silnave Navegação", "slug": "silnave", "sector": "Navegação e logística" },
+    { "name": "Grupo Mega", "slug": "grupo-mega", "sector": "Navegação e logística" },
+    { "name": "Grupo Lotus", "slug": "grupo-lotus", "sector": "Serviços e tecnologia" },
+    { "name": "Facilita Serviços", "slug": "facilita", "sector": "Serviços e tecnologia" },
+    { "name": "IT Protect", "slug": "it-protect", "sector": "Serviços e tecnologia" },
+    { "name": "Toca Hub", "slug": "toca-hub", "sector": "Serviços e tecnologia" },
+    { "name": "MedNutri", "slug": "mednutri", "sector": "Saúde e educação" },
+    { "name": "Faculdade FIBRA", "slug": "fibra", "sector": "Saúde e educação" },
+    { "name": "Mave Assistência 24h", "slug": "mave", "sector": "Saúde e educação" },
+    { "name": "Unineuro Diagnósticos", "slug": "unineuro", "sector": "Saúde e educação" }
+  ],
+  "testimonials": [
+    {
+      "id": "athias-soriano",
+      "organization": "Athias Soriano",
+      "videoUrl": "https://directus.vanguardiagrupo.com.br/assets/dc881c8f-eac6-473c-bf81-007140703b89",
+      "captionSrc": "/captions/testimonial-athias-soriano-pt-BR.vtt",
+      "posterBase": "/testimonials/posters/athias-soriano",
+      "featured": true
+    },
+    {
+      "id": "cf-distribuidora",
+      "organization": "CF Distribuidora",
+      "videoUrl": "https://directus.vanguardiagrupo.com.br/assets/6b47ab85-9ed4-4234-8422-a2db096e8fc5",
+      "captionSrc": "/captions/testimonial-cf-distribuidora-pt-BR.vtt",
+      "posterBase": "/testimonials/posters/cf-distribuidora",
+      "featured": true
+    },
+    {
+      "id": "silnave",
+      "organization": "Silnave Navegação",
+      "videoUrl": "https://directus.vanguardiagrupo.com.br/assets/5f022ea6-9a06-47ab-a031-b9a1611549b9",
+      "captionSrc": "/captions/testimonial-silnave-pt-BR.vtt",
+      "posterBase": "/testimonials/posters/silnave",
+      "featured": true
+    },
+    {
+      "id": "alves-martins",
+      "organization": "Alves Martins",
+      "videoUrl": "https://directus.vanguardiagrupo.com.br/assets/d402458c-42a7-4f2e-8245-9b4ce5d138f6",
+      "captionSrc": "/captions/testimonial-alves-martins-pt-BR.vtt",
+      "posterBase": "/testimonials/posters/alves-martins",
+      "featured": false
+    },
+    {
+      "id": "lotus",
+      "organization": "Grupo Lotus",
+      "videoUrl": "https://directus.vanguardiagrupo.com.br/assets/74a7b912-11aa-4f8d-9ee2-8089a4a270a9",
+      "captionSrc": "/captions/testimonial-lotus-pt-BR.vtt",
+      "posterBase": "/testimonials/posters/lotus",
+      "featured": false
+    },
+    {
+      "id": "facilita",
+      "organization": "Facilita Serviços",
+      "videoUrl": "https://directus.vanguardiagrupo.com.br/assets/9b4a1bab-3a3b-436f-a2b4-159b7527ff06",
+      "captionSrc": "/captions/testimonial-facilita-pt-BR.vtt",
+      "posterBase": "/testimonials/posters/facilita",
+      "featured": false
+    },
+    {
+      "id": "oyamota",
+      "organization": "Oyamota",
+      "videoUrl": "https://directus.vanguardiagrupo.com.br/assets/c24bda7a-bfc3-4bbd-b73f-903b176c147b",
+      "captionSrc": "/captions/testimonial-oyamota-pt-BR.vtt",
+      "posterBase": "/testimonials/posters/oyamota",
+      "featured": false
+    }
+  ]
+}
