@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
-import { lazy, Suspense } from 'react'
+import { lazy, Suspense, useEffect } from 'react'
 import AnalyticsTracker from './components/AnalyticsTracker'
+import { initializeAcquisitionBoundary } from './lib/tracking/boundary'
 
 const Home = lazy(() => import('./pages/Home'))
 const IciaGov = lazy(() => import('./pages/IciaGov'))
@@ -14,6 +15,10 @@ function Loading() {
 }
 
 export default function App() {
+  useEffect(() => {
+    void initializeAcquisitionBoundary()
+  }, [])
+
   return (
     <BrowserRouter>
       <AnalyticsTracker />
