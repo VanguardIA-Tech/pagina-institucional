@@ -13,6 +13,13 @@ import PortalMosaic from './PortalMosaic'
 import ResponsivePicture from './ResponsivePicture'
 import VoiceDemo from './VoiceDemo'
 
+const metricContextStyle: CSSProperties = {
+  fontFamily:
+    'ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+  lineHeight: 1.55,
+  letterSpacing: 'normal',
+}
+
 export function PortfolioHero({
   metrics,
   portals,
@@ -48,7 +55,9 @@ export function PortfolioHero({
             <div key={metric.id}>
               <dt>{metric.label}</dt>
               <dd>{metric.display}</dd>
-              <p>{metric.context}</p>
+              <dd style={{ margin: 0 }}>
+                <p style={metricContextStyle}>{metric.context}</p>
+              </dd>
             </div>
           ))}
         </dl>
